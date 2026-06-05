@@ -2,104 +2,84 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<title>Zerox</title>
+<title>Zerox Channel</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
+  font-family: sans-serif;
+  background: #B61C1C;
   color: white;
 }
 
-/* هدر */
-header {
-  background: #B61C1C;
-  padding: 20px;
-  text-align: center;
-}
-
+/* لوگو */
 .logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: white;
-  display: inline-block;
-}
-
-/* عنوان */
-h1 {
-  margin: 10px 0 0;
+  text-align: center;
+  padding: 30px;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 /* کانتینر کارت‌ها */
 .container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 30px;
+  flex-wrap: wrap;
   gap: 20px;
+  padding: 20px;
 }
 
 /* کارت‌ها */
 .card {
-  width: 220px;
-  height: 140px;
-  background: #1a1a1a;
-  border: 2px solid #333;
+  width: 250px;
+  height: 150px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 15px;
   cursor: pointer;
   transition: 0.3s;
-  position: relative;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* هاور */
+/* افکت کلیک / انتخاب */
+.card:active {
+  transform: scale(0.95);
+}
+
 .card:hover {
-  transform: scale(1.05);
-  border-color: #B61C1C;
+  box-shadow: 0 0 20px white;
 }
 
-/* افکت کلیک (گلو) */
-.card.active {
-  box-shadow: 0 0 25px #B61C1C, 0 0 50px #B61C1C;
-  border-color: #B61C1C;
+/* عنوان داخل کارت */
+.card h3 {
+  margin: 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo"></div>
-  <h1>Zerox Channel</h1>
-</header>
+<div class="logo">ZEROX</div>
 
 <div class="container">
 
-  <div class="card">داستان‌ها</div>
-  <div class="card">ویدیوها</div>
-  <div class="card">گیم‌پلی</div>
-  <div class="card">آرشیو</div>
+  <div class="card">
+    <h3>Videos</h3>
+    <p>ویدیوهای جدید</p>
+  </div>
+
+  <div class="card">
+    <h3>Stories</h3>
+    <p>داستان‌های بازی</p>
+  </div>
+
+  <div class="card">
+    <h3>Highlights</h3>
+    <p>بهترین لحظات</p>
+  </div>
 
 </div>
-
-<script>
-const cards = document.querySelectorAll(".card");
-
-cards.forEach(card => {
-  card.addEventListener("click", () => {
-
-    // حذف حالت قبلی
-    cards.forEach(c => c.classList.remove("active"));
-
-    // اضافه کردن حالت جدید
-    card.classList.add("active");
-  });
-});
-</script>
 
 </body>
 </html>
