@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME</title>
+    <title>ZEROX | GAME - داستان بازی‌ها</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -15,125 +16,170 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             font-weight: 700;
-            background-color: #B61C1C;
+            background: linear-gradient(135deg, #0a0c10 0%, #1a1f2b 100%);
             color: #ffffff;
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* هدر با لوگوی بیرون زده */
+        /* هدر با لوگو */
         .header {
-            padding: 30px 30px 20px;
-            position: relative;
+            text-align: center;
+            padding: 30px 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: 900;
-            color: white;
-            background-color: #B61C1C;
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 12px;
-            position: absolute;
-            top: -18px;
-            right: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .channel-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #B61C1C;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .channel-avatar:hover {
+            transform: scale(1.05);
+            border-color: #ff4444;
         }
 
         .menu {
             display: flex;
             justify-content: center;
-            gap: 35px;
-            margin-top: 20px;
+            gap: 30px;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .menu a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
+            transition: 0.2s;
+            padding: 5px 0;
         }
 
-        /* بخش اصلی با 3 تا باکس */
-        .main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
+        .menu a:hover {
+            color: #B61C1C;
+            border-bottom: 2px solid #B61C1C;
         }
 
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        /* بخش اصلی */
+        .container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 25px;
+        }
+
+        /* کارت‌های شیشه‌ای */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1000px;
-            width: 100%;
+            margin-bottom: 50px;
         }
 
-        /* باکس شیشه‌ای (بلور) */
         .glass-card {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 40px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px;
             text-align: center;
-            flex: 1;
-            min-width: 220px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
-            cursor: pointer;
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #B61C1C;
         }
 
-        .glass-card i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: white;
+        .glass-card .icon {
+            font-size: 55px;
+            color: #B61C1C;
+            margin-bottom: 20px;
         }
 
         .glass-card h3 {
             font-size: 24px;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .glass-card p {
+            color: #cccccc;
             font-size: 14px;
-            opacity: 0.8;
+            line-height: 1.7;
+            font-weight: 500;
         }
 
+        .btn-card {
+            background: #B61C1C;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 800;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-card:hover {
+            background: #ff2a2a;
+            transform: scale(1.02);
+        }
+
+        /* بخش ویژه */
+        .featured {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .featured h2 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #B61C1C;
+        }
+
+        /* فوتر */
         .footer {
             text-align: center;
-            padding: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 12px;
-            opacity: 0.7;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons i {
+            font-size: 24px;
+            margin: 0 12px;
+            color: #888;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .social-icons i:hover {
+            color: #B61C1C;
         }
 
         @media (max-width: 700px) {
-            .logo {
-                position: static;
-                display: inline-block;
-                margin-bottom: 15px;
+            .menu {
+                gap: 18px;
             }
-            .header {
-                text-align: center;
+            .menu a {
+                font-size: 13px;
             }
-            .glass-card {
-                min-width: 180px;
-                padding: 25px 15px;
-            }
-            .glass-card h3 {
-                font-size: 18px;
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -141,7 +187,7 @@
 <body>
 
 <header class="header">
-    <div class="logo">ZEROX | GAME</div>
+    <img class="channel-avatar" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox">
     <div class="menu">
         <a href="#">خانه</a>
         <a href="#">داستان‌ها</a>
@@ -151,32 +197,44 @@
     </div>
 </header>
 
-<section class="main">
-    <div class="cards-container">
+<div class="container">
+    <div class="cards-grid">
         <div class="glass-card">
-            <i class="fas fa-book-open" style="font-family: 'Font Awesome 6 Free';"></i>
+            <div class="icon"><i class="fas fa-book-open"></i></div>
             <h3>داستان بازی</h3>
-            <p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p>
+            <p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p>
+            <button class="btn-card">بیشتر بخوانید</button>
         </div>
         <div class="glass-card">
-            <i class="fas fa-gamepad" style="font-family: 'Font Awesome 6 Free';"></i>
+            <div class="icon"><i class="fas fa-gamepad"></i></div>
             <h3>معرفی بازی</h3>
-            <p>بررسی جدیدترین و محبوب‌ترین بازی‌ها</p>
+            <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p>
+            <button class="btn-card">بیشتر بخوانید</button>
         </div>
         <div class="glass-card">
-            <i class="fas fa-newspaper" style="font-family: 'Font Awesome 6 Free';"></i>
+            <div class="icon"><i class="fas fa-newspaper"></i></div>
             <h3>اخبار بازی</h3>
-            <p>به‌روزترین اخبار از دنیای گیم</p>
+            <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
+            <button class="btn-card">بیشتر بخوانید</button>
         </div>
     </div>
-</section>
+
+    <div class="featured">
+        <h2>🔥 داستان ویژه هفته</h2>
+        <p>تحلیل کامل داستان The Last of Us | از قیام تا پایان</p>
+        <button class="btn-card" style="margin-top: 15px;">مشاهده داستان</button>
+    </div>
+</div>
 
 <footer class="footer">
-    <p>© 2025 ZEROX | GAME</p>
+    <div class="social-icons">
+        <i class="fab fa-discord"></i>
+        <i class="fab fa-twitch"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+    </div>
+    <p style="margin-top: 20px;">© 2025 ZEROX | GAME — هر بازی یک حماسه</p>
 </footer>
-
-<!-- اضافه کردن Font Awesome برای آیکون‌ها -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </body>
 </html>
