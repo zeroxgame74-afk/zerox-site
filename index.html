@@ -1,393 +1,124 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zerox | مرجع داستان‌های بازی</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zerox Gaming</title>
 
-        body {
-            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:tahoma;
+}
 
-        /* بکگراند متحرک نئونی قرمز */
-        .hero-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
-        }
+body{
+background:#111;
+color:white;
+}
 
-        .red-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 30%, rgba(182, 28, 28, 0.3) 0%, transparent 60%);
-            animation: pulseGlow 8s ease-in-out infinite;
-        }
+header{
+background:linear-gradient(90deg,#b61c1c,#ff2d2d);
+padding:30px;
+text-align:center;
+}
 
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
-        }
+.logo{
+font-size:60px;
+font-weight:bold;
+}
 
-        /* ذرات دود متحرک */
-        .smoke {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxmaWx0ZXIgaWQ9ImYiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjUiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2YpIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=');
-            opacity: 0.15;
-            pointer-events: none;
-            animation: driftSmoke 20s linear infinite;
-        }
+.slogan{
+font-size:22px;
+margin-top:10px;
+}
 
-        @keyframes driftSmoke {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(5%) translateY(3%); }
-        }
+.hero{
+text-align:center;
+padding:80px 20px;
+}
 
-        /* کانتینر اصلی */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem 3rem;
-            position: relative;
-        }
+.hero h1{
+font-size:50px;
+color:#ff3c3c;
+}
 
-        /* هدر شیشه‌ای */
-        .glass-header {
-            background: rgba(10, 10, 10, 0.5);
-            backdrop-filter: blur(12px);
-            border-radius: 80px;
-            border: 1px solid rgba(182, 28, 28, 0.4);
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 20px rgba(182, 28, 28, 0.1);
-        }
+.hero p{
+margin-top:20px;
+font-size:20px;
+}
 
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #ffffff, #B61C1C);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(182, 28, 28, 0.5);
-        }
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:15px 30px;
+background:#b61c1c;
+color:white;
+text-decoration:none;
+border-radius:10px;
+transition:0.3s;
+}
 
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+.btn:hover{
+background:#ff2d2d;
+}
 
-        .nav-menu a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            position: relative;
-        }
+.section{
+padding:50px 20px;
+text-align:center;
+}
 
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #B61C1C;
-            transition: 0.3s;
-        }
+.card{
+background:#1c1c1c;
+padding:20px;
+border-radius:15px;
+margin:15px auto;
+max-width:500px;
+}
 
-        .nav-menu a:hover {
-            color: #B61C1C;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* بخش اصلی Hero */
-        .hero {
-            text-align: center;
-            padding: 2rem 1rem 3rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, #B61C1C);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(182, 28, 28, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-            opacity: 0.9;
-        }
-
-        .highlight {
-            color: #B61C1C;
-            font-weight: bold;
-        }
-
-        /* دکمه‌های نئونی */
-        .btn-group {
-            display: flex;
-            gap: 1.2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .btn-neon {
-            background: transparent;
-            border: 2px solid #B61C1C;
-            color: #B61C1C;
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-neon:hover {
-            background: #B61C1C;
-            color: #fff;
-            box-shadow: 0 0 20px #B61C1C;
-            transform: scale(1.05);
-        }
-
-        .btn-solid {
-            background: #B61C1C;
-            color: #fff;
-            border: 2px solid #B61C1C;
-        }
-
-        .btn-solid:hover {
-            background: transparent;
-            color: #B61C1C;
-            box-shadow: 0 0 20px #B61C1C;
-        }
-
-        /* بخش کارت‌ها */
-        .section-title {
-            font-size: 2.2rem;
-            text-align: center;
-            margin: 3rem 0 2rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #B61C1C;
-            margin: 0.5rem auto 0;
-            border-radius: 5px;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        /* کارت شیشه‌ای */
-        .game-card {
-            background: rgba(20, 20, 30, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 1.8rem;
-            border: 1px solid rgba(182, 28, 28, 0.3);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .game-card:nth-child(1) { animation-delay: 0.1s; }
-        .game-card:nth-child(2) { animation-delay: 0.2s; }
-        .game-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .game-card:hover {
-            transform: translateY(-8px);
-            border-color: #B61C1C;
-            box-shadow: 0 15px 35px rgba(182, 28, 28, 0.2);
-            background: rgba(30, 30, 40, 0.6);
-        }
-
-        .game-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .game-genre {
-            display: inline-block;
-            background: rgba(182, 28, 28, 0.3);
-            padding: 0.2rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(182, 28, 28, 0.5);
-        }
-
-        .game-card p {
-            margin: 1rem 0;
-            line-height: 1.7;
-        }
-
-        .btn-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #B61C1C;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 0.5rem;
-            transition: 0.3s;
-        }
-
-        .btn-card:hover {
-            gap: 15px;
-            color: #ff4d4d;
-        }
-
-        /* فوتر */
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(182, 28, 28, 0.3);
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-
-        /* انیمیشن‌ها */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ریسپانسیو */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .glass-header {
-                flex-direction: column;
-                text-align: center;
-                border-radius: 40px;
-            }
-            .nav-menu {
-                gap: 1.2rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+footer{
+background:#000;
+text-align:center;
+padding:20px;
+margin-top:50px;
+}
+</style>
 </head>
+
 <body>
-    <div class="hero-bg"></div>
-    <div class="red-glow"></div>
-    <div class="smoke"></div>
 
-    <div class="container">
-        <div class="glass-header">
-            <div class="logo">ZEROX</div>
-            <ul class="nav-menu">
-                <li><a href="#">خانه</a></li>
-                <li><a href="#">داستان‌ها</a></li>
-                <li><a href="#">بازی‌ها</a></li>
-                <li><a href="#">ویدیوها</a></li>
-                <li><a href="#">درباره</a></li>
-            </ul>
-        </div>
+<header>
+<div class="logo">Z</div>
+<div class="slogan">اینجا کانال خفن زروکسه!</div>
+</header>
 
-        <div class="hero">
-            <h1>به <span class="highlight">زروکس</span> خوش آمدی</h1>
-            <p>اینجا هر بازی یه داستان داره. از اسطوره‌های کلاسیک تا آخرین حماسه‌های جهان گیمینگ، با ما همراه باش.</p>
-            <div class="btn-group">
-                <a href="#" class="btn-neon btn-solid">📺 کانال آپارات</a>
-                <a href="#" class="btn-neon">🎬 کانال یوتیوب</a>
-                <a href="#" class="btn-neon">📖 داستان‌های جدید</a>
-            </div>
-        </div>
+<section class="hero">
+<h1>به دنیای Zerox خوش اومدی!</h1>
+<p>داستان بازی‌ها، گیم‌پلی و کلی محتوای خفن گیمینگ</p>
 
-        <h2 class="section-title">🔥 آخرین داستان‌های بازی</h2>
-        <div class="games-grid">
-            <div class="game-card">
-                <h3>The Last of Us</h3>
-                <span class="game-genre">🎮 داستانی / پساآخرالزمانی</span>
-                <p>داستان جوئل و الی، سفری در دل آمریکای ویران شده. روابط انسانی، بقا و فداکاری در برابر عفونت قارچی مرگبار...</p>
-                <a href="#" class="btn-card">ادامه داستان →</a>
-            </div>
-            <div class="game-card">
-                <h3>God of War Ragnarök</h3>
-                <span class="game-genre">⚔️ اساطیر / اکشن</span>
-                <p>کرتوس و آترئوس در برابر رگناروک. سرنوشت نُه قلمرو و پایان اساطیر نورس... آیا قهرمان می‌تواند از سرنوشت فرار کند؟</p>
-                <a href="#" class="btn-card">ادامه داستان →</a>
-            </div>
-            <div class="game-card">
-                <h3>Red Dead Redemption 2</h3>
-                <span class="game-genre">🤠 وسترن / جهان باز</span>
-                <p>آرتور مورگان و گروه وَن دِر لیند. پایان عصر یاغی‌ها و روابط خائنانه‌ای که همه چیز را تغییر می‌دهد.</p>
-                <a href="#" class="btn-card">ادامه داستان →</a>
-            </div>
-        </div>
+<a class="btn" href="#">کانال یوتیوب</a>
+</section>
 
-        <footer>
-            <p>© 2025 ZEROX | تمامی حقوق محفوظ است</p>
-            <p style="margin-top: 0.5rem;">🎧 به زودی ویدیوهای داستانی در آپارات و یوتیوب</p>
-        </footer>
-    </div>
+<section class="section">
+<h2>آخرین ویدیوها</h2>
+
+<div class="card">
+داستان بازی BioShock
+</div>
+
+<div class="card">
+داستان بازی Outlast
+</div>
+
+<div class="card">
+معرفی Astro Bot
+</div>
+</section>
+
+<footer>
+© Zerox Gaming
+</footer>
+
 </body>
-              </html>
+</html>
