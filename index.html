@@ -31,19 +31,17 @@
         .thumbnail-img,.news-img,.video-thumb{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px solid #eee;}
         .card-content,.news-content,.video-info{padding:20px;text-align:center;}
         .card-content h3,.news-content h3,.video-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;}
-        .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:14px;}
+        .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
+        .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:900;cursor:pointer;transition:0.2s;font-size:14px;font-family:'Vazirmatn',sans-serif;}
         .btn-card:hover{background:#8a1010;transform:scale(1.02);}
         .news-date{font-size:0.75rem;color:#777;margin-top:10px;display:flex;align-items:center;gap:5px;justify-content:center;}
         .news-date i{color:#B61C1C;}
         .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
         .video-card{position:relative;}
-        .featured{background:white;border-radius:24px;padding:30px;text-align:center;color:#1a1a1a;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .featured h2{color:#B61C1C;}
-        .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
-        .more-btn{background:transparent;border:1px solid #B61C1C;padding:5px 12px;border-radius:20px;color:#B61C1C;font-size:12px;cursor:pointer;margin-top:8px;}
+        .more-btn{background:transparent;border:1px solid #B61C1C;padding:5px 12px;border-radius:20px;color:#B61C1C;font-size:12px;cursor:pointer;margin-top:8px;font-family:'Vazirmatn',sans-serif;font-weight:900;}
         .more-btn:hover{background:#B61C1C;color:white;}
         .full-text{display:none;margin-top:10px;padding:10px;background:#f9f9f9;border-radius:12px;text-align:right;}
+        .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
@@ -71,7 +69,41 @@
 </div>
 
 <div class="container" id="contentContainer">
+    <!-- صفحه خانه با همه چیز -->
     <div id="homePage">
+        <!-- بخش ویدیوهای ترسناک -->
+        <div class="section-title"><i class="fas fa-skull"></i> ویدیوهای ترسناک</div>
+        <div class="videos-grid">
+            <div class="video-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
+                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+                    <button class="btn-card">مشاهده ویدیو</button>
+                </div>
+            </div>
+            <div class="video-card">
+                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="Outlast">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive</h3>
+                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده</p>
+                    <div class="full-text" id="fullTextHome">
+                        در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider. اگر به بازی‌های ترسناک و داستان‌های تاریک علاقه داری، این ویدیو رو از دست نده!
+                    </div>
+                    <button class="more-btn" onclick="event.stopPropagation(); toggleText('fullTextHome', this)">بیشتر...</button>
+                    <button class="btn-card" style="margin-top:10px;" onclick="event.stopPropagation(); window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">مشاهده ویدیو</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بخش اخبار تازه (از newsData میخونه) -->
+        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
+        <div class="news-grid" id="homeNewsGrid"></div>
+
+        <!-- بخش داستان‌ها -->
+        <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های جدید</div>
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
@@ -86,59 +118,14 @@
                 <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
         </div>
-        <div class="featured"><h2>🔥 داستان ویژه هفته</h2><p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p><button class="btn-card" style="margin-top:15px;">مشاهده داستان</button></div>
     </div>
 
-    <div id="storiesPage" style="display:none;">
-        <div class="cards-grid">
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div>
-            </div>
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div>
-            </div>
-        </div>
-    </div>
+    <!-- سایر صفحات (کمتر استفاده میشن ولی برای دسترسی کامل هستن) -->
+    <div id="storiesPage" style="display:none;"><div class="cards-grid"><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div></div><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div></div></div></div>
 
-    <div id="videosPage" style="display:none;">
-        <div class="videos-grid">
-            <!-- ویدیو ۱ -->
-            <div class="video-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
-                    <button class="btn-card">مشاهده ویدیو</button>
-                </div>
-            </div>
-            <!-- ویدیو ۲ (Outlast) -->
-            <div class="video-card">
-                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="Outlast">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive</h3>
-                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده</p>
-                    <div class="full-text" id="fullTextOutlast">
-                        در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider. اگر به بازی‌های ترسناک و داستان‌های تاریک علاقه داری، این ویدیو رو از دست نده!
-                    </div>
-                    <button class="more-btn" onclick="event.stopPropagation(); toggleText('fullTextOutlast', this)">بیشتر...</button>
-                    <button class="btn-card" style="margin-top:10px;" onclick="event.stopPropagation(); window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">مشاهده ویدیو</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="newsPage" style="display:none;">
-        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
-        <div class="news-grid" id="newsGrid"></div>
-    </div>
-
-    <div id="aboutPage" style="display:none;">
-        <div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div>
-    </div>
+    <div id="videosPage" style="display:none;"><div class="videos-grid" id="videosGridCopy"></div></div>
+    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div><div class="news-grid" id="newsGrid"></div></div>
+    <div id="aboutPage" style="display:none;"><div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div></div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
@@ -156,20 +143,16 @@
         }
     }
 
+    // اسلایدر
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dotsContainer = document.getElementById('dots');
-
     function showSlides() {
-        const slidesContainer = document.getElementById('slides');
-        slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+        document.getElementById('slides').style.transform = `translateX(-${slideIndex * 100}%)`;
         document.querySelectorAll('.dot').forEach((dot, i) => { dot.classList.toggle('active', i === slideIndex); });
     }
     function changeSlide(n) {
-        let newIndex = slideIndex + n;
-        if (newIndex >= slides.length) newIndex = 0;
-        if (newIndex < 0) newIndex = slides.length - 1;
-        slideIndex = newIndex;
+        slideIndex = (slideIndex + n + slides.length) % slides.length;
         showSlides();
     }
     if (slides.length > 0) {
@@ -183,23 +166,28 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    const newsData = [{
-        id: 1,
-        title: "بالاخره خبر جدید GTA 6 رسید!",
-        summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
-        image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
-        date: "۱۴۰۳/۱۲/۲۱",
-        fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
-    }];
+    // اخبار (هر خبر توی تب اخبار بزاری، اینجا هم نشون داده میشه)
+    const newsData = [
+        {
+            id: 1,
+            title: "بالاخره خبر جدید GTA 6 رسید!",
+            summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
+            image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
+            date: "۱۴۰۳/۱۲/۲۱",
+            fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
+        }
+    ];
 
     function loadNews() {
+        const homeGrid = document.getElementById('homeNewsGrid');
         const newsGrid = document.getElementById('newsGrid');
-        if (!newsGrid) return;
+        if (!homeGrid) return;
         let html = '';
         for (let news of newsData) {
             html += `<div class="news-card" onclick="showFullNews(${news.id})"><img class="news-img" src="${news.image}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date}</div><button class="btn-card" style="margin-top:10px;">ادامه مطلب</button></div></div>`;
         }
-        newsGrid.innerHTML = html;
+        homeGrid.innerHTML = html;
+        if (newsGrid) newsGrid.innerHTML = html;
     }
 
     function showFullNews(id) {
@@ -217,10 +205,18 @@
         document.getElementById('aboutPage').style.display = 'none';
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
-        else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
+        else if (page === 'videos') { 
+            document.getElementById('videosPage').style.display = 'block';
+            const videosGridCopy = document.getElementById('videosGridCopy');
+            if (videosGridCopy) {
+                videosGridCopy.innerHTML = document.querySelector('#homePage .videos-grid').cloneNode(true).innerHTML;
+            }
+        }
         else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
+
+    loadNews();
 </script>
 
 </body>
