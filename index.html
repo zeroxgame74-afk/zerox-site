@@ -26,7 +26,7 @@
             padding: 20px 20px 10px;
         }
 
-        /* لوگو 560 پیکسل (بسیار بزرگ) */
+        /* لوگو 560 پیکسل */
         .logo-raw {
             width: auto;
             height: 560px;
@@ -64,22 +64,7 @@
             transform: translateY(-2px);
         }
 
-        /* هدر اختصاصی (بالای اسلایدر) */
-        .custom-header {
-            max-width: 1080px;
-            margin: 10px auto 20px;
-            padding: 0 25px;
-        }
-
-        .custom-header img {
-            width: 100%;
-            height: auto;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: block;
-        }
-
-        /* اسلایدر */
+        /* اسلایدر با دو عکس */
         .slider-container {
             max-width: 1080px;
             margin: 20px auto;
@@ -90,9 +75,9 @@
         .slider {
             position: relative;
             width: 100%;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .slides {
@@ -102,13 +87,11 @@
 
         .slide {
             min-width: 100%;
-            position: relative;
         }
 
         .slide img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
@@ -118,9 +101,9 @@
             transform: translateY(-50%);
             background: rgba(0,0,0,0.5);
             color: white;
-            padding: 10px 16px;
+            padding: 12px 18px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             border-radius: 50%;
             transition: 0.2s;
             z-index: 10;
@@ -156,7 +139,7 @@
             padding: 0 25px;
         }
 
-        /* =============== استایل باکس‌های سفید جدید =============== */
+        /* =============== استایل باکس‌های سفید =============== */
         .section-title {
             font-size: 1.8rem;
             font-weight: 900;
@@ -169,10 +152,6 @@
             color: white;
         }
 
-        .section-title i {
-            font-size: 28px;
-        }
-
         .cards-grid, .news-grid, .videos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -180,7 +159,6 @@
             margin-bottom: 40px;
         }
 
-        /* کارت سفید (برای همه بخش‌ها) */
         .thumbnail-card, .news-card, .video-card {
             background: white;
             border-radius: 24px;
@@ -274,7 +252,6 @@
 
         .featured h2 {
             color: #B61C1C;
-            margin-bottom: 15px;
         }
 
         .footer {
@@ -288,9 +265,6 @@
         @media (max-width: 700px) {
             .logo-raw {
                 height: 280px;
-            }
-            .slide img {
-                height: 150px;
             }
             .menu a {
                 font-size: 13px;
@@ -312,18 +286,12 @@
     </div>
 </header>
 
-<!-- هدر جدید (تصویر اختصاصی) -->
-<div class="custom-header">
-    <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="Header Banner">
-</div>
-
-<!-- اسلایدر -->
+<!-- اسلایدر با دو عکس (دقیقاً همونایی که گفتی) -->
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۱"></div>
+            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/d7349_InShot_20260605_195526606.jpg" alt="اسلاید ۱"></div>
             <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۲"></div>
-            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۳"></div>
         </div>
         <div class="prev" onclick="changeSlide(-1)">❮</div>
         <div class="next" onclick="changeSlide(1)">❯</div>
@@ -359,6 +327,11 @@
                     <button class="btn-card">بیشتر بخوانید</button>
                 </div>
             </div>
+        </div>
+        <div class="featured">
+            <h2>🔥 داستان ویژه هفته</h2>
+            <p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p>
+            <button class="btn-card" style="margin-top: 15px;">مشاهده داستان</button>
         </div>
     </div>
 
@@ -401,12 +374,8 @@
 
     <!-- صفحه اخبار -->
     <div id="newsPage" style="display: none;">
-        <div class="section-title">
-            <i class="fas fa-newspaper"></i> آخرین اخبار بازی
-        </div>
-        <div class="news-grid" id="newsGrid">
-            <div style="text-align: center; padding: 50px;">در حال بارگذاری اخبار...</div>
-        </div>
+        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
+        <div class="news-grid" id="newsGrid"></div>
     </div>
 
     <!-- صفحه درباره ما -->
@@ -423,7 +392,6 @@
 </footer>
 
 <script>
-    // اسلایدر
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dotsContainer = document.getElementById('dots');
@@ -454,71 +422,34 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    // صفحه بندی
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
         document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
-        
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
         else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
-        else if (page === 'news') {
-            document.getElementById('newsPage').style.display = 'block';
-            loadNews();
-        }
+        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 
-    // اخبار قابل ویرایش توسط تو
     function loadNews() {
         const newsData = [
-            {
-                title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök",
-                summary: "سونی رسما از بسته الحاقی جدید خدای جنگ با نام «والهالا» رونمایی کرد که داستان جدیدی از کرتوس را روایت می‌کند.",
-                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
-                date: "۱۴۰۳/۱۲/۲۰"
-            },
-            {
-                title: "تاریخ انتشار GTA 6 مشخص شد",
-                summary: "شرکت راکستار گیمز اعلام کرد که Grand Theft Auto VI در پاییز ۲۰۲۵ برای کنسول‌های نسل نهم منتشر خواهد شد.",
-                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
-                date: "۱۴۰۳/۱۲/۱۸"
-            },
-            {
-                title: "بروزرسانی عظیم The Last of Us Part I",
-                summary: "نسخه ریمستر بازی آخرین بازمانده با بهبودهای گرافیکی و حالت جدید سرعت اجرا برای PS5 و PC منتشر شد.",
-                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
-                date: "۱۴۰۳/۱۲/۱۵"
-            }
+            { title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök", summary: "سونی رسما از بسته الحاقی جدید خدای جنگ با نام «والهالا» رونمایی کرد.", image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", date: "۱۴۰۳/۱۲/۲۰" },
+            { title: "تاریخ انتشار GTA 6 مشخص شد", summary: "شرکت راکستار گیمز اعلام کرد که Grand Theft Auto VI در پاییز ۲۰۲۵ منتشر خواهد شد.", image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", date: "۱۴۰۳/۱۲/۱۸" }
         ];
-
         const newsGrid = document.getElementById('newsGrid');
         if (!newsGrid) return;
-
-        if (newsData.length === 0) {
-            newsGrid.innerHTML = '<div style="text-align: center; padding: 50px;">هیچ خبری یافت نشد.</div>';
-            return;
-        }
-
+        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align: center; padding: 50px;">هیچ خبری یافت نشد.</div>'; return; }
         let html = '';
         for (let news of newsData) {
-            html += `
-                <div class="news-card">
-                    <img class="news-img" src="${news.image}" alt="${news.title}">
-                    <div class="news-content">
-                        <h3>${news.title}</h3>
-                        <p>${news.summary}</p>
-                        <div class="news-date">📅 ${news.date}</div>
-                    </div>
-                </div>
-            `;
+            html += `<div class="news-card"><img class="news-img" src="${news.image}" alt="${news.title}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date">📅 ${news.date}</div></div></div>`;
         }
         newsGrid.innerHTML = html;
     }
 </script>
 
 </body>
-    </html>
+</html>
