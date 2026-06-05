@@ -21,15 +21,15 @@
             min-height: 100vh;
         }
 
-        /* هدر با لوگوی بزرگ */
         .header {
             text-align: center;
             padding: 30px 20px 20px;
         }
 
+        /* لوگو خیلی بزرگ */
         .logo-raw {
             width: auto;
-            height: 180px;
+            height: 240px;
             object-fit: contain;
             margin-bottom: 25px;
         }
@@ -57,9 +57,9 @@
             border-bottom: 2px solid white;
         }
 
-        /* اسلایدر */
+        /* اسلایدر با سایز 1080x120 */
         .slider-container {
-            max-width: 1300px;
+            max-width: 1080px;
             margin: 30px auto;
             padding: 0 25px;
             position: relative;
@@ -68,7 +68,7 @@
         .slider {
             position: relative;
             width: 100%;
-            border-radius: 28px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
@@ -85,7 +85,7 @@
 
         .slide img {
             width: 100%;
-            height: 400px;
+            height: 120px;
             object-fit: cover;
             display: block;
         }
@@ -95,15 +95,15 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 60px 30px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 30px 20px 10px;
             text-align: center;
         }
 
         .slide-caption h3 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-shadow: 2px 2px 0 #000;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 0 #000;
         }
 
         .prev, .next {
@@ -112,9 +112,9 @@
             transform: translateY(-50%);
             background: rgba(0,0,0,0.5);
             color: white;
-            padding: 12px 18px;
+            padding: 6px 12px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             border-radius: 50%;
             transition: 0.2s;
             z-index: 10;
@@ -124,32 +124,25 @@
             background: #B61C1C;
         }
 
-        .prev {
-            left: 15px;
-        }
-
-        .next {
-            right: 15px;
-        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
         .dots {
             text-align: center;
-            padding: 15px 0;
+            padding: 10px 0;
         }
 
         .dot {
             display: inline-block;
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: rgba(255,255,255,0.5);
-            margin: 0 5px;
+            margin: 0 4px;
             cursor: pointer;
         }
 
-        .dot.active {
-            background: white;
-        }
+        .dot.active { background: white; }
 
         /* کانتینر اصلی */
         .container {
@@ -158,6 +151,77 @@
             padding: 0 25px;
         }
 
+        /* بخش ویدیوها */
+        .videos-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            border-right: 4px solid white;
+            padding-right: 15px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* کارت ویدیو */
+        .video-card {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #B61C1C;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .video-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .video-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 900;
+        }
+
+        .video-info p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* کارت‌های قدیمی */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -187,20 +251,6 @@
             display: block;
         }
 
-        .watch-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #B61C1C;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 900;
-            z-index: 2;
-            box-shadow: 0 2px 8px black;
-        }
-
         .card-content {
             padding: 20px;
             text-align: center;
@@ -217,7 +267,6 @@
             font-size: 0.85rem;
             opacity: 0.95;
             margin-bottom: 15px;
-            text-shadow: 0.5px 0.5px 0 #00000060;
         }
 
         .btn-card {
@@ -264,17 +313,14 @@
             .menu a {
                 font-size: 14px;
             }
-            .thumbnail-img {
-                height: 160px;
-            }
             .logo-raw {
-                height: 120px;
+                height: 150px;
             }
             .slide img {
-                height: 250px;
+                height: 100px;
             }
-            .slide-caption h3 {
-                font-size: 1rem;
+            .section-title {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -292,27 +338,21 @@
     </div>
 </header>
 
-<!-- اسلایدر -->
+<!-- اسلایدر با سایز 1080x120 -->
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
             <div class="slide">
                 <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۱">
-                <div class="slide-caption">
-                    <h3>به ZEROX | GAME خوش آمدید</h3>
-                </div>
+                <div class="slide-caption"><h3>به ZEROX | GAME خوش آمدید</h3></div>
             </div>
             <div class="slide">
                 <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۲">
-                <div class="slide-caption">
-                    <h3>داستان بازی | معرفی بازی | اخبار بازی</h3>
-                </div>
+                <div class="slide-caption"><h3>داستان بازی | معرفی بازی | اخبار بازی</h3></div>
             </div>
             <div class="slide">
                 <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۳">
-                <div class="slide-caption">
-                    <h3>داستان کامل بازی نه من انسان نیستم | اولین ویدیوی چنل</h3>
-                </div>
+                <div class="slide-caption"><h3>داستان کامل بازی نه من انسان نیستم</h3></div>
             </div>
         </div>
         <div class="prev" onclick="changeSlide(-1)">❮</div>
@@ -322,41 +362,62 @@
 </div>
 
 <div class="container">
+    <!-- بخش ویدیوها -->
+    <div class="videos-section">
+        <div class="section-title">🎬 ویدیوها</div>
+        <div class="videos-grid">
+            <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
+                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+                </div>
+            </div>
+            <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو ۲">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>ویدیو جدید به زودی</h3>
+                    <p>به زودی...</p>
+                </div>
+            </div>
+            <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو ۳">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>ویدیو جدید به زودی</h3>
+                    <p>به زودی...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بخش داستان‌ها -->
+    <div class="section-title">📖 داستان‌ها</div>
     <div class="cards-grid">
         <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
             <div class="card-content">
                 <h3>داستان بازی</h3>
-                <p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p>
+                <p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p>
                 <button class="btn-card">بیشتر بخوانید</button>
             </div>
         </div>
-
         <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
             <div class="card-content">
                 <h3>معرفی بازی</h3>
-                <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p>
+                <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز</p>
                 <button class="btn-card">بیشتر بخوانید</button>
             </div>
         </div>
-
         <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
             <div class="card-content">
                 <h3>اخبار بازی</h3>
                 <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
                 <button class="btn-card">بیشتر بخوانید</button>
-            </div>
-        </div>
-
-        <div class="thumbnail-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
-            <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="تماشای ویدیو">
-            <div class="watch-badge">🎬 تماشا</div>
-            <div class="card-content">
-                <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی در سال ۲۰۲۵</p>
-                <button class="btn-card">مشاهده ویدیو</button>
             </div>
         </div>
     </div>
@@ -380,7 +441,6 @@
     function showSlides() {
         const slidesContainer = document.getElementById('slides');
         slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
-        
         document.querySelectorAll('.dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === slideIndex);
         });
@@ -393,23 +453,15 @@
         showSlides();
     }
 
-    // ساخت دات‌ها
     slides.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
-        dot.onclick = () => {
-            slideIndex = i;
-            showSlides();
-        };
+        dot.onclick = () => { slideIndex = i; showSlides(); };
         dotsContainer.appendChild(dot);
     });
 
     showSlides();
-
-    // تغییر خودکار هر ۵ ثانیه
-    setInterval(() => {
-        changeSlide(1);
-    }, 5000);
+    setInterval(() => changeSlide(1), 5000);
 
     function menuClick(section) {
         alert('🔴 صفحه "' + section + '" به زودی اضافه می‌شود!');
