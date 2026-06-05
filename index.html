@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME - اخبار</title>
+    <title>ZEROX | GAME</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* استایل‌های قبلی همین جا هستند (فضای کافی نبود، ولی کامل هستند) */
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
         .header{text-align:center;padding:20px 20px 10px;}
@@ -43,34 +42,6 @@
         .featured h2{color:#B61C1C;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
-
-        /* استایل صفحه خبر کامل */
-        .news-full-page {
-            background: white;
-            border-radius: 28px;
-            padding: 30px;
-            max-width: 800px;
-            margin: 20px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .news-full-page img {
-            max-width: 100%;
-            border-radius: 16px;
-            margin: 15px 0;
-        }
-        .news-full-page h1 {
-            color: #B61C1C;
-            margin-bottom: 15px;
-        }
-        .back-btn {
-            background: #B61C1C;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -158,37 +129,22 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    // داده‌های اخبار (اینجا رو ویرایش کن)
+    // ========== فقط همین یک خبر ==========
     const newsData = [
         {
             id: 1,
-            title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök",
-            summary: "سونی رسما از بسته الحاقی جدید خدای جنگ با نام «والهالا» رونمایی کرد.",
-            image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
-            date: "۱۴۰۳/۱۲/۲۰",
-            fullText: `<p>بسته الحاقی والهالا داستان جدیدی از کرتوس روایت میکنه. این بار کرتوس باید به والهالا سفر کنه و با چالش‌های جدیدی روبرو بشه.</p>
-                       <img src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="God of War">
-                       <p>این بسته شامل مبارزات جدید، اسلحه‌های تازه و داستانی ۱۰ ساعته است که پایان‌بندی متفاوتی برای شخصیت کرتوس رقم میزنه.</p>
-                       <p>تاریخ انتشار: ۲۰ آذر ۱۴۰۴</p>`
-        },
-        {
-            id: 2,
-            title: "تاریخ انتشار GTA 6 مشخص شد",
-            summary: "شرکت راکستار گیمز اعلام کرد که Grand Theft Auto VI در پاییز ۲۰۲۵ منتشر خواهد شد.",
-            image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
-            date: "۱۴۰۳/۱۲/۱۸",
-            fullText: `<p>طبق اطلاعیه رسمی راکستار، Grand Theft Auto VI در تاریخ ۱۵ مهر ۱۴۰۴ برای کنسول‌های PS5 و Xbox Series X|S منتشر میشه.</p>
-                       <p>نسخه PC چند ماه بعد عرضه خواهد شد. این بازی در شهر جدیدی به نام "پورتو سول" جریان داره و دو شخصیت اصلی داره.</p>
-                       <p>اولین تریلر رسمی بازی تا ۲ هفته دیگر منتشر میشه.</p>`
+            title: "بالاخره خبر جدید GTA 6 رسید!",
+            summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
+            image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
+            date: "۱۴۰۳/۱۲/۲۱",
+            fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p>
+                       <p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
         }
     ];
-
-    let currentNewsId = null;
 
     function loadNews() {
         const newsGrid = document.getElementById('newsGrid');
         if (!newsGrid) return;
-        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align:center;padding:50px;">هیچ خبری یافت نشد.</div>'; return; }
         let html = '';
         for (let news of newsData) {
             html += `
@@ -209,21 +165,16 @@
     function showFullNews(id) {
         const news = newsData.find(n => n.id === id);
         if (!news) return;
-        currentNewsId = id;
         const container = document.getElementById('contentContainer');
         container.innerHTML = `
-            <div class="news-full-page">
-                <button class="back-btn" onclick="backToNewsList()"><i class="fas fa-arrow-right"></i> بازگشت به اخبار</button>
-                <h1>${news.title}</h1>
+            <div style="background:white; border-radius:28px; padding:30px; max-width:800px; margin:20px auto; box-shadow:0 10px 25px rgba(0,0,0,0.1);">
+                <button class="btn-card" onclick="location.reload()" style="margin-bottom:20px;"><i class="fas fa-arrow-right"></i> بازگشت به اخبار</button>
+                <h1 style="color:#B61C1C; margin-bottom:15px;">${news.title}</h1>
                 <img src="${news.image}" alt="${news.title}" style="width:100%; border-radius:16px; margin:15px 0;">
-                <div class="news-date" style="justify-content:flex-start; margin-bottom:20px;"><i class="fas fa-calendar-alt"></i> ${news.date}</div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;"><i class="fas fa-calendar-alt" style="color:#B61C1C;"></i> ${news.date}</div>
                 <div>${news.fullText}</div>
             </div>
         `;
-    }
-
-    function backToNewsList() {
-        location.reload(); // ساده‌ترین راه برای برگشت
     }
 
     function showPage(page) {
@@ -237,7 +188,7 @@
         else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
         else if (page === 'news') { 
             document.getElementById('newsPage').style.display = 'block'; 
-            if (typeof loadNews === 'function') loadNews(); 
+            loadNews(); 
         }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
