@@ -21,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* هدر با لوگوی بدون دایره */
+        /* هدر با لوگوی بزرگ */
         .header {
             text-align: center;
             padding: 30px 20px 20px;
@@ -29,9 +29,9 @@
 
         .logo-raw {
             width: auto;
-            height: 70px;
+            height: 130px;
             object-fit: contain;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .menu {
@@ -46,9 +46,10 @@
             color: white;
             text-decoration: none;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             transition: 0.2s;
             padding: 5px 0;
+            text-shadow: 2px 2px 0 #00000080;
         }
 
         .menu a:hover {
@@ -62,7 +63,7 @@
             padding: 0 25px;
         }
 
-        /* کارت‌ها با عکس تم‌نیل */
+        /* کارت‌ها */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -97,15 +98,17 @@
         }
 
         .card-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 10px;
             font-weight: 900;
+            text-shadow: 2px 2px 0 #00000080;
         }
 
         .card-content p {
-            font-size: 0.85rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            opacity: 0.95;
             margin-bottom: 15px;
+            text-shadow: 1px 1px 0 #00000060;
         }
 
         .btn-card {
@@ -136,6 +139,7 @@
         .featured h2 {
             font-size: 1.8rem;
             margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #00000080;
         }
 
         .footer {
@@ -150,10 +154,13 @@
                 gap: 20px;
             }
             .menu a {
-                font-size: 13px;
+                font-size: 14px;
             }
             .thumbnail-img {
                 height: 160px;
+            }
+            .logo-raw {
+                height: 90px;
             }
         }
     </style>
@@ -161,7 +168,6 @@
 <body>
 
 <header class="header">
-    <!-- لوگو بدون دایره (همون عکس خودت) -->
     <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo">
     <div class="menu">
         <a href="#">خانه</a>
@@ -174,8 +180,7 @@
 
 <div class="container">
     <div class="cards-grid">
-        <!-- کارت داستان بازی با عکس تم‌نیل -->
-        <div class="thumbnail-card">
+        <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
             <div class="card-content">
                 <h3>داستان بازی</h3>
@@ -184,8 +189,7 @@
             </div>
         </div>
 
-        <!-- کارت معرفی بازی (فعلاً از همین عکس استفاده شده، خودت میتونی عکس دلخواهت رو جایگزین کنی) -->
-        <div class="thumbnail-card">
+        <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
             <div class="card-content">
                 <h3>معرفی بازی</h3>
@@ -194,8 +198,7 @@
             </div>
         </div>
 
-        <!-- کارت اخبار بازی -->
-        <div class="thumbnail-card">
+        <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
             <div class="card-content">
                 <h3>اخبار بازی</h3>
@@ -215,6 +218,13 @@
 <footer class="footer">
     <p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p>
 </footer>
+
+<script>
+    function goToAparat() {
+        // لینک آپاراتت رو اینجا بذار
+        window.open('https://www.aparat.com/zerox_game', '_blank');
+    }
+</script>
 
 </body>
 </html>
