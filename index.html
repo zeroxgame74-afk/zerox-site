@@ -26,7 +26,6 @@
             padding: 20px 20px 10px;
         }
 
-        /* لوگو 560 پیکسل */
         .logo-raw {
             width: auto;
             height: 560px;
@@ -34,7 +33,6 @@
             margin-bottom: 20px;
         }
 
-        /* منو */
         .menu {
             display: flex;
             justify-content: center;
@@ -64,7 +62,7 @@
             transform: translateY(-2px);
         }
 
-        /* اسلایدر با دو عکس */
+        /* اسلایدر بدون دکمه */
         .slider-container {
             max-width: 1080px;
             margin: 20px auto;
@@ -95,30 +93,9 @@
             display: block;
         }
 
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            padding: 12px 18px;
-            cursor: pointer;
-            font-size: 20px;
-            border-radius: 50%;
-            transition: 0.2s;
-            z-index: 10;
-        }
-
-        .prev:hover, .next:hover {
-            background: #B61C1C;
-        }
-
-        .prev { left: 15px; }
-        .next { right: 15px; }
-
         .dots {
             text-align: center;
-            padding: 12px 0;
+            padding: 15px 0 5px;
         }
 
         .dot {
@@ -127,11 +104,15 @@
             height: 10px;
             border-radius: 50%;
             background: rgba(255,255,255,0.5);
-            margin: 0 5px;
+            margin: 0 6px;
             cursor: pointer;
+            transition: 0.2s;
         }
 
-        .dot.active { background: white; }
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
 
         .container {
             max-width: 1300px;
@@ -139,7 +120,6 @@
             padding: 0 25px;
         }
 
-        /* =============== استایل باکس‌های سفید =============== */
         .section-title {
             font-size: 1.8rem;
             font-weight: 900;
@@ -286,21 +266,19 @@
     </div>
 </header>
 
-<!-- اسلایدر با دو عکس (دقیقاً همونایی که گفتی) -->
+<!-- اسلایدر با سه عکس -->
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
             <div class="slide"><img src="https://cdn.imgurl.ir/uploads/d7349_InShot_20260605_195526606.jpg" alt="اسلاید ۱"></div>
             <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۲"></div>
+            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/l683720_InShot_20260605_200640757.jpg" alt="اسلاید ۳"></div>
         </div>
-        <div class="prev" onclick="changeSlide(-1)">❮</div>
-        <div class="next" onclick="changeSlide(1)">❯</div>
     </div>
     <div class="dots" id="dots"></div>
 </div>
 
 <div class="container" id="contentContainer">
-    <!-- صفحه خانه -->
     <div id="homePage">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -335,7 +313,6 @@
         </div>
     </div>
 
-    <!-- صفحه داستان‌ها -->
     <div id="storiesPage" style="display: none;">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -357,7 +334,6 @@
         </div>
     </div>
 
-    <!-- صفحه ویدیوها -->
     <div id="videosPage" style="display: none;">
         <div class="videos-grid">
             <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
@@ -372,13 +348,11 @@
         </div>
     </div>
 
-    <!-- صفحه اخبار -->
     <div id="newsPage" style="display: none;">
         <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
         <div class="news-grid" id="newsGrid"></div>
     </div>
 
-    <!-- صفحه درباره ما -->
     <div id="aboutPage" style="display: none;">
         <div class="featured">
             <h2>درباره ZEROX | GAME</h2>
@@ -452,4 +426,4 @@
 </script>
 
 </body>
-</html>
+                    </html>
