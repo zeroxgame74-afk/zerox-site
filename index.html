@@ -68,6 +68,7 @@
 </div>
 
 <div class="container" id="contentContainer">
+    <!-- صفحه خانه -->
     <div id="homePage">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -86,16 +87,45 @@
         <div class="featured"><h2>🔥 داستان ویژه هفته</h2><p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p><button class="btn-card" style="margin-top:15px;">مشاهده داستان</button></div>
     </div>
 
-    <div id="storiesPage" style="display:none;"><div class="cards-grid"><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div></div><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div></div></div></div>
+    <!-- صفحه داستان‌ها -->
+    <div id="storiesPage" style="display:none;">
+        <div class="cards-grid">
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
+                <div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div>
+            </div>
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
+                <div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div>
+            </div>
+        </div>
+    </div>
 
-    <div id="videosPage" style="display:none;"><div class="videos-grid"><div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'"><img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>داستان کامل بازی نه من انسان نیستم</h3><p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p><button class="btn-card">مشاهده ویدیو</button></div></div></div></div>
+    <!-- صفحه ویدیوها (فقط همین یک ویدیو) -->
+    <div id="videosPage" style="display:none;">
+        <div class="videos-grid">
+            <div class="video-card" onclick="window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">
+                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="تماشای ویدیو">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive</h3>
+                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده | در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider. اگر به بازی‌های ترسناک و داستان‌های تاریک علاقه داری، این ویدیو رو از دست نده!</p>
+                    <button class="btn-card">مشاهده ویدیو</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- صفحه اخبار (فقط خبر GTA 6) -->
     <div id="newsPage" style="display:none;">
         <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
         <div class="news-grid" id="newsGrid"></div>
     </div>
 
-    <div id="aboutPage" style="display:none;"><div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div></div>
+    <!-- صفحه درباره ما -->
+    <div id="aboutPage" style="display:none;">
+        <div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div>
+    </div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
@@ -129,7 +159,7 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    // ========== فقط همین یک خبر ==========
+    // خبر GTA 6 (تنها خبر)
     const newsData = [
         {
             id: 1,
