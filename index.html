@@ -13,10 +13,11 @@
             box-sizing: border-box;
         }
 
+        /* کل بکگراند B61C1C */
         body {
             font-family: 'Vazirmatn', sans-serif;
             font-weight: 700;
-            background-color: #0a0c10;
+            background-color: #B61C1C;
             color: #ffffff;
             line-height: 1.7;
         }
@@ -24,24 +25,12 @@
         :root {
             --red: #B61C1C;
             --red-dark: #8a1515;
-            --red-glow: rgba(182, 28, 28, 0.4);
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1e26;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--red);
-            border-radius: 10px;
-        }
-
-        /* هدر با فضای خالی برای لوگوی بیرون زده */
+        /* هدر با فضای خالی برای عکس بیرون زده */
         .header {
-            background: rgba(10, 12, 16, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             padding-top: 3rem;
             display: flex;
@@ -49,55 +38,45 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             position: relative;
         }
 
-        /* لوگوی بیرون زده از هدر */
+        /* عکس بیرون زده از هدر */
         .avatar-wrapper {
             position: absolute;
-            top: -40px;
+            top: -35px;
             right: 30px;
         }
         .channel-avatar-top {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 3px solid var(--red);
+            border: 3px solid #ffffff;
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            background: #0a0c10;
+            background: #B61C1C;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-right: 100px;
+            margin-right: 90px;
         }
         
-        /* فونت با استروک (حاشیه) */
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 
-                -1px -1px 0 var(--red),
-                1px -1px 0 var(--red),
-                -1px 1px 0 var(--red),
-                1px 1px 0 var(--red);
         }
         
         .logo span {
-            font-size: 0.9rem;
-            color: var(--red);
-            text-shadow: none;
+            font-size: 0.8rem;
+            color: #ffcccc;
             font-weight: 800;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -110,69 +89,62 @@
         }
 
         .nav-links a:hover {
-            color: var(--red);
+            color: #ffcccc;
         }
 
         .btn-outline {
-            border: 1px solid var(--red);
+            border: 1px solid #ffffff;
             background: transparent;
             padding: 0.4rem 1rem;
             border-radius: 30px;
-            color: var(--red);
-            font-weight: 900;
+            color: #ffffff;
+            font-weight: 800;
             transition: 0.25s;
             cursor: pointer;
             font-size: 0.85rem;
         }
 
         .btn-outline:hover {
-            background: var(--red);
-            color: #0a0c10;
+            background: #ffffff;
+            color: #B61C1C;
         }
 
         .hero {
             text-align: center;
             padding: 3rem 2rem;
-            background: linear-gradient(135deg, #0f111a 0%, #1a1f2b 100%);
-            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 
-                -1px -1px 0 var(--red),
-                1px -1px 0 var(--red),
-                -1px 1px 0 var(--red),
-                1px 1px 0 var(--red);
             margin-bottom: 1rem;
         }
 
         .hero p {
             max-width: 600px;
             margin: 0 auto;
-            color: #bbbbbb;
+            color: #ffdddd;
             font-size: 1rem;
             font-weight: 500;
         }
 
         .btn-glow {
-            background: var(--red);
+            background: #ffffff;
             border: none;
             padding: 0.7rem 1.8rem;
             border-radius: 40px;
             font-weight: 900;
             font-size: 0.9rem;
-            color: white;
-            box-shadow: 0 0 15px var(--red-glow);
+            color: #B61C1C;
             cursor: pointer;
             transition: 0.2s;
             margin-top: 1.5rem;
         }
 
         .btn-glow:hover {
-            background: var(--red-dark);
+            background: #ffdddd;
             transform: scale(1.02);
         }
 
@@ -186,7 +158,7 @@
             font-size: 1.8rem;
             font-weight: 900;
             margin-bottom: 2rem;
-            border-right: 4px solid var(--red);
+            border-right: 4px solid #ffffff;
             padding-right: 1rem;
             color: #ffffff;
         }
@@ -197,27 +169,28 @@
             gap: 2rem;
         }
 
+        /* کادر سفید با متن مشکی */
         .story-card {
             background: #ffffff;
             border-radius: 20px;
             overflow: hidden;
             transition: 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .story-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(182, 28, 28, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .story-icon {
             height: 160px;
-            background: linear-gradient(145deg, #f5f5f5, #e8e8e8);
+            background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: var(--red);
+            color: #B61C1C;
         }
 
         .story-info {
@@ -233,7 +206,7 @@
 
         .genre-tag {
             background: rgba(182, 28, 28, 0.1);
-            color: var(--red);
+            color: #B61C1C;
             padding: 0.2rem 0.8rem;
             border-radius: 50px;
             font-size: 0.65rem;
@@ -247,11 +220,10 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
             font-weight: 500;
-            line-height: 1.6;
         }
 
         .read-more {
-            color: var(--red);
+            color: #B61C1C;
             text-decoration: none;
             font-weight: 900;
             font-size: 0.8rem;
@@ -267,7 +239,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .featured-story h3 {
@@ -276,32 +248,35 @@
             color: #1a1a1a;
         }
 
+        .featured-story p {
+            color: #444444;
+        }
+
         .featured-badge {
             font-size: 1rem;
             font-weight: 900;
-            color: var(--red);
+            color: #B61C1C;
         }
 
         .footer {
-            background: #06080c;
+            background: rgba(0, 0, 0, 0.6);
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 1px solid #20232c;
             font-size: 0.85rem;
-            color: #aaaaaa;
+            color: #ffdddd;
             font-weight: 500;
         }
 
         .social-icons i {
             font-size: 1.5rem;
             margin: 0 0.7rem;
-            color: #7c8395;
+            color: #ffffff;
             transition: 0.2s;
         }
 
         .social-icons i:hover {
-            color: var(--red);
+            color: #ffcccc;
         }
 
         @media (max-width: 700px) {
@@ -326,13 +301,11 @@
 <body>
 
 <header class="header">
-    <!-- لوگو بیرون زده از هدر -->
     <div class="avatar-wrapper">
-        <img class="channel-avatar-top" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Channel">
+        <img class="channel-avatar-top" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox">
     </div>
-    
     <div class="brand">
-        <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
+        <div class="logo">ZEROX | GAME <span>| داستان اول</span></div>
     </div>
     <div class="nav-links">
         <a href="#">خانه</a>
