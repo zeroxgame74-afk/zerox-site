@@ -17,30 +17,30 @@
             font-family: 'Vazirmatn', sans-serif;
             font-weight: 700;
             background-color: #B61C1C;
-            color: white;
+            color: #1a1a1a;
             min-height: 100vh;
         }
 
         .header {
             text-align: center;
-            padding: 30px 20px 20px;
+            padding: 20px 20px 10px;
         }
 
-        /* لوگو 450 پیکسل (بزرگ) */
+        /* لوگو 560 پیکسل (بسیار بزرگ) */
         .logo-raw {
             width: auto;
-            height: 450px;
+            height: 560px;
             object-fit: contain;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        /* منو با فاصله کمتر */
+        /* منو */
         .menu {
             display: flex;
             justify-content: center;
             gap: 25px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .menu a {
@@ -50,7 +50,6 @@
             font-size: 17px;
             transition: 0.2s;
             padding: 5px 0;
-            letter-spacing: 0.5px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -65,10 +64,25 @@
             transform: translateY(-2px);
         }
 
+        /* هدر اختصاصی (بالای اسلایدر) */
+        .custom-header {
+            max-width: 1080px;
+            margin: 10px auto 20px;
+            padding: 0 25px;
+        }
+
+        .custom-header img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: block;
+        }
+
         /* اسلایدر */
         .slider-container {
             max-width: 1080px;
-            margin: 30px auto;
+            margin: 20px auto;
             padding: 0 25px;
             position: relative;
         }
@@ -138,14 +152,11 @@
 
         .container {
             max-width: 1300px;
-            margin: 50px auto;
+            margin: 40px auto;
             padding: 0 25px;
         }
 
-        .news-section {
-            margin-bottom: 50px;
-        }
-
+        /* =============== استایل باکس‌های سفید جدید =============== */
         .section-title {
             font-size: 1.8rem;
             font-weight: 900;
@@ -155,90 +166,84 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: white;
         }
 
         .section-title i {
             font-size: 28px;
         }
 
-        .news-grid {
+        .cards-grid, .news-grid, .videos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 40px;
         }
 
-        .news-card {
-            background: rgba(0, 0, 0, 0.25);
+        /* کارت سفید (برای همه بخش‌ها) */
+        .thumbnail-card, .news-card, .video-card {
+            background: white;
             border-radius: 24px;
             overflow: hidden;
-            transition: 0.3s;
-            backdrop-filter: blur(2px);
-        }
-
-        .news-card:hover {
-            transform: translateY(-8px);
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .news-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .news-content {
-            padding: 20px;
-        }
-
-        .news-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-
-        .news-content p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .news-date {
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
-
-        .videos-section {
-            margin-bottom: 50px;
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .video-card {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: 0.3s;
+            transition: 0.3s ease;
             cursor: pointer;
-            backdrop-filter: blur(2px);
-            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #1a1a1a;
         }
 
-        .video-card:hover {
+        .thumbnail-card:hover, .news-card:hover, .video-card:hover {
             transform: translateY(-8px);
-            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.3);
         }
 
-        .video-thumb {
+        .thumbnail-img, .news-img, .video-thumb {
             width: 100%;
             height: 200px;
             object-fit: cover;
             display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-content, .news-content, .video-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-content h3, .news-content h3, .video-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+            color: #B61C1C;
+        }
+
+        .card-content p, .news-content p, .video-info p {
+            font-size: 0.9rem;
+            color: #444;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .btn-card {
+            background: #B61C1C;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-card:hover {
+            background: #8a1010;
+            transform: scale(1.02);
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            color: #777;
+            margin-top: 10px;
         }
 
         .video-badge {
@@ -253,90 +258,23 @@
             font-weight: 900;
         }
 
-        .video-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .video-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            font-weight: 900;
-        }
-
-        .video-info p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            margin-bottom: 50px;
-        }
-
-        .thumbnail-card {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: 0.3s;
-            cursor: pointer;
-            backdrop-filter: blur(2px);
-        }
-
-        .thumbnail-card:hover {
-            transform: translateY(-8px);
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .thumbnail-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .card-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-weight: 900;
-            text-shadow: 1.5px 1.5px 0 #00000080;
-        }
-
-        .card-content p {
-            font-size: 0.85rem;
-            opacity: 0.95;
-            margin-bottom: 15px;
-        }
-
-        .btn-card {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid white;
-            padding: 8px 25px;
-            border-radius: 40px;
-            color: white;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-card:hover {
-            background: white;
-            color: #B61C1C;
+        .video-card {
+            position: relative;
         }
 
         .featured {
-            background: rgba(0, 0, 0, 0.25);
+            background: white;
             border-radius: 24px;
             padding: 30px;
             text-align: center;
-            backdrop-filter: blur(2px);
+            color: #1a1a1a;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .featured h2 {
+            color: #B61C1C;
+            margin-bottom: 15px;
         }
 
         .footer {
@@ -344,11 +282,12 @@
             padding: 35px;
             margin-top: 50px;
             border-top: 1px solid rgba(255,255,255,0.2);
+            color: white;
         }
 
         @media (max-width: 700px) {
             .logo-raw {
-                height: 250px;
+                height: 280px;
             }
             .slide img {
                 height: 150px;
@@ -356,9 +295,6 @@
             .menu a {
                 font-size: 13px;
                 gap: 6px;
-            }
-            .menu a i {
-                font-size: 14px;
             }
         }
     </style>
@@ -375,6 +311,11 @@
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
 </header>
+
+<!-- هدر جدید (تصویر اختصاصی) -->
+<div class="custom-header">
+    <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="Header Banner">
+</div>
 
 <!-- اسلایدر -->
 <div class="slider-container">
@@ -445,15 +386,14 @@
 
     <!-- صفحه ویدیوها -->
     <div id="videosPage" style="display: none;">
-        <div class="videos-section">
-            <div class="videos-grid">
-                <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
-                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو">
-                    <div class="video-badge">▶ تماشا</div>
-                    <div class="video-info">
-                        <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                        <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
-                    </div>
+        <div class="videos-grid">
+            <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
+                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+                    <button class="btn-card">مشاهده ویدیو</button>
                 </div>
             </div>
         </div>
@@ -461,19 +401,17 @@
 
     <!-- صفحه اخبار -->
     <div id="newsPage" style="display: none;">
-        <div class="news-section">
-            <div class="section-title">
-                <i class="fas fa-newspaper"></i> آخرین اخبار بازی
-            </div>
-            <div class="news-grid" id="newsGrid">
-                <div style="text-align: center; padding: 50px;">در حال بارگذاری اخبار...</div>
-            </div>
+        <div class="section-title">
+            <i class="fas fa-newspaper"></i> آخرین اخبار بازی
+        </div>
+        <div class="news-grid" id="newsGrid">
+            <div style="text-align: center; padding: 50px;">در حال بارگذاری اخبار...</div>
         </div>
     </div>
 
     <!-- صفحه درباره ما -->
     <div id="aboutPage" style="display: none;">
-        <div class="featured" style="text-align: center;">
+        <div class="featured">
             <h2>درباره ZEROX | GAME</h2>
             <p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p>
         </div>
@@ -505,15 +443,16 @@
         showSlides();
     }
 
-    slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        dot.onclick = () => { slideIndex = i; showSlides(); };
-        dotsContainer.appendChild(dot);
-    });
-
-    showSlides();
-    setInterval(() => changeSlide(1), 5000);
+    if (slides.length > 0) {
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.onclick = () => { slideIndex = i; showSlides(); };
+            dotsContainer.appendChild(dot);
+        });
+        showSlides();
+        setInterval(() => changeSlide(1), 5000);
+    }
 
     // صفحه بندی
     function showPage(page) {
@@ -533,7 +472,7 @@
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 
-    // اخبار (هر جا خواستی خبر جدید اضافه کن، اینجا رو ویرایش کن)
+    // اخبار قابل ویرایش توسط تو
     function loadNews() {
         const newsData = [
             {
@@ -582,4 +521,4 @@
 </script>
 
 </body>
-</html>
+    </html>
