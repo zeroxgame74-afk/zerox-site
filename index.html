@@ -21,7 +21,6 @@
             min-height: 100vh;
         }
 
-        /* هدر با لوگوی بزرگ */
         .header {
             text-align: center;
             padding: 30px 20px 20px;
@@ -55,17 +54,14 @@
 
         .menu a:hover {
             border-bottom: 2px solid white;
-            text-shadow: 1px 1px 0 #000000;
         }
 
-        /* کانتینر اصلی */
         .container {
             max-width: 1300px;
             margin: 50px auto;
             padding: 0 25px;
         }
 
-        /* کارت‌ها */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -80,6 +76,7 @@
             transition: 0.3s;
             cursor: pointer;
             backdrop-filter: blur(2px);
+            position: relative;
         }
 
         .thumbnail-card:hover {
@@ -94,12 +91,25 @@
             display: block;
         }
 
+        .watch-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #B61C1C;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 900;
+            z-index: 2;
+            box-shadow: 0 2px 8px black;
+        }
+
         .card-content {
             padding: 20px;
             text-align: center;
         }
 
-        /* استروک نزدیک به متن */
         .card-content h3 {
             font-size: 1.6rem;
             margin-bottom: 10px;
@@ -130,7 +140,6 @@
             color: #B61C1C;
         }
 
-        /* بخش ویژه */
         .featured {
             background: rgba(0, 0, 0, 0.25);
             border-radius: 24px;
@@ -183,6 +192,7 @@
 
 <div class="container">
     <div class="cards-grid">
+        <!-- کارت داستان بازی -->
         <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
             <div class="card-content">
@@ -192,6 +202,7 @@
             </div>
         </div>
 
+        <!-- کارت معرفی بازی -->
         <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
             <div class="card-content">
@@ -201,12 +212,24 @@
             </div>
         </div>
 
+        <!-- کارت اخبار بازی -->
         <div class="thumbnail-card" onclick="goToAparat()">
             <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
             <div class="card-content">
                 <h3>اخبار بازی</h3>
                 <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
                 <button class="btn-card">بیشتر بخوانید</button>
+            </div>
+        </div>
+
+        <!-- کارت جدید ویدیو با برچسب تماشا -->
+        <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
+            <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="تماشای ویدیو">
+            <div class="watch-badge">🎬 تماشا</div>
+            <div class="card-content">
+                <h3>ویدیو داستان بازی</h3>
+                <p>تماشای آنالیز داستان بازی مورد نظر در آپارات</p>
+                <button class="btn-card">مشاهده ویدیو</button>
             </div>
         </div>
     </div>
@@ -223,20 +246,14 @@
 </footer>
 
 <script>
-    // لینک آپارات
     function goToAparat() {
         window.open('https://www.aparat.com/zerox_game', '_blank');
     }
 
-    // منوها
     function menuClick(section) {
         alert('🔴 صفحه "' + section + '" به زودی اضافه می‌شود!');
-        // اگه خواستی هرکدوم به صفحه خاصی بره، اینجا لینک بذار
-        // مثال:
-        // if(section === 'خانه') window.location.href = 'index.html';
-        // if(section === 'داستان‌ها') window.location.href = 'stories.html';
     }
 </script>
 
 </body>
-</html>
+        </html>
