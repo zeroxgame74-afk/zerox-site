@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ZEROX | GAME - داستان بازی‌ها</title>
-    <!-- فونت فارسی بولدر -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Peyda:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,28 +14,32 @@
         }
 
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Peyda', 'Vazirmatn', sans-serif;
             font-weight: 700;
-            background-color: #B61C1C;  /* بکگراند قرمز خونی */
+            background-color: #0a0c10;
             color: #ffffff;
             line-height: 1.7;
         }
 
-        /* اسکرول بار */
+        :root {
+            --red: #B61C1C;
+            --red-dark: #8a1515;
+            --red-glow: rgba(182, 28, 28, 0.4);
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #8a1515;
+            background: #1a1e26;
         }
         ::-webkit-scrollbar-thumb {
-            background: #ffffff;
+            background: var(--red);
             border-radius: 10px;
         }
 
-        /* هدر با افکت شیشه‌ای روشن */
         .header {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(10, 12, 16, 0.95);
             backdrop-filter: blur(12px);
             padding: 1rem 2rem;
             display: flex;
@@ -44,25 +47,36 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            border-bottom: 2px solid #ffffff50;
+            border-bottom: 2px solid var(--red);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .channel-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--red);
+            object-fit: cover;
+        }
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, #ffcccc);
+            background: linear-gradient(135deg, #ffffff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
         .logo span {
             font-size: 0.9rem;
             background: none;
-            color: #ffdddd;
+            color: var(--red);
             font-weight: 800;
         }
 
@@ -80,39 +94,36 @@
         }
 
         .nav-links a:hover {
-            color: #ffcccc;
-            text-shadow: 0 0 5px white;
+            color: var(--red);
         }
 
         .btn-outline {
-            border: 2px solid white;
+            border: 2px solid var(--red);
             background: transparent;
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
-            color: white;
+            color: var(--red);
             font-weight: 900;
             transition: 0.25s;
             cursor: pointer;
-            font-family: 'Vazirmatn', sans-serif;
         }
 
         .btn-outline:hover {
-            background: white;
-            color: #B61C1C;
+            background: var(--red);
+            color: #0a0c10;
         }
 
-        /* بخش هیرو */
         .hero {
-            background: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(120deg, #0f111a 0%, #1a1f2b 100%);
             padding: 4rem 2rem;
             text-align: center;
-            border-bottom: 3px solid #ffffff50;
+            border-bottom: 3px solid var(--red);
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(to right, #fff, #ffe0e0);
+            background: linear-gradient(to right, #fff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -122,27 +133,26 @@
         .hero p {
             max-width: 700px;
             margin: 0 auto 2rem;
-            color: #ffffffdd;
+            color: #dddddd;
             font-size: 1.2rem;
             font-weight: 600;
         }
 
         .btn-glow {
-            background: white;
+            background: var(--red);
             border: none;
             padding: 0.8rem 2rem;
             border-radius: 50px;
             font-weight: 900;
             font-size: 1rem;
-            color: #B61C1C;
-            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+            color: white;
+            box-shadow: 0 0 15px var(--red-glow);
             cursor: pointer;
             transition: 0.2s;
-            font-family: 'Vazirmatn', sans-serif;
         }
 
         .btn-glow:hover {
-            background: #ffe0e0;
+            background: var(--red-dark);
             transform: scale(1.02);
         }
 
@@ -156,9 +166,9 @@
             font-size: 2rem;
             font-weight: 900;
             margin-bottom: 2rem;
-            border-right: 5px solid white;
+            border-right: 5px solid var(--red);
             padding-right: 1rem;
-            color: white;
+            color: #ffffff;
         }
 
         .stories-grid {
@@ -168,29 +178,27 @@
         }
 
         .story-card {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
+            background: #13161f;
             border-radius: 28px;
             overflow: hidden;
             transition: 0.3s ease;
-            border: 1px solid #ffffff60;
+            border: 1px solid #282e3a;
         }
 
         .story-card:hover {
             transform: translateY(-8px);
-            background: rgba(0, 0, 0, 0.7);
-            border-color: white;
-            box-shadow: 0 20px 30px -12px black;
+            border-color: var(--red);
+            box-shadow: 0 20px 30px -12px rgba(182, 28, 28, 0.3);
         }
 
         .story-icon {
             height: 180px;
-            background: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #1a1f2b, #0f111a);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4.5rem;
-            color: white;
+            color: var(--red);
         }
 
         .story-info {
@@ -201,12 +209,12 @@
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             font-weight: 900;
-            color: white;
+            color: #ffffff;
         }
 
         .genre-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(182, 28, 28, 0.15);
+            color: var(--red);
             padding: 0.2rem 0.8rem;
             border-radius: 50px;
             font-size: 0.7rem;
@@ -216,28 +224,21 @@
         }
 
         .story-info p {
-            color: #ffdddd;
+            color: #cccccc;
             font-size: 0.95rem;
             margin-bottom: 1rem;
             font-weight: 500;
-            line-height: 1.7;
         }
 
         .read-more {
-            color: white;
+            color: var(--red);
             text-decoration: none;
             font-weight: 900;
             font-size: 0.85rem;
-            border-bottom: 1px solid white;
-        }
-
-        .read-more:hover {
-            color: #ffdddd;
         }
 
         .featured-story {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
+            background: #0b0e14;
             border-radius: 2rem;
             padding: 2rem;
             margin-top: 3rem;
@@ -246,42 +247,41 @@
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
-            border: 1px solid white;
+            border: 1px solid var(--red);
         }
 
         .featured-story h3 {
             font-size: 1.7rem;
             font-weight: 900;
-            color: white;
+            color: #ffffff;
         }
 
         .featured-badge {
             font-size: 1rem;
             font-weight: 900;
-            color: #ffdddd;
+            color: var(--red);
         }
 
         .footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: #06080c;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
-            border-top: 1px solid #ffffff50;
+            border-top: 1px solid #20232c;
             font-size: 0.85rem;
-            color: #ffdddd;
+            color: #aaaaaa;
             font-weight: 500;
         }
 
         .social-icons i {
             font-size: 1.5rem;
             margin: 0 0.7rem;
-            color: white;
+            color: #7c8395;
             transition: 0.2s;
         }
 
         .social-icons i:hover {
-            color: #ffcccc;
-            text-shadow: 0 0 5px white;
+            color: var(--red);
         }
 
         @media (max-width: 700px) {
@@ -298,7 +298,10 @@
 <body>
 
 <header class="header">
-    <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
+    <div class="brand">
+        <img class="channel-avatar" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Channel">
+        <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
+    </div>
     <div class="nav-links">
         <a href="#">خانه</a>
         <a href="#">داستان‌ها</a>
@@ -381,4 +384,4 @@
 </footer>
 
 </body>
-    </html>
+                    </html>
