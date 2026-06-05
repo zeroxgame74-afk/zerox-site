@@ -16,61 +16,134 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             font-weight: 700;
-            background: linear-gradient(135deg, #0a0c10 0%, #1a1f2b 100%);
+            background: #B61C1C;
             color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* هدر با لوگو */
+        /* بکگراند متحرک با امواج و نور */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #B61C1C;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.02) 0px,
+                rgba(255,255,255,0.02) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ذرات متحرک */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+            50% { transform: translateY(-30px) translateX(20px); opacity: 0.8; }
+        }
+
+        /* هدر */
         .header {
             text-align: center;
             padding: 30px 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            position: relative;
+            z-index: 10;
         }
 
         .channel-avatar {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
-            border: 3px solid #B61C1C;
+            border: 3px solid rgba(255,255,255,0.5);
             object-fit: cover;
             margin-bottom: 15px;
             transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
 
         .channel-avatar:hover {
             transform: scale(1.05);
-            border-color: #ff4444;
+            border-color: white;
         }
 
         .menu {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 35px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .menu a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 16px;
             transition: 0.2s;
             padding: 5px 0;
+            cursor: pointer;
         }
 
         .menu a:hover {
-            color: #B61C1C;
-            border-bottom: 2px solid #B61C1C;
+            color: #ffcccc;
+            border-bottom: 2px solid white;
         }
 
-        /* بخش اصلی */
+        /* کانتینر اصلی */
         .container {
             max-width: 1300px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 0 25px;
+            position: relative;
+            z-index: 10;
         }
 
         /* کارت‌های شیشه‌ای */
@@ -82,45 +155,47 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 35px 25px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .glass-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #B61C1C;
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .glass-card .icon {
             font-size: 55px;
-            color: #B61C1C;
             margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
         .glass-card h3 {
             font-size: 24px;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .glass-card p {
-            color: #cccccc;
+            color: #f0f0f0;
             font-size: 14px;
             line-height: 1.7;
             font-weight: 500;
+            opacity: 0.9;
         }
 
         .btn-card {
-            background: #B61C1C;
-            border: none;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.5);
             padding: 10px 25px;
-            border-radius: 30px;
+            border-radius: 40px;
             color: white;
             font-weight: 800;
             margin-top: 20px;
@@ -129,89 +204,99 @@
         }
 
         .btn-card:hover {
-            background: #ff2a2a;
-            transform: scale(1.02);
+            background: white;
+            color: #B61C1C;
+            border-color: white;
         }
 
         /* بخش ویژه */
         .featured {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 35px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 40px;
             margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .featured h2 {
             font-size: 28px;
             font-weight: 900;
             margin-bottom: 15px;
-            color: #B61C1C;
         }
 
         /* فوتر */
         .footer {
             text-align: center;
-            padding: 30px;
+            padding: 35px;
             margin-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
         }
 
         .social-icons i {
-            font-size: 24px;
+            font-size: 26px;
             margin: 0 12px;
-            color: #888;
+            color: rgba(255,255,255,0.7);
             transition: 0.2s;
             cursor: pointer;
         }
 
         .social-icons i:hover {
-            color: #B61C1C;
+            color: white;
+            transform: scale(1.1);
         }
 
         @media (max-width: 700px) {
             .menu {
-                gap: 18px;
+                gap: 20px;
             }
             .menu a {
                 font-size: 13px;
             }
-            .cards-grid {
-                grid-template-columns: 1fr;
+            .glass-card {
+                padding: 25px 20px;
+            }
+            .glass-card h3 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
 
+<!-- بکگراند متحرک -->
+<div class="animated-bg"></div>
+<div class="particles" id="particles"></div>
+
 <header class="header">
     <img class="channel-avatar" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox">
     <div class="menu">
-        <a href="#">خانه</a>
-        <a href="#">داستان‌ها</a>
-        <a href="#">ژانرها</a>
-        <a href="#">جدیدترین</a>
-        <a href="#">درباره ما</a>
+        <a href="#" onclick="showAlert('خانه')">خانه</a>
+        <a href="#" onclick="showAlert('داستان‌ها')">داستان‌ها</a>
+        <a href="#" onclick="showAlert('ژانرها')">ژانرها</a>
+        <a href="#" onclick="showAlert('جدیدترین')">جدیدترین</a>
+        <a href="#" onclick="showAlert('درباره ما')">درباره ما</a>
     </div>
 </header>
 
 <div class="container">
     <div class="cards-grid">
-        <div class="glass-card">
+        <div class="glass-card" onclick="showAlert('داستان بازی')">
             <div class="icon"><i class="fas fa-book-open"></i></div>
             <h3>داستان بازی</h3>
             <p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p>
             <button class="btn-card">بیشتر بخوانید</button>
         </div>
-        <div class="glass-card">
+        <div class="glass-card" onclick="showAlert('معرفی بازی')">
             <div class="icon"><i class="fas fa-gamepad"></i></div>
             <h3>معرفی بازی</h3>
             <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p>
             <button class="btn-card">بیشتر بخوانید</button>
         </div>
-        <div class="glass-card">
+        <div class="glass-card" onclick="showAlert('اخبار بازی')">
             <div class="icon"><i class="fas fa-newspaper"></i></div>
             <h3>اخبار بازی</h3>
             <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
@@ -219,7 +304,7 @@
         </div>
     </div>
 
-    <div class="featured">
+    <div class="featured" onclick="showAlert('داستان ویژه هفته')">
         <h2>🔥 داستان ویژه هفته</h2>
         <p>تحلیل کامل داستان The Last of Us | از قیام تا پایان</p>
         <button class="btn-card" style="margin-top: 15px;">مشاهده داستان</button>
@@ -228,13 +313,35 @@
 
 <footer class="footer">
     <div class="social-icons">
-        <i class="fab fa-discord"></i>
-        <i class="fab fa-twitch"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-youtube"></i>
+        <i class="fab fa-discord" onclick="showAlert('Discord')"></i>
+        <i class="fab fa-twitch" onclick="showAlert('Twitch')"></i>
+        <i class="fab fa-instagram" onclick="showAlert('Instagram')"></i>
+        <i class="fab fa-youtube" onclick="showAlert('YouTube')"></i>
     </div>
     <p style="margin-top: 20px;">© 2025 ZEROX | GAME — هر بازی یک حماسه</p>
 </footer>
 
+<script>
+    // نمایش پیام برای دمو (فعلاً صفحات جدا نیستن)
+    function showAlert(page) {
+        alert("🔴 در حال حاضر صفحه '" + page + "' در دست ساخت است.\nبه زودی اضافه خواهد شد!");
+    }
+
+    // ساخت ذرات متحرک تصادفی
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 6 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(particle);
+    }
+</script>
+
 </body>
-</html>
+    </html>
