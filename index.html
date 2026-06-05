@@ -18,11 +18,13 @@
             font-weight: 700;
             background-color: #0a0c10;
             color: #ffffff;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         :root {
             --red: #B61C1C;
+            --red-dark: #8a1515;
+            --red-glow: rgba(182, 28, 28, 0.4);
         }
 
         ::-webkit-scrollbar {
@@ -36,33 +38,60 @@
             border-radius: 10px;
         }
 
+        /* هدر با فضای خالی برای لوگوی بیرون زده */
         .header {
             background: rgba(10, 12, 16, 0.95);
             backdrop-filter: blur(12px);
             padding: 1rem 2rem;
+            padding-top: 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: relative;
         }
 
+        /* لوگوی بیرون زده از هدر */
+        .avatar-wrapper {
+            position: absolute;
+            top: -40px;
+            right: 30px;
+        }
+        .channel-avatar-top {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--red);
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background: #0a0c10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-right: 100px;
+        }
+        
+        /* فونت با استروک (حاشیه) */
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, var(--red));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #ffffff;
+            text-shadow: 
+                -1px -1px 0 var(--red),
+                1px -1px 0 var(--red),
+                -1px 1px 0 var(--red),
+                1px 1px 0 var(--red);
         }
-
+        
         .logo span {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--red);
+            text-shadow: none;
             font-weight: 800;
         }
 
@@ -101,30 +130,23 @@
             color: #0a0c10;
         }
 
-        /* بخش بالایی مثل عکس */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
             background: linear-gradient(135deg, #0f111a 0%, #1a1f2b 100%);
-        }
-
-        .channel-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid var(--red);
-            object-fit: cover;
-            margin-bottom: 1rem;
+            margin-top: 20px;
         }
 
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            background: linear-gradient(to right, #fff, var(--red));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-shadow: 
+                -1px -1px 0 var(--red),
+                1px -1px 0 var(--red),
+                -1px 1px 0 var(--red),
+                1px 1px 0 var(--red);
+            margin-bottom: 1rem;
         }
 
         .hero p {
@@ -132,6 +154,26 @@
             margin: 0 auto;
             color: #bbbbbb;
             font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .btn-glow {
+            background: var(--red);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: white;
+            box-shadow: 0 0 15px var(--red-glow);
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1.5rem;
+        }
+
+        .btn-glow:hover {
+            background: var(--red-dark);
+            transform: scale(1.02);
         }
 
         .container {
@@ -146,6 +188,7 @@
             margin-bottom: 2rem;
             border-right: 4px solid var(--red);
             padding-right: 1rem;
+            color: #ffffff;
         }
 
         .stories-grid {
@@ -204,6 +247,7 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
             font-weight: 500;
+            line-height: 1.6;
         }
 
         .read-more {
@@ -211,9 +255,6 @@
             text-decoration: none;
             font-weight: 900;
             font-size: 0.8rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
         }
 
         .featured-story {
@@ -235,11 +276,6 @@
             color: #1a1a1a;
         }
 
-        .featured-story p {
-            color: #444444;
-            margin-top: 0.5rem;
-        }
-
         .featured-badge {
             font-size: 1rem;
             font-weight: 900;
@@ -252,12 +288,13 @@
             padding: 2rem;
             margin-top: 3rem;
             border-top: 1px solid #20232c;
-            font-size: 0.8rem;
-            color: #888;
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            font-weight: 500;
         }
 
         .social-icons i {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin: 0 0.7rem;
             color: #7c8395;
             transition: 0.2s;
@@ -271,12 +308,17 @@
             .header {
                 flex-direction: column;
                 text-align: center;
+                padding-top: 3rem;
+            }
+            .brand {
+                margin-right: 0;
+            }
+            .avatar-wrapper {
+                right: 50%;
+                transform: translateX(50%);
             }
             .hero h1 {
                 font-size: 1.8rem;
-            }
-            .section-title {
-                font-size: 1.4rem;
             }
         }
     </style>
@@ -284,7 +326,14 @@
 <body>
 
 <header class="header">
-    <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
+    <!-- لوگو بیرون زده از هدر -->
+    <div class="avatar-wrapper">
+        <img class="channel-avatar-top" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Channel">
+    </div>
+    
+    <div class="brand">
+        <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
+    </div>
     <div class="nav-links">
         <a href="#">خانه</a>
         <a href="#">داستان‌ها</a>
@@ -292,13 +341,13 @@
         <a href="#">جدیدترین</a>
         <a href="#">درباره ما</a>
     </div>
-    <button class="btn-outline"><i class="fas fa-book-open"></i> کتابخانه</button>
+    <button class="btn-outline"><i class="fas fa-book-open"></i> کتابخانه من</button>
 </header>
 
 <section class="hero">
-    <img class="channel-avatar" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox">
-    <h1>ZEROX | GAME</h1>
-    <p>هر بازی یک حماسه است. اینجا هر خط داستان، یک جهان جدیدست.</p>
+    <h1>روایت کهکشانی <br> داستان بازی‌ها</h1>
+    <p>هر بازی یک حماسه است. اینجا هر خط داستان، یک جهان جدیدست. | ZEROX | GAME</p>
+    <button class="btn-glow"><i class="fas fa-dragon"></i> شروع ماجرا</button>
 </section>
 
 <main class="container">
@@ -318,7 +367,7 @@
             <div class="story-info">
                 <span class="genre-tag">حماسی / بتل رویال</span>
                 <h3>PUBG: سرزمین فراموش‌شده</h3>
-                <p>اسطوره جزیره ارنگل، شورش و راز اتاق‌های مخفی...</p>
+                <p>اسطوره جزیره ارنگل، شورش و راز اتاق‌های مخفی که همه چیز را تغییر داد...</p>
                 <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
@@ -327,7 +376,7 @@
             <div class="story-info">
                 <span class="genre-tag">ورزشی / درام</span>
                 <h3>FC 24: رویای لیگ قهرمانان</h3>
-                <p>از زمین‌های خاکی تا بزرگترین استادیوم‌ها...</p>
+                <p>از زمین‌های خاکی تا بزرگترین استادیوم‌ها: داستان بازیکنی که افسانه شد...</p>
                 <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
@@ -336,7 +385,7 @@
             <div class="story-info">
                 <span class="genre-tag">دارک فانتزی / استراتژی</span>
                 <h3>League of Legends: طلوع شوریده</h3>
-                <p>حماسه رونزترا، شوریده‌گان و نبرد برای آزادی...</p>
+                <p>حماسه رونزترا، شوریده‌گان و نبرد برای آزادی‌ یا نابودی‌ رونز...</p>
                 <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
@@ -345,8 +394,8 @@
     <div class="section-title" style="margin-top: 3rem;">📖 داستان ویژه هفته</div>
     <div class="featured-story">
         <div>
-            <h3><i class="fas fa-skull" style="color:#B61C1C;"></i> آخرین بازمانده</h3>
-            <p>تحلیل کامل داستان The Last of Us، از قیام تا قسمت دوم</p>
+            <h3><i class="fas fa-skull"></i> آخرین بازمانده : سرگذشت Joel & Ellie</h3>
+            <p>تحلیل کامل داستان The Last of Us، از قیام تا قسمت دوم و رازهای پشت صحنه</p>
             <button class="btn-outline" style="margin-top: 1rem;">مشاهده کامل <i class="fas fa-arrow-left"></i></button>
         </div>
         <div class="featured-badge">
@@ -363,6 +412,7 @@
         <i class="fab fa-youtube"></i>
     </div>
     <p style="margin-top: 1rem;">© 2025 ZEROX | GAME — جایی که داستان بازی‌ها جان می‌گیرند 🎮</p>
+    <p style="margin-top: 0.5rem;">هر بازی یک حماسه | هر حماسه یک حقیقت</p>
 </footer>
 
 </body>
