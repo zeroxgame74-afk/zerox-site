@@ -2,11 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>خون آرنا | وب‌سایت گیمینگ</title>
-    <!-- فونت وزیرمتن زیبا و مدرن -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <!-- Font Awesome 6 (آیکون‌های حرفه‌ای) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گیم نایت | وب‌سایت گیمینگ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,33 +12,29 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background: linear-gradient(145deg, #0a0c12 0%, #0f111a 100%);
-            color: #eef2ff;
-            line-height: 1.5;
-            scroll-behavior: smooth;
+        /* رنگ اصلی سفارشی #B61C1C */
+        :root {
+            --primary: #B61C1C;
+            --primary-dark: #8a1515;
+            --primary-glow: rgba(182, 28, 28, 0.4);
+            --dark-bg: #0e0e12;
+            --card-bg: #181a22;
         }
 
-        /* اسکرول بار گیمینگ */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1e2a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #f2a900;
-            border-radius: 10px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: #f0f0f0;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 25px;
         }
 
-        /* هدر نئونی */
+        /* هدر */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -49,60 +42,51 @@
             padding: 20px 0;
             flex-wrap: wrap;
             gap: 20px;
-            border-bottom: 1px solid rgba(242, 169, 0, 0.2);
+            border-bottom: 2px solid var(--primary);
         }
 
         .logo {
             font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(135deg, #f2a900, #ff5e00);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            color: var(--primary);
         }
         .logo i {
-            background: none;
-            color: #f2a900;
             margin-left: 8px;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 30px;
             list-style: none;
         }
         .nav-links a {
             text-decoration: none;
-            color: #cfd9ff;
+            color: #ddd;
             font-weight: 500;
             transition: 0.2s;
-            font-size: 1rem;
         }
         .nav-links a:hover, .nav-links a.active {
-            color: #f2a900;
-            text-shadow: 0 0 5px rgba(242, 169, 0, 0.5);
+            color: var(--primary);
         }
 
-        .btn-glow {
-            background: linear-gradient(95deg, #f2a900, #ff6a00);
+        .btn-primary {
+            background: var(--primary);
             border: none;
             padding: 10px 24px;
-            border-radius: 40px;
-            font-family: inherit;
+            border-radius: 30px;
             font-weight: bold;
-            color: #0a0c12;
+            color: white;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+            box-shadow: 0 0 10px var(--primary-glow);
         }
-        .btn-glow:hover {
+        .btn-primary:hover {
+            background: var(--primary-dark);
             transform: scale(1.02);
-            box-shadow: 0 8px 22px rgba(242, 169, 0, 0.5);
-            background: linear-gradient(95deg, #ffb522, #ff7b1c);
+            box-shadow: 0 0 18px var(--primary-glow);
         }
 
-        /* بخش hero */
+        /* hero */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -111,183 +95,119 @@
             padding: 60px 0 40px;
             gap: 40px;
         }
-        .hero-content {
-            flex: 1;
-        }
-        .hero-badge {
-            background: rgba(242, 169, 0, 0.18);
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #f2c45a;
-            margin-bottom: 20px;
-            backdrop-filter: blur(2px);
-        }
         .hero-content h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
+            font-size: 3rem;
             margin-bottom: 20px;
         }
         .hero-content h1 span {
-            color: #f2a900;
-            border-bottom: 3px solid #f2a900;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
         }
         .hero-desc {
-            color: #b9c3f0;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 32px;
+            color: #bbb;
+            margin-bottom: 30px;
         }
         .hero-stats {
             display: flex;
-            gap: 28px;
-            margin-top: 24px;
-        }
-        .stat {
-            text-align: center;
+            gap: 30px;
+            margin-top: 25px;
         }
         .stat-number {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #f2a900;
-        }
-        .hero-image {
-            flex: 1;
-            text-align: center;
+            color: var(--primary);
         }
         .hero-image img {
             max-width: 100%;
-            width: 420px;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
-            border-radius: 28px;
+            width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(182,28,28,0.3);
         }
 
-        /* بخش بازی‌های محبوب */
+        /* بخش بازی‌ها */
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2rem;
             margin: 50px 0 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(90deg, #f2a900, transparent);
-            border-radius: 3px;
+            border-right: 5px solid var(--primary);
+            padding-right: 18px;
         }
 
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-            margin: 40px 0 20px;
+            margin: 30px 0;
         }
         .game-card {
-            background: rgba(20, 24, 36, 0.7);
-            backdrop-filter: blur(6px);
-            border-radius: 28px;
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
-            transition: 0.25s ease;
-            border: 1px solid rgba(242, 169, 0, 0.2);
-            box-shadow: 0 12px 25px -12px rgba(0,0,0,0.4);
+            transition: 0.25s;
+            border: 1px solid #2a2a35;
         }
         .game-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(242, 169, 0, 0.6);
-            box-shadow: 0 22px 32px -12px #f2a90030;
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(182,28,28,0.2);
         }
         .game-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #1e2438;
+            height: 170px;
+            background: linear-gradient(145deg, #20232e, #13151e);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            background: linear-gradient(135deg, #1e1f2c, #131624);
+            font-size: 3.8rem;
+            color: var(--primary);
         }
         .game-info {
             padding: 20px;
         }
         .game-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
         }
         .game-tag {
-            background: #f2a90020;
-            color: #f2c458;
-            padding: 4px 10px;
-            border-radius: 50px;
+            background: rgba(182,28,28,0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 40px;
             font-size: 0.7rem;
-            font-weight: 500;
-        }
-        .game-desc {
-            color: #b5c0e0;
-            margin: 12px 0;
-            font-size: 0.9rem;
-        }
-        .game-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 18px;
         }
         .game-price {
-            font-weight: 800;
-            color: #f2a900;
-            font-size: 1.1rem;
-        }
-        .buy-icon {
-            background: #252c3f;
-            padding: 8px 12px;
-            border-radius: 40px;
-            color: #f2a900;
-            transition: 0.2s;
-            cursor: pointer;
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 15px;
+            display: inline-block;
         }
 
         /* ویژگی‌ها */
         .features {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
             gap: 25px;
-            margin: 60px 0;
+            margin: 50px 0;
         }
-        .feature-item {
-            background: #10131fcc;
-            backdrop-filter: blur(5px);
-            padding: 28px 20px;
-            border-radius: 32px;
+        .feature {
+            background: #13151f;
+            padding: 25px;
+            border-radius: 24px;
             text-align: center;
             flex: 1;
-            min-width: 180px;
-            border: 1px solid #2a2f45;
+            border-bottom: 3px solid var(--primary);
         }
-        .feature-item i {
-            font-size: 2.8rem;
-            color: #f2a900;
-            margin-bottom: 16px;
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
         }
 
-        /* پاورقی */
         footer {
-            margin-top: 80px;
-            background: #07090f;
-            padding: 40px 0 24px;
-            border-top: 1px solid #1e2335;
+            background: #09090e;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary);
         }
         .footer-content {
             display: flex;
@@ -295,28 +215,18 @@
             flex-wrap: wrap;
             gap: 30px;
         }
-        .social-icons a {
-            color: #abb5e0;
+        .social a {
+            color: #aaa;
             font-size: 1.5rem;
-            margin-left: 18px;
-            transition: 0.2s;
+            margin-left: 15px;
         }
-        .social-icons a:hover {
-            color: #f2a900;
+        .social a:hover {
+            color: var(--primary);
         }
 
-        @media (max-width: 780px) {
-            .navbar {
-                flex-direction: column;
-            }
+        @media (max-width: 700px) {
             .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            .hero-stats {
-                justify-content: space-between;
-            }
-            .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
         }
     </style>
@@ -324,185 +234,99 @@
 <body>
 
 <div class="container">
-    <!-- هدر نویگیشن -->
     <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-dragon"></i> BloodArena
-        </div>
+        <div class="logo"><i class="fas fa-skull"></i> BloodEdge</div>
         <ul class="nav-links">
             <li><a href="#" class="active">خانه</a></li>
             <li><a href="#">بازی‌ها</a></li>
-            <li><a href="#">تورنمنت‌ها</a></li>
-            <li><a href="#">جامعه</a></li>
-            <li><a href="#">فروشگاه</a></li>
+            <li><a href="#">مسابقات</a></li>
+            <li><a href="#">انجمن</a></li>
         </ul>
-        <button class="btn-glow"><i class="fas fa-user-plus"></i> پیوستن به مبارزه</button>
+        <button class="btn-primary"><i class="fas fa-user"></i> ورود / ثبت نام</button>
     </nav>
 
-    <!-- بخش Hero : گیمری و پرانرژی -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-gamepad"></i> جدیدترین فصل بتل رویال
-            </div>
-            <h1>آماده‌ای برای <span>حماسه‌ای دیجیتال</span> ؟</h1>
-            <p class="hero-desc">
-                به بزرگترین آرنا گیمینگ خاورمیانه بپیوند. بیش از ۲۰۰ بازی رقابتی، جوایز هفتگی و تورنمنت‌های آنلاین زنده.
-            </p>
-            <button class="btn-glow" style="background: #252c3f; color:#f2a900; box-shadow: none;"><i class="fas fa-play"></i> تماشای تریلر</button>
-            <button class="btn-glow" style="margin-right: 15px;"><i class="fas fa-download"></i> دانلود بازی</button>
+            <h1>نبرد در <span>آرنا سرخ</span></h1>
+            <p class="hero-desc">به بزرگترین رویداد گیمینگ سال بپیوند. جوایز نقدی، مبارزات نفس‌گیر و تورنمنت‌های آنلاین زنده.</p>
+            <button class="btn-primary"><i class="fas fa-play"></i> شروع مبارزه</button>
             <div class="hero-stats">
-                <div class="stat"><div class="stat-number">۲۵۰+</div><div>بازی حرفه‌ای</div></div>
-                <div class="stat"><div class="stat-number">۱.۲M</div><div>بازیکن فعال</div></div>
-                <div class="stat"><div class="stat-number">۴۸</div><div>تورنمنت روزانه</div></div>
+                <div class="stat"><div class="stat-number">۳۲۰+</div><div>بازی</div></div>
+                <div class="stat"><div class="stat-number">۸۵۰K</div><div>بازیکن</div></div>
+                <div class="stat"><div class="stat-number">۳۲</div><div>تورنمنت</div></div>
             </div>
         </div>
         <div class="hero-image">
-            <!-- تصویر شماتیک گیمینگ (سایت معتبر placeholder) -->
-            <img src="https://placehold.co/500x500/1E1F2E/f2a900?text=GAMER+GEAR&font=montserrat" alt="گیمینگ آرنا">
+            <img src="https://placehold.co/450x450/1a1c28/B61C1C?text=BATTLE+ARENA&font=montserrat" alt="گیمینگ آرنا">
         </div>
     </div>
 
-    <!-- برترین بازی‌های هفته -->
-    <div>
-        <h2 class="section-title"><i class="fas fa-fire-flame" style="color:#f2a900;"></i> بازی‌های داغ هفته</h2>
-        <div class="games-grid">
-            <!-- کارت بازی 1 -->
-            <div class="game-card">
-                <div class="game-img"><i class="fas fa-skull" style="font-size: 4rem; color:#f2a900;"></i></div>
-                <div class="game-info">
-                    <div class="game-title">شبح جنگ <span class="game-tag">اکشن</span></div>
-                    <div class="game-desc">بازمانده آخرین منطقه، سلاح‌های ویژه و مود شب‌های خوفناک.</div>
-                    <div class="game-footer">
-                        <span class="game-price">رایگان</span>
-                        <span class="buy-icon"><i class="fas fa-download"></i></span>
-                    </div>
-                </div>
+    <h2 class="section-title"><i class="fas fa-fire"></i> بازی‌های محبوب</h2>
+    <div class="games-grid">
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-dragon"></i></div>
+            <div class="game-info">
+                <div class="game-title">طوفان سرخ <span class="game-tag">اکشن</span></div>
+                <p>جنگ‌های تیمی نفس‌گیر و سلاح‌های ویژه.</p>
+                <div class="game-price">رایگان</div>
             </div>
-            <!-- کارت بازی 2 -->
-            <div class="game-card">
-                <div class="game-img"><i class="fas fa-robot" style="font-size: 4rem; color:#6b8cff;"></i></div>
-                <div class="game-info">
-                    <div class="game-title">رونویزیشن <span class="game-tag">Sci-Fi</span></div>
-                    <div class="game-desc">دنیای سایبرپانک، مبارزات تاکتیکی و ارتقاء سایبرنتیک.</div>
-                    <div class="game-footer">
-                        <span class="game-price">۲۴۹k تومان</span>
-                        <span class="buy-icon"><i class="fas fa-cart-shopping"></i></span>
-                    </div>
-                </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-robot"></i></div>
+            <div class="game-info">
+                <div class="game-title">سایبرنبرد <span class="game-tag">Sci-Fi</span></div>
+                <p>دنیای آینده، مبارزات تاکتیکی و ارتقاهای سایبری.</p>
+                <div class="game-price">۲۹۹k تومان</div>
             </div>
-            <!-- کارت بازی 3 -->
-            <div class="game-card">
-                <div class="game-img"><i class="fas fa-crown" style="font-size: 4rem; color:#f2c460;"></i></div>
-                <div class="game-info">
-                    <div class="game-title">سلطنت فایت <span class="game-tag">MMO</span></div>
-                    <div class="game-desc">کلن‌سازی، جنگ‌های ۱۰۰ نفره و قلمروهای افسانه‌ای.</div>
-                    <div class="game-footer">
-                        <span class="game-price">پایه رایگان</span>
-                        <span class="buy-icon"><i class="fas fa-plus-circle"></i></span>
-                    </div>
-                </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-crown"></i></div>
+            <div class="game-info">
+                <div class="game-title">پادشاهی خون <span class="game-tag">MMO</span></div>
+                <p>قلمروهای افسانه‌ای و جنگ‌های ۱۰۰ نفره.</p>
+                <div class="game-price">رایگان + درون برنامه‌ای</div>
             </div>
-            <!-- کارت بازی 4 -->
-            <div class="game-card">
-                <div class="game-img"><i class="fas fa-ghost" style="font-size: 4rem; color:#a18eff;"></i></div>
-                <div class="game-info">
-                    <div class="game-title">ارواح قطبی <span class="game-tag">بقا</span></div>
-                    <div class="game-desc">بازی چندنفره بقا در سرزمین‌های یخبندان.</div>
-                    <div class="game-footer">
-                        <span class="game-price">۱۹۹k تومان</span>
-                        <span class="buy-icon"><i class="fas fa-shopping-bag"></i></span>
-                    </div>
-                </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-ghost"></i></div>
+            <div class="game-info">
+                <div class="game-title">ارواح انتقام <span class="game-tag">بقا</span></div>
+                <p>شب‌های ترسناک و بقا در برابر ارواح.</p>
+                <div class="game-price">۱۵۹k تومان</div>
             </div>
         </div>
     </div>
 
-    <!-- ویژگی‌های پلتفرم گیمینگ -->
     <div class="features">
-        <div class="feature-item">
-            <i class="fas fa-trophy"></i>
-            <h3>رقابت حرفه‌ای</h3>
-            <p>لیگ‌های فصلی و جایزه‌های نقدی ویژه قهرمانان</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-headset"></i>
-            <h3>پشتیبانی ۲۴/۷</h3>
-            <p>تیم پشتیبانی بازی‌محور و مشکلات فنی</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-cloud-arrow-up"></i>
-            <h3>کلاد گیمینگ</h3>
-            <p>بازی بدون نیاز به سخت افزار قوی، استریم ابری</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-users"></i>
-            <h3>کانال‌های صوتی</h3>
-            <p>ارتباط صوتی با کیفیت حین مبارزات تیمی</p>
-        </div>
+        <div class="feature"><i class="fas fa-trophy"></i><h3>رقابت حرفه‌ای</h3><p>لیگ‌های فصلی با جوایز نقدی</p></div>
+        <div class="feature"><i class="fas fa-headset"></i><h3>پشتیبانی ۲۴/۷</h3><p>تیم حرفه‌ای پاسخگوی شما</p></div>
+        <div class="feature"><i class="fas fa-cloud"></i><h3>کلاد گیم</h3><p>بدون نیاز به سخت افزار قوی</p></div>
     </div>
 
-    <!-- بخش آپدیت و خبرنامه گیمینگ -->
-    <div style="background: linear-gradient(105deg, #121624, #0a0d16); border-radius: 48px; padding: 36px 32px; margin: 40px 0; border: 1px solid #f2a90030;">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-            <div>
-                <h2 style="font-size: 1.9rem;"><i class="fas fa-gem"></i> جایزه هفتگی بتل پس</h2>
-                <p style="color: #bfc9f0;">هر هفته به ۱۰۰ نفر از گیمرهای فعال جایزه و اسکین افسانه‌ای اهدا می‌شود.</p>
-            </div>
-            <button class="btn-glow"><i class="fas fa-gift"></i> دریافت جایزه رایگان</button>
-        </div>
+    <div style="background: #11131e; border-radius: 28px; padding: 35px; text-align: center; margin: 40px 0; border: 1px solid var(--primary);">
+        <h2><i class="fas fa-gem" style="color: var(--primary);"></i> جایزه هفتگی بتل پس</h2>
+        <p>هر هفته اسکین افسانه‌ای و جایزه به ۱۰۰ نفر از فعال‌ترین بازیکن‌ها تعلق می‌گیرد.</p>
+        <button class="btn-primary" style="margin-top: 20px;">دریافت جایزه</button>
     </div>
 </div>
 
-<!-- فوتر -->
 <footer>
     <div class="container">
         <div class="footer-content">
-            <div>
-                <div class="logo" style="font-size: 1.8rem;"><i class="fas fa-dice-d6"></i> خون آرنا</div>
-                <p style="margin-top: 12px; max-width: 260px;">مدرن‌ترین پلتفرم برای تجربه بازی‌های رقابتی و بتل رویال.</p>
-            </div>
-            <div>
-                <h4>لینک‌های سریع</h4>
-                <ul style="list-style: none; margin-top: 12px;">
-                    <li><a href="#" style="color:#ccc; text-decoration: none;">بازی‌ها</a></li>
-                    <li><a href="#" style="color:#ccc; text-decoration: none;">تورنمنت‌ها</a></li>
-                    <li><a href="#" style="color:#ccc; text-decoration: none;">بلاگ</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>ارتباط با ما</h4>
-                <p><i class="fas fa-envelope"></i> support@bloodarena.gg</p>
-                <div class="social-icons" style="margin-top: 14px;">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-twitch"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+            <div><div class="logo">BloodEdge</div><p>مدرن‌ترین پلتفرم گیمینگ</p></div>
+            <div><h4>دسترسی سریع</h4><p>بازی‌ها<br>تورنمنت‌ها<br>بلاگ</p></div>
+            <div class="social"><h4>ما را دنبال کنید</h4><a href="#"><i class="fab fa-discord"></i></a><a href="#"><i class="fab fa-twitch"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
         </div>
-        <hr style="margin: 35px 0 20px; border-color:#1f253e;">
-        <p style="text-align: center; font-size: 0.8rem;">© 2025 BloodArena Gaming — تمامی حقوق مادی و معنوی متعلق به سرزمین آرنا است.</p>
+        <hr style="margin: 30px 0 15px; border-color: #222;">
+        <p style="text-align: center;">© 2025 BloodEdge Gaming | تمامی حقوق محفوظ است</p>
     </div>
 </footer>
 
-<!-- اسکریپت کوچک برای تعامل (فقط نمایشی) -->
 <script>
-    // فقط برای زیبایی :  دکمه‌های خرید، هشدار ساده
-    const buyBtns = document.querySelectorAll('.buy-icon');
-    buyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('🎮 این بازی به زودی در استور قرار می‌گیرد! به جمع گیمرها بپیوندید.');
-        });
-    });
-    const btnGlows = document.querySelectorAll('.btn-glow');
-    btnGlows.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if(btn.innerText.includes('پیوستن') || btn.innerText.includes('دریافت') || btn.innerText.includes('دانلود')) {
-                alert('⚔️ به خون آرنا خوش آمدی! به زودی با ایمیل شما تماس می‌گیریم.');
-            }
-        });
+    const btns = document.querySelectorAll('.btn-primary');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => alert('به جمع مبارزان بپیوندید!'));
     });
 </script>
 </body>
-  </html>
+                                 </html>
