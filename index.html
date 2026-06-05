@@ -1,85 +1,352 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Zerox Channel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>NESO GAMING | وب‌سایت رسمی</title>
+    <!-- فونت اختصاصی و آیکون‌ها -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background: #B61C1C;
-  color: white;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #eef4ff;
+            line-height: 1.5;
+        }
 
-/* لوگو */
-.logo {
-  text-align: center;
-  padding: 30px;
-  font-size: 40px;
-  font-weight: bold;
-}
+        /* اسکرول بار گیمینگ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1e26;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f03e3e;
+            border-radius: 10px;
+        }
 
-/* کانتینر کارت‌ها */
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-}
+        /* هدر استیکی */
+        .header {
+            background: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid #2c2f36;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* کارت‌ها */
-.card {
-  width: 250px;
-  height: 150px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-  border: 1px solid rgba(255,255,255,0.2);
-}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f03e3e, #ff7b00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
 
-/* افکت کلیک / انتخاب */
-.card:active {
-  transform: scale(0.95);
-}
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            color: #ff7b00;
+        }
 
-.card:hover {
-  box-shadow: 0 0 20px white;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
 
-/* عنوان داخل کارت */
-.card h3 {
-  margin: 0;
-}
-</style>
+        .nav-links a {
+            color: #cbd5e6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff5e2e;
+        }
+
+        .btn-outline {
+            border: 1px solid #ff5e2e;
+            background: transparent;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: #ff5e2e;
+            font-weight: bold;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: #ff5e2e;
+            color: #0a0c10;
+        }
+
+        /* بخش هیرو (hero) */
+        .hero {
+            background: linear-gradient(120deg, #0f111a 0%, #1a1f2b 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ff3a2f;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #ff9966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #b9c3d4;
+            font-size: 1.2rem;
+        }
+
+        .btn-glow {
+            background: #ff3a2f;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 58, 47, 0.6);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* کارت‌های بازی‌ها */
+        .container {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            border-right: 5px solid #ff5e2e;
+            padding-right: 1rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: #13161f;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: 0.3s ease;
+            border: 1px solid #282e3a;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff5e2e;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
+        }
+
+        .game-img {
+            height: 180px;
+            background: linear-gradient(145deg, #2a2f3c, #101218);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-tag {
+            background: #ff5e2e20;
+            color: #ff8a5c;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        /* تورنومنت */
+        .tournament {
+            background: #0b0e14;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            border: 1px solid #2c2f38;
+        }
+
+        .tournament h3 {
+            font-size: 1.7rem;
+        }
+
+        .prize {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffcd3c;
+        }
+
+        /* فوتر */
+        .footer {
+            background: #06080c;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #20232c;
+            font-size: 0.85rem;
+            color: #7e8493;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 0.7rem;
+            color: #7c8395;
+            transition: 0.2s;
+        }
+
+        .social-icons i:hover {
+            color: #ff5e2e;
+        }
+
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="logo">ZEROX</div>
+<header class="header">
+    <div class="logo">⚡ NESO GAMING <span> | CLAN WARS</span></div>
+    <div class="nav-links">
+        <a href="#">خانه</a>
+        <a href="#">بازی‌ها</a>
+        <a href="#">تورنومنت‌ها</a>
+        <a href="#">رنکینگ</a>
+        <a href="#">تیم ما</a>
+    </div>
+    <button class="btn-outline"><i class="fas fa-user-plus"></i> JOIN CLAN</button>
+</header>
 
-<div class="container">
+<section class="hero">
+    <h1>بزرگ‌ترین کمپ گیمینگ <br> خاورمیانه</h1>
+    <p>رقابت، افتخار، و سرعت بی‌پایان. به خانواده‌ی ۵۰۰۰+ بازیکن حرفه‌ای بپیوند.</p>
+    <button class="btn-glow"><i class="fas fa-gamepad"></i> شروع مبارزه</button>
+</section>
 
-  <div class="card">
-    <h3>Videos</h3>
-    <p>ویدیوهای جدید</p>
-  </div>
+<main class="container">
+    <div class="section-title">🔥 بازی‌های محبوب کلن</div>
+    <div class="games-grid">
+        <div class="game-card">
+            <div class="game-img"><i class="fab fa-fort-awesome fa-4x" style="color:#ff7b2c;"></i></div>
+            <div class="game-info">
+                <span class="game-tag">رایانامه / تاکتیکال</span>
+                <h3>Valorant</h3>
+                <p>تیم پیشرو با رنک ایمورتال، تمرین‌های هفتگی و اسکrim.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-crown fa-4x" style="color:#e6b422;"></i></div>
+            <div class="game-info">
+                <span class="game-tag">بتل رویال</span>
+                <h3>PUBG / WARZONE</h3>
+                <p>تورنومنت‌های هفتگی با جایزه نقدی ۲۰۰۰ دلاری.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-futbol fa-4x" style="color:#3ac569;"></i></div>
+            <div class="game-info">
+                <span class="game-tag">ورزشی / آنلاین</span>
+                <h3>FC 24 / eFootball</h3>
+                <p>لیگ اختصاصی کنسول و PC ، هر فصل جایزه ویژه.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-img"><i class="fas fa-robot fa-4x" style="color:#5a9eff;"></i></div>
+            <div class="game-info">
+                <span class="game-tag">استراتژی تیمی</span>
+                <h3>League of Legends</h3>
+                <p>آکادمی آموزش و تیم نیمه حرفه‌ای.</p>
+            </div>
+        </div>
+    </div>
 
-  <div class="card">
-    <h3>Stories</h3>
-    <p>داستان‌های بازی</p>
-  </div>
+    <div class="section-title" style="margin-top: 3rem;">🏆 تورنومنت پیش رو</div>
+    <div class="tournament">
+        <div>
+            <h3><i class="fas fa-fire" style="color:#ff5e2e;"></i> VALORANT: WINTER CHALLENGE</h3>
+            <p>تاریخ: ۲۵ اسفند - ۱۰ فروردین | ۱۶ تیم برتر | جایزه : ۳,۵۰۰$ + سخت‌افزار گیمینگ</p>
+            <button class="btn-outline" style="margin-top: 1rem;">ثبت‌نام تیمی <i class="fas fa-arrow-left"></i></button>
+        </div>
+        <div class="prize">
+            🏅 جایزه نقدی <br> ۳,۵۰۰$
+        </div>
+    </div>
 
-  <div class="card">
-    <h3>Highlights</h3>
-    <p>بهترین لحظات</p>
-  </div>
+    <div class="section-title" style="margin-top: 3rem;">👾 لیدربورد سریع</div>
+    <div style="background:#10131c; border-radius: 1rem; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; padding: 0.7rem; border-bottom:1px solid #2a2e3a; font-weight:bold;">
+            <span>#</span><span>بازیکن</span><span>امتیاز</span><span>بازی اصلی</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>1</span><span><i class="fas fa-trophy" style="color:gold;"></i> ReZza</span><span>2940</span><span>Valorant</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>2</span><span>D3adly_K</span><span>2810</span><span>Warzone</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>3</span><span>MaFiA</span><span>2754</span><span>PUBG</span></div>
+    </div>
+</main>
 
-</div>
+<footer class="footer">
+    <div class="social-icons">
+        <i class="fab fa-discord"></i>
+        <i class="fab fa-twitch"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+    </div>
+    <p style="margin-top: 1rem;">© 2025 NESO GAMING — همه حقوق برای گیم‌رهای واقعی محفوظه 🎮</p>
+    <p style="margin-top: 0.5rem;">داداش گلم، این قالب رو هر جور دوست داری تغییر بده.</p>
+</footer>
 
 </body>
 </html>
