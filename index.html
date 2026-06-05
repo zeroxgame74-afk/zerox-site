@@ -1,113 +1,345 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html dir="rtl" lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zerox Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>رسانه فرهنگی هنری امیرالمومنین | پک وکتور و بکگراند</title>
+    <!-- Font Awesome 6 (آیکون‌ها) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- فونت کمکی برای متن‌های معمولی (بدنه) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ------ تعریف فونت اختصاصی DORAN برای تمام عنوان‌ها ------ */
+        @font-face {
+            font-family: 'DoranTitle';
+            src: url('https://cdn.imgurl.ir/uploads/z350692_FONT_DORAN___resane_amir_amlmomenin_110.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
 
-<style>
-/* فونت اختصاصی */
-@font-face {
-  font-family: 'Doran';
-  src: url("[up.20script.ir](https://reference-url-citation.invalid/0)");
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* پایه */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        body {
+            background-color: #292929;  /* پس‌زمینه تیره کل صفحه */
+            font-family: 'Vazirmatn', sans-serif;
+            color: #f0f0f0;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
 
-body {
-  font-family: sans-serif;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
-}
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
 
-/* بکگراند متحرک */
-.bg {
-  position: absolute;
-  width: 300%;
-  height: 300%;
-  background: linear-gradient(45deg, #B61C1C, #000, #1a1a1a, #B61C1C);
-  animation: move 12s linear infinite;
-  z-index: -2;
-}
+        /* ------ استایل شیشه‌ای (Glassmorphism) برای باکس‌ها ------ */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 200, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
 
-@keyframes move {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-20%, -20%); }
-  100% { transform: translate(0,0); }
-}
+        /* باکس اصلی عنوان رسانه */
+        .main-brand-box {
+            padding: 2rem 2rem 1.8rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-/* کانتینر شیشه‌ای */
-.glass {
-  width: 380px;
-  padding: 25px;
-  border-radius: 25px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 0 40px rgba(182,28,28,0.4);
-  text-align: center;
-}
+        /* عنوان اصلی (رسانه فرهنگی هنری...) با فونت DORAN */
+        .brand-title {
+            font-family: 'DoranTitle', 'Vazirmatn', sans-serif;
+            font-size: 2.7rem;
+            color: #FFC800;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            margin-bottom: 0.5rem;
+        }
 
-/* لوگو */
-.logo {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 4px solid #B61C1C;
-  object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 0 25px rgba(182,28,28,0.6);
-}
+        /* ------ منوی شیشه‌ای ------ */
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem 2rem;
+            padding: 1rem 1.8rem;
+            margin-bottom: 2.5rem;
+        }
 
-/* عنوان */
-h1 {
-  font-family: 'Doran';
-  color: white;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
+        .nav-menu a {
+            font-family: 'DoranTitle', 'Vazirmatn', sans-serif;  /* منو هم با فونت عنوان */
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            padding: 0.4rem 0.2rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-/* باکس‌ها */
-.box {
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(182,28,28,0.15);
-  border: 1px solid rgba(182,28,28,0.4);
-  color: #fff;
-  font-family: 'Doran';
-}
+        .nav-menu a i {
+            font-size: 1rem;
+            color: #FFC800;
+        }
 
-.small {
-  font-size: 13px;
-  opacity: 0.8;
-}
-</style>
+        .nav-menu a:hover {
+            color: #FFC800;
+            border-bottom-color: #FFC800;
+            transform: translateY(-2px);
+        }
+
+        /* عنوان بخش محصولات (فونت DORAN) */
+        .products-head {
+            font-family: 'DoranTitle', 'Vazirmatn', sans-serif;
+            font-size: 2rem;
+            font-weight: 500;
+            margin: 2rem 0 1.5rem 0;
+            padding-right: 1rem;
+            border-right: 6px solid #FFC800;
+            color: #FFC800;
+            display: inline-block;
+        }
+
+        /* شبکه محصولات */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* کارت محصول شیشه‌ای با هاله FFC800 در :active و hover */
+        .product-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 200, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* افکت هاله طلایی هنگام کلیک و همچنین hover خفیف */
+        .product-card:active {
+            box-shadow: 0 0 0 3px #FFC800, 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(0.98);
+            transition: 0.05s linear;
+        }
+
+        .product-card:hover {
+            border-color: #FFC800;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: #2a2a2a;
+        }
+
+        .product-info {
+            padding: 1.2rem 1rem 1.3rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* عنوان هر محصول با فونت DORAN */
+        .product-title {
+            font-family: 'DoranTitle', 'Vazirmatn', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #FFC800;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        /* بخش قیمت/رایگان با آیکون */
+        .price-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            width: fit-content;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #FFC800;
+            border: 1px solid #FFC80060;
+            margin-bottom: 1rem;
+        }
+
+        .price-tag i {
+            font-size: 0.9rem;
+            color: #FFC800;
+        }
+
+        /* دکمه دانلود شیشه‌ای */
+        .download-btn {
+            background: rgba(255, 200, 0, 0.15);
+            backdrop-filter: blur(4px);
+            color: #FFC800;
+            border: 1px solid #FFC800;
+            border-radius: 2rem;
+            padding: 0.6rem 0.8rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: 0.2s;
+            text-decoration: none;
+            width: 100%;
+            margin-top: 0.3rem;
+        }
+
+        .download-btn:hover {
+            background: #FFC800;
+            color: #292929;
+            transform: translateY(-2px);
+        }
+
+        /* فوتر */
+        .footer {
+            margin-top: 3rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            text-align: center;
+            padding: 1.2rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 0.8rem;
+            color: #ccc;
+            border: 1px solid rgba(255, 200, 0, 0.2);
+        }
+
+        .footer i, .footer strong {
+            color: #FFC800;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .brand-title {
+                font-size: 1.9rem;
+            }
+            .nav-menu {
+                gap: 0.8rem 1rem;
+            }
+            .nav-menu a {
+                font-size: 0.85rem;
+            }
+            .products-head {
+                font-size: 1.5rem;
+            }
+            .product-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+<div class="container">
 
-<div class="bg"></div>
+    <!-- باکس اصلی شیشه‌ای حاوی عنوان رسانه -->
+    <div class="main-brand-box glass-box">
+        <div class="brand-title">
+            <i class="fas fa-mosque" style="margin-left: 0.7rem;"></i>
+            رسانه فرهنگی هنری امیرالمومنین
+        </div>
+        <!-- بخش آخرین تغییرات حذف شد مطابق درخواست -->
+    </div>
 
-<div class="glass">
+    <!-- منوی اصلی شیشه‌ای -->
+    <div class="nav-menu glass-box">
+        <a href="#"><i class="fas fa-poster"></i> پوستر</a>
+        <a href="#"><i class="fas fa-font"></i> فونت</a>
+        <a href="#"><i class="fas fa-box"></i> پک</a>
+        <a href="#"><i class="fas fa-hands-praying"></i> پک‌های مذهبی</a>
+        <a href="#"><i class="fas fa-chalkboard-user"></i> آموزش ها</a>
+        <a href="#"><i class="fas fa-draw-polygon"></i> وکتور</a>
+        <a href="#"><i class="fas fa-microphone-alt"></i> وکتور مداحان</a>
+        <a href="#"><i class="fas fa-photo-film"></i> محصولات رسانه ای</a>
+    </div>
 
-  <img class="logo" src="[cdn.imgurl.ir](https://reference-url-citation.invalid/1)" alt="logo">
+    <!-- عنوان محصولات -->
+    <div class="products-head">
+        <i class="fas fa-gift" style="margin-left: 0.6rem;"></i> محصولات ویژه (رایگان)
+    </div>
 
-  <h1>Zerox Channel</h1>
+    <!-- شبکه محصولات (فقط دو محصول درخواستی) -->
+    <div class="products-grid">
+        
+        <!-- محصول 1 : پک وکتور سیم خاردار (دسته پک وکتور) -->
+        <div class="product-card">
+            <img class="product-img" src="https://cdn.imgurl.ir/uploads/y37861_Barbed_Wire_Vector_Pack0_resane_amir_amlmomenin_110.jpg" alt="پک وکتور سیم خاردار">
+            <div class="product-info">
+                <div class="product-title">پک وکتور سیم خاردار</div>
+                <div class="price-tag"><i class="fas fa-wallet"></i> رایگان</div>
+                <a href="https://cdn.imgurl.ir/uploads/p884302_Barbed_Wire_Vector_Pack1_resane_amir_amlmomenin_110.zip" class="download-btn" download>
+                    <i class="fas fa-download"></i> دانلود فایل پک
+                </a>
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #FFC80080;"><i class="fas fa-tag"></i> دسته: پک وکتور</div>
+            </div>
+        </div>
 
-  <div class="box">باشه عزیزم ممنون</div>
-  <div class="box small">خیلی خفن و حرفه‌ای طراحی شد 🔥</div>
+        <!-- محصول 2 : پک بکگراند پوستر ولادتی (دسته پک‌های مذهبی) -->
+        <div class="product-card">
+            <img class="product-img" src="https://cdn.imgurl.ir/uploads/t784740_pack_background_veladati0_resane_amir_amlmomenin_110.jpg" alt="پک بکگراند پوستر ولادتی">
+            <div class="product-info">
+                <div class="product-title">پک بکگراند پوستر ولادتی</div>
+                <div class="price-tag"><i class="fas fa-wallet"></i> رایگان</div>
+                <a href="https://cdn.imgurl.ir/uploads/u95554_pack_background_veladati_resane_amir_amlmomenin_110.zip" class="download-btn" download>
+                    <i class="fas fa-download"></i> دانلود فایل پک
+                </a>
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #FFC80080;"><i class="fas fa-tag"></i> دسته: پک‌های مذهبی</div>
+            </div>
+        </div>
+    </div>
 
+    <!-- فوتر سایت -->
+    <div class="footer">
+        <p><i class="fas fa-copyright"></i> ۱۴۰۴ - تمامی آثار و محصولات متعلق به <strong>رسانه فرهنگی هنری امیرالمومنین</strong> است. 
+        <i class="fas fa-heart"></i> طراحی با الهام از مکتب اهل بیت</p>
+        <p style="margin-top: 8px; font-size: 0.7rem;">
+            <span style="background:#FFC80020; padding:2px 8px; border-radius:20px;">کدهای رنگی: FFC800 & 292929</span>
+        </p>
+    </div>
 </div>
 
+<!-- توضیحات کامل:
+     - پس‌زمینه #292929، همه باکس‌ها شیشه‌ای با blur.
+     - هاله FFC800 هنگام کلیک روی کارت‌های محصول (و همچنین هاور).
+     - فونت تمام عنوان‌ها (منو، تیتر اصلی، تیتر محصولات، عنوان هر محصول) از فایل DORAN استفاده می‌کند.
+     - دو محصول با تصاویر واقعی و لینک دانلود صحیح، قیمت رایگان با آیکون کیف پول.
+     - منوی کامل ۸ گزینه‌ای.
+     - بخش آخرین تغییرات حذف شده است.
+-->
 </body>
-</html>
+  </html>
