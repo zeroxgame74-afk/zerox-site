@@ -10,7 +10,7 @@
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
         .header{text-align:center;padding:20px 20px 10px;}
-        .logo-raw{width:auto;height:560px;object-fit:contain;margin-bottom:20px;}
+        .logo-raw{width:auto;height:600px;object-fit:contain;margin-bottom:20px;}
         .menu{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:10px;}
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;}
         .menu a i{font-size:18px;}
@@ -41,6 +41,9 @@
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;color:#1a1a1a;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
         .featured h2{color:#B61C1C;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
+        .more-btn{background:transparent;border:1px solid #B61C1C;padding:5px 12px;border-radius:20px;color:#B61C1C;font-size:12px;cursor:pointer;margin-top:8px;}
+        .more-btn:hover{background:#B61C1C;color:white;}
+        .full-text{display:none;margin-top:10px;padding:10px;background:#f9f9f9;border-radius:12px;text-align:right;}
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
@@ -68,7 +71,6 @@
 </div>
 
 <div class="container" id="contentContainer">
-    <!-- صفحه خانه -->
     <div id="homePage">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -87,7 +89,6 @@
         <div class="featured"><h2>🔥 داستان ویژه هفته</h2><p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p><button class="btn-card" style="margin-top:15px;">مشاهده داستان</button></div>
     </div>
 
-    <!-- صفحه داستان‌ها -->
     <div id="storiesPage" style="display:none;">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -101,28 +102,40 @@
         </div>
     </div>
 
-    <!-- صفحه ویدیوها (فقط همین یک ویدیو) -->
     <div id="videosPage" style="display:none;">
         <div class="videos-grid">
-            <div class="video-card" onclick="window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">
-                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="تماشای ویدیو">
+            <!-- ویدیو ۱ -->
+            <div class="video-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
+                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+                    <button class="btn-card">مشاهده ویدیو</button>
+                </div>
+            </div>
+            <!-- ویدیو ۲ (Outlast) -->
+            <div class="video-card">
+                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="Outlast">
                 <div class="video-badge">▶ تماشا</div>
                 <div class="video-info">
                     <h3>داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive</h3>
-                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده | در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider. اگر به بازی‌های ترسناک و داستان‌های تاریک علاقه داری، این ویدیو رو از دست نده!</p>
-                    <button class="btn-card">مشاهده ویدیو</button>
+                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده</p>
+                    <div class="full-text" id="fullTextOutlast">
+                        در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider. اگر به بازی‌های ترسناک و داستان‌های تاریک علاقه داری، این ویدیو رو از دست نده!
+                    </div>
+                    <button class="more-btn" onclick="event.stopPropagation(); toggleText('fullTextOutlast', this)">بیشتر...</button>
+                    <button class="btn-card" style="margin-top:10px;" onclick="event.stopPropagation(); window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">مشاهده ویدیو</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- صفحه اخبار (فقط خبر GTA 6) -->
     <div id="newsPage" style="display:none;">
         <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
         <div class="news-grid" id="newsGrid"></div>
     </div>
 
-    <!-- صفحه درباره ما -->
     <div id="aboutPage" style="display:none;">
         <div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div>
     </div>
@@ -131,7 +144,18 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // اسلایدر
+    function toggleText(id, btn) {
+        event.stopPropagation();
+        const elem = document.getElementById(id);
+        if (elem.style.display === 'none' || elem.style.display === '') {
+            elem.style.display = 'block';
+            btn.innerText = 'بستن';
+        } else {
+            elem.style.display = 'none';
+            btn.innerText = 'بیشتر...';
+        }
+    }
+
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dotsContainer = document.getElementById('dots');
@@ -159,35 +183,21 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    // خبر GTA 6 (تنها خبر)
-    const newsData = [
-        {
-            id: 1,
-            title: "بالاخره خبر جدید GTA 6 رسید!",
-            summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
-            image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
-            date: "۱۴۰۳/۱۲/۲۱",
-            fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p>
-                       <p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
-        }
-    ];
+    const newsData = [{
+        id: 1,
+        title: "بالاخره خبر جدید GTA 6 رسید!",
+        summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
+        image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
+        date: "۱۴۰۳/۱۲/۲۱",
+        fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
+    }];
 
     function loadNews() {
         const newsGrid = document.getElementById('newsGrid');
         if (!newsGrid) return;
         let html = '';
         for (let news of newsData) {
-            html += `
-                <div class="news-card" onclick="showFullNews(${news.id})">
-                    <img class="news-img" src="${news.image}" alt="${news.title}">
-                    <div class="news-content">
-                        <h3>${news.title}</h3>
-                        <p>${news.summary}</p>
-                        <div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date}</div>
-                        <button class="btn-card" style="margin-top:10px;">ادامه مطلب <i class="fas fa-notebook"></i></button>
-                    </div>
-                </div>
-            `;
+            html += `<div class="news-card" onclick="showFullNews(${news.id})"><img class="news-img" src="${news.image}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date}</div><button class="btn-card" style="margin-top:10px;">ادامه مطلب</button></div></div>`;
         }
         newsGrid.innerHTML = html;
     }
@@ -196,15 +206,7 @@
         const news = newsData.find(n => n.id === id);
         if (!news) return;
         const container = document.getElementById('contentContainer');
-        container.innerHTML = `
-            <div style="background:white; border-radius:28px; padding:30px; max-width:800px; margin:20px auto; box-shadow:0 10px 25px rgba(0,0,0,0.1);">
-                <button class="btn-card" onclick="location.reload()" style="margin-bottom:20px;"><i class="fas fa-arrow-right"></i> بازگشت به اخبار</button>
-                <h1 style="color:#B61C1C; margin-bottom:15px;">${news.title}</h1>
-                <img src="${news.image}" alt="${news.title}" style="width:100%; border-radius:16px; margin:15px 0;">
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;"><i class="fas fa-calendar-alt" style="color:#B61C1C;"></i> ${news.date}</div>
-                <div>${news.fullText}</div>
-            </div>
-        `;
+        container.innerHTML = `<div style="background:white; border-radius:28px; padding:30px; max-width:800px; margin:20px auto;"><button class="btn-card" onclick="location.reload()" style="margin-bottom:20px;">بازگشت</button><h1 style="color:#B61C1C;">${news.title}</h1><img src="${news.image}" style="width:100%; border-radius:16px; margin:15px 0;"><div><i class="fas fa-calendar-alt"></i> ${news.date}</div><div>${news.fullText}</div></div>`;
     }
 
     function showPage(page) {
@@ -216,10 +218,7 @@
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
         else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
-        else if (page === 'news') { 
-            document.getElementById('newsPage').style.display = 'block'; 
-            loadNews(); 
-        }
+        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 </script>
