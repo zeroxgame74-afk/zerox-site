@@ -26,17 +26,19 @@
             padding: 30px 20px 20px;
         }
 
+        /* لوگو 340 پیکسل (تغییر نکرده) */
         .logo-raw {
             width: auto;
-            height: 240px;
+            height: 340px;
             object-fit: contain;
             margin-bottom: 25px;
         }
 
+        /* منو با آیکون فونت‌آسوم (بدون ایموجی) */
         .menu {
             display: flex;
             justify-content: center;
-            gap: 35px;
+            gap: 40px;
             flex-wrap: wrap;
             margin-top: 15px;
         }
@@ -45,18 +47,25 @@
             color: white;
             text-decoration: none;
             font-weight: 800;
-            font-size: 18px;
+            font-size: 17px;
             transition: 0.2s;
             padding: 5px 0;
-            text-shadow: 1px 1px 0 #00000099;
-            cursor: pointer;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu a i {
+            font-size: 18px;
         }
 
         .menu a:hover {
             border-bottom: 2px solid white;
+            transform: translateY(-2px);
         }
 
-        /* اسلایدر با ارتفاع مناسب و بدون نقص */
+        /* اسلایدر */
         .slider-container {
             max-width: 1080px;
             margin: 30px auto;
@@ -133,8 +142,8 @@
             padding: 0 25px;
         }
 
-        /* بخش ویدیوها */
-        .videos-section {
+        /* صفحه اخبار */
+        .news-section {
             margin-bottom: 50px;
         }
 
@@ -144,6 +153,66 @@
             margin-bottom: 25px;
             border-right: 4px solid white;
             padding-right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 28px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            backdrop-filter: blur(2px);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .news-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* صفحه ویدیوها */
+        .videos-section {
+            margin-bottom: 50px;
         }
 
         .videos-grid {
@@ -202,6 +271,7 @@
             opacity: 0.9;
         }
 
+        /* صفحه خانه (کارت‌ها) */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -264,6 +334,14 @@
             color: #B61C1C;
         }
 
+        .featured {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+
         .footer {
             text-align: center;
             padding: 35px;
@@ -272,17 +350,18 @@
         }
 
         @media (max-width: 700px) {
-            .menu {
-                gap: 20px;
-            }
-            .menu a {
-                font-size: 14px;
-            }
             .logo-raw {
-                height: 150px;
+                height: 200px;
             }
             .slide img {
                 height: 150px;
+            }
+            .menu a {
+                font-size: 13px;
+                gap: 6px;
+            }
+            .menu a i {
+                font-size: 14px;
             }
         }
     </style>
@@ -292,10 +371,11 @@
 <header class="header">
     <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo">
     <div class="menu">
-        <a onclick="showPage('home')">خانه</a>
-        <a onclick="showPage('stories')">داستان‌ها</a>
-        <a onclick="showPage('videos')">ویدیوها</a>
-        <a onclick="showPage('about')">درباره ما</a>
+        <a onclick="showPage('home')"><i class="fas fa-home"></i> خانه</a>
+        <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
+        <a onclick="showPage('videos')"><i class="fas fa-video"></i> ویدیوها</a>
+        <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
+        <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
 </header>
 
@@ -314,7 +394,7 @@
 </div>
 
 <div class="container" id="contentContainer">
-    <!-- صفحه خانه (پیش‌فرض) -->
+    <!-- صفحه خانه -->
     <div id="homePage">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
@@ -344,6 +424,28 @@
         </div>
     </div>
 
+    <!-- صفحه داستان‌ها -->
+    <div id="storiesPage" style="display: none;">
+        <div class="cards-grid">
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
+                <div class="card-content">
+                    <h3>رستاخیز سرزمین‌های فراموش‌شده</h3>
+                    <p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
+                <div class="card-content">
+                    <h3>حماسه آخرین بازمانده</h3>
+                    <p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- صفحه ویدیوها -->
     <div id="videosPage" style="display: none;">
         <div class="videos-section">
@@ -356,44 +458,19 @@
                         <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
                     </div>
                 </div>
-                <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو بعدی">
-                    <div class="video-badge">▶ تماشا</div>
-                    <div class="video-info">
-                        <h3>ویدیو جدید</h3>
-                        <p>به زودی...</p>
-                    </div>
-                </div>
-                <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو بعدی">
-                    <div class="video-badge">▶ تماشا</div>
-                    <div class="video-info">
-                        <h3>ویدیو جدید</h3>
-                        <p>به زودی...</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- صفحه داستان‌ها -->
-    <div id="storiesPage" style="display: none;">
-        <div class="cards-grid">
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
-                <div class="card-content">
-                    <h3>داستان بازی</h3>
-                    <p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
+    <!-- صفحه اخبار (جدید) -->
+    <div id="newsPage" style="display: none;">
+        <div class="news-section">
+            <div class="section-title">
+                <i class="fas fa-newspaper"></i> آخرین اخبار بازی
             </div>
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
-                <div class="card-content">
-                    <h3>معرفی بازی</h3>
-                    <p>بررسی جدیدترین و محبوب‌ترین بازی‌ها</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
+            <div class="news-grid" id="newsGrid">
+                <!-- اخبار از طریق جاوااسکریپت لود می‌شوند -->
+                <div style="text-align: center; padding: 50px;">در حال بارگذاری اخبار...</div>
             </div>
         </div>
     </div>
@@ -412,6 +489,7 @@
 </footer>
 
 <script>
+    // ======================== اسلایدر ========================
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dotsContainer = document.getElementById('dots');
@@ -441,17 +519,75 @@
     showSlides();
     setInterval(() => changeSlide(1), 5000);
 
+    // ======================== صفحه بندی ========================
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
-        document.getElementById('videosPage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
+        document.getElementById('videosPage').style.display = 'none';
+        document.getElementById('newsPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
         
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
-        else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
+        else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
+        else if (page === 'news') {
+            document.getElementById('newsPage').style.display = 'block';
+            loadNews(); // هر بار که صفحه اخبار باز می‌شه، اخبار تازه بارگذاری می‌شن
+        }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
+
+    // ======================== سیستم اخبار پویا (قابل ویرایش توسط تو) ========================
+    // تابع بارگذاری اخبار: میتونی هر خبر جدید رو به این آرایه اضافه کنی
+    function loadNews() {
+        // *** اینجا جاییه که تو میتونی اخبار جدید رو اضافه یا ویرایش کنی ***
+        const newsData = [
+            {
+                title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök",
+                summary: "سونی رسما از بسته الحاقی جدید خدای جنگ با نام «والهالا» رونمایی کرد که داستان جدیدی از کرتوس را روایت می‌کند.",
+                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
+                date: "۱۴۰۳/۱۲/۲۰"
+            },
+            {
+                title: "تاریخ انتشار GTA 6 مشخص شد",
+                summary: "شرکت راکستار گیمز اعلام کرد که Grand Theft Auto VI در پاییز ۲۰۲۵ برای کنسول‌های نسل نهم منتشر خواهد شد.",
+                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
+                date: "۱۴۰۳/۱۲/۱۸"
+            },
+            {
+                title: "بروزرسانی عظیم The Last of Us Part I",
+                summary: "نسخه ریمستر بازی آخرین بازمانده با بهبودهای گرافیکی و حالت جدید سرعت اجرا برای PS5 و PC منتشر شد.",
+                image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
+                date: "۱۴۰۳/۱۲/۱۵"
+            }
+        ];
+
+        const newsGrid = document.getElementById('newsGrid');
+        if (!newsGrid) return;
+
+        if (newsData.length === 0) {
+            newsGrid.innerHTML = '<div style="text-align: center; padding: 50px;">هیچ خبری یافت نشد.</div>';
+            return;
+        }
+
+        let html = '';
+        for (let news of newsData) {
+            html += `
+                <div class="news-card">
+                    <img class="news-img" src="${news.image}" alt="${news.title}">
+                    <div class="news-content">
+                        <h3>${news.title}</h3>
+                        <p>${news.summary}</p>
+                        <div class="news-date">📅 ${news.date}</div>
+                    </div>
+                </div>
+            `;
+        }
+        newsGrid.innerHTML = html;
+    }
+
+    // در صورت لزوم، اخبار رو هنگام لود اولیه صفحه هم می‌تونیم بارگیری کنیم
+    // (فعلاً نیازی نیست چون صفحه اخبار در ابتدا نمایش داده نمی‌شه)
 </script>
 
 </body>
