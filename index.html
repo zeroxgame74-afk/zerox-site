@@ -9,8 +9,8 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
-        .header{text-align:center;padding:20px 20px 10px;}
-        .logo-raw{width:auto;height:600px;object-fit:contain;margin-bottom:20px;}
+        .header{text-align:center;padding:20px 20px 10px;position:relative;}
+        .logo-raw{width:auto;height:600px;object-fit:contain;margin-bottom:20px;cursor:pointer;}
         .menu{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:10px;}
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
@@ -54,16 +54,16 @@
         .comment-text{color:#333;flex:1;}
         .delete-comment{background:#ff4444;color:white;border:none;border-radius:30px;padding:5px 12px;cursor:pointer;font-size:12px;font-weight:bold;}
         .delete-comment:hover{background:#cc0000;}
-        .admin-panel{text-align:left;margin-bottom:15px;}
-        .admin-toggle{background:#333;color:white;border:none;padding:6px 15px;border-radius:30px;cursor:pointer;font-size:12px;}
-
+        .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;box-shadow:0 0 15px black;}
+        .admin-panel button{background:#ff4444;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;margin-right:10px;}
+        
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
 <body>
 
 <header class="header">
-    <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo">
+    <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo" id="secretAdminLogo">
     <div class="menu">
         <a onclick="showPage('home')"><i class="fas fa-home"></i> خانه</a>
         <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
@@ -72,6 +72,12 @@
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
 </header>
+
+<!-- پنل مخفی ادمین (فقط با ۳ کلیک روی لوگو ظاهر میشه) -->
+<div id="secretAdminPanel" class="admin-panel" style="display:none;">
+    <span style="margin-left:10px;">🔐 حالت ادمین فعال است</span>
+    <button onclick="exitAdminMode()">خروج از ادمین</button>
+</div>
 
 <div class="slider-container">
     <div class="slider">
@@ -84,12 +90,11 @@
 </div>
 
 <div class="container" id="contentContainer">
-    <!-- صفحه خانه با همه چیز -->
     <div id="homePage">
         <div class="section-title"><i class="fas fa-skull"></i> ویدیوهای ترسناک</div>
         <div class="videos-grid">
             <div class="video-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
+                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg">
                 <div class="video-badge">▶ تماشا</div>
                 <div class="video-info">
                     <h3>داستان کامل بازی نه من انسان نیستم</h3>
@@ -98,12 +103,12 @@
                 </div>
             </div>
             <div class="video-card">
-                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png" alt="Outlast">
+                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png">
                 <div class="video-badge">▶ تماشا</div>
                 <div class="video-info">
-                    <h3>داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive</h3>
+                    <h3>داستان کامل بازی Outlast</h3>
                     <p>این ویدیو توسط کانال خفن زیروکس ساخته شده</p>
-                    <div class="full-text" id="fullTextHome">در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی...</div>
+                    <div class="full-text" id="fullTextHome">در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم...</div>
                     <button class="more-btn" onclick="event.stopPropagation(); toggleText('fullTextHome', this)">بیشتر...</button>
                     <button class="btn-card" style="margin-top:10px;" onclick="event.stopPropagation(); window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">مشاهده ویدیو</button>
                 </div>
@@ -117,15 +122,15 @@
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>داستان بازی</h3><p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p><button class="btn-card">بیشتر بخوانید</button></div>
+                <div class="card-content"><h3>داستان بازی</h3><p>روایت‌های عمیق و حماسی</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>معرفی بازی</h3><p>بررسی جدیدترین و محبوب‌ترین بازی‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
+                <div class="card-content"><h3>معرفی بازی</h3><p>بررسی جدیدترین بازی‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار از دنیای گیم</p><button class="btn-card">بیشتر بخوانید</button></div>
+                <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
         </div>
     </div>
@@ -139,6 +144,39 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
+    // =============== سیستم مخفی ادمین با سه بار کلیک روی لوگو ===============
+    let clickCount = 0;
+    let clickTimer;
+    const logo = document.getElementById('secretAdminLogo');
+    let isAdmin = false;
+
+    logo.addEventListener('click', () => {
+        clickCount++;
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { clickCount = 0; }, 800);
+        if (clickCount === 3) {
+            clickCount = 0;
+            isAdmin = !isAdmin;
+            const panel = document.getElementById('secretAdminPanel');
+            if (isAdmin) {
+                panel.style.display = 'flex';
+                alert('🔐 حالت ادمین فعال شد. حالا میتونی کامنت‌های فحش‌دار رو حذف کنی.');
+                loadCommentsIntoPage(); // رفرش برای نمایش دکمه حذف
+            } else {
+                panel.style.display = 'none';
+                alert('حالت ادمین غیرفعال شد.');
+                loadCommentsIntoPage();
+            }
+        }
+    });
+
+    function exitAdminMode() {
+        isAdmin = false;
+        document.getElementById('secretAdminPanel').style.display = 'none';
+        alert('حالت ادمین غیرفعال شد.');
+        loadCommentsIntoPage();
+    }
+
     function toggleText(id, btn) {
         event.stopPropagation();
         const elem = document.getElementById(id);
@@ -178,10 +216,10 @@
     const newsData = [{
         id: 1,
         title: "بالاخره خبر جدید GTA 6 رسید!",
-        summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
+        summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه.",
         image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
         date: "۱۴۰۳/۱۲/۲۱",
-        fullText: `<p>«بالاخره خبر جدید GTA 6 رسید! راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست. از طرفی هنوز تریلر سوم بازی منتشر نشده و میلیون‌ها گیمر منتظر نمایش بعدی راک‌استار هستن. به نظر می‌رسه از تابستون امسال موج اصلی تبلیغات GTA 6 شروع بشه و اطلاعات بیشتری از این بازی مورد انتظار منتشر بشه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p style="margin-top:10px;"><strong>کانال Zerox 🎮🔥</strong></p>`
+        fullText: `<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p><strong>کانال Zerox 🎮🔥</strong></p>`
     }];
 
     function loadNews() {
@@ -223,23 +261,21 @@
     function loadCommentsIntoPage() {
         const commentsDiv = document.getElementById('commentsSectionHere');
         if (!commentsDiv) return;
-        let adminHtml = localStorage.getItem('isAdmin') === 'true' ? `<div class="admin-panel"><button class="admin-toggle" onclick="toggleAdminMode()">🔒 خروج از حالت ادمین</button></div>` : `<div class="admin-panel"><button class="admin-toggle" onclick="toggleAdminMode()">👑 ورود به حالت ادمین (حذف کامنت)</button></div>`;
         let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. اولین نفری باش که نظر میده!</p>' : '';
         for (let i = 0; i < comments.length; i++) {
             const c = comments[i];
-            const deleteBtn = localStorage.getItem('isAdmin') === 'true' ? `<button class="delete-comment" onclick="deleteComment(${i})">🗑 حذف</button>` : '';
+            const deleteBtn = isAdmin ? `<button class="delete-comment" onclick="deleteComment(${i})">🗑 حذف</button>` : '';
             commentsHtml += `<div class="single-comment"><div><span class="comment-name">${escapeHtml(c.name)}</span><span class="comment-text">${escapeHtml(c.text)}</span></div>${deleteBtn}</div>`;
         }
         commentsDiv.innerHTML = `
             <div class="comments-section">
                 <h3>💬 نظرات کاربران</h3>
-                <div class="comment-list" id="commentList">${commentsHtml}</div>
+                <div class="comment-list">${commentsHtml}</div>
                 <div class="comment-form">
                     <input type="text" id="commentName" placeholder="نام شما" maxlength="50">
                     <textarea id="commentText" placeholder="نظر خود را بنویسید..."></textarea>
                     <button class="btn-card" onclick="addComment()">ارسال نظر</button>
                 </div>
-                ${adminHtml}
             </div>
         `;
     }
@@ -258,26 +294,12 @@
     }
 
     function deleteComment(index) {
-        if (localStorage.getItem('isAdmin') !== 'true') { alert('دسترسی غیرمجاز! فقط ادمین می‌تونه کامنت حذف کنه.'); return; }
+        if (!isAdmin) { alert('دسترسی غیرمجاز! فقط ادمین می‌تونه کامنت حذف کنه.'); return; }
         if (confirm('آیا از حذف این کامنت مطمئنی؟')) {
             comments.splice(index, 1);
             saveComments();
             loadCommentsIntoPage();
         }
-    }
-
-    function toggleAdminMode() {
-        if (localStorage.getItem('isAdmin') === 'true') {
-            localStorage.setItem('isAdmin', 'false');
-            alert('حالت ادمین غیرفعال شد.');
-        } else {
-            const pwd = prompt('رمز ادمین را وارد کنید:');
-            if (pwd === 'zeroxadmin') {
-                localStorage.setItem('isAdmin', 'true');
-                alert('حالت ادمین فعال شد. حالا میتونی کامنت‌ها رو حذف کنی.');
-            } else { alert('رمز اشتباه است!'); }
-        }
-        loadCommentsIntoPage();
     }
 
     function escapeHtml(str) {
@@ -286,8 +308,6 @@
             if (m === '<') return '&lt;';
             if (m === '>') return '&gt;';
             return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
         });
     }
 
@@ -309,7 +329,6 @@
     }
 
     loadNews();
-    if(!localStorage.getItem('isAdmin')) localStorage.setItem('isAdmin', 'false');
 </script>
 
 </body>
