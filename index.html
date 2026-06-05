@@ -2,9 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گیم نایت | وبسایت گیمینگ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>زروکس | روایت حماسه‌های دیجیتال</title>
     <style>
         * {
             margin: 0;
@@ -12,356 +11,360 @@
             box-sizing: border-box;
         }
 
-        /* ===== فونت سفارشی دوران با لینک مستقیم ===== */
-        @font-face {
-            font-family: 'Doran';
-            src: url('https://up.20script.ir/do.php?filename=7616-FONT-DORAN-resane-amir-amlmomenin-110.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        /* ===== رنگ اصلی #B61C1C ===== */
-        :root {
-            --primary: #B61C1C;
-            --primary-dark: #8a1515;
-            --primary-glow: rgba(182, 28, 28, 0.5);
-            --dark-bg: #0e0e12;
-            --card-bg: #181a22;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
+            font-family: 'Segoe UI', 'Tahoma', 'Vazir', system-ui, -apple-system, sans-serif;
+            background-color: #4a0b0b;
+            min-height: 100vh;
             color: #f0f0f0;
-            line-height: 1.6;
+            line-height: 1.7;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* ===== عنوان‌ها با فونت دوران (حالا حتماً کار می‌کنه) ===== */
-        h1, h2, h3, h4, h5, h6, 
-        .logo, 
-        .nav-links a, 
-        .section-title, 
-        .game-title, 
-        .feature h3, 
-        .btn-primary,
-        .hero-content h1,
-        .stat-number,
-        .game-price {
-            font-family: 'Doran', 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+        /* بکگراند متحرک قرمز خفن */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #B61C1C;
+            background-image: 
+                radial-gradient(circle at 25% 40%, rgba(255, 80, 80, 0.4) 2%, transparent 2.5%),
+                radial-gradient(circle at 70% 85%, rgba(255, 180, 80, 0.3) 1.5%, transparent 2%),
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 8px);
+            background-size: 40px 40px, 60px 60px, auto;
+            animation: shiftPattern 25s linear infinite;
         }
 
+        @keyframes shiftPattern {
+            0% {
+                background-position: 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 80px 80px, 120px 120px, 100px 100px;
+            }
+        }
+
+        /* ذرات متحرک (دود/خون) */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 200, 200, 0.5);
+            border-radius: 50%;
+            filter: blur(3px);
+            animation: floatUp 8s infinite ease-in;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* کانتینر اصلی */
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 1rem 2rem 3rem;
+            position: relative;
+            backdrop-filter: blur(1px);
         }
 
-        /* هدر */
-        .navbar {
+        /* هدر + لوگو */
+        header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 20px 0;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid rgba(255, 215, 150, 0.5);
+            margin-bottom: 2rem;
             flex-wrap: wrap;
-            gap: 20px;
-            border-bottom: 2px solid var(--primary);
+            gap: 1.5rem;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .logo i {
-            margin-left: 8px;
-        }
-
-        .nav-links {
+        .logo-area {
             display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #ddd;
-            font-weight: 500;
-            transition: 0.2s;
-            font-size: 1.1rem;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
-            text-shadow: 0 0 5px var(--primary-glow);
+            justify-content: center;
+            align-items: center;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            border: none;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 0 10px var(--primary-glow);
-            font-size: 1rem;
+        .logo-img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 12px rgba(255, 100, 0, 0.7));
+            transition: transform 0.3s ease;
         }
-        .btn-primary:hover {
-            background: var(--primary-dark);
+
+        .logo-img:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 18px var(--primary-glow);
         }
 
-        /* hero */
+        /* جای خالی برای لوگو - خودت عکس رو بذار اینجا */
+        .logo-placeholder {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffc4a0, #fff0d0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        /* بخش Hero */
         .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 60px 0 40px;
-            gap: 40px;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .hero-content h1 span {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
-        }
-        .hero-desc {
-            color: #bbb;
-            margin-bottom: 30px;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 25px;
-        }
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .hero-image img {
-            max-width: 100%;
-            width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(182,28,28,0.3);
+            text-align: center;
+            padding: 2rem 1rem 3rem;
         }
 
-        /* بخش بازی‌ها */
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff5e0, #ffbc6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* دکمه های شبکه های اجتماعی */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            color: #ffdead;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(255, 200, 100, 0.6);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-btn:hover {
+            background: #B61C1C;
+            color: white;
+            border-color: #ffcc88;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* کارت های بازی */
+        .games-section {
+            margin-top: 3rem;
+        }
+
         .section-title {
             font-size: 2rem;
-            margin: 50px 0 20px;
-            border-right: 5px solid var(--primary);
-            padding-right: 18px;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-right: 5px solid #ffa54d;
+            padding-right: 1rem;
+            width: fit-content;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
+
         .game-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: 0.25s;
-            border: 1px solid #2a2a35;
+            background: rgba(10, 5, 5, 0.55);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 100, 70, 0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
+
         .game-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 25px rgba(182,28,28,0.2);
+            transform: translateY(-8px);
+            border-color: #ff9966;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+            background: rgba(20, 8, 8, 0.7);
         }
-        .game-img {
-            height: 170px;
-            background: linear-gradient(145deg, #20232e, #13151e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.8rem;
-            color: var(--primary);
+
+        .game-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #ffc89c;
         }
-        .game-info {
-            padding: 20px;
-        }
-        .game-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-        }
-        .game-tag {
-            background: rgba(182,28,28,0.2);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .game-price {
-            color: var(--primary);
-            font-weight: bold;
-            margin-top: 15px;
+
+        .game-card .genre {
             display: inline-block;
-            font-size: 1rem;
+            background: #B61C1C;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
-        /* ویژگی‌ها */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin: 50px 0;
-        }
-        .feature {
-            background: #13151f;
-            padding: 25px;
-            border-radius: 24px;
-            text-align: center;
-            flex: 1;
-            border-bottom: 3px solid var(--primary);
-        }
-        .feature i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        .feature h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+        .game-card p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
+        .read-more {
+            color: #ffbc7a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .read-more:hover {
+            color: white;
+            gap: 12px;
+        }
+
+        /* فوتر */
         footer {
-            background: #09090e;
-            padding: 40px 0 20px;
-            margin-top: 60px;
-            border-top: 1px solid var(--primary);
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        .social a {
-            color: #aaa;
-            font-size: 1.5rem;
-            margin-left: 15px;
-        }
-        .social a:hover {
-            color: var(--primary);
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 160, 100, 0.4);
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
 
-        @media (max-width: 700px) {
-            .hero-content h1 {
+        @media (max-width: 680px) {
+            .container {
+                padding: 0.8rem 1rem 2rem;
+            }
+            .hero h1 {
                 font-size: 2rem;
             }
-            .navbar {
-                flex-direction: column;
+            .logo-img {
+                max-width: 160px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
+    <div class="particles" id="particle-container"></div>
 
-<div class="container">
-    <nav class="navbar">
-        <div class="logo"><i class="fas fa-skull"></i> BloodEdge</div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">خانه</a></li>
-            <li><a href="#">بازی‌ها</a></li>
-            <li><a href="#">مسابقات</a></li>
-            <li><a href="#">انجمن</a></li>
-        </ul>
-        <button class="btn-primary"><i class="fas fa-user"></i> ورود / ثبت نام</button>
-    </nav>
-
-    <div class="hero">
-        <div class="hero-content">
-            <h1>نبرد در <span>آرنا سرخ</span></h1>
-            <p class="hero-desc">به بزرگترین رویداد گیمینگ سال بپیوند. جوایز نقدی، مبارزات نفس‌گیر و تورنمنت‌های آنلاین زنده.</p>
-            <button class="btn-primary"><i class="fas fa-play"></i> شروع مبارزه</button>
-            <div class="hero-stats">
-                <div class="stat"><div class="stat-number">۳۲۰+</div><div>بازی</div></div>
-                <div class="stat"><div class="stat-number">۸۵۰K</div><div>بازیکن</div></div>
-                <div class="stat"><div class="stat-number">۳۲</div><div>تورنمنت</div></div>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://placehold.co/450x450/1a1c28/B61C1C?text=BATTLE+ARENA&font=montserrat" alt="گیمینگ آرنا">
-        </div>
-    </div>
-
-    <h2 class="section-title"><i class="fas fa-fire"></i> بازی‌های محبوب</h2>
-    <div class="games-grid">
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-dragon"></i></div>
-            <div class="game-info">
-                <div class="game-title">طوفان سرخ <span class="game-tag">اکشن</span></div>
-                <p>جنگ‌های تیمی نفس‌گیر و سلاح‌های ویژه.</p>
-                <div class="game-price">رایگان</div>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-robot"></i></div>
-            <div class="game-info">
-                <div class="game-title">سایبرنبرد <span class="game-tag">Sci-Fi</span></div>
-                <p>دنیای آینده، مبارزات تاکتیکی و ارتقاهای سایبری.</p>
-                <div class="game-price">۲۹۹k تومان</div>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-crown"></i></div>
-            <div class="game-info">
-                <div class="game-title">پادشاهی خون <span class="game-tag">MMO</span></div>
-                <p>قلمروهای افسانه‌ای و جنگ‌های ۱۰۰ نفره.</p>
-                <div class="game-price">رایگان + درون برنامه‌ای</div>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-ghost"></i></div>
-            <div class="game-info">
-                <div class="game-title">ارواح انتقام <span class="game-tag">بقا</span></div>
-                <p>شب‌های ترسناک و بقا در برابر ارواح.</p>
-                <div class="game-price">۱۵۹k تومان</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="features">
-        <div class="feature"><i class="fas fa-trophy"></i><h3>رقابت حرفه‌ای</h3><p>لیگ‌های فصلی با جوایز نقدی</p></div>
-        <div class="feature"><i class="fas fa-headset"></i><h3>پشتیبانی ۲۴/۷</h3><p>تیم حرفه‌ای پاسخگوی شما</p></div>
-        <div class="feature"><i class="fas fa-cloud"></i><h3>کلاد گیم</h3><p>بدون نیاز به سخت افزار قوی</p></div>
-    </div>
-
-    <div style="background: #11131e; border-radius: 28px; padding: 35px; text-align: center; margin: 40px 0; border: 1px solid var(--primary);">
-        <h2><i class="fas fa-gem" style="color: var(--primary);"></i> جایزه هفتگی بتل پس</h2>
-        <p>هر هفته اسکین افسانه‌ای و جایزه به ۱۰۰ نفر از فعال‌ترین بازیکن‌ها تعلق می‌گیرد.</p>
-        <button class="btn-primary" style="margin-top: 20px;">دریافت جایزه</button>
-    </div>
-</div>
-
-<footer>
     <div class="container">
-        <div class="footer-content">
-            <div><div class="logo">BloodEdge</div><p>مدرن‌ترین پلتفرم گیمینگ</p></div>
-            <div><h4>دسترسی سریع</h4><p>بازی‌ها<br>تورنمنت‌ها<br>بلاگ</p></div>
-            <div class="social"><h4>ما را دنبال کنید</h4><a href="#"><i class="fab fa-discord"></i></a><a href="#"><i class="fab fa-twitch"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
-        </div>
-        <hr style="margin: 30px 0 15px; border-color: #222;">
-        <p style="text-align: center;">© 2025 BloodEdge Gaming | تمامی حقوق محفوظ است</p>
-    </div>
-</footer>
+        <header>
+            <div class="logo-area">
+                <!-- 
+                    ⚠️ اینجا جای لوگوی توئه:
+                    - عکس لوگوت رو توی پوشه images گیت‌هاب بذار با اسم logo.png
+                    - بعد کامنت زیر رو پاک کن و خط img رو فعال کن:
+                -->
+                <!-- <img src="images/logo.png" alt="لوگوی زروکس" class="logo-img"> -->
+                
+                <!-- فعلاً یه متن موقتی داریم تا خودت عکس رو جایگزین کنی -->
+                <div class="logo-placeholder">⚡ [ لوگوی زروکس اینجاست ] ⚡</div>
+            </div>
+        </header>
 
-<script>
-    const btns = document.querySelectorAll('.btn-primary');
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => alert('به جمع مبارزان بپیوندید!'));
-    });
-</script>
+        <section class="hero">
+            <h1>زروکس | روایتگر حماسه‌های دیجیتال</h1>
+            <p>اینجا هر بازی یه داستان داره. از اسطوره‌های کلاسیک تا آخرین حماسه‌های جهان گیمینگ، با ما همراه باش تا بافت داستان‌ها رو با هم ورق بزنیم.</p>
+            <div class="social-links">
+                <a href="#" class="social-btn">📺 آپارات (به زودی)</a>
+                <a href="#" class="social-btn">🎬 یوتیوب (به زودی)</a>
+                <a href="#" class="social-btn">🎮 کانال تلگرام</a>
+            </div>
+        </section>
+
+        <section class="games-section">
+            <h2 class="section-title">🎮 آخرین داستان‌های بازی</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>The Last of Us</h3>
+                    <span class="genre">داستانی / پساآخرالزمانی</span>
+                    <p>داستان جوئل و الی، سفری در دل آمریکای ویران شده. روابط انسانی، بقا و فداکاری در برابر عفونت قارچی مرگبار...</p>
+                    <a href="#" class="read-more">ادامه داستان →</a>
+                </div>
+                <div class="game-card">
+                    <h3>God of War Ragnarök</h3>
+                    <span class="genre">اساطیر / اکشن</span>
+                    <p>کرتوس و آترئوس در برابر رگناروک. سرنوشت نُه قلمرو و پایان اساطیر نورس... آیا قهرمان می‌تواند از سرنوشت فرار کند؟</p>
+                    <a href="#" class="read-more">ادامه داستان →</a>
+                </div>
+                <div class="game-card">
+                    <h3>Red Dead Redemption 2</h3>
+                    <span class="genre">وسترن / جهان باز</span>
+                    <p>آرتور مورگان و تخت جمشید ون در لیند. پایان عصر یاغی‌ها و روابط خائنانه‌ای که همه چیز را تغییر می‌دهد.</p>
+                    <a href="#" class="read-more">ادامه داستان →</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 زروکس - تمامی حقوق برای این وبسایت شخصی محفوظ است | داستان‌های بازی رو بدون ترس به اشتراک بذار</p>
+            <p style="margin-top: 0.5rem;">🎧 منتظر کانال آپارات و یوتیوب ما باش - به‌زودی شروع حماسی!</p>
+        </footer>
+    </div>
+
+    <script>
+        // ذرات متحرک (دود/خون ملایم)
+        function createParticles() {
+            const container = document.getElementById('particle-container');
+            const particleCount = 45;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 10 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 6 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.background = `radial-gradient(circle, rgba(255, 100, 80, 0.7), rgba(150, 30, 20, 0.2))`;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
 </body>
-                                                                                   </html>
+    </html>
