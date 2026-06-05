@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>NESO GAMING | وب‌سایت رسمی</title>
-    <!-- فونت اختصاصی و آیکون‌ها -->
+    <title>ZEROX | GAME - داستان بازی‌ها</title>
+    <!-- فونت و آیکون‌ها -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -21,7 +21,13 @@
             line-height: 1.5;
         }
 
-        /* اسکرول بار گیمینگ */
+        :root {
+            --red: #B61C1C;
+            --red-dark: #8a1515;
+            --red-glow: rgba(182, 28, 28, 0.4);
+        }
+
+        /* اسکرول بار */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -29,11 +35,11 @@
             background: #1a1e26;
         }
         ::-webkit-scrollbar-thumb {
-            background: #f03e3e;
+            background: var(--red);
             border-radius: 10px;
         }
 
-        /* هدر استیکی */
+        /* هدر */
         .header {
             background: rgba(10, 12, 16, 0.95);
             backdrop-filter: blur(12px);
@@ -43,7 +49,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            border-bottom: 1px solid #2c2f36;
+            border-bottom: 2px solid var(--red);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -52,7 +58,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #f03e3e, #ff7b00);
+            background: linear-gradient(135deg, #ffffff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -60,9 +66,10 @@
         }
 
         .logo span {
-            font-size: 1rem;
+            font-size: 0.9rem;
             background: none;
-            color: #ff7b00;
+            color: var(--red);
+            font-weight: 400;
         }
 
         .nav-links {
@@ -79,37 +86,37 @@
         }
 
         .nav-links a:hover {
-            color: #ff5e2e;
+            color: var(--red);
         }
 
         .btn-outline {
-            border: 1px solid #ff5e2e;
+            border: 2px solid var(--red);
             background: transparent;
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
-            color: #ff5e2e;
+            color: var(--red);
             font-weight: bold;
             transition: 0.25s;
             cursor: pointer;
         }
 
         .btn-outline:hover {
-            background: #ff5e2e;
+            background: var(--red);
             color: #0a0c10;
         }
 
-        /* بخش هیرو (hero) */
+        /* بخش هیرو */
         .hero {
             background: linear-gradient(120deg, #0f111a 0%, #1a1f2b 100%);
             padding: 4rem 2rem;
             text-align: center;
-            border-bottom: 3px solid #ff3a2f;
+            border-bottom: 3px solid var(--red);
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: 800;
-            background: linear-gradient(to right, #fff, #ff9966);
+            background: linear-gradient(to right, #fff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -124,19 +131,24 @@
         }
 
         .btn-glow {
-            background: #ff3a2f;
+            background: var(--red);
             border: none;
             padding: 0.8rem 2rem;
             border-radius: 50px;
             font-weight: bold;
             font-size: 1rem;
             color: white;
-            box-shadow: 0 0 15px rgba(255, 58, 47, 0.6);
+            box-shadow: 0 0 15px var(--red-glow);
             cursor: pointer;
             transition: 0.2s;
         }
 
-        /* کارت‌های بازی‌ها */
+        .btn-glow:hover {
+            background: var(--red-dark);
+            transform: scale(1.02);
+        }
+
+        /* کانتینر اصلی */
         .container {
             max-width: 1300px;
             margin: 3rem auto;
@@ -147,17 +159,18 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2rem;
-            border-right: 5px solid #ff5e2e;
+            border-right: 5px solid var(--red);
             padding-right: 1rem;
         }
 
-        .games-grid {
+        /* کارت داستان بازی‌ها */
+        .stories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .game-card {
+        .story-card {
             background: #13161f;
             border-radius: 28px;
             overflow: hidden;
@@ -165,33 +178,34 @@
             border: 1px solid #282e3a;
         }
 
-        .game-card:hover {
+        .story-card:hover {
             transform: translateY(-8px);
-            border-color: #ff5e2e;
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
+            border-color: var(--red);
+            box-shadow: 0 20px 30px -12px rgba(182, 28, 28, 0.3);
         }
 
-        .game-img {
+        .story-icon {
             height: 180px;
-            background: linear-gradient(145deg, #2a2f3c, #101218);
+            background: linear-gradient(145deg, #1a1f2b, #0f111a);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 4.5rem;
+            color: var(--red);
         }
 
-        .game-info {
+        .story-info {
             padding: 1.5rem;
         }
 
-        .game-info h3 {
+        .story-info h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .game-tag {
-            background: #ff5e2e20;
-            color: #ff8a5c;
+        .genre-tag {
+            background: rgba(182, 28, 28, 0.15);
+            color: var(--red);
             padding: 0.2rem 0.8rem;
             border-radius: 50px;
             font-size: 0.7rem;
@@ -200,8 +214,25 @@
             margin-bottom: 0.8rem;
         }
 
-        /* تورنومنت */
-        .tournament {
+        .story-info p {
+            color: #a0a8b9;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* بخش داستان ویژه */
+        .featured-story {
             background: #0b0e14;
             border-radius: 2rem;
             padding: 2rem;
@@ -211,17 +242,17 @@
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
-            border: 1px solid #2c2f38;
+            border: 1px solid var(--red);
         }
 
-        .tournament h3 {
+        .featured-story h3 {
             font-size: 1.7rem;
         }
 
-        .prize {
-            font-size: 2rem;
+        .featured-badge {
+            font-size: 1rem;
             font-weight: 800;
-            color: #ffcd3c;
+            color: var(--red);
         }
 
         /* فوتر */
@@ -243,7 +274,7 @@
         }
 
         .social-icons i:hover {
-            color: #ff5e2e;
+            color: var(--red);
         }
 
         @media (max-width: 700px) {
@@ -260,80 +291,74 @@
 <body>
 
 <header class="header">
-    <div class="logo">⚡ NESO GAMING <span> | CLAN WARS</span></div>
+    <div class="logo">ZEROX | GAME <span> | داستان اول</span></div>
     <div class="nav-links">
         <a href="#">خانه</a>
-        <a href="#">بازی‌ها</a>
-        <a href="#">تورنومنت‌ها</a>
-        <a href="#">رنکینگ</a>
-        <a href="#">تیم ما</a>
+        <a href="#">داستان‌ها</a>
+        <a href="#">ژانرها</a>
+        <a href="#">جدیدترین</a>
+        <a href="#">درباره ما</a>
     </div>
-    <button class="btn-outline"><i class="fas fa-user-plus"></i> JOIN CLAN</button>
+    <button class="btn-outline"><i class="fas fa-book-open"></i> کتابخانه من</button>
 </header>
 
 <section class="hero">
-    <h1>بزرگ‌ترین کمپ گیمینگ <br> خاورمیانه</h1>
-    <p>رقابت، افتخار، و سرعت بی‌پایان. به خانواده‌ی ۵۰۰۰+ بازیکن حرفه‌ای بپیوند.</p>
-    <button class="btn-glow"><i class="fas fa-gamepad"></i> شروع مبارزه</button>
+    <h1>روایت کهکشانی <br> داستان بازی‌ها</h1>
+    <p>هر بازی یک حماسه است. اینجا هر خط داستان، یک جهان جدیدست. | ZEROX | GAME</p>
+    <button class="btn-glow"><i class="fas fa-dragon"></i> شروع ماجرا</button>
 </section>
 
 <main class="container">
-    <div class="section-title">🔥 بازی‌های محبوب کلن</div>
-    <div class="games-grid">
-        <div class="game-card">
-            <div class="game-img"><i class="fab fa-fort-awesome fa-4x" style="color:#ff7b2c;"></i></div>
-            <div class="game-info">
-                <span class="game-tag">رایانامه / تاکتیکال</span>
-                <h3>Valorant</h3>
-                <p>تیم پیشرو با رنک ایمورتال، تمرین‌های هفتگی و اسکrim.</p>
+    <div class="section-title">🔥 آخرین داستان‌های بازی</div>
+    <div class="stories-grid">
+        <div class="story-card">
+            <div class="story-icon"><i class="fab fa-fort-awesome"></i></div>
+            <div class="story-info">
+                <span class="genre-tag">تاکتیکال / علمی-تخیلی</span>
+                <h3>Valorant: قرارداد پروتکل</h3>
+                <p>داستان پشت پرده آژانس والورانت، رادیانت‌ها و تقابل با میراث تاریک...</p>
+                <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-crown fa-4x" style="color:#e6b422;"></i></div>
-            <div class="game-info">
-                <span class="game-tag">بتل رویال</span>
-                <h3>PUBG / WARZONE</h3>
-                <p>تورنومنت‌های هفتگی با جایزه نقدی ۲۰۰۰ دلاری.</p>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-crown"></i></div>
+            <div class="story-info">
+                <span class="genre-tag">حماسی / بتل رویال</span>
+                <h3>PUBG: سرزمین فراموش‌شده</h3>
+                <p>اسطوره جزیره ارنگل، شورش و راز اتاق‌های مخفی که همه چیز را تغییر داد...</p>
+                <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-futbol fa-4x" style="color:#3ac569;"></i></div>
-            <div class="game-info">
-                <span class="game-tag">ورزشی / آنلاین</span>
-                <h3>FC 24 / eFootball</h3>
-                <p>لیگ اختصاصی کنسول و PC ، هر فصل جایزه ویژه.</p>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-futbol"></i></div>
+            <div class="story-info">
+                <span class="genre-tag">ورزشی / درام</span>
+                <h3>FC 24: رویای لیگ قهرمانان</h3>
+                <p>از زمین‌های خاکی تا بزرگترین استادیوم‌ها: داستان بازیکنی که افسانه شد...</p>
+                <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
-        <div class="game-card">
-            <div class="game-img"><i class="fas fa-robot fa-4x" style="color:#5a9eff;"></i></div>
-            <div class="game-info">
-                <span class="game-tag">استراتژی تیمی</span>
-                <h3>League of Legends</h3>
-                <p>آکادمی آموزش و تیم نیمه حرفه‌ای.</p>
+        <div class="story-card">
+            <div class="story-icon"><i class="fas fa-robot"></i></div>
+            <div class="story-info">
+                <span class="genre-tag">دارک فانتزی / استراتژی</span>
+                <h3>League of Legends: طلوع شوریده</h3>
+                <p>حماسه رونزترا، شوریده‌گان و نبرد برای آزادی‌ یا نابودی‌ رونز...</p>
+                <a href="#" class="read-more">ادامه داستان <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="section-title" style="margin-top: 3rem;">🏆 تورنومنت پیش رو</div>
-    <div class="tournament">
+    <div class="section-title" style="margin-top: 3rem;">📖 داستان ویژه هفته</div>
+    <div class="featured-story">
         <div>
-            <h3><i class="fas fa-fire" style="color:#ff5e2e;"></i> VALORANT: WINTER CHALLENGE</h3>
-            <p>تاریخ: ۲۵ اسفند - ۱۰ فروردین | ۱۶ تیم برتر | جایزه : ۳,۵۰۰$ + سخت‌افزار گیمینگ</p>
-            <button class="btn-outline" style="margin-top: 1rem;">ثبت‌نام تیمی <i class="fas fa-arrow-left"></i></button>
+            <h3><i class="fas fa-skull" style="color:#B61C1C;"></i> آخرین بازمانده : سرگذشت Joel & Ellie</h3>
+            <p>تحلیل کامل داستان The Last of Us، از قیام تا قسمت دوم و رازهای پشت صحنه</p>
+            <button class="btn-outline" style="margin-top: 1rem;">مشاهده کامل <i class="fas fa-arrow-left"></i></button>
         </div>
-        <div class="prize">
-            🏅 جایزه نقدی <br> ۳,۵۰۰$
+        <div class="featured-badge">
+            🔥 +۲۰۰۰ بازدید <br> امتیاز ۹.۸
         </div>
-    </div>
-
-    <div class="section-title" style="margin-top: 3rem;">👾 لیدربورد سریع</div>
-    <div style="background:#10131c; border-radius: 1rem; padding: 1rem;">
-        <div style="display: flex; justify-content: space-between; padding: 0.7rem; border-bottom:1px solid #2a2e3a; font-weight:bold;">
-            <span>#</span><span>بازیکن</span><span>امتیاز</span><span>بازی اصلی</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>1</span><span><i class="fas fa-trophy" style="color:gold;"></i> ReZza</span><span>2940</span><span>Valorant</span></div>
-        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>2</span><span>D3adly_K</span><span>2810</span><span>Warzone</span></div>
-        <div style="display: flex; justify-content: space-between; padding: 0.7rem;"><span>3</span><span>MaFiA</span><span>2754</span><span>PUBG</span></div>
     </div>
 </main>
 
@@ -344,9 +369,9 @@
         <i class="fab fa-instagram"></i>
         <i class="fab fa-youtube"></i>
     </div>
-    <p style="margin-top: 1rem;">© 2025 NESO GAMING — همه حقوق برای گیم‌رهای واقعی محفوظه 🎮</p>
-    <p style="margin-top: 0.5rem;">داداش گلم، این قالب رو هر جور دوست داری تغییر بده.</p>
+    <p style="margin-top: 1rem;">© 2025 ZEROX | GAME — جایی که داستان بازی‌ها جان می‌گیرند 🎮</p>
+    <p style="margin-top: 0.5rem;">هر بازی یک حماسه | هر حماسه یک حقیقت</p>
 </footer>
 
 </body>
-</html>
+                </html>
