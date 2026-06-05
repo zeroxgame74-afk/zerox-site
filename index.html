@@ -4,21 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ZEROX | GAME - داستان بازی‌ها</title>
-    <!-- فونت و آیکون‌ها -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- فونت بولدر شده -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* تعریف فونت سفارشی با لینک خودت */
-        @font-face {
-            font-family: 'ZeroXFont';
-            src: url('https://cdn.imgurl.ir/uploads/a170504_MAHDIPSD____1_fat.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap; /* برای لود بهتر فونت */
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,11 +15,11 @@
         }
 
         body {
-            /* اول فونت خودت، بعد فونت پشتیبان (اینتر) */
-            font-family: 'ZeroXFont', 'Inter', sans-serif;
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-weight: 700;
             background-color: #0a0c10;
             color: #eef4ff;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         :root {
@@ -39,7 +28,6 @@
             --red-glow: rgba(182, 28, 28, 0.4);
         }
 
-        /* اسکرول بار */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -51,7 +39,6 @@
             border-radius: 10px;
         }
 
-        /* هدر */
         .header {
             background: rgba(10, 12, 16, 0.95);
             backdrop-filter: blur(12px);
@@ -69,19 +56,20 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 900;
             background: linear-gradient(135deg, #ffffff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
         }
 
         .logo span {
             font-size: 0.9rem;
             background: none;
             color: var(--red);
-            font-weight: 400;
+            font-weight: 800;
+            letter-spacing: 0;
         }
 
         .nav-links {
@@ -93,7 +81,7 @@
         .nav-links a {
             color: #cbd5e6;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
             transition: 0.2s;
         }
 
@@ -107,9 +95,10 @@
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
             color: var(--red);
-            font-weight: bold;
+            font-weight: 900;
             transition: 0.25s;
             cursor: pointer;
+            font-family: 'Orbitron', monospace;
         }
 
         .btn-outline:hover {
@@ -117,7 +106,6 @@
             color: #0a0c10;
         }
 
-        /* بخش هیرو */
         .hero {
             background: linear-gradient(120deg, #0f111a 0%, #1a1f2b 100%);
             padding: 4rem 2rem;
@@ -127,12 +115,13 @@
 
         .hero h1 {
             font-size: 3rem;
-            font-weight: 800;
+            font-weight: 900;
             background: linear-gradient(to right, #fff, var(--red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 1rem;
+            letter-spacing: 2px;
         }
 
         .hero p {
@@ -140,6 +129,7 @@
             margin: 0 auto 2rem;
             color: #b9c3d4;
             font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .btn-glow {
@@ -147,12 +137,13 @@
             border: none;
             padding: 0.8rem 2rem;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 1rem;
             color: white;
             box-shadow: 0 0 15px var(--red-glow);
             cursor: pointer;
             transition: 0.2s;
+            font-family: 'Orbitron', monospace;
         }
 
         .btn-glow:hover {
@@ -160,7 +151,6 @@
             transform: scale(1.02);
         }
 
-        /* کانتینر اصلی */
         .container {
             max-width: 1300px;
             margin: 3rem auto;
@@ -169,13 +159,13 @@
 
         .section-title {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 2rem;
             border-right: 5px solid var(--red);
             padding-right: 1rem;
+            letter-spacing: 1px;
         }
 
-        /* کارت داستان بازی‌ها */
         .stories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -213,6 +203,7 @@
         .story-info h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            font-weight: 900;
         }
 
         .genre-tag {
@@ -221,7 +212,7 @@
             padding: 0.2rem 0.8rem;
             border-radius: 50px;
             font-size: 0.7rem;
-            font-weight: bold;
+            font-weight: 900;
             display: inline-block;
             margin-bottom: 0.8rem;
         }
@@ -230,12 +221,13 @@
             color: #a0a8b9;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .read-more {
             color: var(--red);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 900;
             font-size: 0.85rem;
         }
 
@@ -243,7 +235,6 @@
             text-decoration: underline;
         }
 
-        /* بخش داستان ویژه */
         .featured-story {
             background: #0b0e14;
             border-radius: 2rem;
@@ -259,15 +250,15 @@
 
         .featured-story h3 {
             font-size: 1.7rem;
+            font-weight: 900;
         }
 
         .featured-badge {
             font-size: 1rem;
-            font-weight: 800;
+            font-weight: 900;
             color: var(--red);
         }
 
-        /* فوتر */
         .footer {
             background: #06080c;
             text-align: center;
@@ -276,6 +267,7 @@
             border-top: 1px solid #20232c;
             font-size: 0.85rem;
             color: #7e8493;
+            font-weight: 600;
         }
 
         .social-icons i {
@@ -386,4 +378,4 @@
 </footer>
 
 </body>
-                    </html>
+</html>
