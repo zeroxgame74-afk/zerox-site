@@ -7,249 +7,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            font-weight: 700;
-            background-color: #B61C1C;
-            color: #1a1a1a;
-            min-height: 100vh;
-        }
-
-        .header {
-            text-align: center;
-            padding: 20px 20px 10px;
-        }
-
-        .logo-raw {
-            width: auto;
-            height: 560px;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 17px;
-            transition: 0.2s;
-            padding: 5px 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .menu a i {
-            font-size: 18px;
-        }
-
-        .menu a:hover {
-            border-bottom: 2px solid white;
-            transform: translateY(-2px);
-        }
-
-        .slider-container {
-            max-width: 1080px;
-            margin: 20px auto;
-            padding: 0 25px;
-            position: relative;
-        }
-
-        .slider {
-            position: relative;
-            width: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-        }
-
-        .slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .dots {
-            text-align: center;
-            padding: 15px 0 5px;
-        }
-
-        .dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            margin: 0 6px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .dot.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 25px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 25px;
-            border-right: 4px solid white;
-            padding-right: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-        }
-
-        .cards-grid, .news-grid, .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .thumbnail-card, .news-card, .video-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            color: #1a1a1a;
-        }
-
-        .thumbnail-card:hover, .news-card:hover, .video-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.3);
-        }
-
-        .thumbnail-img, .news-img, .video-thumb {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            border-bottom: 1px solid #eee;
-        }
-
-        .card-content, .news-content, .video-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .card-content h3, .news-content h3, .video-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-weight: 900;
-            color: #B61C1C;
-        }
-
-        .card-content p, .news-content p, .video-info p {
-            font-size: 0.9rem;
-            color: #444;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .btn-card {
-            background: #B61C1C;
-            border: none;
-            padding: 8px 25px;
-            border-radius: 40px;
-            color: white;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 14px;
-        }
-
-        .btn-card:hover {
-            background: #8a1010;
-            transform: scale(1.02);
-        }
-
-        .news-date {
-            font-size: 0.75rem;
-            color: #777;
-            margin-top: 10px;
-        }
-
-        .video-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #B61C1C;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 900;
-        }
-
-        .video-card {
-            position: relative;
-        }
-
-        .featured {
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            color: #1a1a1a;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .featured h2 {
-            color: #B61C1C;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 35px;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        @media (max-width: 700px) {
-            .logo-raw {
-                height: 280px;
-            }
-            .menu a {
-                font-size: 13px;
-                gap: 6px;
-            }
-        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
+        .header{text-align:center;padding:20px 20px 10px;}
+        .logo-raw{width:auto;height:560px;object-fit:contain;margin-bottom:20px;}
+        .menu{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:10px;}
+        .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;}
+        .menu a i{font-size:18px;}
+        .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
+        .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
+        .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+        .slides{display:flex;transition:transform 0.5s ease-in-out;}
+        .slide{min-width:100%;}
+        .slide img{width:100%;height:auto;display:block;}
+        .dots{text-align:center;padding:15px 0 5px;}
+        .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
+        .dot.active{background:white;transform:scale(1.2);}
+        .container{max-width:1300px;margin:40px auto;padding:0 25px;}
+        .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
+        .cards-grid,.news-grid,.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
+        .thumbnail-card,.news-card,.video-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);color:#1a1a1a;}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px solid #eee;}
+        .card-content,.news-content,.video-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;}
+        .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:14px;}
+        .btn-card:hover{background:#8a1010;transform:scale(1.02);}
+        .news-date{font-size:0.75rem;color:#777;margin-top:10px;}
+        .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
+        .video-card{position:relative;}
+        .featured{background:white;border-radius:24px;padding:30px;text-align:center;color:#1a1a1a;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .featured h2{color:#B61C1C;}
+        .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
+        @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
 <body>
@@ -280,87 +71,26 @@
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
-                <div class="card-content">
-                    <h3>داستان بازی</h3>
-                    <p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
+                <div class="card-content"><h3>داستان بازی</h3><p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
-                <div class="card-content">
-                    <h3>معرفی بازی</h3>
-                    <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
+                <div class="card-content"><h3>معرفی بازی</h3><p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
                 <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
-                <div class="card-content">
-                    <h3>اخبار بازی</h3>
-                    <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
+                <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
         </div>
-        <div class="featured">
-            <h2>🔥 داستان ویژه هفته</h2>
-            <p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p>
-            <button class="btn-card" style="margin-top: 15px;">مشاهده داستان</button>
-        </div>
+        <div class="featured"><h2>🔥 داستان ویژه هفته</h2><p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p><button class="btn-card" style="margin-top:15px;">مشاهده داستان</button></div>
     </div>
-
-    <div id="storiesPage" style="display: none;">
-        <div class="cards-grid">
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
-                <div class="card-content">
-                    <h3>رستاخیز سرزمین‌های فراموش‌شده</h3>
-                    <p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
-            </div>
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
-                <div class="card-content">
-                    <h3>حماسه آخرین بازمانده</h3>
-                    <p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p>
-                    <button class="btn-card">بیشتر بخوانید</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="videosPage" style="display: none;">
-        <div class="videos-grid">
-            <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
-                    <button class="btn-card">مشاهده ویدیو</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="newsPage" style="display: none;">
-        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
-        <div class="news-grid" id="newsGrid"></div>
-    </div>
-
-    <div id="aboutPage" style="display: none;">
-        <div class="featured">
-            <h2>درباره ZEROX | GAME</h2>
-            <p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p>
-        </div>
-    </div>
+    <div id="storiesPage" style="display:none;"><div class="cards-grid"><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان"><div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div></div><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان"><div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div></div></div></div>
+    <div id="videosPage" style="display:none;"><div class="videos-grid"><div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'"><img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>داستان کامل بازی نه من انسان نیستم</h3><p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p><button class="btn-card">مشاهده ویدیو</button></div></div></div></div>
+    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div><div class="news-grid" id="newsGrid"></div></div>
+    <div id="aboutPage" style="display:none;"><div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div></div>
 </div>
 
-<footer class="footer">
-    <p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p>
-</footer>
+<footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
     let slideIndex = 0;
@@ -376,19 +106,20 @@
     }
 
     function changeSlide(n) {
-        slideIndex += n;
-        if (slideIndex >= slides.length) slideIndex = 0;
-        if (slideIndex < 0) slideIndex = slides.length - 1;
+        let newIndex = slideIndex + n;
+        if (newIndex >= slides.length) newIndex = 0;
+        if (newIndex < 0) newIndex = slides.length - 1;
+        slideIndex = newIndex;
         showSlides();
     }
 
     if (slides.length > 0) {
-        slides.forEach((_, i) => {
+        for (let i = 0; i < slides.length; i++) {
             const dot = document.createElement('div');
             dot.classList.add('dot');
             dot.onclick = () => { slideIndex = i; showSlides(); };
             dotsContainer.appendChild(dot);
-        });
+        }
         showSlides();
         setInterval(() => changeSlide(1), 5000);
     }
@@ -399,7 +130,6 @@
         document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
-        
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
         else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
@@ -414,7 +144,7 @@
         ];
         const newsGrid = document.getElementById('newsGrid');
         if (!newsGrid) return;
-        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align: center; padding: 50px;">هیچ خبری یافت نشد.</div>'; return; }
+        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align:center;padding:50px;">هیچ خبری یافت نشد.</div>'; return; }
         let html = '';
         for (let news of newsData) {
             html += `<div class="news-card"><img class="news-img" src="${news.image}" alt="${news.title}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date">📅 ${news.date}</div></div></div>`;
@@ -424,4 +154,4 @@
 </script>
 
 </body>
-                </html>
+</html>
