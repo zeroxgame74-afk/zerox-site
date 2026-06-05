@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME</title>
+    <title>ZEROX | GAME - اخبار</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* استایل‌های قبلی همین جا هستند (فضای کافی نبود، ولی کامل هستند) */
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
         .header{text-align:center;padding:20px 20px 10px;}
@@ -34,13 +35,42 @@
         .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;}
         .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:14px;}
         .btn-card:hover{background:#8a1010;transform:scale(1.02);}
-        .news-date{font-size:0.75rem;color:#777;margin-top:10px;}
+        .news-date{font-size:0.75rem;color:#777;margin-top:10px;display:flex;align-items:center;gap:5px;justify-content:center;}
+        .news-date i{color:#B61C1C;}
         .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
         .video-card{position:relative;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;color:#1a1a1a;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
         .featured h2{color:#B61C1C;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
+
+        /* استایل صفحه خبر کامل */
+        .news-full-page {
+            background: white;
+            border-radius: 28px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 20px auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .news-full-page img {
+            max-width: 100%;
+            border-radius: 16px;
+            margin: 15px 0;
+        }
+        .news-full-page h1 {
+            color: #B61C1C;
+            margin-bottom: 15px;
+        }
+        .back-btn {
+            background: #B61C1C;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -70,29 +100,37 @@
     <div id="homePage">
         <div class="cards-grid">
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
                 <div class="card-content"><h3>داستان بازی</h3><p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
                 <div class="card-content"><h3>معرفی بازی</h3><p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
             <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
                 <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
             </div>
         </div>
         <div class="featured"><h2>🔥 داستان ویژه هفته</h2><p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p><button class="btn-card" style="margin-top:15px;">مشاهده داستان</button></div>
     </div>
+
     <div id="storiesPage" style="display:none;"><div class="cards-grid"><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان و شخصیت‌های بازی مورد علاقه شما</p><button class="btn-card">بیشتر بخوانید</button></div></div><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>حماسه آخرین بازمانده</h3><p>روایت نجات و بقا در دنیایی پساآخرالزمانی</p><button class="btn-card">بیشتر بخوانید</button></div></div></div></div>
+
     <div id="videosPage" style="display:none;"><div class="videos-grid"><div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'"><img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>داستان کامل بازی نه من انسان نیستم</h3><p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p><button class="btn-card">مشاهده ویدیو</button></div></div></div></div>
-    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div><div class="news-grid" id="newsGrid"></div></div>
+
+    <div id="newsPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
+        <div class="news-grid" id="newsGrid"></div>
+    </div>
+
     <div id="aboutPage" style="display:none;"><div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div></div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
+    // اسلایدر
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dotsContainer = document.getElementById('dots');
@@ -100,11 +138,8 @@
     function showSlides() {
         const slidesContainer = document.getElementById('slides');
         slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
-        document.querySelectorAll('.dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === slideIndex);
-        });
+        document.querySelectorAll('.dot').forEach((dot, i) => { dot.classList.toggle('active', i === slideIndex); });
     }
-
     function changeSlide(n) {
         let newIndex = slideIndex + n;
         if (newIndex >= slides.length) newIndex = 0;
@@ -112,7 +147,6 @@
         slideIndex = newIndex;
         showSlides();
     }
-
     if (slides.length > 0) {
         for (let i = 0; i < slides.length; i++) {
             const dot = document.createElement('div');
@@ -124,6 +158,74 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
+    // داده‌های اخبار (اینجا رو ویرایش کن)
+    const newsData = [
+        {
+            id: 1,
+            title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök",
+            summary: "سونی رسما از بسته الحاقی جدید خدای جنگ با نام «والهالا» رونمایی کرد.",
+            image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
+            date: "۱۴۰۳/۱۲/۲۰",
+            fullText: `<p>بسته الحاقی والهالا داستان جدیدی از کرتوس روایت میکنه. این بار کرتوس باید به والهالا سفر کنه و با چالش‌های جدیدی روبرو بشه.</p>
+                       <img src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="God of War">
+                       <p>این بسته شامل مبارزات جدید، اسلحه‌های تازه و داستانی ۱۰ ساعته است که پایان‌بندی متفاوتی برای شخصیت کرتوس رقم میزنه.</p>
+                       <p>تاریخ انتشار: ۲۰ آذر ۱۴۰۴</p>`
+        },
+        {
+            id: 2,
+            title: "تاریخ انتشار GTA 6 مشخص شد",
+            summary: "شرکت راکستار گیمز اعلام کرد که Grand Theft Auto VI در پاییز ۲۰۲۵ منتشر خواهد شد.",
+            image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg",
+            date: "۱۴۰۳/۱۲/۱۸",
+            fullText: `<p>طبق اطلاعیه رسمی راکستار، Grand Theft Auto VI در تاریخ ۱۵ مهر ۱۴۰۴ برای کنسول‌های PS5 و Xbox Series X|S منتشر میشه.</p>
+                       <p>نسخه PC چند ماه بعد عرضه خواهد شد. این بازی در شهر جدیدی به نام "پورتو سول" جریان داره و دو شخصیت اصلی داره.</p>
+                       <p>اولین تریلر رسمی بازی تا ۲ هفته دیگر منتشر میشه.</p>`
+        }
+    ];
+
+    let currentNewsId = null;
+
+    function loadNews() {
+        const newsGrid = document.getElementById('newsGrid');
+        if (!newsGrid) return;
+        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align:center;padding:50px;">هیچ خبری یافت نشد.</div>'; return; }
+        let html = '';
+        for (let news of newsData) {
+            html += `
+                <div class="news-card" onclick="showFullNews(${news.id})">
+                    <img class="news-img" src="${news.image}" alt="${news.title}">
+                    <div class="news-content">
+                        <h3>${news.title}</h3>
+                        <p>${news.summary}</p>
+                        <div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date}</div>
+                        <button class="btn-card" style="margin-top:10px;">ادامه مطلب <i class="fas fa-notebook"></i></button>
+                    </div>
+                </div>
+            `;
+        }
+        newsGrid.innerHTML = html;
+    }
+
+    function showFullNews(id) {
+        const news = newsData.find(n => n.id === id);
+        if (!news) return;
+        currentNewsId = id;
+        const container = document.getElementById('contentContainer');
+        container.innerHTML = `
+            <div class="news-full-page">
+                <button class="back-btn" onclick="backToNewsList()"><i class="fas fa-arrow-right"></i> بازگشت به اخبار</button>
+                <h1>${news.title}</h1>
+                <img src="${news.image}" alt="${news.title}" style="width:100%; border-radius:16px; margin:15px 0;">
+                <div class="news-date" style="justify-content:flex-start; margin-bottom:20px;"><i class="fas fa-calendar-alt"></i> ${news.date}</div>
+                <div>${news.fullText}</div>
+            </div>
+        `;
+    }
+
+    function backToNewsList() {
+        location.reload(); // ساده‌ترین راه برای برگشت
+    }
+
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
@@ -133,25 +235,13 @@
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
         else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
         else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
-        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); }
-        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
-    }
-
-    function loadNews() {
-        const newsData = [
-            { title: "رونمایی از بسته الحاقی بزرگ God of War Ragnarök", summary: "سونی رسما از بسته الحاقی جدید خدای جنگ رونمایی کرد.", image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", date: "۱۴۰۳/۱۲/۲۰" },
-            { title: "تاریخ انتشار GTA 6 مشخص شد", summary: "شرکت راکستار گیمز اعلام کرد که GTA 6 در پاییز ۲۰۲۵ منتشر می‌شود.", image: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", date: "۱۴۰۳/۱۲/۱۸" }
-        ];
-        const newsGrid = document.getElementById('newsGrid');
-        if (!newsGrid) return;
-        if (newsData.length === 0) { newsGrid.innerHTML = '<div style="text-align:center;padding:50px;">هیچ خبری یافت نشد.</div>'; return; }
-        let html = '';
-        for (let news of newsData) {
-            html += `<div class="news-card"><img class="news-img" src="${news.image}" alt="${news.title}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date">📅 ${news.date}</div></div></div>`;
+        else if (page === 'news') { 
+            document.getElementById('newsPage').style.display = 'block'; 
+            if (typeof loadNews === 'function') loadNews(); 
         }
-        newsGrid.innerHTML = html;
+        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 </script>
 
 </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </html>
+</html>
