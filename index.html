@@ -82,7 +82,7 @@
 </header>
 
 <div id="secretAdminPanel" class="admin-panel" style="display:none;">
-    <span>🔐 ادمین آنلاین</span>
+    <span>🔐 ادمین: Zerox</span>
     <button onclick="exitAdminMode()">خروج</button>
 </div>
 
@@ -256,7 +256,7 @@
         loadCommentsIntoPage();
     }
 
-    // =============== سیستم کامنت با قابلیت پاسخ ادمین ===============
+    // =============== سیستم کامنت (بدون ایمیل) ===============
     let comments = JSON.parse(localStorage.getItem('gtaComments')) || [];
 
     function saveComments() {
@@ -266,7 +266,7 @@
     function loadCommentsIntoPage() {
         const commentsDiv = document.getElementById('commentsSectionHere');
         if (!commentsDiv) return;
-        let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. برای نوشتن نظر، ابتدا نام و ایمیل خود را وارد کنید.</p>' : '';
+        let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. اولین نفری باش که نظر میده!</p>' : '';
         for (let i = 0; i < comments.length; i++) {
             const c = comments[i];
             const adminActions = isAdmin ? `
@@ -279,7 +279,7 @@
                     <button onclick="submitReply(${i})">ارسال پاسخ</button>
                 </div>
             ` : '';
-            const replyHtml = c.reply ? `<div class="comment-reply"><span class="reply-label">👑 پاسخ ادمین:</span> ${escapeHtml(c.reply)}</div>` : '';
+            const replyHtml = c.reply ? `<div class="comment-reply"><span class="reply-label">👑 Zerox (ادمین):</span> ${escapeHtml(c.reply)}</div>` : '';
             commentsHtml += `
                 <div class="single-comment">
                     <div><span class="comment-name">${escapeHtml(c.name)}</span> <span class="comment-text">${escapeHtml(c.text)}</span></div>
@@ -293,8 +293,7 @@
                 <h3>💬 نظرات کاربران</h3>
                 <div class="comment-list">${commentsHtml}</div>
                 <div class="comment-form">
-                    <input type="text" id="commentName" placeholder="نام شما (الزامی)" maxlength="50">
-                    <input type="email" id="commentEmail" placeholder="ایمیل (الزامی - نمایش داده نمی‌شود)">
+                    <input type="text" id="commentName" placeholder="نام شما" maxlength="50">
                     <textarea id="commentText" placeholder="نظر خود را بنویسید..."></textarea>
                     <button class="btn-card" onclick="addComment()">ارسال نظر</button>
                 </div>
@@ -304,24 +303,17 @@
 
     function addComment() {
         const nameInput = document.getElementById('commentName');
-        const emailInput = document.getElementById('commentEmail');
         const textInput = document.getElementById('commentText');
         const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
         const text = textInput.value.trim();
-        if (name === '' || email === '' || text === '') { 
-            alert('لطفاً نام، ایمیل و متن نظر را وارد کنید.'); 
+        if (name === '' || text === '') { 
+            alert('لطفاً نام و متن نظر را وارد کنید.'); 
             return; 
         }
-        if (!email.includes('@') || !email.includes('.')) {
-            alert('لطفاً یک ایمیل معتبر وارد کنید.');
-            return;
-        }
-        comments.push({ name: name, email: email, text: text, reply: null });
+        comments.push({ name: name, text: text, reply: null });
         saveComments();
         loadCommentsIntoPage();
         nameInput.value = '';
-        emailInput.value = '';
         textInput.value = '';
     }
 
