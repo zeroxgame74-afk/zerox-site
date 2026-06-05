@@ -1,370 +1,312 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>زروکس | روایت حماسه‌های دیجیتال</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>زروکس | روایت سایبری بازی‌ها</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', 'Tahoma', 'Vazir', system-ui, -apple-system, sans-serif;
-            background-color: #4a0b0b;
-            min-height: 100vh;
-            color: #f0f0f0;
-            line-height: 1.7;
-            position: relative;
-            overflow-x: hidden;
-        }
+    body {
+      background: #0a0101;
+      font-family: 'Segoe UI', 'Tahoma', 'Vazir', system-ui, sans-serif;
+      color: #ededee;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-        /* بکگراند متحرک قرمز خفن */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: #B61C1C;
-            background-image: 
-                radial-gradient(circle at 25% 40%, rgba(255, 80, 80, 0.4) 2%, transparent 2.5%),
-                radial-gradient(circle at 70% 85%, rgba(255, 180, 80, 0.3) 1.5%, transparent 2%),
-                repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 8px);
-            background-size: 40px 40px, 60px 60px, auto;
-            animation: shiftPattern 25s linear infinite;
-        }
+    /* پس‌زمینه سایبری با نئون قرمز */
+    .cyber-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 40%, #2a0303 0%, #050101 95%);
+    }
 
-        @keyframes shiftPattern {
-            0% {
-                background-position: 0 0, 0 0, 0 0;
-            }
-            100% {
-                background-position: 80px 80px, 120px 120px, 100px 100px;
-            }
-        }
+    .cyber-bg::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(0deg, rgba(182, 28, 28, 0.15) 0px, rgba(182, 28, 28, 0.15) 2px, transparent 2px, transparent 8px),
+        repeating-linear-gradient(90deg, rgba(255, 40, 40, 0.08) 0px, rgba(255, 40, 40, 0.08) 1px, transparent 1px, transparent 12px);
+      pointer-events: none;
+    }
 
-        /* ذرات متحرک (دود/خون) */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+    /* خطوط اسکنر متحرک */
+    .scanner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: #ff2a2a;
+      opacity: 0.4;
+      box-shadow: 0 0 20px #ff3a3a;
+      z-index: 110;
+      animation: scanMove 6s linear infinite;
+    }
 
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 200, 200, 0.5);
-            border-radius: 50%;
-            filter: blur(3px);
-            animation: floatUp 8s infinite ease-in;
-            opacity: 0;
-        }
+    @keyframes scanMove {
+      0% { top: 0; opacity: 0.2; }
+      50% { top: 100%; opacity: 0.7; }
+      100% { top: 0; opacity: 0.2; }
+    }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.4;
-            }
-            90% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.2);
-                opacity: 0;
-            }
-        }
+    /* نویز ساکن ریز */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+      opacity: 0.2;
+      pointer-events: none;
+    }
 
-        /* کانتینر اصلی */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem 3rem;
-            position: relative;
-            backdrop-filter: blur(1px);
-        }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem 3rem;
+      position: relative;
+    }
 
-        /* هدر + لوگو */
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 2px solid rgba(255, 215, 150, 0.5);
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
+    /* هدر شیشه‌ای با حاشیه قرمز */
+    .glass-header {
+      background: rgba(8, 2, 2, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 50, 50, 0.6);
+      padding: 0.6rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: 0 0 18px rgba(182, 28, 28, 0.2);
+    }
 
-        .logo-area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(130deg, #ffb8b8, #ff3c3c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 6px #b61c1c;
+    }
 
-        .logo-img {
-            max-width: 220px;
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 12px rgba(255, 100, 0, 0.7));
-            transition: transform 0.3s ease;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #ffe2e2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      padding: 0.4rem 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      color: #ff7979;
+      border-bottom-color: #ff3a3a;
+      text-shadow: 0 0 5px #ff5e5e;
+    }
 
-        .logo-img:hover {
-            transform: scale(1.02);
-        }
+    /* hero گلیچی */
+    .glitch-hero {
+      text-align: center;
+      padding: 2rem 1rem 2rem;
+    }
+    .glitch-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      position: relative;
+      display: inline-block;
+      color: #fff0e0;
+      text-shadow: 3px 0 0 #ff0000, -3px 0 0 #b61c1c;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      opacity: 0.85;
+    }
+    .social-row {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 2rem 0 1rem;
+    }
+    .cyber-btn {
+      background: rgba(0,0,0,0.6);
+      border: 1.5px solid #ff4d4d;
+      padding: 0.65rem 1.8rem;
+      border-radius: 40px;
+      color: #fff0e0;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .cyber-btn:hover {
+      background: #b61c1c;
+      border-color: #ffaa88;
+      box-shadow: 0 0 14px #ff4040;
+      transform: scale(1.02);
+    }
 
-        /* جای خالی برای لوگو - خودت عکس رو بذار اینجا */
-        .logo-placeholder {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ffc4a0, #fff0d0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
+    /* کارت‌های داستان با استایل سایبری */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .story-card {
+      background: rgba(12, 5, 5, 0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      padding: 1.6rem;
+      border-left: 4px solid #ff3c3c;
+      transition: all 0.25s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    }
+    .story-card:hover {
+      transform: translateY(-6px);
+      background: #160808b3;
+      border-left-width: 8px;
+      box-shadow: 0 12px 28px #b61c1c30;
+    }
+    .story-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #ffab6f;
+    }
+    .tag {
+      display: inline-block;
+      background: #b61c1c;
+      padding: 0.2rem 1rem;
+      border-radius: 18px;
+      font-size: 0.7rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .story-card p {
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .read-link {
+      color: #ff867a;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .read-link:hover {
+      color: #ffd0a4;
+      gap: 12px;
+    }
 
-        /* بخش Hero */
-        .hero {
-            text-align: center;
-            padding: 2rem 1rem 3rem;
-        }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      border-top: 1px dashed #b63a3a;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff5e0, #ffbc6e);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 750px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-        /* دکمه های شبکه های اجتماعی */
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .social-btn {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            padding: 0.75rem 1.8rem;
-            border-radius: 50px;
-            color: #ffdead;
-            text-decoration: none;
-            font-weight: bold;
-            border: 1px solid rgba(255, 200, 100, 0.6);
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .social-btn:hover {
-            background: #B61C1C;
-            color: white;
-            border-color: #ffcc88;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        /* کارت های بازی */
-        .games-section {
-            margin-top: 3rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-right: 5px solid #ffa54d;
-            padding-right: 1rem;
-            width: fit-content;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .game-card {
-            background: rgba(10, 5, 5, 0.55);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 1.5rem;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 100, 70, 0.5);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .game-card:hover {
-            transform: translateY(-8px);
-            border-color: #ff9966;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.4);
-            background: rgba(20, 8, 8, 0.7);
-        }
-
-        .game-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #ffc89c;
-        }
-
-        .game-card .genre {
-            display: inline-block;
-            background: #B61C1C;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .game-card p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .read-more {
-            color: #ffbc7a;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .read-more:hover {
-            color: white;
-            gap: 12px;
-        }
-
-        /* فوتر */
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 160, 100, 0.4);
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 680px) {
-            .container {
-                padding: 0.8rem 1rem 2rem;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .logo-img {
-                max-width: 160px;
-            }
-        }
-    </style>
+    @media (max-width: 680px) {
+      .container {
+        padding: 1rem;
+      }
+      .glitch-hero h1 {
+        font-size: 2.2rem;
+      }
+      .glass-header {
+        justify-content: center;
+      }
+      .logo {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
-    <div class="particles" id="particle-container"></div>
+<div class="cyber-bg"></div>
+<div class="noise"></div>
+<div class="scanner"></div>
 
-    <div class="container">
-        <header>
-            <div class="logo-area">
-                <!-- 
-                    ⚠️ اینجا جای لوگوی توئه:
-                    - عکس لوگوت رو توی پوشه images گیت‌هاب بذار با اسم logo.png
-                    - بعد کامنت زیر رو پاک کن و خط img رو فعال کن:
-                -->
-                <!-- <img src="images/logo.png" alt="لوگوی زروکس" class="logo-img"> -->
-                
-                <!-- فعلاً یه متن موقتی داریم تا خودت عکس رو جایگزین کنی -->
-                <div class="logo-placeholder">⚡ [ لوگوی زروکس اینجاست ] ⚡</div>
-            </div>
-        </header>
-
-        <section class="hero">
-            <h1>زروکس | روایتگر حماسه‌های دیجیتال</h1>
-            <p>اینجا هر بازی یه داستان داره. از اسطوره‌های کلاسیک تا آخرین حماسه‌های جهان گیمینگ، با ما همراه باش تا بافت داستان‌ها رو با هم ورق بزنیم.</p>
-            <div class="social-links">
-                <a href="#" class="social-btn">📺 آپارات (به زودی)</a>
-                <a href="#" class="social-btn">🎬 یوتیوب (به زودی)</a>
-                <a href="#" class="social-btn">🎮 کانال تلگرام</a>
-            </div>
-        </section>
-
-        <section class="games-section">
-            <h2 class="section-title">🎮 آخرین داستان‌های بازی</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <h3>The Last of Us</h3>
-                    <span class="genre">داستانی / پساآخرالزمانی</span>
-                    <p>داستان جوئل و الی، سفری در دل آمریکای ویران شده. روابط انسانی، بقا و فداکاری در برابر عفونت قارچی مرگبار...</p>
-                    <a href="#" class="read-more">ادامه داستان →</a>
-                </div>
-                <div class="game-card">
-                    <h3>God of War Ragnarök</h3>
-                    <span class="genre">اساطیر / اکشن</span>
-                    <p>کرتوس و آترئوس در برابر رگناروک. سرنوشت نُه قلمرو و پایان اساطیر نورس... آیا قهرمان می‌تواند از سرنوشت فرار کند؟</p>
-                    <a href="#" class="read-more">ادامه داستان →</a>
-                </div>
-                <div class="game-card">
-                    <h3>Red Dead Redemption 2</h3>
-                    <span class="genre">وسترن / جهان باز</span>
-                    <p>آرتور مورگان و تخت جمشید ون در لیند. پایان عصر یاغی‌ها و روابط خائنانه‌ای که همه چیز را تغییر می‌دهد.</p>
-                    <a href="#" class="read-more">ادامه داستان →</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>© 2025 زروکس - تمامی حقوق برای این وبسایت شخصی محفوظ است | داستان‌های بازی رو بدون ترس به اشتراک بذار</p>
-            <p style="margin-top: 0.5rem;">🎧 منتظر کانال آپارات و یوتیوب ما باش - به‌زودی شروع حماسی!</p>
-        </footer>
+<div class="container">
+  <div class="glass-header">
+    <div class="logo">⛧ ZEROX ⛧</div>
+    <div class="nav-links">
+      <a href="#">خانه</a>
+      <a href="#">داستان‌ها</a>
+      <a href="#">بازی‌ها</a>
+      <a href="#">کانال‌ها</a>
     </div>
+  </div>
 
-    <script>
-        // ذرات متحرک (دود/خون ملایم)
-        function createParticles() {
-            const container = document.getElementById('particle-container');
-            const particleCount = 45;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                const size = Math.random() * 10 + 4;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = Math.random() * 6 + 5 + 's';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.background = `radial-gradient(circle, rgba(255, 100, 80, 0.7), rgba(150, 30, 20, 0.2))`;
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
-    </script>
+  <div class="glitch-hero">
+    <h1>زروکس</h1>
+    <h1 style="font-size: 1.8rem; margin-top: -10px;">⚡ روایت سایبری بازی‌ها ⚡</h1>
+    <p class="hero-sub">اینجا هر بازی یک حماسه است. از خط‌های داستانی فراموش‌شده تا آخرین نظریه‌های دنیای گیم</p>
+    <div class="social-row">
+      <a href="#" class="cyber-btn">🎬 یوتیوب</a>
+      <a href="#" class="cyber-btn">📺 آپارات</a>
+      <a href="#" class="cyber-btn">🎮 دیسکورد</a>
+    </div>
+  </div>
+
+  <div class="stories-grid">
+    <div class="story-card">
+      <h3>مردگان متحرک</h3>
+      <div class="tag">داستانی / آخرالزمانی</div>
+      <p>لی کلوگ در دنیایی پر از واکرها تلاش میکند دختری به نام کلمنتاین را نجات دهد. انتخابات شما سرنوشت‌ساز است...</p>
+      <a href="#" class="read-link">خواندن داستان کامل →</a>
+    </div>
+    <div class="story-card">
+      <h3>بتمن: دشمن از درون</h3>
+      <div class="tag">معمایی / ابرقهرمانی</div>
+      <p>شهر گاتهام در خطر است. بروس وین باید بین دو راهی اخلاقی یکی را انتخاب کند. داستانی تاریک و باورنکردنی.</p>
+      <a href="#" class="read-link">خواندن داستان کامل →</a>
+    </div>
+    <div class="story-card">
+      <h3>Life is Strange</h3>
+      <div class="tag">احساسی / فراطبیعی</div>
+      <p>مکس کالفیلد توانایی بازگرداندن زمان را دارد. آیا میتواند دوستش ریچل را نجات دهد؟ سفری پر از اشک و تصمیم.</p>
+      <a href="#" class="read-link">خواندن داستان کامل →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© ۲۰۲۵ — تمام محتوا متعلق به کانال زروکس است. | به زودی ویدیوهای داستانی در یوتیوب و آپارات</p>
+    <p style="margin-top: 8px;">🔥 هر هفته یه داستان جدید | همراه با نقد و تئوری</p>
+  </footer>
+</div>
+
+<script>
+  // افکت گلیچ ساده روی تایتل
+  const glitchTitle = document.querySelector('.glitch-hero h1');
+  if(glitchTitle) {
+    setInterval(() => {
+      if(Math.random() < 0.1) {
+        glitchTitle.style.textShadow = "4px 0 0 #ff0000, -3px 0 0 #2eff2e";
+        setTimeout(() => {
+          glitchTitle.style.textShadow = "3px 0 0 #ff0000, -3px 0 0 #b61c1c";
+        }, 80);
+      }
+    }, 600);
+  }
+</script>
 </body>
-    </html>
+</html>
