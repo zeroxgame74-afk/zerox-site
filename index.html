@@ -46,16 +46,24 @@
         /* استایل کامنت‌ها */
         .comments-section{background:white;border-radius:24px;padding:25px;margin-top:30px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
         .comments-section h3{color:#B61C1C;margin-bottom:20px;font-size:1.5rem;}
-        .comment-form{display:flex;flex-direction:column;gap:12px;margin-bottom:25px;}
+        .comment-form{display:flex;flex-direction:column;gap:12px;margin-bottom:25px;background:#f9f9f9;padding:15px;border-radius:20px;}
         .comment-form input,.comment-form textarea{padding:10px;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;resize:vertical;}
         .comment-form textarea{min-height:80px;}
-        .comment-list .single-comment{background:#f5f5f5;border-radius:16px;padding:12px 15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+        .comment-list .single-comment{background:#f5f5f5;border-radius:16px;padding:12px 15px;margin-bottom:12px;}
         .comment-name{font-weight:900;color:#B61C1C;margin-left:10px;}
-        .comment-text{color:#333;flex:1;}
-        .delete-comment{background:#ff4444;color:white;border:none;border-radius:30px;padding:5px 12px;cursor:pointer;font-size:12px;font-weight:bold;}
+        .comment-text{color:#333;}
+        .comment-reply{background:#e8e8e8;border-radius:12px;padding:8px 12px;margin-top:8px;margin-right:20px;font-size:13px;border-right:3px solid #B61C1C;}
+        .reply-label{color:#B61C1C;font-weight:800;margin-left:5px;}
+        .admin-actions{display:flex;gap:8px;margin-top:8px;justify-content:flex-end;}
+        .delete-comment{background:#ff4444;color:white;border:none;border-radius:30px;padding:4px 12px;cursor:pointer;font-size:11px;font-weight:bold;}
+        .reply-comment{background:#28a745;color:white;border:none;border-radius:30px;padding:4px 12px;cursor:pointer;font-size:11px;font-weight:bold;}
+        .reply-comment:hover{background:#1e7e34;}
         .delete-comment:hover{background:#cc0000;}
-        .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;box-shadow:0 0 15px black;}
-        .admin-panel button{background:#ff4444;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;margin-right:10px;}
+        .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;box-shadow:0 0 15px black;gap:10px;align-items:center;}
+        .admin-panel button{background:#ff4444;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;}
+        .reply-input{display:none;margin-top:8px;gap:8px;flex-wrap:wrap;}
+        .reply-input input{flex:1;padding:6px 10px;border-radius:20px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;}
+        .reply-input button{background:#B61C1C;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;}
         
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
@@ -73,10 +81,9 @@
     </div>
 </header>
 
-<!-- پنل مخفی ادمین (فقط با ۳ کلیک روی لوگو ظاهر میشه) -->
 <div id="secretAdminPanel" class="admin-panel" style="display:none;">
-    <span style="margin-left:10px;">🔐 حالت ادمین فعال است</span>
-    <button onclick="exitAdminMode()">خروج از ادمین</button>
+    <span>🔐 ادمین آنلاین</span>
+    <button onclick="exitAdminMode()">خروج</button>
 </div>
 
 <div class="slider-container">
@@ -144,7 +151,7 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== سیستم مخفی ادمین با سه بار کلیک روی لوگو ===============
+    // =============== ادمین مخفی با ۵ بار کلیک + رمز ===============
     let clickCount = 0;
     let clickTimer;
     const logo = document.getElementById('secretAdminLogo');
@@ -154,18 +161,16 @@
         clickCount++;
         clearTimeout(clickTimer);
         clickTimer = setTimeout(() => { clickCount = 0; }, 800);
-        if (clickCount === 3) {
+        if (clickCount === 5) {
             clickCount = 0;
-            isAdmin = !isAdmin;
-            const panel = document.getElementById('secretAdminPanel');
-            if (isAdmin) {
-                panel.style.display = 'flex';
-                alert('🔐 حالت ادمین فعال شد. حالا میتونی کامنت‌های فحش‌دار رو حذف کنی.');
-                loadCommentsIntoPage(); // رفرش برای نمایش دکمه حذف
-            } else {
-                panel.style.display = 'none';
-                alert('حالت ادمین غیرفعال شد.');
+            const pwd = prompt('🔐 برای ورود به پنل ادمین، رمز را وارد کنید:');
+            if (pwd === 'Zerox@Admin2025') {
+                isAdmin = true;
+                document.getElementById('secretAdminPanel').style.display = 'flex';
+                alert('حالت ادمین فعال شد. حالا میتونی کامنت بذاری، حذف کنی و پاسخ بدی.');
                 loadCommentsIntoPage();
+            } else {
+                alert('رمز اشتباه است!');
             }
         }
     });
@@ -251,7 +256,7 @@
         loadCommentsIntoPage();
     }
 
-    // سیستم کامنت
+    // =============== سیستم کامنت با قابلیت پاسخ ادمین ===============
     let comments = JSON.parse(localStorage.getItem('gtaComments')) || [];
 
     function saveComments() {
@@ -261,18 +266,35 @@
     function loadCommentsIntoPage() {
         const commentsDiv = document.getElementById('commentsSectionHere');
         if (!commentsDiv) return;
-        let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. اولین نفری باش که نظر میده!</p>' : '';
+        let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. برای نوشتن نظر، ابتدا نام و ایمیل خود را وارد کنید.</p>' : '';
         for (let i = 0; i < comments.length; i++) {
             const c = comments[i];
-            const deleteBtn = isAdmin ? `<button class="delete-comment" onclick="deleteComment(${i})">🗑 حذف</button>` : '';
-            commentsHtml += `<div class="single-comment"><div><span class="comment-name">${escapeHtml(c.name)}</span><span class="comment-text">${escapeHtml(c.text)}</span></div>${deleteBtn}</div>`;
+            const adminActions = isAdmin ? `
+                <div class="admin-actions">
+                    <button class="reply-comment" onclick="showReplyInput(${i})">📝 پاسخ</button>
+                    <button class="delete-comment" onclick="deleteComment(${i})">🗑 حذف</button>
+                </div>
+                <div id="replyInput-${i}" class="reply-input">
+                    <input type="text" id="replyText-${i}" placeholder="متن پاسخ...">
+                    <button onclick="submitReply(${i})">ارسال پاسخ</button>
+                </div>
+            ` : '';
+            const replyHtml = c.reply ? `<div class="comment-reply"><span class="reply-label">👑 پاسخ ادمین:</span> ${escapeHtml(c.reply)}</div>` : '';
+            commentsHtml += `
+                <div class="single-comment">
+                    <div><span class="comment-name">${escapeHtml(c.name)}</span> <span class="comment-text">${escapeHtml(c.text)}</span></div>
+                    ${replyHtml}
+                    ${adminActions}
+                </div>
+            `;
         }
         commentsDiv.innerHTML = `
             <div class="comments-section">
                 <h3>💬 نظرات کاربران</h3>
                 <div class="comment-list">${commentsHtml}</div>
                 <div class="comment-form">
-                    <input type="text" id="commentName" placeholder="نام شما" maxlength="50">
+                    <input type="text" id="commentName" placeholder="نام شما (الزامی)" maxlength="50">
+                    <input type="email" id="commentEmail" placeholder="ایمیل (الزامی - نمایش داده نمی‌شود)">
                     <textarea id="commentText" placeholder="نظر خود را بنویسید..."></textarea>
                     <button class="btn-card" onclick="addComment()">ارسال نظر</button>
                 </div>
@@ -282,15 +304,43 @@
 
     function addComment() {
         const nameInput = document.getElementById('commentName');
+        const emailInput = document.getElementById('commentEmail');
         const textInput = document.getElementById('commentText');
         const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
         const text = textInput.value.trim();
-        if (name === '' || text === '') { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
-        comments.push({ name: name, text: text });
+        if (name === '' || email === '' || text === '') { 
+            alert('لطفاً نام، ایمیل و متن نظر را وارد کنید.'); 
+            return; 
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            alert('لطفاً یک ایمیل معتبر وارد کنید.');
+            return;
+        }
+        comments.push({ name: name, email: email, text: text, reply: null });
         saveComments();
         loadCommentsIntoPage();
         nameInput.value = '';
+        emailInput.value = '';
         textInput.value = '';
+    }
+
+    function showReplyInput(index) {
+        const replyDiv = document.getElementById(`replyInput-${index}`);
+        if (replyDiv.style.display === 'none' || replyDiv.style.display === '') {
+            replyDiv.style.display = 'flex';
+        } else {
+            replyDiv.style.display = 'none';
+        }
+    }
+
+    function submitReply(index) {
+        if (!isAdmin) { alert('فقط ادمین می‌تونه پاسخ بده!'); return; }
+        const replyText = document.getElementById(`replyText-${index}`).value.trim();
+        if (replyText === '') { alert('لطفاً متن پاسخ را وارد کنید.'); return; }
+        comments[index].reply = replyText;
+        saveComments();
+        loadCommentsIntoPage();
     }
 
     function deleteComment(index) {
@@ -303,6 +353,7 @@
     }
 
     function escapeHtml(str) {
+        if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
             if (m === '&') return '&amp;';
             if (m === '<') return '&lt;';
@@ -332,4 +383,4 @@
 </script>
 
 </body>
-    </html>
+</html>
