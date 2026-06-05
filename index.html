@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>زروکس</title>
+<title>Zerox</title>
 
 <style>
-/* فونت جدید */
 @font-face {
     font-family: 'ZeroxTitle';
     src: url('https://cdn.imgurl.ir/uploads/a170504_MAHDIPSD____1_fat.ttf');
@@ -16,98 +15,72 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, sans-serif;
 }
 
 body{
     background:#B61C1C;
+    font-family: Arial, sans-serif;
     color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:100vh;
+    padding-top:50px;
 }
 
-/* عنوان‌ها با فونت جدید + استروک */
-h1, h2, h3{
-    font-family:'ZeroxTitle';
-    -webkit-text-stroke: 2px black;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-}
-
-/* هدر */
-header{
-    text-align:center;
-    padding:50px 20px;
-}
-
-header img{
+/* لوگو */
+.logo{
     width:320px;
     max-width:90%;
     filter: drop-shadow(0 0 12px rgba(0,0,0,0.6));
 }
 
-header h1{
-    font-size:80px;
+/* عنوان */
+.title{
+    font-family:'ZeroxTitle';
+    font-size:70px;
     margin-top:10px;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
 }
 
-header p{
-    font-size:18px;
-    margin-top:8px;
-    text-shadow: 2px 2px 4px black;
+/* باکس شیشه‌ای */
+.glass-box{
+    margin-top:30px;
+    width:90%;
+    max-width:420px;
+    padding:20px;
+    border-radius:18px;
+
+    background: rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
-/* دکمه */
-.btn{
-    display:inline-block;
-    margin-top:25px;
-    padding:12px 30px;
-    background:black;
-    color:white;
-    border-radius:12px;
-    text-decoration:none;
-    font-size:16px;
-    transition:0.3s;
-    border:2px solid white;
+/* عنوان داخل باکس */
+.glass-box h2{
+    font-family:'ZeroxTitle';
+    font-size:30px;
+    margin-bottom:15px;
+    text-shadow:2px 2px 5px black;
 }
 
-.btn:hover{
-    transform:scale(1.05);
-    background:white;
-    color:black;
-}
-
-/* کارت‌ها */
-.container{
+/* آیتم‌ها */
+.item{
     display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-    padding:40px;
+    align-items:center;
+    gap:10px;
+    margin:12px 0;
+    font-size:16px;
+    text-shadow:1px 1px 3px black;
 }
 
-.card{
-    width:270px;
-    padding:20px;
-    border-radius:15px;
-    background:rgba(0,0,0,0.25);
-    border:2px solid rgba(0,0,0,0.4);
-    text-align:right;
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    background:rgba(0,0,0,0.35);
-}
-
-.card p{
-    text-shadow: 1px 1px 3px black;
-}
-
-/* فوتر */
-footer{
-    text-align:center;
-    padding:20px;
-    font-size:14px;
-    text-shadow: 2px 2px 4px black;
+/* آیکون */
+.icon{
+    font-size:20px;
 }
 </style>
 
@@ -115,35 +88,33 @@ footer{
 
 <body>
 
-<header>
-    <img src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="لوگوی زروکس">
-    <h1>زروکس</h1>
-    <p>گیمینگ • ادیت • خلاقیت</p>
-    <a class="btn" href="#">ورود به سایت</a>
-</header>
+<!-- لوگو -->
+<img class="logo" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo">
 
-<div class="container">
+<!-- عنوان -->
+<div class="title">زروکس</div>
 
-    <div class="card">
-        <h3>گیمینگ</h3>
-        <p>کلیپ‌های حرفه‌ای از بهترین لحظات بازی.</p>
+<!-- باکس شیشه‌ای -->
+<div class="glass-box">
+
+    <h2>📖 داستان بازی</h2>
+
+    <div class="item">
+        <div class="icon">🎮</div>
+        <div>شروع ماجراجویی در دنیای گیمینگ</div>
     </div>
 
-    <div class="card">
-        <h3>ادیت</h3>
-        <p>ویدیوهای سینمایی و افترافکت خفن.</p>
+    <div class="item">
+        <div class="icon">⚔️</div>
+        <div>نبردهای هیجان‌انگیز و لحظات نفس‌گیر</div>
     </div>
 
-    <div class="card">
-        <h3>پروژه‌ها</h3>
-        <p>طراحی‌های خاص و گیمینگ‌استایل.</p>
+    <div class="item">
+        <div class="icon">🔥</div>
+        <div>ادیت‌های سینمایی و حرفه‌ای</div>
     </div>
 
 </div>
-
-<footer>
-    © 2026 زروکس - تمامی حقوق محفوظ است
-</footer>
 
 </body>
 </html>
