@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گیم نایت | وب‌سایت گیمینگ</title>
+    <title>گیم نایت | وبسایت گیمینگ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -12,11 +12,20 @@
             box-sizing: border-box;
         }
 
-        /* رنگ اصلی سفارشی #B61C1C */
+        /* ===== فونت سفارشی دوران ===== */
+        @font-face {
+            font-family: 'Doran';
+            src: url('fonts/doran.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== رنگ اصلی #B61C1C ===== */
         :root {
             --primary: #B61C1C;
             --primary-dark: #8a1515;
-            --primary-glow: rgba(182, 28, 28, 0.4);
+            --primary-glow: rgba(182, 28, 28, 0.5);
             --dark-bg: #0e0e12;
             --card-bg: #181a22;
         }
@@ -26,6 +35,20 @@
             background: var(--dark-bg);
             color: #f0f0f0;
             line-height: 1.6;
+        }
+
+        /* ===== عنوان‌ها با فونت دوران ===== */
+        h1, h2, h3, h4, h5, h6, 
+        .logo, 
+        .nav-links a, 
+        .section-title, 
+        .game-title, 
+        .feature h3, 
+        .btn-primary,
+        .hero-content h1,
+        .stat-number,
+        .game-price {
+            font-family: 'Doran', 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
         }
 
         .container {
@@ -64,9 +87,11 @@
             color: #ddd;
             font-weight: 500;
             transition: 0.2s;
+            font-size: 1.1rem;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
+            text-shadow: 0 0 5px var(--primary-glow);
         }
 
         .btn-primary {
@@ -79,6 +104,7 @@
             cursor: pointer;
             transition: 0.2s;
             box-shadow: 0 0 10px var(--primary-glow);
+            font-size: 1rem;
         }
         .btn-primary:hover {
             background: var(--primary-dark);
@@ -174,12 +200,14 @@
             padding: 4px 12px;
             border-radius: 40px;
             font-size: 0.7rem;
+            font-family: 'Segoe UI', sans-serif;
         }
         .game-price {
             color: var(--primary);
             font-weight: bold;
             margin-top: 15px;
             display: inline-block;
+            font-size: 1rem;
         }
 
         /* ویژگی‌ها */
@@ -201,6 +229,10 @@
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 15px;
+        }
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
         footer {
@@ -227,6 +259,9 @@
         @media (max-width: 700px) {
             .hero-content h1 {
                 font-size: 2rem;
+            }
+            .navbar {
+                flex-direction: column;
             }
         }
     </style>
@@ -329,4 +364,4 @@
     });
 </script>
 </body>
-                                 </html>
+    </html>
