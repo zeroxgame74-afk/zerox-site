@@ -26,7 +26,6 @@
             padding: 30px 20px 20px;
         }
 
-        /* لوگو خیلی بزرگ */
         .logo-raw {
             width: auto;
             height: 240px;
@@ -57,7 +56,7 @@
             border-bottom: 2px solid white;
         }
 
-        /* اسلایدر با سایز 1080x120 */
+        /* اسلایدر با ارتفاع مناسب و بدون نقص */
         .slider-container {
             max-width: 1080px;
             margin: 30px auto;
@@ -85,25 +84,9 @@
 
         .slide img {
             width: 100%;
-            height: 120px;
+            height: 220px;
             object-fit: cover;
             display: block;
-        }
-
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            padding: 30px 20px 10px;
-            text-align: center;
-        }
-
-        .slide-caption h3 {
-            font-size: 0.9rem;
-            font-weight: 800;
-            text-shadow: 1px 1px 0 #000;
         }
 
         .prev, .next {
@@ -112,9 +95,9 @@
             transform: translateY(-50%);
             background: rgba(0,0,0,0.5);
             color: white;
-            padding: 6px 12px;
+            padding: 10px 16px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 50%;
             transition: 0.2s;
             z-index: 10;
@@ -124,27 +107,26 @@
             background: #B61C1C;
         }
 
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev { left: 15px; }
+        .next { right: 15px; }
 
         .dots {
             text-align: center;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
         .dot {
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255,255,255,0.5);
-            margin: 0 4px;
+            margin: 0 5px;
             cursor: pointer;
         }
 
         .dot.active { background: white; }
 
-        /* کانتینر اصلی */
         .container {
             max-width: 1300px;
             margin: 50px auto;
@@ -170,7 +152,6 @@
             gap: 30px;
         }
 
-        /* کارت ویدیو */
         .video-card {
             background: rgba(0, 0, 0, 0.25);
             border-radius: 24px;
@@ -188,40 +169,39 @@
 
         .video-thumb {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
             display: block;
         }
 
         .video-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 15px;
+            right: 15px;
             background: #B61C1C;
             color: white;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 900;
         }
 
         .video-info {
-            padding: 18px;
+            padding: 20px;
             text-align: center;
         }
 
         .video-info h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 8px;
             font-weight: 900;
         }
 
         .video-info p {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
 
-        /* کارت‌های قدیمی */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -236,7 +216,6 @@
             transition: 0.3s;
             cursor: pointer;
             backdrop-filter: blur(2px);
-            position: relative;
         }
 
         .thumbnail-card:hover {
@@ -285,20 +264,6 @@
             color: #B61C1C;
         }
 
-        .featured {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            backdrop-filter: blur(2px);
-        }
-
-        .featured h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            text-shadow: 1.5px 1.5px 0 #00000080;
-        }
-
         .footer {
             text-align: center;
             padding: 35px;
@@ -317,10 +282,7 @@
                 height: 150px;
             }
             .slide img {
-                height: 100px;
-            }
-            .section-title {
-                font-size: 1.4rem;
+                height: 150px;
             }
         }
     </style>
@@ -330,30 +292,20 @@
 <header class="header">
     <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo">
     <div class="menu">
-        <a onclick="menuClick('خانه')">خانه</a>
-        <a onclick="menuClick('داستان‌ها')">داستان‌ها</a>
-        <a onclick="menuClick('ژانرها')">ژانرها</a>
-        <a onclick="menuClick('جدیدترین')">جدیدترین</a>
-        <a onclick="menuClick('درباره ما')">درباره ما</a>
+        <a onclick="showPage('home')">خانه</a>
+        <a onclick="showPage('stories')">داستان‌ها</a>
+        <a onclick="showPage('videos')">ویدیوها</a>
+        <a onclick="showPage('about')">درباره ما</a>
     </div>
 </header>
 
-<!-- اسلایدر با سایز 1080x120 -->
+<!-- اسلایدر -->
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide">
-                <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۱">
-                <div class="slide-caption"><h3>به ZEROX | GAME خوش آمدید</h3></div>
-            </div>
-            <div class="slide">
-                <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۲">
-                <div class="slide-caption"><h3>داستان بازی | معرفی بازی | اخبار بازی</h3></div>
-            </div>
-            <div class="slide">
-                <img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۳">
-                <div class="slide-caption"><h3>داستان کامل بازی نه من انسان نیستم</h3></div>
-            </div>
+            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۱"></div>
+            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۲"></div>
+            <div class="slide"><img src="https://cdn.imgurl.ir/uploads/o254685_IMG_20260602_122511_961.png" alt="اسلاید ۳"></div>
         </div>
         <div class="prev" onclick="changeSlide(-1)">❮</div>
         <div class="next" onclick="changeSlide(1)">❯</div>
@@ -361,71 +313,97 @@
     <div class="dots" id="dots"></div>
 </div>
 
-<div class="container">
-    <!-- بخش ویدیوها -->
-    <div class="videos-section">
-        <div class="section-title">🎬 ویدیوها</div>
-        <div class="videos-grid">
-            <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو ۱">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+<div class="container" id="contentContainer">
+    <!-- صفحه خانه (پیش‌فرض) -->
+    <div id="homePage">
+        <div class="cards-grid">
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
+                <div class="card-content">
+                    <h3>داستان بازی</h3>
+                    <p>روایت‌های عمیق و حماسی از جهان‌های مجازی و شخصیت‌های ماندگار</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
                 </div>
             </div>
-            <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو ۲">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>ویدیو جدید به زودی</h3>
-                    <p>به زودی...</p>
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
+                <div class="card-content">
+                    <h3>معرفی بازی</h3>
+                    <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز جهان</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
                 </div>
             </div>
-            <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو ۳">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>ویدیو جدید به زودی</h3>
-                    <p>به زودی...</p>
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
+                <div class="card-content">
+                    <h3>اخبار بازی</h3>
+                    <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- بخش داستان‌ها -->
-    <div class="section-title">📖 داستان‌ها</div>
-    <div class="cards-grid">
-        <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-            <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان بازی">
-            <div class="card-content">
-                <h3>داستان بازی</h3>
-                <p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p>
-                <button class="btn-card">بیشتر بخوانید</button>
-            </div>
-        </div>
-        <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-            <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="معرفی بازی">
-            <div class="card-content">
-                <h3>معرفی بازی</h3>
-                <p>بررسی جدیدترین و محبوب‌ترین بازی‌های روز</p>
-                <button class="btn-card">بیشتر بخوانید</button>
-            </div>
-        </div>
-        <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-            <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="اخبار بازی">
-            <div class="card-content">
-                <h3>اخبار بازی</h3>
-                <p>به‌روزترین اخبار از دنیای گیم، تریلرها و آپدیت‌ها</p>
-                <button class="btn-card">بیشتر بخوانید</button>
+    <!-- صفحه ویدیوها -->
+    <div id="videosPage" style="display: none;">
+        <div class="videos-section">
+            <div class="videos-grid">
+                <div class="video-card" onclick="location.href='https://www.aparat.com/v/itl9b8h'">
+                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg" alt="ویدیو">
+                    <div class="video-badge">▶ تماشا</div>
+                    <div class="video-info">
+                        <h3>داستان کامل بازی نه من انسان نیستم</h3>
+                        <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو بعدی">
+                    <div class="video-badge">▶ تماشا</div>
+                    <div class="video-info">
+                        <h3>ویدیو جدید</h3>
+                        <p>به زودی...</p>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                    <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="ویدیو بعدی">
+                    <div class="video-badge">▶ تماشا</div>
+                    <div class="video-info">
+                        <h3>ویدیو جدید</h3>
+                        <p>به زودی...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="featured">
-        <h2>🔥 داستان ویژه هفته</h2>
-        <p>تحلیل کامل داستان The Last of Us | از قیام تا پایان و رازهای پشت صحنه</p>
-        <button class="btn-card" style="margin-top: 15px;">مشاهده داستان</button>
+    <!-- صفحه داستان‌ها -->
+    <div id="storiesPage" style="display: none;">
+        <div class="cards-grid">
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
+                <div class="card-content">
+                    <h3>داستان بازی</h3>
+                    <p>روایت‌های عمیق و حماسی از جهان‌های مجازی</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
+                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" alt="داستان">
+                <div class="card-content">
+                    <h3>معرفی بازی</h3>
+                    <p>بررسی جدیدترین و محبوب‌ترین بازی‌ها</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحه درباره ما -->
+    <div id="aboutPage" style="display: none;">
+        <div class="featured" style="text-align: center;">
+            <h2>درباره ZEROX | GAME</h2>
+            <p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p>
+        </div>
     </div>
 </div>
 
@@ -463,8 +441,16 @@
     showSlides();
     setInterval(() => changeSlide(1), 5000);
 
-    function menuClick(section) {
-        alert('🔴 صفحه "' + section + '" به زودی اضافه می‌شود!');
+    function showPage(page) {
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('videosPage').style.display = 'none';
+        document.getElementById('storiesPage').style.display = 'none';
+        document.getElementById('aboutPage').style.display = 'none';
+        
+        if (page === 'home') document.getElementById('homePage').style.display = 'block';
+        else if (page === 'videos') document.getElementById('videosPage').style.display = 'block';
+        else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
+        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 </script>
 
