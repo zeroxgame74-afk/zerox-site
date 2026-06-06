@@ -15,22 +15,28 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:16px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
+        
         .user-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:40px;padding:6px 18px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;}
         .user-btn:hover{background:white;color:#B61C1C;}
+        
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
         .modal-content{background:white;border-radius:28px;padding:30px;max-width:450px;width:90%;text-align:center;max-height:80vh;overflow-y:auto;}
         .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
         .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;}
         .close-modal{float:left;cursor:pointer;font-size:24px;color:#999;}
+        
         .medal-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 15px;border-radius:30px;font-size:13px;margin:5px;font-weight:800;}
         .medal-bronze{background:linear-gradient(135deg,#cd7f32,#b8692a);color:#fff;}
         .medal-silver{background:linear-gradient(135deg,#c0c0c0,#a8a8a8);color:#333;}
         .medal-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#5c4300;}
+        
         .congrats-toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:15px 25px;border-radius:40px;z-index:2000;font-weight:800;animation:slideIn 0.5s;}
         @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+        
         .profile-header{background:linear-gradient(135deg,#B61C1C,#8a1010);border-radius:20px;padding:20px;margin-bottom:20px;color:white;}
         .profile-avatar{width:80px;height:80px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;}
         .profile-avatar i{font-size:50px;color:#B61C1C;}
+        
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -43,6 +49,7 @@
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
+        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid,.rankings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -167,16 +174,14 @@
     function showRegisterForm(){document.getElementById('registerDiv').style.display='block';document.getElementById('modalTitle').innerText='ثبت‌نام';}
     function register(){let u=document.getElementById('registerUsername').value.trim(),p=document.getElementById('registerPassword').value.trim();if(!u||!p){alert('لطفاً نام کاربری و رمز عبور را وارد کنید!');return;}let users=JSON.parse(localStorage.getItem('users'))||[];if(users.find(x=>x.username===u)){alert('این نام کاربری قبلاً ثبت شده است!');return;}let nu={username:u,password:p,comments:0,purchases:0,medals:[],goldNotified:false,joinDate:new Date().toLocaleDateString('fa-IR')};users.push(nu);localStorage.setItem('users',JSON.stringify(users));localStorage.setItem('currentUser',JSON.stringify(nu));currentUser=nu;document.getElementById('userStatus').innerHTML=`<i class="fas fa-user-check"></i> ${u}`;closeAuthModal();alert('✅ ثبت‌نام شد! رمز خود را حفظ کنید.');openProfile();}
     function login(){let u=document.getElementById('loginUsername').value.trim(),p=document.getElementById('loginPassword').value.trim();let users=JSON.parse(localStorage.getItem('users'))||[];let user=users.find(x=>x.username===u&&x.password===p);if(user){localStorage.setItem('currentUser',JSON.stringify(user));currentUser=user;document.getElementById('userStatus').innerHTML=`<i class="fas fa-user-check"></i> ${u}`;closeAuthModal();alert(`خوش آمدید ${u}!`);openProfile();}else{alert('نام کاربری یا رمز عبور اشتباه است!');}}
-    function logout(){if(confirm('آیا از خروج از حساب خود مطمئن هستید؟')){localStorage.removeItem('currentUser');currentUser=null;document.getElementById('userStatus').innerHTML='<i class="fas fa-user-plus"></i> ورود/ثبت‌نام';closeProfileModal();alert('خارج شدید!');}}
+    function logout(){if(confirm('آیا از خروج از حساب خود مطمئن هستید？')){localStorage.removeItem('currentUser');currentUser=null;document.getElementById('userStatus').innerHTML='<i class="fas fa-user-plus"></i> ورود/ثبت‌نام';closeProfileModal();alert('خارج شدید!');}}
     
     // =============== ویدیوها ===============
     let videosData=[
-        {id:1,title:"داستان کامل بازی نه من انسان نیستم",desc:"اولین ویدیوی چنل",thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg",link:"https://www.aparat.com/v/itl9b8h",cat:"ترسناک",date:"۱۶ خرداد",time:"۰۸:۳۶",full:"",timestamp:1740000000000},
-        {id:2,title:"داستان کامل بازی Outlast",desc:"بررسی تیمارستان Mount Massive",thumb:"https://up.20script.ir/file/a2a2-Zerox-th12.png",link:"https://www.aparat.com/v/gkcxc4t",cat:"ترسناک",date:"۲۲ خرداد",time:"۰۹:۵۲",full:"در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم...",timestamp:1740200000000}
+        {id:1,title:"داستان کامل بازی Outlast",desc:"بررسی تیمارستان Mount Massive",thumb:"https://up.20script.ir/file/a2a2-Zerox-th12.png",link:"https://www.aparat.com/v/gkcxc4t",cat:"ترسناک",date:"۲۲ خرداد",time:"۰۹:۵۲",full:"در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم...",timestamp:1740200000000},
+        {id:2,title:"داستان کامل بازی نه من انسان نیستم",desc:"اولین ویدیوی چنل",thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg",link:"https://www.aparat.com/v/itl9b8h",cat:"ترسناک",date:"۱۶ خرداد",time:"۰۸:۳۶",full:"",timestamp:1740000000000}
     ];
-    function sortVideosByDate(){videosData.sort((a,b)=>b.timestamp - a.timestamp);saveVideos();}
-    sortVideosByDate();
-    
+    videosData.sort((a,b)=>b.timestamp - a.timestamp);
     let currentFilter='همه';
     function getCatIcon(cat){
         if(cat==='تخیلی') return '<i class="fas fa-meteor"></i>';
@@ -214,31 +219,30 @@
             </div>
         `).join('');
     }
-    function addVideo(){let t=document.getElementById('videoTitle').value.trim(),d=document.getElementById('videoDesc').value.trim(),th=document.getElementById('videoThumb').value.trim(),l=document.getElementById('videoLink').value.trim(),c=document.getElementById('videoCategory').value,dt=document.getElementById('videoDate').value.trim(),tm=document.getElementById('videoTime').value.trim(),ft=document.getElementById('videoFullText').value.trim();if(!t||!d||!th||!l||!dt||!tm){alert('همه فیلدها را پر کنید!');return;}videosData.push({id:Date.now(),title:t,desc:d,thumb:th,link:l,cat:c,date:dt,time:tm,full:ft,timestamp:Date.now()});sortVideosByDate();clearVideoForm();loadAdminVideosList();refreshAllVideos();alert('ویدیو اضافه شد!');}
-    function deleteVideo(id){if(confirm('حذف شود؟')){videosData=videosData.filter(v=>v.id!==id);sortVideosByDate();saveVideos();loadAdminVideosList();refreshAllVideos();}}
-    function editVideo(id){let v=videosData.find(v=>v.id===id);if(!v)return;let nt=prompt('عنوان جدید:',v.title);if(nt)v.title=nt;let nd=prompt('توضیحات:',v.desc);if(nd)v.desc=nd;let nth=prompt('عکس:',v.thumb);if(nth)v.thumb=nth;let nl=prompt('لینک:',v.link);if(nl)v.link=nl;let nc=prompt('سبک:',v.cat);if(nc)v.cat=nc;let ndt=prompt('تاریخ:',v.date);if(ndt)v.date=ndt;let ntm=prompt('ساعت:',v.time);if(ntm)v.time=ntm;let nft=prompt('متن:',v.full);if(nft!==null)v.full=nft;sortVideosByDate();saveVideos();loadAdminVideosList();refreshAllVideos();alert('ویرایش شد!');}
+    function addVideo(){let t=document.getElementById('videoTitle').value.trim(),d=document.getElementById('videoDesc').value.trim(),th=document.getElementById('videoThumb').value.trim(),l=document.getElementById('videoLink').value.trim(),c=document.getElementById('videoCategory').value,dt=document.getElementById('videoDate').value.trim(),tm=document.getElementById('videoTime').value.trim(),ft=document.getElementById('videoFullText').value.trim();if(!t||!d||!th||!l||!dt||!tm){alert('همه فیلدها را پر کنید!');return;}videosData.push({id:Date.now(),title:t,desc:d,thumb:th,link:l,cat:c,date:dt,time:tm,full:ft,timestamp:Date.now()});videosData.sort((a,b)=>b.timestamp - a.timestamp);saveVideos();clearVideoForm();loadAdminVideosList();refreshAllVideos();alert('ویدیو اضافه شد!');}
+    function deleteVideo(id){if(confirm('حذف شود؟')){videosData=videosData.filter(v=>v.id!==id);videosData.sort((a,b)=>b.timestamp - a.timestamp);saveVideos();loadAdminVideosList();refreshAllVideos();}}
+    function editVideo(id){let v=videosData.find(v=>v.id===id);if(!v)return;let nt=prompt('عنوان جدید:',v.title);if(nt)v.title=nt;let nd=prompt('توضیحات:',v.desc);if(nd)v.desc=nd;let nth=prompt('عکس:',v.thumb);if(nth)v.thumb=nth;let nl=prompt('لینک:',v.link);if(nl)v.link=nl;let nc=prompt('سبک:',v.cat);if(nc)v.cat=nc;let ndt=prompt('تاریخ:',v.date);if(ndt)v.date=ndt;let ntm=prompt('ساعت:',v.time);if(ntm)v.time=ntm;let nft=prompt('متن:',v.full);if(nft!==null)v.full=nft;videosData.sort((a,b)=>b.timestamp - a.timestamp);saveVideos();loadAdminVideosList();refreshAllVideos();alert('ویرایش شد!');}
     function loadAdminVideosList(){let c=document.getElementById('videosListAdmin');if(!c)return;c.innerHTML=videosData.map(v=>`<div class="video-item-admin"><span>${v.title} (${v.cat})</span><div><button class="edit-btn" onclick="editVideo(${v.id})">✏️</button><button onclick="deleteVideo(${v.id})">🗑</button></div></div>`).join('');if(!videosData.length)c.innerHTML='<p>هیچ ویدیویی نیست</p>';}
     function clearVideoForm(){document.getElementById('videoTitle').value='';document.getElementById('videoDesc').value='';document.getElementById('videoThumb').value='';document.getElementById('videoLink').value='';document.getElementById('videoCategory').value='تخیلی';document.getElementById('videoDate').value='';document.getElementById('videoTime').value='';document.getElementById('videoFullText').value='';}
     function saveVideos(){localStorage.setItem('zeroxVideos',JSON.stringify(videosData));}
     function refreshAllVideos(){loadVideos('homeVideosGrid','همه');loadVideos('videosGrid',currentFilter);}
     function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-cat');loadVideos('videosGrid',currentFilter);});});}
     
-    // =============== اخبار ===============
+    // =============== اخبار با دکمه ادامه مطلب و توضیحات کامل ===============
     let newsData=[
-        {id:1,title:"بالاخره خبر جدید GTA 6 رسید!",summary:"راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه",image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",date:"۱۶ خرداد",time:"۰۸:۳۶",full:"",timestamp:1740000000000},
-        {id:2,title:"رزیدنت اویل مرثیه",summary:"کپکام از DLC داستانی جدید رونمایی کرد",image:"https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg",date:"۱۶ خرداد",time:"۰۹:۴۸",full:"",timestamp:1740100000000}
+        {id:1,title:"بالاخره خبر جدید GTA 6 رسید!",summary:"راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه",image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",date:"۱۶ خرداد",time:"۰۸:۳۶",fullText:"راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟",timestamp:1740000000000},
+        {id:2,title:"رزیدنت اویل مرثیه",summary:"کپکام از DLC داستانی جدید رونمایی کرد",image:"https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg",date:"۱۶ خرداد",time:"۰۹:۴۸",fullText:"کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت و قراره داستان ترسناک بازی ادامه پیدا کنه.",timestamp:1740100000000}
     ];
-    function sortNewsByDate(){newsData.sort((a,b)=>b.timestamp - a.timestamp);saveNews();}
-    sortNewsByDate();
-    function loadNews(container){let g=document.getElementById(container);if(g)g.innerHTML=newsData.map(n=>`<div class="news-card" onclick="showFullNews(${n.id})"><img class="news-img" src="${n.image}"><div class="news-content"><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه</button></div></div>`).join('');}
-    function addNews(){let t=document.getElementById('newsTitle').value.trim(),s=document.getElementById('newsSummary').value.trim(),i=document.getElementById('newsImage').value.trim(),d=document.getElementById('newsDate').value.trim(),tm=document.getElementById('newsTime').value.trim(),ft=document.getElementById('newsFullText').value.trim();if(!t||!s||!i||!d||!tm||!ft){alert('همه فیلدها را پر کنید');return;}newsData.push({id:Date.now(),title:t,summary:s,image:i,date:d,time:tm,fullText:ft,timestamp:Date.now()});sortNewsByDate();saveNews();clearNewsForm();loadAdminNewsList();refreshAllNews();alert('خبر اضافه شد!');}
-    function deleteNews(id){if(confirm('حذف؟')){newsData=newsData.filter(n=>n.id!==id);sortNewsByDate();saveNews();loadAdminNewsList();refreshAllNews();}}
-    function editNews(id){let n=newsData.find(n=>n.id===id);if(!n)return;let nt=prompt('عنوان جدید:',n.title);if(nt)n.title=nt;let ns=prompt('خلاصه:',n.summary);if(ns)n.summary=ns;let ni=prompt('عکس:',n.image);if(ni)n.image=ni;let nd=prompt('تاریخ:',n.date);if(nd)n.date=nd;let ntm=prompt('ساعت:',n.time);if(ntm)n.time=ntm;let nft=prompt('متن:',n.fullText);if(nft)n.fullText=nft;sortNewsByDate();saveNews();loadAdminNewsList();refreshAllNews();}
+    newsData.sort((a,b)=>b.timestamp - a.timestamp);
+    function loadNews(container){let g=document.getElementById(container);if(g)g.innerHTML=newsData.map(n=>`<div class="news-card" onclick="showFullNews(${n.id})"><img class="news-img" src="${n.image}"><div class="news-content"><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه مطلب</button></div></div>`).join('');}
+    function showFullNews(id){let n=newsData.find(n=>n.id===id);if(!n)return;alert(`📰 ${n.title}\n\n${n.fullText}`);}
+    function addNews(){let t=document.getElementById('newsTitle').value.trim(),s=document.getElementById('newsSummary').value.trim(),i=document.getElementById('newsImage').value.trim(),d=document.getElementById('newsDate').value.trim(),tm=document.getElementById('newsTime').value.trim(),ft=document.getElementById('newsFullText').value.trim();if(!t||!s||!i||!d||!tm||!ft){alert('همه فیلدها را پر کنید');return;}newsData.push({id:Date.now(),title:t,summary:s,image:i,date:d,time:tm,fullText:ft,timestamp:Date.now()});newsData.sort((a,b)=>b.timestamp - a.timestamp);saveNews();clearNewsForm();loadAdminNewsList();refreshAllNews();alert('خبر اضافه شد!');}
+    function deleteNews(id){if(confirm('حذف؟')){newsData=newsData.filter(n=>n.id!==id);newsData.sort((a,b)=>b.timestamp - a.timestamp);saveNews();loadAdminNewsList();refreshAllNews();}}
+    function editNews(id){let n=newsData.find(n=>n.id===id);if(!n)return;let nt=prompt('عنوان جدید:',n.title);if(nt)n.title=nt;let ns=prompt('خلاصه:',n.summary);if(ns)n.summary=ns;let ni=prompt('عکس:',n.image);if(ni)n.image=ni;let nd=prompt('تاریخ:',n.date);if(nd)n.date=nd;let ntm=prompt('ساعت:',n.time);if(ntm)n.time=ntm;let nft=prompt('متن:',n.fullText);if(nft)n.fullText=nft;newsData.sort((a,b)=>b.timestamp - a.timestamp);saveNews();loadAdminNewsList();refreshAllNews();}
     function loadAdminNewsList(){let c=document.getElementById('newsListAdmin');if(!c)return;c.innerHTML=newsData.map(n=>`<div class="news-item-admin"><span>${n.title}</span><div><button class="edit-btn" onclick="editNews(${n.id})">✏️</button><button onclick="deleteNews(${n.id})">🗑</button></div></div>`).join('');if(!newsData.length)c.innerHTML='<p>هیچ خبری نیست</p>';}
     function clearNewsForm(){document.getElementById('newsTitle').value='';document.getElementById('newsSummary').value='';document.getElementById('newsImage').value='';document.getElementById('newsDate').value='';document.getElementById('newsTime').value='';document.getElementById('newsFullText').value='';}
     function saveNews(){localStorage.setItem('zeroxNews',JSON.stringify(newsData));}
     function refreshAllNews(){loadNews('homeNewsGrid');loadNews('newsGrid');}
-    function showFullNews(id){let n=newsData.find(n=>n.id===id);if(!n)return;alert(n.fullText || n.title);}
     
     // =============== بقیه توابع ===============
     let sliderData=[{img:"https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg"},{img:"https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg"}];
@@ -255,7 +259,6 @@
     let musicData=JSON.parse(localStorage.getItem('zeroxMusic'))||[];
     let productsData=JSON.parse(localStorage.getItem('zeroxProducts'))||[];
     let storiesData=[{title:"رستاخیز سرزمین‌های فراموش‌شده",desc:"تحلیل کامل داستان",img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"},{title:"حماسه آخرین بازمانده",desc:"روایت نجات و بقا",img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"}];
-    
     function saveMusic(){localStorage.setItem('zeroxMusic',JSON.stringify(musicData));}
     function saveProducts(){localStorage.setItem('zeroxProducts',JSON.stringify(productsData));}
     function loadStories(container){let g=document.getElementById(container);if(g)g.innerHTML=storiesData.map(s=>`<div class="thumbnail-card"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بخوانید</button></div></div>`).join('');}
@@ -293,4 +296,4 @@
     if(localStorage.getItem('zeroxNews')===null)saveNews();if(localStorage.getItem('zeroxMusic')===null)saveMusic();if(localStorage.getItem('zeroxProducts')===null)saveProducts();
 </script>
 </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </html>
+    </html>
