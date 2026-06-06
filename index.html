@@ -92,7 +92,7 @@
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide"><img id="mainSlideImage" src="https://s6.iranv.ir/images/2025/06/06/InShot-20260605-195526606.jpg" alt="اسلاید اصلی"></div>
+            <div class="slide"><img src="https://s6.iranv.ir/images/2025/06/06/InShot_20260605_200640757.jpg" alt="اسلاید ZEROX"></div>
         </div>
     </div>
 </div>
@@ -356,19 +356,6 @@
         loadNews('homeNewsGrid'); loadNews('newsGrid');
     }
 
-    // تابع تغییر عکس اسلایدر برای خودت
-    function changeSliderImage(newImageUrl) {
-        document.getElementById('mainSlideImage').src = newImageUrl;
-        localStorage.setItem('sliderImage', newImageUrl);
-        alert('عکس اسلایدر با موفقیت تغییر کرد!');
-    }
-    
-    // بارگذاری عکس ذخیره شده در localStorage
-    const savedImage = localStorage.getItem('sliderImage');
-    if (savedImage) {
-        document.getElementById('mainSlideImage').src = savedImage;
-    }
-
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
@@ -388,4 +375,4 @@
 </script>
 
 </body>
-</html>
+            </html>
