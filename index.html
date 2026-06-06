@@ -82,12 +82,17 @@
         .filter-btn:hover{background:#B61C1C;border-color:#B61C1C;transform:translateY(-2px);}
         .filter-btn.active{background:#B61C1C;border-color:#B61C1C;box-shadow:0 0 10px rgba(182,28,28,0.5);}
         
-        /* پلیر و دکمه دانلود کاستوم با فونت بولدر */
+        /* پلیر و دکمه دانلود */
         .audio-player{width:100%;margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
         .audio-player audio{flex:1;min-width:150px;border-radius:30px;}
         .download-btn{background:#B61C1C;border:none;border-radius:30px;padding:8px 12px;color:white;cursor:pointer;transition:0.2s;font-size:14px;display:inline-flex;align-items:center;gap:6px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
         .download-btn i{font-size:14px;}
         .download-btn:hover{background:#8a1010;transform:scale(1.02);}
+        
+        /* استایل کاستوم برای توضیحات موسیقی */
+        .music-game-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(182,28,28,0.1);padding:4px 12px;border-radius:30px;margin:8px auto;width:fit-content;}
+        .music-game-badge i{font-size:14px;color:#B61C1C;}
+        .music-desc-box{background:linear-gradient(135deg,#f5f5f5,#fff);border-radius:16px;padding:12px;margin:10px 0;border-right:3px solid #B61C1C;text-align:right;font-size:13px;}
         
         @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
     </style>
@@ -179,6 +184,7 @@
             <h3>🎵 مدیریت موسیقی</h3>
             <input type="text" id="musicTitle" placeholder="نام آهنگ">
             <input type="text" id="musicGame" placeholder="نام بازی (مثال: God of War)">
+            <input type="text" id="musicPlatform" placeholder="پلتفرم (PS/Xbox/PC/Nintendo)">
             <input type="text" id="musicCover" placeholder="لینک کاور آهنگ (1080x1080)">
             <input type="text" id="musicFile" placeholder="لینک فایل صوتی (mp3)">
             <textarea id="musicDesc" placeholder="توضیحات (اختیاری)"></textarea>
@@ -277,9 +283,19 @@
     let autoSlideInterval;
     function startAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); if (sliderData.length > 1) autoSlideInterval = setInterval(() => changeSlide(1), 5000); }
     
-    // =============== موسیقی با دکمه دانلود کاستوم و کاور ===============
+    // =============== موسیقی با پلتفرم کاستوم ===============
     let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
     function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
+    
+    function getPlatformIcon(platform) {
+        const p = platform?.toLowerCase() || '';
+        if (p.includes('ps') || p.includes('playstation')) return '<i class="fab fa-playstation"></i>';
+        if (p.includes('xbox')) return '<i class="fab fa-xbox"></i>';
+        if (p.includes('pc') || p.includes('windows')) return '<i class="fab fa-windows"></i>';
+        if (p.includes('nintendo')) return '<i class="fab fa-nintendo-switch"></i>';
+        return '<i class="fas fa-gamepad"></i>';
+    }
+    
     function downloadMusic(fileUrl, title) {
         fetch(fileUrl)
             .then(response => response.blob())
@@ -296,32 +312,36 @@
                 window.open(fileUrl, '_blank');
             });
     }
+    
     function loadMusic() {
         const musicGrid = document.getElementById('musicGrid');
         if (!musicGrid) return;
         if (musicData.length === 0) { musicGrid.innerHTML = '<div class="music-card" style="text-align:center; padding:50px;"><i class="fas fa-headphones" style="font-size:48px; color:#B61C1C;"></i><h3 style="color:#B61C1C;">هنوز آهنگی اضافه نشده</h3><p>به زودی...</p></div>'; return; }
         let html = '';
         for (let m of musicData) {
-            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><p>🎮 ${m.game}</p><p>${m.desc || ''}</p><div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`;
+            const platformIcon = getPlatformIcon(m.platform);
+            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${platformIcon} <span>${m.game}</span></div>${m.desc ? `<div class="music-desc-box">${m.desc}</div>` : ''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`;
         }
         musicGrid.innerHTML = html;
     }
+    
     function addMusic() {
         const title = document.getElementById('musicTitle').value.trim();
         const game = document.getElementById('musicGame').value.trim();
+        const platform = document.getElementById('musicPlatform').value.trim();
         const cover = document.getElementById('musicCover').value.trim();
         const file = document.getElementById('musicFile').value.trim();
         const desc = document.getElementById('musicDesc').value.trim();
         if (!title || !game || !cover || !file) { alert('لطفاً نام آهنگ، نام بازی، کاور و فایل صوتی را وارد کنید!'); return; }
-        musicData.push({ id: Date.now(), title, game, cover, file, desc });
+        musicData.push({ id: Date.now(), title, game, platform: platform || 'PS', cover, file, desc });
         saveMusic();
-        document.getElementById('musicTitle').value = ''; document.getElementById('musicGame').value = ''; document.getElementById('musicCover').value = ''; document.getElementById('musicFile').value = ''; document.getElementById('musicDesc').value = '';
+        document.getElementById('musicTitle').value = ''; document.getElementById('musicGame').value = ''; document.getElementById('musicPlatform').value = ''; document.getElementById('musicCover').value = ''; document.getElementById('musicFile').value = ''; document.getElementById('musicDesc').value = '';
         loadAdminMusicList(); loadMusic();
         alert('آهنگ اضافه شد!');
     }
     function deleteMusic(id) { if (confirm('حذف شود؟')) { musicData = musicData.filter(m => m.id !== id); saveMusic(); loadAdminMusicList(); loadMusic(); alert('آهنگ حذف شد!'); } }
-    function editMusic(id) { const m = musicData.find(m => m.id === id); if (!m) return; const newTitle = prompt('نام جدید:', m.title); if (newTitle) m.title = newTitle; const newGame = prompt('نام بازی جدید:', m.game); if (newGame) m.game = newGame; const newCover = prompt('لینک کاور جدید:', m.cover); if (newCover) m.cover = newCover; const newFile = prompt('لینک فایل جدید:', m.file); if (newFile) m.file = newFile; const newDesc = prompt('توضیحات جدید:', m.desc); if (newDesc !== null) m.desc = newDesc; saveMusic(); loadAdminMusicList(); loadMusic(); alert('ویرایش شد!'); }
-    function loadAdminMusicList() { const container = document.getElementById('musicListAdmin'); if (!container) return; if (musicData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ آهنگی وجود ندارد.</p>'; return; } let html = ''; for (let m of musicData) { html += `<div class="music-item-admin"><span>${m.title} (${m.game})</span><div><button class="edit-btn" onclick="editMusic(${m.id})">✏️</button><button onclick="deleteMusic(${m.id})">🗑</button></div></div>`; } container.innerHTML = html; }
+    function editMusic(id) { const m = musicData.find(m => m.id === id); if (!m) return; const newTitle = prompt('نام جدید:', m.title); if (newTitle) m.title = newTitle; const newGame = prompt('نام بازی جدید:', m.game); if (newGame) m.game = newGame; const newPlatform = prompt('پلتفرم جدید (PS/Xbox/PC/Nintendo):', m.platform); if (newPlatform) m.platform = newPlatform; const newCover = prompt('لینک کاور جدید:', m.cover); if (newCover) m.cover = newCover; const newFile = prompt('لینک فایل جدید:', m.file); if (newFile) m.file = newFile; const newDesc = prompt('توضیحات جدید:', m.desc); if (newDesc !== null) m.desc = newDesc; saveMusic(); loadAdminMusicList(); loadMusic(); alert('ویرایش شد!'); }
+    function loadAdminMusicList() { const container = document.getElementById('musicListAdmin'); if (!container) return; if (musicData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ آهنگی وجود ندارد.</p>'; return; } let html = ''; for (let m of musicData) { html += `<div class="music-item-admin"><span>${m.title} (${m.game} - ${m.platform || 'PS'})</span><div><button class="edit-btn" onclick="editMusic(${m.id})">✏️</button><button onclick="deleteMusic(${m.id})">🗑</button></div></div>`; } container.innerHTML = html; }
     
     // =============== ویدیوها ===============
     let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [
@@ -450,4 +470,4 @@
 </script>
 
 </body>
-                </html>
+    </html>
