@@ -15,14 +15,14 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
+        
+        /* اسلایدر تک عکس */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;transition:transform 0.5s ease-in-out;}
+        .slides{display:flex;}
         .slide{min-width:100%;}
         .slide img{width:100%;height:auto;display:block;}
-        .dots{text-align:center;padding:15px 0 5px;}
-        .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
-        .dot.active{background:white;transform:scale(1.2);}
+        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
@@ -92,11 +92,9 @@
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide"><img src="https://s6.iranv.ir/images/2025/06/06/InShot-20260605-195526606.jpg" alt="اسلاید ۱"></div>
-            <div class="slide"><img src="https://s6.iranv.ir/images/2025/06/06/InShot-20260605-200640757.jpg" alt="اسلاید ۲"></div>
+            <div class="slide"><img id="mainSlideImage" src="https://s6.iranv.ir/images/2025/06/06/InShot-20260605-195526606.jpg" alt="اسلاید اصلی"></div>
         </div>
     </div>
-    <div class="dots" id="dots"></div>
 </div>
 
 <div class="container" id="contentContainer">
@@ -358,12 +356,18 @@
         loadNews('homeNewsGrid'); loadNews('newsGrid');
     }
 
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('dots');
-    function showSlides() { document.getElementById('slides').style.transform = `translateX(-${slideIndex * 100}%)`; document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === slideIndex)); }
-    function changeSlide(n) { slideIndex = (slideIndex + n + slides.length) % slides.length; showSlides(); }
-    if (slides.length > 0) { for (let i = 0; i < slides.length; i++) { const dot = document.createElement('div'); dot.classList.add('dot'); dot.onclick = () => { slideIndex = i; showSlides(); }; dotsContainer.appendChild(dot); } showSlides(); setInterval(() => changeSlide(1), 5000); }
+    // تابع تغییر عکس اسلایدر برای خودت
+    function changeSliderImage(newImageUrl) {
+        document.getElementById('mainSlideImage').src = newImageUrl;
+        localStorage.setItem('sliderImage', newImageUrl);
+        alert('عکس اسلایدر با موفقیت تغییر کرد!');
+    }
+    
+    // بارگذاری عکس ذخیره شده در localStorage
+    const savedImage = localStorage.getItem('sliderImage');
+    if (savedImage) {
+        document.getElementById('mainSlideImage').src = savedImage;
+    }
 
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
