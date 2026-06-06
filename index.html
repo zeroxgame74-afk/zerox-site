@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME</title>
+    <title>ZEROX | GAME - کاملترین نسخه</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -11,12 +11,33 @@
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
         .header{text-align:center;padding:20px 20px 10px;position:relative;}
         .logo-raw{width:auto;height:800px;object-fit:contain;margin-bottom:20px;cursor:pointer;}
-        .menu{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:10px;align-items:center;}
-        .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
+        .menu{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:10px;align-items:center;}
+        .menu a{color:white;text-decoration:none;font-weight:800;font-size:16px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
         .user-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:40px;padding:6px 18px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;}
         .user-btn:hover{background:white;color:#B61C1C;}
+        
+        /* مودال‌ها */
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
+        .modal-content{background:white;border-radius:28px;padding:30px;max-width:450px;width:90%;text-align:center;max-height:80vh;overflow-y:auto;}
+        .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
+        .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;font-family:'Vazirmatn',sans-serif;}
+        .modal-content button:hover{background:#8a1010;}
+        .close-modal{float:left;cursor:pointer;font-size:24px;color:#999;}
+        .close-modal:hover{color:#B61C1C;}
+        
+        /* مدال‌ها */
+        .medal-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 15px;border-radius:30px;font-size:13px;margin:5px;font-weight:800;}
+        .medal-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#5c4300;}
+        .medal-silver{background:linear-gradient(135deg,#c0c0c0,#a8a8a8);color:#3a3a3a;}
+        .medal-bronze{background:linear-gradient(135deg,#cd7f32,#b8692a);color:#4a2a0a;}
+        
+        /* پیام تبریک */
+        .congrats-toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:15px 25px;border-radius:40px;box-shadow:0 10px 25px rgba(0,0,0,0.3);z-index:2000;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:14px;animation:slideIn 0.5s ease;}
+        @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+        
+        /* اسلایدر */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -25,10 +46,12 @@
         .dots{text-align:center;padding:15px 0 5px;}
         .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;}
         .dot.active{background:white;}
-        .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;}
+        .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;transition:0.2s;}
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
+        
+        /* محتوا */
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -38,24 +61,31 @@
         .card-content,.news-content,.video-info,.music-info,.product-info{padding:20px;text-align:center;}
         .card-content h3,.news-content h3,.video-info h3,.music-info h3,.product-title{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
         .product-price{font-size:1.2rem;font-weight:800;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;}
-        .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;}
-        .btn-card:hover{background:#8a1010;}
+        .btn-card{background:#B61C1C;border:none;padding:8px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:13px;font-family:'Vazirmatn',sans-serif;}
+        .btn-card:hover{background:#8a1010;transform:scale(1.02);}
         .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
         .video-card{position:relative;}
+        .more-btn{background:transparent;border:1px solid #B61C1C;padding:4px 12px;border-radius:20px;color:#B61C1C;font-size:11px;cursor:pointer;margin-top:8px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .more-btn:hover{background:#B61C1C;color:white;}
+        .full-text{display:none;margin-top:10px;padding:10px;background:#f9f9f9;border-radius:12px;text-align:right;font-size:13px;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
-        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
-        .modal-content{background:white;border-radius:28px;padding:30px;max-width:420px;width:90%;text-align:center;}
-        .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
-        .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;font-family:'Vazirmatn',sans-serif;}
-        .close-modal{float:left;cursor:pointer;font-size:24px;}
-        .medal-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:30px;font-size:12px;margin:5px;}
-        .medal-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#5c4300;}
-        .medal-silver{background:linear-gradient(135deg,#c0c0c0,#a8a8a8);color:#3a3a3a;}
-        .medal-bronze{background:linear-gradient(135deg,#cd7f32,#b8692a);color:#4a2a0a;}
-        .congrats-toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:15px 25px;border-radius:40px;box-shadow:0 10px 25px rgba(0,0,0,0.3);z-index:2000;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:14px;animation:slideIn 0.5s ease;}
-        @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}}
+        
+        /* پنل ادمین */
+        .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#1e1e2f;color:white;padding:12px 18px;border-radius:40px;z-index:9999;gap:10px;align-items:center;font-family:'Vazirmatn',sans-serif;font-weight:700;}
+        .admin-panel button{background:#ff4444;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .admin-panel button:hover{background:#cc0000;}
+        
+        /* پنل مدیریت */
+        .admin-news-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-news-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-news-panel input,.admin-news-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-news-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;}
+        .news-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .news-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;}
+        .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
+        
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.nav-arrow{width:30px;height:30px;font-size:14px;}}
     </style>
 </head>
 <body>
@@ -75,27 +105,121 @@
     </div>
 </header>
 
+<div id="adminPanel" class="admin-panel"><span>🔐 ادمین: Zerox</span><button onclick="exitAdminMode()">خروج</button></div>
+
+<!-- مودال‌ها -->
 <div id="authModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeAuthModal()">&times;</span><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h2 id="modalTitle">ورود</h2><input type="text" id="loginUsername" placeholder="نام کاربری"><input type="password" id="loginPassword" placeholder="رمز عبور"><button onclick="login()">ورود</button><hr><p>حساب ندارید؟ <a href="#" onclick="showRegisterForm()">ثبت‌نام کنید</a></p><div id="registerDiv" style="display:none;"><input type="text" id="registerUsername" placeholder="نام کاربری جدید"><input type="password" id="registerPassword" placeholder="رمز عبور"><button onclick="register()">🎁 ثبت‌نام</button></div></div></div>
 
-<div id="profileModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeProfileModal()">&times;</span><div style="text-align:center;"><i class="fas fa-trophy" style="font-size:48px;color:#B61C1C;"></i><h2>پروفایل من</h2><p><strong id="profileName"></strong></p><div id="medalsContainer" style="margin:15px 0;"></div><div id="freeGiftInfo"></div><hr><button onclick="logout()" style="background:#ff4444;">خروج از حساب</button></div></div></div>
+<div id="profileModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeProfileModal()">&times;</span><div style="text-align:center;"><i class="fas fa-trophy" style="font-size:48px;color:#B61C1C;"></i><h2>پروفایل من</h2><p><strong id="profileName"></strong></p><div id="medalsContainer" style="margin:15px 0;"></div><div id="freeGiftInfo"></div><button onclick="logout()" style="background:#ff4444;margin-top:15px;">خروج از حساب</button></div></div></div>
 
+<!-- اسلایدر -->
 <div class="slider-container"><div class="slider"><button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button><div class="slides" id="slidesContainer"></div><button class="nav-arrow next" onclick="changeSlide(1)">❯</button></div><div class="dots" id="dotsContainer"></div></div>
 
+<!-- محتوای اصلی -->
 <div class="container" id="contentContainer">
-    <div id="homePage"><div class="section-title"><i class="fas fa-fire"></i> ویدیوهای جدید</div><div class="videos-grid" id="homeVideos"></div><div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار</div><div class="news-grid" id="homeNews"></div><div class="section-title"><i class="fas fa-book-open"></i> داستان‌ها</div><div class="cards-grid" id="homeStories"></div></div>
-    <div id="storiesPage" style="display:none;"><div class="section-title"><i class="fas fa-book-open"></i> داستان‌های بازی</div><div class="cards-grid" id="storiesGrid"></div></div>
-    <div id="videosPage" style="display:none;"><div class="section-title"><i class="fas fa-video"></i> ویدیوها</div><div class="videos-grid" id="videosGrid"></div></div>
-    <div id="musicPage" style="display:none;"><div class="section-title"><i class="fas fa-music"></i> موسیقی</div><div class="music-grid" id="musicGrid"><div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3></div></div></div>
-    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> اخبار</div><div class="news-grid" id="newsGrid"></div></div>
-    <div id="shopPage" style="display:none;"><div class="section-title"><i class="fas fa-store"></i> زروکس‌شاپ</div><div class="shop-grid" id="shopGrid"></div></div>
-    <div id="galleryPage" style="display:none;"><div class="section-title"><i class="fas fa-images"></i> گالری</div><div class="cards-grid" id="galleryGrid"><div class="thumbnail-card" style="text-align:center;padding:50px;"><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3></div></div></div>
-    <div id="aboutPage" style="display:none;"><div class="featured"><h2 style="color:#B61C1C;">درباره ZEROX | GAME</h2><p>اینجا بهشت گیمر هاست!</p><p>ما گروه زروکس هستیم و خوشحال هستیم که توی این سایت هستین</p><p>اگر مشکلی توی سایت بود لطفا به ایدی: <strong>@support_Zerox</strong> پیام بدید</p><hr><p><strong>سازنده سایت:</strong> @mohamad_hossein_ev18</p></div></div>
+    <!-- صفحه خانه -->
+    <div id="homePage">
+        <div class="section-title"><i class="fas fa-fire"></i> ویدیوهای جدید</div>
+        <div class="videos-grid" id="homeVideos"></div>
+        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار</div>
+        <div class="news-grid" id="homeNews"></div>
+        <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های جدید</div>
+        <div class="cards-grid" id="homeStories"></div>
+    </div>
+    
+    <!-- صفحه داستان‌ها -->
+    <div id="storiesPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های بازی</div>
+        <div class="cards-grid" id="storiesGrid"></div>
+    </div>
+    
+    <!-- صفحه ویدیوها -->
+    <div id="videosPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-video"></i> ویدیوها</div>
+        <div class="videos-grid" id="videosGrid"></div>
+    </div>
+    
+    <!-- صفحه موسیقی -->
+    <div id="musicPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-music"></i> موسیقی بازی‌ها</div>
+        <div class="music-grid" id="musicGrid"><div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3><p>آهنگ‌های جدید به زودی اضافه می‌شوند</p></div></div>
+    </div>
+    
+    <!-- صفحه اخبار با پنل ادمین -->
+    <div id="newsPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div>
+        <div id="adminNewsPanel" style="display:none;" class="admin-news-panel">
+            <h3>➕ مدیریت اخبار (فقط ادمین)</h3>
+            <input type="text" id="newsTitle" placeholder="عنوان خبر">
+            <textarea id="newsSummary" placeholder="خلاصه خبر"></textarea>
+            <input type="text" id="newsImage" placeholder="لینک عکس خبر">
+            <input type="text" id="newsDate" placeholder="تاریخ (مثال: جمعه ۱۶ خرداد ۱۴۰۵)">
+            <input type="text" id="newsTime" placeholder="ساعت (مثال: ۱۱:۵۶)">
+            <textarea id="newsFullText" placeholder="متن کامل خبر"></textarea>
+            <button onclick="addNews()">➕ اضافه کردن خبر</button>
+            <hr style="margin:20px 0; border-color:#444;">
+            <h4>✏️ ویرایش/حذف اخبار موجود</h4>
+            <div id="newsListAdmin"></div>
+        </div>
+        <div class="news-grid" id="newsGrid"></div>
+    </div>
+    
+    <!-- صفحه فروشگاه -->
+    <div id="shopPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-store"></i> زروکس‌شاپ</div>
+        <div class="shop-grid" id="shopGrid"></div>
+    </div>
+    
+    <!-- صفحه گالری -->
+    <div id="galleryPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div>
+        <div class="cards-grid" id="galleryGrid"><div class="thumbnail-card" style="text-align:center;padding:50px;"><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3><p>گالری عکس بازی‌ها به زودی اضافه می‌شود</p></div></div>
+    </div>
+    
+    <!-- صفحه درباره ما -->
+    <div id="aboutPage" style="display:none;">
+        <div class="featured">
+            <h2 style="color:#B61C1C;">درباره ZEROX | GAME</h2>
+            <p>اینجا بهشت گیمر هاست!</p>
+            <p>ما گروه زروکس هستیم و خوشحال هستیم که توی این سایت هستین</p>
+            <p>اگر مشکلی توی سایت بود لطفا به ایدی: <strong>@support_Zerox</strong> پیام بدید</p>
+            <hr style="margin:20px 0; border-color:#ddd;">
+            <p><strong>سازنده سایت:</strong> @mohamad_hossein_ev18</p>
+            <p><strong>برای ارتباط با سازنده سایت:</strong> تلگرام پیام بدید</p>
+        </div>
+    </div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== سیستم مدال و کاربران ===============
+    // =============== مدیریت ادمین مخفی ===============
+    let isAdmin = false;
+    let clickCount = 0, clickTimer;
+    document.getElementById('secretAdminLogo').addEventListener('click', () => {
+        clickCount++;
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { clickCount = 0; }, 800);
+        if (clickCount === 3) {
+            clickCount = 0;
+            let pwd = prompt('🔐 رمز ادمین:');
+            if (pwd === 'ZeroxAdmin') {
+                isAdmin = true;
+                document.getElementById('adminPanel').style.display = 'flex';
+                document.getElementById('adminNewsPanel').style.display = 'block';
+                loadAdminNewsList();
+                alert('حالت ادمین فعال شد.');
+            } else { alert('رمز اشتباه است!'); }
+        }
+    });
+    function exitAdminMode() {
+        isAdmin = false;
+        document.getElementById('adminPanel').style.display = 'none';
+        document.getElementById('adminNewsPanel').style.display = 'none';
+        alert('حالت ادمین غیرفعال شد.');
+    }
+    
+    // =============== سیستم کاربران و مدال ===============
     let currentUser = null;
     
     function showToast(message) {
@@ -133,7 +257,7 @@
     }
     
     function loadUserFromStorage() {
-        const saved = localStorage.getItem('currentUser');
+        let saved = localStorage.getItem('currentUser');
         if(saved) {
             currentUser = JSON.parse(saved);
             let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -158,7 +282,7 @@
                 let medalClass = m.type === 'gold' ? 'medal-gold' : (m.type === 'silver' ? 'medal-silver' : 'medal-bronze');
                 medalsHtml += `<div class="medal-badge ${medalClass}">${m.name}</div>`;
             });
-            if(medals.length === 0) medalsHtml = '<p>هنوز مدالی دریافت نکرده‌اید</p>';
+            if(medals.length === 0) medalsHtml = '<p style="color:#888;">هنوز مدالی دریافت نکرده‌اید</p>';
             document.getElementById('medalsContainer').innerHTML = medalsHtml;
             document.getElementById('freeGiftInfo').innerHTML = '<div style="background:#f0f0f0;border-radius:16px;padding:15px;margin-top:10px;"><i class="fas fa-gift"></i> هدیه ثبت‌نام: <strong>به زودی...</strong></div>';
             document.getElementById('profileModal').style.display = 'flex';
@@ -213,9 +337,93 @@
         }
     }
     
-    // =============== اسلایدر ===============
-    let sliderData = [{img:"https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg"},{img:"https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg"}];
+    // =============== مدیریت اخبار (ادمین) ===============
+    let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [
+        { id: 1, title: "بالاخره خبر جدید GTA 6 رسید!", summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه...", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه...</p>" },
+        { id: 2, title: "رزیدنت اویل مرثیه", summary: "کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت...", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "<p>کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت...</p>" }
+    ];
+    
+    function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
+    
+    function loadNews(containerId) {
+        let html = '';
+        for(let news of newsData) {
+            html += `<div class="news-card"><img class="news-img" src="${news.image}"><div class="news-content"><div class="news-meta" style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;"><i class="fas fa-calendar-alt"></i> ${news.date} <i class="fas fa-clock"></i> ${news.time}</div><h3>${news.title}</h3><p>${news.summary}</p><button class="btn-card" onclick="alert('${news.fullText.replace(/<[^>]*>/g, '')}')">ادامه مطلب</button></div></div>`;
+        }
+        document.getElementById(containerId).innerHTML = html;
+    }
+    
+    function addNews() {
+        let title = document.getElementById('newsTitle').value.trim();
+        let summary = document.getElementById('newsSummary').value.trim();
+        let image = document.getElementById('newsImage').value.trim();
+        let date = document.getElementById('newsDate').value.trim();
+        let time = document.getElementById('newsTime').value.trim();
+        let fullText = document.getElementById('newsFullText').value.trim();
+        if(!title || !summary || !image || !date || !time || !fullText) { alert('همه فیلدها را پر کنید!'); return; }
+        newsData.push({ id: Date.now(), title, summary, image, date, time, fullText });
+        saveNews();
+        clearNewsForm();
+        loadAdminNewsList();
+        loadNews('newsGrid');
+        loadNews('homeNews');
+        alert('خبر اضافه شد!');
+    }
+    
+    function deleteNews(id) {
+        if(confirm('حذف شود؟')) {
+            newsData = newsData.filter(n => n.id !== id);
+            saveNews();
+            loadAdminNewsList();
+            loadNews('newsGrid');
+            loadNews('homeNews');
+            alert('حذف شد!');
+        }
+    }
+    
+    function editNews(id) {
+        let news = newsData.find(n => n.id === id);
+        if(!news) return;
+        let newTitle = prompt('عنوان جدید:', news.title); if(newTitle) news.title = newTitle;
+        let newSummary = prompt('خلاصه جدید:', news.summary); if(newSummary) news.summary = newSummary;
+        let newImage = prompt('لینک عکس جدید:', news.image); if(newImage) news.image = newImage;
+        let newDate = prompt('تاریخ جدید:', news.date); if(newDate) news.date = newDate;
+        let newTime = prompt('ساعت جدید:', news.time); if(newTime) news.time = newTime;
+        let newFullText = prompt('متن کامل جدید:', news.fullText); if(newFullText) news.fullText = newFullText;
+        saveNews();
+        loadAdminNewsList();
+        loadNews('newsGrid');
+        loadNews('homeNews');
+        alert('ویرایش شد!');
+    }
+    
+    function loadAdminNewsList() {
+        let container = document.getElementById('newsListAdmin');
+        if(!container) return;
+        if(newsData.length === 0) { container.innerHTML = '<p>خبری نیست</p>'; return; }
+        let html = '';
+        for(let n of newsData) {
+            html += `<div class="news-item-admin"><span>${n.title}</span><div><button class="edit-btn" onclick="editNews(${n.id})">✏️</button><button onclick="deleteNews(${n.id})">🗑</button></div></div>`;
+        }
+        container.innerHTML = html;
+    }
+    
+    function clearNewsForm() {
+        document.getElementById('newsTitle').value = '';
+        document.getElementById('newsSummary').value = '';
+        document.getElementById('newsImage').value = '';
+        document.getElementById('newsDate').value = '';
+        document.getElementById('newsTime').value = '';
+        document.getElementById('newsFullText').value = '';
+    }
+    
+    // =============== داده‌های دیگر ===============
+    let sliderData = [
+        {img:"https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg"},
+        {img:"https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg"}
+    ];
     let slideIndex=0;
+    
     function renderSlider() {
         let s=document.getElementById('slidesContainer'), d=document.getElementById('dotsContainer');
         if(!s) return;
@@ -226,24 +434,85 @@
     function changeSlide(n){ slideIndex = (slideIndex+n+sliderData.length)%sliderData.length; renderSlider(); }
     function goToSlide(i){ slideIndex=i; renderSlider(); }
     
-    // =============== داده‌ها ===============
-    let videosData = [{title:"داستان کامل بازی نه من انسان نیستم",desc:"اولین ویدیوی چنل | ترند و ترسناک",thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg",link:"https://www.aparat.com/v/itl9b8h"}];
-    let newsData = [{title:"بالاخره خبر جدید GTA 6 رسید!",summary:"راک‌استار تایید کرد بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه",image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg"}];
-    let productsData = [{title:"بسته آیکون گیمینگ",desc:"۱۰۰+ آیکون اختصاصی",price:49000,image:"https://via.placeholder.com/300x200?text=Icon+Pack"}];
-    let storiesData = [{title:"رستاخیز سرزمین‌های فراموش‌شده",desc:"تحلیل کامل داستان",img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"}];
+    let videosData = [
+        {id:1, title:"داستان کامل بازی نه من انسان نیستم", desc:"اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link:"https://www.aparat.com/v/itl9b8h", fullText:"این ویدیو داستان کامل بازی ترسناک رو بررسی میکنه..."},
+        {id:2, title:"داستان کامل بازی Outlast", desc:"بررسی تیمارستان Mount Massive", thumb:"https://up.20script.ir/file/a2a2-Zerox-th12.png", link:"https://www.aparat.com/v/gkcxc4t", fullText:"در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..."}
+    ];
     
-    function loadVideos(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=videosData.map(v=>`<div class="video-card" onclick="window.open('${v.link}','_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><button class="btn-card">تماشا</button></div></div>`).join('');}
-    function loadNews(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=newsData.map(n=>`<div class="news-card"><img class="news-img" src="${n.image}"><div class="news-content"><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه مطلب</button></div></div>`).join('');}
-    function loadStories(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=storiesData.map(s=>`<div class="thumbnail-card"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بیشتر بخوانید</button></div></div>`).join('');}
-    function loadProducts(){let g=document.getElementById('shopGrid');if(g)g.innerHTML=productsData.map(p=>`<div class="product-card"><img class="product-img" src="${p.image}"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price">💰 ${p.price.toLocaleString()} تومان</div><button class="btn-card" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')">خرید</button></div></div>`).join('');}
+    let storiesData = [
+        {title:"رستاخیز سرزمین‌های فراموش‌شده", desc:"تحلیل کامل داستان و شخصیت‌ها", img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"},
+        {title:"حماسه آخرین بازمانده", desc:"روایت نجات و بقا در دنیایی پساآخرالزمانی", img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"}
+    ];
     
-    function showPage(page){
+    let productsData = [
+        {title:"بسته آیکون گیمینگ", desc:"۱۰۰+ آیکون اختصاصی", price:49000, image:"https://via.placeholder.com/300x200?text=Icon+Pack"},
+        {title:"تمپلیت تامنیل حرفه‌ای", desc:"۲۰ طرح آماده PSD", price:79000, image:"https://via.placeholder.com/300x200?text=Thumbnail"}
+    ];
+    
+    function toggleFullText(id, btn) {
+        let elem = document.getElementById(`fullText-${id}`);
+        if(elem.style.display === 'none' || elem.style.display === '') {
+            elem.style.display = 'block';
+            btn.innerText = 'بستن';
+        } else {
+            elem.style.display = 'none';
+            btn.innerText = 'بیشتر...';
+        }
+    }
+    
+    function loadVideos(containerId) {
+        let g = document.getElementById(containerId);
+        if(g) g.innerHTML = videosData.map(v => `
+            <div class="video-card" onclick="window.open('${v.link}','_blank')">
+                <img class="video-thumb" src="${v.thumb}">
+                <div class="video-badge">▶ تماشا</div>
+                <div class="video-info">
+                    <h3>${v.title}</h3>
+                    <p>${v.desc}</p>
+                    <div class="full-text" id="fullText-${v.id}" style="display:none;">${v.fullText}</div>
+                    <button class="more-btn" onclick="event.stopPropagation(); toggleFullText(${v.id}, this)">بیشتر...</button>
+                    <button class="btn-card" style="margin-top:8px;">مشاهده ویدیو</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function loadStories(containerId) {
+        let g = document.getElementById(containerId);
+        if(g) g.innerHTML = storiesData.map(s => `
+            <div class="thumbnail-card">
+                <img class="thumbnail-img" src="${s.img}">
+                <div class="card-content">
+                    <h3>${s.title}</h3>
+                    <p>${s.desc}</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function loadProducts() {
+        let g = document.getElementById('shopGrid');
+        if(g) g.innerHTML = productsData.map(p => `
+            <div class="product-card">
+                <img class="product-img" src="${p.image}">
+                <div class="product-info">
+                    <h3 class="product-title">${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="product-price">💰 ${p.price.toLocaleString()} تومان</div>
+                    <button class="btn-card" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')">خرید</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function showPage(page) {
         let pages = ['homePage','storiesPage','videosPage','musicPage','newsPage','shopPage','galleryPage','aboutPage'];
         pages.forEach(p=>{let el=document.getElementById(p);if(el)el.style.display='none';});
         if(page==='home'){ document.getElementById('homePage').style.display='block'; loadVideos('homeVideos'); loadNews('homeNews'); loadStories('homeStories'); }
         else if(page==='stories'){ document.getElementById('storiesPage').style.display='block'; loadStories('storiesGrid'); }
         else if(page==='videos'){ document.getElementById('videosPage').style.display='block'; loadVideos('videosGrid'); }
-        else if(page==='news'){ document.getElementById('newsPage').style.display='block'; loadNews('newsGrid'); }
+        else if(page==='news'){ document.getElementById('newsPage').style.display='block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display='block'; }
         else if(page==='shop'){ document.getElementById('shopPage').style.display='block'; loadProducts(); }
         else if(page==='gallery'){ document.getElementById('galleryPage').style.display='block'; }
         else if(page==='about'){ document.getElementById('aboutPage').style.display='block'; }
@@ -255,4 +524,4 @@
     loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid'); loadProducts();
 </script>
 </body>
-                                                                                                                                                                                                                                                </html>
+                </html>
