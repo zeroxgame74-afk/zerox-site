@@ -58,16 +58,18 @@
         .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;gap:10px;align-items:center;}
         .reply-input{display:none;margin-top:8px;gap:8px;flex-wrap:wrap;}
         .reply-input input{flex:1;padding:6px 10px;border-radius:20px;border:1px solid #ddd;}
-        .admin-news-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
-        .admin-news-panel h3{color:#B61C1C;margin-bottom:20px;}
-        .admin-news-panel input,.admin-news-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
-        .admin-news-panel textarea{min-height:100px;}
-        .admin-news-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;}
-        .news-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-        .news-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;}
+        .admin-news-panel,.admin-videos-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-news-panel h3,.admin-videos-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-news-panel input,.admin-news-panel textarea,.admin-videos-panel input,.admin-videos-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-news-panel textarea,.admin-videos-panel textarea{min-height:100px;}
+        .admin-news-panel button,.admin-videos-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;}
+        .news-item-admin,.video-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .news-item-admin button,.video-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;}
         .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}}
+        .datetime-group{display:flex;gap:10px;margin-bottom:15px;}
+        .datetime-group input{flex:1;}
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}}
     </style>
 </head>
 <body>
@@ -116,6 +118,22 @@
 
     <div id="videosPage" style="display:none;">
         <div class="section-title"><i class="fas fa-video"></i> ویدیوهای ترسناک</div>
+        <div id="adminVideosPanel" style="display:none;" class="admin-videos-panel">
+            <h3>➕ مدیریت ویدیوها</h3>
+            <input type="text" id="videoTitle" placeholder="عنوان ویدیو">
+            <textarea id="videoDesc" placeholder="توضیحات ویدیو"></textarea>
+            <input type="text" id="videoThumb" placeholder="لینک عکس تامنیل">
+            <input type="text" id="videoLink" placeholder="لینک ویدیو در آپارات">
+            <div class="datetime-group">
+                <input type="text" id="videoDate" placeholder="تاریخ (مثال: جمعه ۱۶ خرداد ۱۴۰۵)">
+                <input type="text" id="videoTime" placeholder="ساعت (مثال: ۱۱:۵۶)">
+            </div>
+            <textarea id="videoFullText" placeholder="متن کامل ویدیو (اختیاری)"></textarea>
+            <button onclick="addVideo()">➕ اضافه کردن ویدیو</button>
+            <hr style="margin:20px 0; border-color:#444;">
+            <h4>✏️ ویرایش/حذف ویدیوهای موجود</h4>
+            <div id="videosListAdmin"></div>
+        </div>
         <div class="videos-grid" id="videosGrid"></div>
     </div>
 
@@ -126,7 +144,11 @@
             <input type="text" id="newsTitle" placeholder="عنوان خبر">
             <textarea id="newsSummary" placeholder="خلاصه خبر"></textarea>
             <input type="text" id="newsImage" placeholder="لینک عکس خبر">
-            <textarea id="newsFullText" placeholder="متن کامل خبر"></textarea>
+            <div class="datetime-group">
+                <input type="text" id="newsDate" placeholder="تاریخ (مثال: جمعه ۱۶ خرداد ۱۴۰۵)">
+                <input type="text" id="newsTime" placeholder="ساعت (مثال: ۱۱:۵۶)">
+            </div>
+            <textarea id="newsFullText" placeholder="متن کامل خبر (میتونی از HTML استفاده کنی)"></textarea>
             <button onclick="addNews()">➕ اضافه کردن خبر</button>
             <hr style="margin:20px 0; border-color:#444;">
             <h4>✏️ ویرایش/حذف اخبار موجود</h4>
@@ -142,7 +164,6 @@
                 <i class="fas fa-gamepad" style="font-size: 48px; color: #B61C1C; margin-bottom: 15px;"></i>
                 <h3 style="color:#B61C1C;">به زودی...</h3>
                 <p>گالری عکس بازی‌ها به زودی اضافه خواهد شد.</p>
-                <p style="font-size: 12px; margin-top: 10px;">منتظر عکس‌های جدید باشید!</p>
             </div>
         </div>
     </div>
@@ -163,9 +184,10 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    const videosData = [
-        { title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h" },
-        { title: "داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive", desc: "این ویدیو توسط کانال خفن زیروکس ساخته شده", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider." }
+    // =============== ویدیوها (قابل مدیریت توسط ادمین) ===============
+    let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [
+        { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
+        { id: 2, title: "داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive", desc: "این ویدیو توسط کانال خفن زیروکس ساخته شده", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم | از ورود مایلز آپشور به تیمارستان مرموز Mount Massive تا روبه‌رو شدن با آزمایش‌های مخفی، بیماران دیوانه و موجود ترسناکی به نام Walrider." }
     ];
 
     const storiesData = [
@@ -173,12 +195,13 @@
         { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا در دنیایی پساآخرالزمانی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }
     ];
 
-    let newsData = [
+    let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [
         { id: 1, title: "بالاخره خبر جدید GTA 6 رسید!", summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: `<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p><strong>کانال Zerox 🎮🔥</strong></p>` },
         { id: 2, title: "رزیدنت اویل مرثیه و کپکام چیکار کردن?", summary: "رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره! کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت...", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: `<p>رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره!</p><p>کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخته و قراره داستان ترسناک بازی ادامه پیدا کنه. از اون طرف یه مود رایگان جدید به اسم Leon Must Die Forever هم منتشر شده که هر بار تجربه‌ای متفاوت و چالش‌برانگیز به بازیکن‌ها میده.</p><p>جالب‌تر اینکه بازی تو مدت خیلی کوتاهی به فروش فوق‌العاده‌ای رسیده و رکوردهای جدیدی برای سری رزیدنت اویل ثبت کرده. حالا طرفدارها منتظرن ببینن کپکام تو DLC آینده چه رازهای جدیدی رو فاش می‌کنه و سرنوشت شخصیت‌ها به کجا می‌رسه.</p><p><strong>زروکس | مرجع اخبار و داستان بازی‌ها 🎮🔥</strong></p>` },
         { id: 3, title: "د لست اف اس پارت ۲ خوب بود؟", summary: "«د لست آف آس پارت ۲» هنوزم یکی از جنجالی‌ترین بازی‌های تاریخه! یه عده میگن شاهکاره و از نظر گرافیک، گیم‌پلی، صداگذاری و جزئیات تقریباً بی‌رقیبه. منتقدها هم بهش نمره‌های خیلی بالا دادن و میانگین امتیازش حدود ۹۳ از ۱۰۰ بوده.", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: `<p>«د لست آف آس پارت ۲» هنوزم یکی از جنجالی‌ترین بازی‌های تاریخه! یه عده میگن شاهکاره و از نظر گرافیک، گیم‌پلی، صداگذاری و جزئیات تقریباً بی‌رقیبه. منتقدها هم بهش نمره‌های خیلی بالا دادن و میانگین امتیازش حدود ۹۳ از ۱۰۰ بوده.</p><p>اما از اون طرف، داستان بازی مخصوصاً بعضی اتفاقات مهمش باعث شد خیلی از طرفدارها دو دسته بشن؛ بعضیا عاشقش شدن و بعضیا گفتن اصلاً اون چیزی نبود که انتظار داشتن. حتی هنوز بعد از چند سال بحث درباره داستانش ادامه داره.</p><p><strong>جمع‌بندی عامیانه:</strong> «اگه از من بپرسی، د لست آف آس پارت ۲ از نظر فنی یه هیولای تمام‌عیاره؛ گرافیک و گیم‌پلیش ترکونده. ولی داستانش یا عاشقت می‌کنه یا عصبانیت می‌کنه؛ وسط نداره!»</p><p>— تیم خبری زروکس گیم 🎮🔥</p>` }
     ];
 
+    function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
     function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
 
     let clickCount = 0, clickTimer;
@@ -195,9 +218,12 @@
             if (pwd === 'ZeroxAdmin') {
                 isAdmin = true;
                 document.getElementById('secretAdminPanel').style.display = 'flex';
-                const panel = document.getElementById('adminNewsPanel');
-                if (panel) panel.style.display = 'block';
+                const newsPanel = document.getElementById('adminNewsPanel');
+                const videosPanel = document.getElementById('adminVideosPanel');
+                if (newsPanel) newsPanel.style.display = 'block';
+                if (videosPanel) videosPanel.style.display = 'block';
                 loadAdminNewsList();
+                loadAdminVideosList();
                 alert('حالت ادمین فعال شد.');
             } else alert('رمز اشتباه است!');
         }
@@ -206,8 +232,10 @@
     function exitAdminMode() {
         isAdmin = false;
         document.getElementById('secretAdminPanel').style.display = 'none';
-        const panel = document.getElementById('adminNewsPanel');
-        if (panel) panel.style.display = 'none';
+        const newsPanel = document.getElementById('adminNewsPanel');
+        const videosPanel = document.getElementById('adminVideosPanel');
+        if (newsPanel) newsPanel.style.display = 'none';
+        if (videosPanel) videosPanel.style.display = 'none';
         alert('حالت ادمین غیرفعال شد.');
     }
 
@@ -225,10 +253,10 @@
 
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
 
-    function loadVideos(containerId) {
+    function loadVideos(containerId, isHome = false) {
         let html = '';
         for (let v of videosData) {
-            html += `<div class="video-card" onclick="window.open('${v.link}', '_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p>${v.fullText ? `<div class="full-text" id="fullText-${v.title.replace(/\s/g,'')}">${v.fullText}</div><button class="more-btn" onclick="event.stopPropagation(); toggleText('fullText-${v.title.replace(/\s/g,'')}', this)">بیشتر...</button>` : ''}<button class="btn-card" style="margin-top:8px;">مشاهده ویدیو</button></div></div>`;
+            html += `<div class="video-card" onclick="window.open('${v.link}', '_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${v.date} <i class="fas fa-clock"></i> ${v.time}</div>${v.fullText ? `<div class="full-text" id="fullText-${v.id}">${v.fullText}</div><button class="more-btn" onclick="event.stopPropagation(); toggleText('fullText-${v.id}', this)">بیشتر...</button>` : ''}<button class="btn-card" style="margin-top:8px;">مشاهده ویدیو</button></div></div>`;
         }
         document.getElementById(containerId).innerHTML = html;
     }
@@ -289,24 +317,18 @@
         const name = document.getElementById('commentName').value.trim();
         const text = document.getElementById('commentText').value.trim();
         if (!name || !text) { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
-        
-        // محدودیت یک کامنت برای هر کاربر
         const userId = localStorage.getItem('userId');
         if (userId && localStorage.getItem(`commented_${currentNewsId}_${userId}`) === 'true') {
             alert('شما قبلاً نظر خود را ثبت کرده اید! فقط یک بار می توانید نظر دهید.');
             return;
         }
-        
         const newUserId = userId || Date.now().toString();
         if (!userId) localStorage.setItem('userId', newUserId);
-        
         const commentsList = loadCommentsForNews(currentNewsId);
         commentsList.push({ name, text, reply: null });
         saveCommentsForNews(currentNewsId, commentsList);
         localStorage.setItem(`commented_${currentNewsId}_${newUserId}`, 'true');
         loadCommentsForCurrentNews();
-        document.getElementById('commentName').value = '';
-        document.getElementById('commentText').value = '';
     }
 
     function showReplyInputNews(index) {
@@ -334,20 +356,18 @@
         }
     }
 
+    // مدیریت اخبار
     function addNews() {
         const title = document.getElementById('newsTitle').value.trim();
         const summary = document.getElementById('newsSummary').value.trim();
         const image = document.getElementById('newsImage').value.trim();
+        const date = document.getElementById('newsDate').value.trim();
+        const time = document.getElementById('newsTime').value.trim();
         const fullText = document.getElementById('newsFullText').value.trim();
-        if (!title || !summary || !image || !fullText) { alert('همه فیلدها را پر کنید!'); return; }
-        const now = new Date();
-        const iranTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Tehran"}));
-        const date = iranTime.toLocaleDateString('fa-IR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-        const time = iranTime.toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' });
+        if (!title || !summary || !image || !date || !time || !fullText) { alert('همه فیلدها را پر کنید!'); return; }
         newsData.push({ id: Date.now(), title, summary, image, date, time, fullText });
         saveNews();
-        document.getElementById('newsTitle').value = ''; document.getElementById('newsSummary').value = '';
-        document.getElementById('newsImage').value = ''; document.getElementById('newsFullText').value = '';
+        clearNewsForm();
         loadAdminNewsList(); refreshAllNews();
         alert('خبر با موفقیت اضافه شد!');
     }
@@ -365,6 +385,8 @@
         const newTitle = prompt('عنوان جدید:', news.title); if (newTitle) news.title = newTitle;
         const newSummary = prompt('خلاصه جدید:', news.summary); if (newSummary) news.summary = newSummary;
         const newImage = prompt('لینک عکس جدید:', news.image); if (newImage) news.image = newImage;
+        const newDate = prompt('تاریخ جدید:', news.date); if (newDate) news.date = newDate;
+        const newTime = prompt('ساعت جدید:', news.time); if (newTime) news.time = newTime;
         const newFullText = prompt('متن کامل جدید:', news.fullText); if (newFullText) news.fullText = newFullText;
         saveNews(); loadAdminNewsList(); refreshAllNews();
         alert('خبر ویرایش شد!');
@@ -381,8 +403,74 @@
         container.innerHTML = html;
     }
 
+    function clearNewsForm() {
+        document.getElementById('newsTitle').value = ''; document.getElementById('newsSummary').value = '';
+        document.getElementById('newsImage').value = ''; document.getElementById('newsDate').value = '';
+        document.getElementById('newsTime').value = ''; document.getElementById('newsFullText').value = '';
+    }
+
     function refreshAllNews() {
         loadNews('homeNewsGrid'); loadNews('newsGrid');
+    }
+
+    // مدیریت ویدیوها
+    function addVideo() {
+        const title = document.getElementById('videoTitle').value.trim();
+        const desc = document.getElementById('videoDesc').value.trim();
+        const thumb = document.getElementById('videoThumb').value.trim();
+        const link = document.getElementById('videoLink').value.trim();
+        const date = document.getElementById('videoDate').value.trim();
+        const time = document.getElementById('videoTime').value.trim();
+        const fullText = document.getElementById('videoFullText').value.trim();
+        if (!title || !desc || !thumb || !link || !date || !time) { alert('عنوان، توضیحات، عکس، لینک، تاریخ و ساعت را پر کنید!'); return; }
+        videosData.push({ id: Date.now(), title, desc, thumb, link, date, time, fullText });
+        saveVideos();
+        clearVideoForm();
+        loadAdminVideosList(); refreshAllVideos();
+        alert('ویدیو با موفقیت اضافه شد!');
+    }
+
+    function deleteVideo(id) {
+        if (confirm('آیا از حذف این ویدیو مطمئنی؟')) {
+            videosData = videosData.filter(v => v.id !== id);
+            saveVideos(); loadAdminVideosList(); refreshAllVideos();
+        }
+    }
+
+    function editVideo(id) {
+        const video = videosData.find(v => v.id === id);
+        if (!video) return;
+        const newTitle = prompt('عنوان جدید:', video.title); if (newTitle) video.title = newTitle;
+        const newDesc = prompt('توضیحات جدید:', video.desc); if (newDesc) video.desc = newDesc;
+        const newThumb = prompt('لینک عکس جدید:', video.thumb); if (newThumb) video.thumb = newThumb;
+        const newLink = prompt('لینک ویدیو جدید:', video.link); if (newLink) video.link = newLink;
+        const newDate = prompt('تاریخ جدید:', video.date); if (newDate) video.date = newDate;
+        const newTime = prompt('ساعت جدید:', video.time); if (newTime) video.time = newTime;
+        const newFullText = prompt('متن کامل جدید:', video.fullText); if (newFullText !== null) video.fullText = newFullText;
+        saveVideos(); loadAdminVideosList(); refreshAllVideos();
+        alert('ویدیو ویرایش شد!');
+    }
+
+    function loadAdminVideosList() {
+        const container = document.getElementById('videosListAdmin');
+        if (!container) return;
+        if (videosData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ ویدیویی وجود ندارد.</p>'; return; }
+        let html = '';
+        for (let v of videosData) {
+            html += `<div class="video-item-admin"><span style="flex:1;">${v.title}</span><div><button class="edit-btn" onclick="editVideo(${v.id})">✏️</button><button onclick="deleteVideo(${v.id})">🗑</button></div></div>`;
+        }
+        container.innerHTML = html;
+    }
+
+    function clearVideoForm() {
+        document.getElementById('videoTitle').value = ''; document.getElementById('videoDesc').value = '';
+        document.getElementById('videoThumb').value = ''; document.getElementById('videoLink').value = '';
+        document.getElementById('videoDate').value = ''; document.getElementById('videoTime').value = '';
+        document.getElementById('videoFullText').value = '';
+    }
+
+    function refreshAllVideos() {
+        loadVideos('homeVideosGrid', true); loadVideos('videosGrid');
     }
 
     // اسلایدر
@@ -415,17 +503,18 @@
         document.getElementById('newsPage').style.display = 'none';
         document.getElementById('galleryPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
-        if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
+        if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid', true); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
         else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
-        else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid'); }
+        else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid'); if(isAdmin) document.getElementById('adminVideosPanel').style.display = 'block'; }
         else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
         else if (page === 'gallery') { document.getElementById('galleryPage').style.display = 'block'; }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 
-    loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
+    loadVideos('homeVideosGrid', true); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
     loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid');
     if (localStorage.getItem('zeroxNews') === null) saveNews();
+    if (localStorage.getItem('zeroxVideos') === null) saveVideos();
 </script>
 
 </body>
