@@ -390,4 +390,18 @@
         document.getElementById('storiesPage').style.display = 'none';
         document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
-        document.getElementById('aboutPage').style.display
+        document.getElementById('aboutPage').style.display = 'none';
+        if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
+        else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
+        else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid'); }
+        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
+        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
+    }
+
+    loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
+    loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid');
+    if (localStorage.getItem('zeroxNews') === null) saveNews();
+</script>
+
+</body>
+</html>
