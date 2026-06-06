@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME</title>
+    <title>ZEROX | GAME - مدیریت اخبار</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -25,22 +25,17 @@
         .dot.active{background:white;transform:scale(1.2);}
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);color:#1a1a1a;}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px solid #eee;}
-        .card-content,.news-content,.video-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
-        .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:900;cursor:pointer;transition:0.2s;font-size:14px;font-family:'Vazirmatn',sans-serif;}
-        .btn-card:hover{background:#8a1010;transform:scale(1.02);}
+        .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
+        .news-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);color:#1a1a1a;}
+        .news-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .news-img{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px solid #eee;}
+        .news-content{padding:20px;text-align:center;}
+        .news-content h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .news-content p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
         .news-date{font-size:0.75rem;color:#777;margin-top:10px;display:flex;align-items:center;gap:5px;justify-content:center;}
         .news-date i{color:#B61C1C;}
-        .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
-        .video-card{position:relative;}
-        .more-btn{background:transparent;border:1px solid #B61C1C;padding:5px 12px;border-radius:20px;color:#B61C1C;font-size:12px;cursor:pointer;margin-top:8px;font-family:'Vazirmatn',sans-serif;font-weight:900;}
-        .more-btn:hover{background:#B61C1C;color:white;}
-        .full-text{display:none;margin-top:10px;padding:10px;background:#f9f9f9;border-radius:12px;text-align:right;}
+        .btn-card{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:900;cursor:pointer;transition:0.2s;font-size:14px;font-family:'Vazirmatn',sans-serif;}
+        .btn-card:hover{background:#8a1010;transform:scale(1.02);}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
 
         /* استایل کامنت‌ها */
@@ -65,6 +60,16 @@
         .reply-input input{flex:1;padding:6px 10px;border-radius:20px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;}
         .reply-input button{background:#B61C1C;border:none;padding:5px 12px;border-radius:20px;color:white;cursor:pointer;}
         
+        /* پنل مدیریت اخبار */
+        .admin-news-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-news-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-news-panel input,.admin-news-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-news-panel textarea{min-height:100px;}
+        .admin-news-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;}
+        .news-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+        .news-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;}
+        .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
+        
         @media (max-width:700px){.logo-raw{height:280px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
@@ -74,12 +79,10 @@
     <img class="logo-raw" src="https://cdn.imgurl.ir/uploads/s547003_Zerox.png" alt="Zerox Logo" id="secretAdminLogo">
     <div class="menu">
         <a onclick="showPage('home')"><i class="fas fa-home"></i> خانه</a>
-        <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
-        <a onclick="showPage('videos')"><i class="fas fa-video"></i> ویدیوها</a>
         <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
-</header>
+</div>
 
 <div id="secretAdminPanel" class="admin-panel" style="display:none;">
     <span>🔐 ادمین: Zerox</span>
@@ -97,61 +100,58 @@
 </div>
 
 <div class="container" id="contentContainer">
+    <!-- صفحه خانه -->
     <div id="homePage">
-        <div class="section-title"><i class="fas fa-skull"></i> ویدیوهای ترسناک</div>
-        <div class="videos-grid">
-            <div class="video-card" onclick="window.open('https://www.aparat.com/v/itl9b8h', '_blank')">
-                <img class="video-thumb" src="https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی نه من انسان نیستم</h3>
-                    <p>اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵</p>
-                    <button class="btn-card">مشاهده ویدیو</button>
-                </div>
-            </div>
-            <div class="video-card">
-                <img class="video-thumb" src="https://up.20script.ir/file/a2a2-Zerox-th12.png">
-                <div class="video-badge">▶ تماشا</div>
-                <div class="video-info">
-                    <h3>داستان کامل بازی Outlast</h3>
-                    <p>این ویدیو توسط کانال خفن زیروکس ساخته شده</p>
-                    <div class="full-text" id="fullTextHome">در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم...</div>
-                    <button class="more-btn" onclick="event.stopPropagation(); toggleText('fullTextHome', this)">بیشتر...</button>
-                    <button class="btn-card" style="margin-top:10px;" onclick="event.stopPropagation(); window.open('https://www.aparat.com/v/gkcxc4t', '_blank')">مشاهده ویدیو</button>
-                </div>
-            </div>
-        </div>
-
         <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
         <div class="news-grid" id="homeNewsGrid"></div>
-
-        <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های جدید</div>
-        <div class="cards-grid">
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>داستان بازی</h3><p>روایت‌های عمیق و حماسی</p><button class="btn-card">بیشتر بخوانید</button></div>
-            </div>
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>معرفی بازی</h3><p>بررسی جدیدترین بازی‌ها</p><button class="btn-card">بیشتر بخوانید</button></div>
-            </div>
-            <div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')">
-                <img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg">
-                <div class="card-content"><h3>اخبار بازی</h3><p>به‌روزترین اخبار</p><button class="btn-card">بیشتر بخوانید</button></div>
-            </div>
-        </div>
     </div>
 
-    <div id="storiesPage" style="display:none;"><div class="cards-grid"><div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game', '_blank')"><img class="thumbnail-img" src="https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"><div class="card-content"><h3>رستاخیز سرزمین‌های فراموش‌شده</h3><p>تحلیل کامل داستان</p><button class="btn-card">بیشتر بخوانید</button></div></div></div></div>
-    <div id="videosPage" style="display:none;"><div class="videos-grid" id="videosGridCopy"></div></div>
-    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div><div class="news-grid" id="newsGrid"></div></div>
-    <div id="aboutPage" style="display:none;"><div class="featured"><h2>درباره ZEROX | GAME</h2><p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p></div></div>
+    <!-- صفحه اخبار با پنل مدیریت -->
+    <div id="newsPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div>
+        <div id="adminNewsPanel" style="display:none;" class="admin-news-panel">
+            <h3>➕ مدیریت اخبار</h3>
+            <input type="text" id="newsTitle" placeholder="عنوان خبر">
+            <textarea id="newsSummary" placeholder="خلاصه خبر"></textarea>
+            <input type="text" id="newsImage" placeholder="لینک عکس خبر">
+            <textarea id="newsFullText" placeholder="متن کامل خبر (میتونی از HTML استفاده کنی)"></textarea>
+            <button onclick="addNews()">➕ اضافه کردن خبر</button>
+            <hr style="margin:20px 0; border-color:#444;">
+            <h4>✏️ ویرایش/حذف اخبار موجود</h4>
+            <div id="newsListAdmin"></div>
+        </div>
+        <div class="news-grid" id="newsGrid"></div>
+    </div>
+
+    <div id="aboutPage" style="display:none;">
+        <div style="background:white; border-radius:24px; padding:30px; text-align:center;">
+            <h2 style="color:#B61C1C;">درباره ZEROX | GAME</h2>
+            <p>سایت تخصصی داستان، معرفی و اخبار بازی‌ها</p>
+        </div>
+    </div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== ادمین مخفی با ۵ بار کلیک + رمز ===============
+    // =============== داده‌های اولیه اخبار با تاریخ و ساعت درست ===============
+    let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [
+        {
+            id: 1,
+            title: "بالاخره خبر جدید GTA 6 رسید!",
+            summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.",
+            image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
+            date: "شنبه ۱۶ خرداد ۱۴۰۵",
+            time: "۰۸:۳۶",
+            fullText: `<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p><strong>کانال Zerox 🎮🔥</strong></p>`
+        }
+    ];
+
+    function saveNews() {
+        localStorage.setItem('zeroxNews', JSON.stringify(newsData));
+    }
+
+    // =============== ادمین مخفی ===============
     let clickCount = 0;
     let clickTimer;
     const logo = document.getElementById('secretAdminLogo');
@@ -161,14 +161,16 @@
         clickCount++;
         clearTimeout(clickTimer);
         clickTimer = setTimeout(() => { clickCount = 0; }, 800);
-        if (clickCount === 5) {
+        if (clickCount === 3) {
             clickCount = 0;
-            const pwd = prompt('🔐 برای ورود به پنل ادمین، رمز را وارد کنید:');
-            if (pwd === 'Zerox@Admin2025') {
+            const pwd = prompt('🔐 رمز ادمین:');
+            if (pwd === 'ZeroxAdmin') {
                 isAdmin = true;
                 document.getElementById('secretAdminPanel').style.display = 'flex';
-                alert('حالت ادمین فعال شد. حالا میتونی کامنت بذاری، حذف کنی و پاسخ بدی.');
-                loadCommentsIntoPage();
+                document.getElementById('adminNewsPanel').style.display = 'block';
+                alert('حالت ادمین فعال شد. حالا میتونی خبر اضافه/ویرایش/حذف کنی.');
+                loadAdminNewsList();
+                loadNews();
             } else {
                 alert('رمز اشتباه است!');
             }
@@ -178,20 +180,234 @@
     function exitAdminMode() {
         isAdmin = false;
         document.getElementById('secretAdminPanel').style.display = 'none';
+        document.getElementById('adminNewsPanel').style.display = 'none';
         alert('حالت ادمین غیرفعال شد.');
-        loadCommentsIntoPage();
+        loadNews();
     }
 
-    function toggleText(id, btn) {
-        event.stopPropagation();
-        const elem = document.getElementById(id);
-        if (elem.style.display === 'none' || elem.style.display === '') {
-            elem.style.display = 'block';
-            btn.innerText = 'بستن';
-        } else {
-            elem.style.display = 'none';
-            btn.innerText = 'بیشتر...';
+    // =============== مدیریت اخبار ===============
+    function addNews() {
+        const title = document.getElementById('newsTitle').value.trim();
+        const summary = document.getElementById('newsSummary').value.trim();
+        const image = document.getElementById('newsImage').value.trim();
+        const fullText = document.getElementById('newsFullText').value.trim();
+        if (!title || !summary || !image || !fullText) {
+            alert('لطفاً همه فیلدها را پر کنید!');
+            return;
         }
+        const now = new Date();
+        const persianDate = now.toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const persianTime = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+        const newId = Date.now();
+        newsData.push({
+            id: newId,
+            title: title,
+            summary: summary,
+            image: image,
+            date: persianDate,
+            time: persianTime,
+            fullText: fullText
+        });
+        saveNews();
+        document.getElementById('newsTitle').value = '';
+        document.getElementById('newsSummary').value = '';
+        document.getElementById('newsImage').value = '';
+        document.getElementById('newsFullText').value = '';
+        loadAdminNewsList();
+        loadNews();
+        alert('خبر با موفقیت اضافه شد!');
+    }
+
+    function deleteNews(id) {
+        if (confirm('آیا از حذف این خبر مطمئنی؟')) {
+            newsData = newsData.filter(n => n.id !== id);
+            saveNews();
+            loadAdminNewsList();
+            loadNews();
+        }
+    }
+
+    function editNews(id) {
+        const news = newsData.find(n => n.id === id);
+        if (!news) return;
+        const newTitle = prompt('عنوان جدید:', news.title);
+        if (newTitle) news.title = newTitle;
+        const newSummary = prompt('خلاصه جدید:', news.summary);
+        if (newSummary) news.summary = newSummary;
+        const newImage = prompt('لینک عکس جدید:', news.image);
+        if (newImage) news.image = newImage;
+        const newFullText = prompt('متن کامل جدید:', news.fullText);
+        if (newFullText) news.fullText = newFullText;
+        saveNews();
+        loadAdminNewsList();
+        loadNews();
+        alert('خبر ویرایش شد!');
+    }
+
+    function loadAdminNewsList() {
+        const container = document.getElementById('newsListAdmin');
+        if (!container) return;
+        if (newsData.length === 0) {
+            container.innerHTML = '<p style="color:#ccc;">هیچ خبری وجود ندارد.</p>';
+            return;
+        }
+        let html = '';
+        for (let news of newsData) {
+            html += `
+                <div class="news-item-admin">
+                    <span style="flex:1;">${news.title}</span>
+                    <div>
+                        <button class="edit-btn" onclick="editNews(${news.id})">✏️ ویرایش</button>
+                        <button onclick="deleteNews(${news.id})">🗑 حذف</button>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    // =============== نمایش اخبار در صفحه ===============
+    function loadNews() {
+        const homeGrid = document.getElementById('homeNewsGrid');
+        const newsGrid = document.getElementById('newsGrid');
+        if (!homeGrid) return;
+        let html = '';
+        for (let news of newsData) {
+            html += `
+                <div class="news-card" onclick="showFullNews(${news.id})">
+                    <img class="news-img" src="${news.image}" alt="${news.title}">
+                    <div class="news-content">
+                        <h3>${escapeHtml(news.title)}</h3>
+                        <p>${escapeHtml(news.summary)}</p>
+                        <div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date} <i class="fas fa-clock" style="margin-right:8px;"></i> ${news.time}</div>
+                        <button class="btn-card">ادامه مطلب</button>
+                    </div>
+                </div>
+            `;
+        }
+        homeGrid.innerHTML = html;
+        if (newsGrid) newsGrid.innerHTML = html;
+    }
+
+    // =============== نمایش کامل خبر با کامنت خودکار ===============
+    let currentNewsId = null;
+    let comments = {};
+
+    function loadCommentsForNews(newsId) {
+        const saved = localStorage.getItem(`comments_${newsId}`);
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    function saveCommentsForNews(newsId, commentsList) {
+        localStorage.setItem(`comments_${newsId}`, JSON.stringify(commentsList));
+    }
+
+    function showFullNews(id) {
+        const news = newsData.find(n => n.id === id);
+        if (!news) return;
+        currentNewsId = id;
+        const container = document.getElementById('contentContainer');
+        container.innerHTML = `
+            <div style="background:white; border-radius:28px; padding:30px; max-width:800px; margin:20px auto;">
+                <button class="btn-card" onclick="location.reload()" style="margin-bottom:20px;">بازگشت</button>
+                <h1 style="color:#B61C1C;">${escapeHtml(news.title)}</h1>
+                <img src="${news.image}" style="width:100%; border-radius:16px; margin:15px 0;">
+                <div class="news-date" style="justify-content:flex-start; margin-bottom:20px;"><i class="fas fa-calendar-alt"></i> ${news.date} <i class="fas fa-clock" style="margin-right:8px;"></i> ${news.time}</div>
+                <div>${news.fullText}</div>
+                <div id="commentsSectionHere"></div>
+            </div>
+        `;
+        loadCommentsForCurrentNews();
+    }
+
+    function loadCommentsForCurrentNews() {
+        const commentsDiv = document.getElementById('commentsSectionHere');
+        if (!commentsDiv || !currentNewsId) return;
+        const commentsList = loadCommentsForNews(currentNewsId);
+        let commentsHtml = commentsList.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده.</p>' : '';
+        for (let i = 0; i < commentsList.length; i++) {
+            const c = commentsList[i];
+            const adminActions = isAdmin ? `
+                <div class="admin-actions">
+                    <button class="reply-comment" onclick="showReplyInputNews(${i})">📝 پاسخ</button>
+                    <button class="delete-comment" onclick="deleteCommentNews(${i})">🗑 حذف</button>
+                </div>
+                <div id="replyInputNews-${i}" class="reply-input" style="display:none;">
+                    <input type="text" id="replyTextNews-${i}" placeholder="متن پاسخ...">
+                    <button onclick="submitReplyNews(${i})">ارسال پاسخ</button>
+                </div>
+            ` : '';
+            const replyHtml = c.reply ? `<div class="comment-reply"><span class="reply-label">👑 Zerox (ادمین):</span> ${escapeHtml(c.reply)}</div>` : '';
+            commentsHtml += `
+                <div class="single-comment">
+                    <div><span class="comment-name">${escapeHtml(c.name)}</span> <span class="comment-text">${escapeHtml(c.text)}</span></div>
+                    ${replyHtml}
+                    ${adminActions}
+                </div>
+            `;
+        }
+        commentsDiv.innerHTML = `
+            <div class="comments-section">
+                <h3>💬 نظرات کاربران</h3>
+                <div class="comment-list">${commentsHtml}</div>
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="نام شما" maxlength="50">
+                    <textarea id="commentText" placeholder="نظر خود را بنویسید..."></textarea>
+                    <button class="btn-card" onclick="addCommentNews()">ارسال نظر</button>
+                </div>
+            </div>
+        `;
+    }
+
+    function addCommentNews() {
+        const nameInput = document.getElementById('commentName');
+        const textInput = document.getElementById('commentText');
+        const name = nameInput.value.trim();
+        const text = textInput.value.trim();
+        if (name === '' || text === '') { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
+        const commentsList = loadCommentsForNews(currentNewsId);
+        commentsList.push({ name: name, text: text, reply: null });
+        saveCommentsForNews(currentNewsId, commentsList);
+        loadCommentsForCurrentNews();
+    }
+
+    function showReplyInputNews(index) {
+        const replyDiv = document.getElementById(`replyInputNews-${index}`);
+        if (replyDiv.style.display === 'none' || replyDiv.style.display === '') {
+            replyDiv.style.display = 'flex';
+        } else {
+            replyDiv.style.display = 'none';
+        }
+    }
+
+    function submitReplyNews(index) {
+        if (!isAdmin) { alert('فقط ادمین می‌تونه پاسخ بده!'); return; }
+        const replyText = document.getElementById(`replyTextNews-${index}`).value.trim();
+        if (replyText === '') { alert('لطفاً متن پاسخ را وارد کنید.'); return; }
+        const commentsList = loadCommentsForNews(currentNewsId);
+        commentsList[index].reply = replyText;
+        saveCommentsForNews(currentNewsId, commentsList);
+        loadCommentsForCurrentNews();
+    }
+
+    function deleteCommentNews(index) {
+        if (!isAdmin) { alert('دسترسی غیرمجاز!'); return; }
+        if (confirm('آیا از حذف این کامنت مطمئنی؟')) {
+            const commentsList = loadCommentsForNews(currentNewsId);
+            commentsList.splice(index, 1);
+            saveCommentsForNews(currentNewsId, commentsList);
+            loadCommentsForCurrentNews();
+        }
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
     }
 
     // اسلایدر
@@ -217,157 +433,12 @@
         setInterval(() => changeSlide(1), 5000);
     }
 
-    // اخبار
-    const newsData = [{
-        id: 1,
-        title: "بالاخره خبر جدید GTA 6 رسید!",
-        summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه.",
-        image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",
-        date: "۱۴۰۳/۱۲/۲۱",
-        fullText: `<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p><strong>کانال Zerox 🎮🔥</strong></p>`
-    }];
-
-    function loadNews() {
-        const homeGrid = document.getElementById('homeNewsGrid');
-        const newsGrid = document.getElementById('newsGrid');
-        if (!homeGrid) return;
-        let html = '';
-        for (let news of newsData) {
-            html += `<div class="news-card" onclick="showFullNews(${news.id})"><img class="news-img" src="${news.image}"><div class="news-content"><h3>${news.title}</h3><p>${news.summary}</p><div class="news-date"><i class="fas fa-calendar-alt"></i> ${news.date}</div><button class="btn-card">ادامه مطلب</button></div></div>`;
-        }
-        homeGrid.innerHTML = html;
-        if (newsGrid) newsGrid.innerHTML = html;
-    }
-
-    function showFullNews(id) {
-        const news = newsData.find(n => n.id === id);
-        if (!news) return;
-        const container = document.getElementById('contentContainer');
-        container.innerHTML = `
-            <div style="background:white; border-radius:28px; padding:30px; max-width:800px; margin:20px auto;">
-                <button class="btn-card" onclick="location.reload()" style="margin-bottom:20px;">بازگشت</button>
-                <h1 style="color:#B61C1C;">${news.title}</h1>
-                <img src="${news.image}" style="width:100%; border-radius:16px; margin:15px 0;">
-                <div><i class="fas fa-calendar-alt"></i> ${news.date}</div>
-                <div>${news.fullText}</div>
-                <div id="commentsSectionHere"></div>
-            </div>
-        `;
-        loadCommentsIntoPage();
-    }
-
-    // =============== سیستم کامنت (بدون ایمیل) ===============
-    let comments = JSON.parse(localStorage.getItem('gtaComments')) || [];
-
-    function saveComments() {
-        localStorage.setItem('gtaComments', JSON.stringify(comments));
-    }
-
-    function loadCommentsIntoPage() {
-        const commentsDiv = document.getElementById('commentsSectionHere');
-        if (!commentsDiv) return;
-        let commentsHtml = comments.length === 0 ? '<p style="text-align:center;color:#888;">هنوز نظری ثبت نشده. اولین نفری باش که نظر میده!</p>' : '';
-        for (let i = 0; i < comments.length; i++) {
-            const c = comments[i];
-            const adminActions = isAdmin ? `
-                <div class="admin-actions">
-                    <button class="reply-comment" onclick="showReplyInput(${i})">📝 پاسخ</button>
-                    <button class="delete-comment" onclick="deleteComment(${i})">🗑 حذف</button>
-                </div>
-                <div id="replyInput-${i}" class="reply-input">
-                    <input type="text" id="replyText-${i}" placeholder="متن پاسخ...">
-                    <button onclick="submitReply(${i})">ارسال پاسخ</button>
-                </div>
-            ` : '';
-            const replyHtml = c.reply ? `<div class="comment-reply"><span class="reply-label">👑 Zerox (ادمین):</span> ${escapeHtml(c.reply)}</div>` : '';
-            commentsHtml += `
-                <div class="single-comment">
-                    <div><span class="comment-name">${escapeHtml(c.name)}</span> <span class="comment-text">${escapeHtml(c.text)}</span></div>
-                    ${replyHtml}
-                    ${adminActions}
-                </div>
-            `;
-        }
-        commentsDiv.innerHTML = `
-            <div class="comments-section">
-                <h3>💬 نظرات کاربران</h3>
-                <div class="comment-list">${commentsHtml}</div>
-                <div class="comment-form">
-                    <input type="text" id="commentName" placeholder="نام شما" maxlength="50">
-                    <textarea id="commentText" placeholder="نظر خود را بنویسید..."></textarea>
-                    <button class="btn-card" onclick="addComment()">ارسال نظر</button>
-                </div>
-            </div>
-        `;
-    }
-
-    function addComment() {
-        const nameInput = document.getElementById('commentName');
-        const textInput = document.getElementById('commentText');
-        const name = nameInput.value.trim();
-        const text = textInput.value.trim();
-        if (name === '' || text === '') { 
-            alert('لطفاً نام و متن نظر را وارد کنید.'); 
-            return; 
-        }
-        comments.push({ name: name, text: text, reply: null });
-        saveComments();
-        loadCommentsIntoPage();
-        nameInput.value = '';
-        textInput.value = '';
-    }
-
-    function showReplyInput(index) {
-        const replyDiv = document.getElementById(`replyInput-${index}`);
-        if (replyDiv.style.display === 'none' || replyDiv.style.display === '') {
-            replyDiv.style.display = 'flex';
-        } else {
-            replyDiv.style.display = 'none';
-        }
-    }
-
-    function submitReply(index) {
-        if (!isAdmin) { alert('فقط ادمین می‌تونه پاسخ بده!'); return; }
-        const replyText = document.getElementById(`replyText-${index}`).value.trim();
-        if (replyText === '') { alert('لطفاً متن پاسخ را وارد کنید.'); return; }
-        comments[index].reply = replyText;
-        saveComments();
-        loadCommentsIntoPage();
-    }
-
-    function deleteComment(index) {
-        if (!isAdmin) { alert('دسترسی غیرمجاز! فقط ادمین می‌تونه کامنت حذف کنه.'); return; }
-        if (confirm('آیا از حذف این کامنت مطمئنی؟')) {
-            comments.splice(index, 1);
-            saveComments();
-            loadCommentsIntoPage();
-        }
-    }
-
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
-    }
-
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
-        document.getElementById('storiesPage').style.display = 'none';
-        document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
         if (page === 'home') document.getElementById('homePage').style.display = 'block';
-        else if (page === 'stories') document.getElementById('storiesPage').style.display = 'block';
-        else if (page === 'videos') { 
-            document.getElementById('videosPage').style.display = 'block';
-            const videosGridCopy = document.getElementById('videosGridCopy');
-            if (videosGridCopy) videosGridCopy.innerHTML = document.querySelector('#homePage .videos-grid').cloneNode(true).innerHTML;
-        }
-        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); }
+        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews(); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 
@@ -375,4 +446,4 @@
 </script>
 
 </body>
-</html>
+    </html>
