@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZEROX | GAME - اخبار</title>
+    <title>ZEROX | GAME</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -16,12 +16,15 @@
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
         
-        /* اسلایدر تک عکس */
+        /* اسلایدر دو عکس */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;}
+        .slides{display:flex;transition:transform 0.5s ease-in-out;}
         .slide{min-width:100%;}
         .slide img{width:100%;height:auto;display:block;}
+        .dots{text-align:center;padding:15px 0 5px;}
+        .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
+        .dot.active{background:white;transform:scale(1.2);}
         
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
@@ -92,9 +95,11 @@
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide"><img src="https://s6.iranv.ir/images/2025/06/06/InShot_20260605_200640757.jpg" alt="اسلاید ZEROX"></div>
+            <div class="slide"><img src="https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" alt="اسلاید ۱"></div>
+            <div class="slide"><img src="https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" alt="اسلاید ۲"></div>
         </div>
     </div>
+    <div class="dots" id="dots"></div>
 </div>
 
 <div class="container" id="contentContainer">
@@ -357,23 +362,32 @@
         loadNews('homeNewsGrid'); loadNews('newsGrid');
     }
 
+    // اسلایدر
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots');
+    function showSlides() {
+        document.getElementById('slides').style.transform = `translateX(-${slideIndex * 100}%)`;
+        document.querySelectorAll('.dot').forEach((dot, i) => { dot.classList.toggle('active', i === slideIndex); });
+    }
+    function changeSlide(n) {
+        slideIndex = (slideIndex + n + slides.length) % slides.length;
+        showSlides();
+    }
+    if (slides.length > 0) {
+        for (let i = 0; i < slides.length; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.onclick = () => { slideIndex = i; showSlides(); };
+            dotsContainer.appendChild(dot);
+        }
+        showSlides();
+        setInterval(() => changeSlide(1), 5000);
+    }
+
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
         document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
-        document.getElementById('aboutPage').style.display = 'none';
-        if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
-        else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
-        else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid'); }
-        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
-        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
-    }
-
-    loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
-    loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid');
-    if (localStorage.getItem('zeroxNews') === null) saveNews();
-</script>
-
-</body>
-</html>
+        document.getElementById('aboutPage').style.display
