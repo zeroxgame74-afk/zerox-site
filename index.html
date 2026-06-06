@@ -36,6 +36,8 @@
         .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
         .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
         .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
+        /* کاور آهنگ 1080x1080 با نسبت مربع */
+        .music-img{aspect-ratio:1/1;object-fit:cover;}
         .card-content,.news-content,.video-info,.music-info,.gallery-info{padding:20px;text-align:center;}
         .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
         .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
@@ -82,10 +84,11 @@
         .filter-btn:hover{background:#B61C1C;border-color:#B61C1C;transform:translateY(-2px);}
         .filter-btn.active{background:#B61C1C;border-color:#B61C1C;box-shadow:0 0 10px rgba(182,28,28,0.5);}
         
-        /* پلیر و دکمه دانلود */
+        /* پلیر و دکمه دانلود کاستوم */
         .audio-player{width:100%;margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-        .audio-player audio{flex:1;min-width:150px;}
-        .download-btn{background:#B61C1C;border:none;border-radius:30px;padding:8px 12px;color:white;cursor:pointer;transition:0.2s;font-size:14px;}
+        .audio-player audio{flex:1;min-width:150px;border-radius:30px;}
+        .download-btn{background:#B61C1C;border:none;border-radius:30px;padding:8px 12px;color:white;cursor:pointer;transition:0.2s;font-size:14px;display:inline-flex;align-items:center;gap:6px;}
+        .download-btn i{font-size:14px;}
         .download-btn:hover{background:#8a1010;transform:scale(1.02);}
         
         @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
@@ -178,7 +181,7 @@
             <h3>🎵 مدیریت موسیقی</h3>
             <input type="text" id="musicTitle" placeholder="نام آهنگ">
             <input type="text" id="musicGame" placeholder="نام بازی (مثال: God of War)">
-            <input type="text" id="musicCover" placeholder="لینک کاور آهنگ">
+            <input type="text" id="musicCover" placeholder="لینک کاور آهنگ (1080x1080)">
             <input type="text" id="musicFile" placeholder="لینک فایل صوتی (mp3)">
             <textarea id="musicDesc" placeholder="توضیحات (اختیاری)"></textarea>
             <button onclick="addMusic()">➕ اضافه کردن آهنگ</button>
@@ -276,7 +279,7 @@
     let autoSlideInterval;
     function startAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); if (sliderData.length > 1) autoSlideInterval = setInterval(() => changeSlide(1), 5000); }
     
-    // =============== موسیقی با دکمه دانلود ===============
+    // =============== موسیقی با دکمه دانلود کاستوم و کاور 1080x1080 ===============
     let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
     function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
     function downloadMusic(fileUrl, title) {
@@ -301,7 +304,7 @@
         if (musicData.length === 0) { musicGrid.innerHTML = '<div class="music-card" style="text-align:center; padding:50px;"><i class="fas fa-headphones" style="font-size:48px; color:#B61C1C;"></i><h3 style="color:#B61C1C;">هنوز آهنگی اضافه نشده</h3><p>به زودی...</p></div>'; return; }
         let html = '';
         for (let m of musicData) {
-            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><p>🎮 ${m.game}</p><p>${m.desc || ''}</p><div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')">📥 دانلود</button></div></div></div>`;
+            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><p>🎮 ${m.game}</p><p>${m.desc || ''}</p><div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`;
         }
         musicGrid.innerHTML = html;
     }
@@ -449,4 +452,4 @@
 </script>
 
 </body>
-                </html>
+    </html>
