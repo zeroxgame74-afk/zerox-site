@@ -82,10 +82,13 @@
         .filter-btn:hover{background:#B61C1C;border-color:#B61C1C;transform:translateY(-2px);}
         .filter-btn.active{background:#B61C1C;border-color:#B61C1C;box-shadow:0 0 10px rgba(182,28,28,0.5);}
         
-        /* پلیر موسیقی */
-        .audio-player{width:100%;margin-top:12px;}
-        .audio-player audio{width:100%;border-radius:30px;}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}}
+        /* پلیر و دکمه دانلود */
+        .audio-player{width:100%;margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+        .audio-player audio{flex:1;min-width:150px;}
+        .download-btn{background:#B61C1C;border:none;border-radius:30px;padding:8px 12px;color:white;cursor:pointer;transition:0.2s;font-size:14px;}
+        .download-btn:hover{background:#8a1010;transform:scale(1.02);}
+        
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
     </style>
 </head>
 <body>
@@ -273,16 +276,32 @@
     let autoSlideInterval;
     function startAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); if (sliderData.length > 1) autoSlideInterval = setInterval(() => changeSlide(1), 5000); }
     
-    // =============== موسیقی ===============
+    // =============== موسیقی با دکمه دانلود ===============
     let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
     function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
+    function downloadMusic(fileUrl, title) {
+        fetch(fileUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${title}.mp3`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            })
+            .catch(() => {
+                window.open(fileUrl, '_blank');
+            });
+    }
     function loadMusic() {
         const musicGrid = document.getElementById('musicGrid');
         if (!musicGrid) return;
         if (musicData.length === 0) { musicGrid.innerHTML = '<div class="music-card" style="text-align:center; padding:50px;"><i class="fas fa-headphones" style="font-size:48px; color:#B61C1C;"></i><h3 style="color:#B61C1C;">هنوز آهنگی اضافه نشده</h3><p>به زودی...</p></div>'; return; }
         let html = '';
         for (let m of musicData) {
-            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><p>🎮 ${m.game}</p><p>${m.desc || ''}</p><div class="audio-player"><audio controls src="${m.file}"></audio></div></div></div>`;
+            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><p>🎮 ${m.game}</p><p>${m.desc || ''}</p><div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')">📥 دانلود</button></div></div></div>`;
         }
         musicGrid.innerHTML = html;
     }
@@ -430,4 +449,4 @@
 </script>
 
 </body>
-            </html>
+                </html>
