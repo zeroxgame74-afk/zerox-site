@@ -15,34 +15,22 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:16px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
-        
-        /* دکمه کاربر */
         .user-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:40px;padding:6px 18px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;}
         .user-btn:hover{background:white;color:#B61C1C;}
-        
-        /* مودال‌ها */
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
         .modal-content{background:white;border-radius:28px;padding:30px;max-width:450px;width:90%;text-align:center;max-height:80vh;overflow-y:auto;}
         .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
         .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;}
         .close-modal{float:left;cursor:pointer;font-size:24px;color:#999;}
-        
-        /* مدال‌های کاستوم */
         .medal-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 15px;border-radius:30px;font-size:13px;margin:5px;font-weight:800;}
         .medal-bronze{background:linear-gradient(135deg,#cd7f32,#b8692a);color:#fff;}
         .medal-silver{background:linear-gradient(135deg,#c0c0c0,#a8a8a8);color:#333;}
         .medal-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#5c4300;}
-        
-        /* پیام تبریک */
         .congrats-toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:15px 25px;border-radius:40px;z-index:2000;font-weight:800;animation:slideIn 0.5s;}
         @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
-        
-        /* پروفایل */
         .profile-header{background:linear-gradient(135deg,#B61C1C,#8a1010);border-radius:20px;padding:20px;margin-bottom:20px;color:white;}
         .profile-avatar{width:80px;height:80px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;}
         .profile-avatar i{font-size:50px;color:#B61C1C;}
-        
-        /* اسلایدر */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -55,7 +43,6 @@
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
-        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid,.rankings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -141,10 +128,8 @@
     </div>
 </header>
 
-<div id="secretAdminPanel" class="admin-panel" style="display:none;"><span>🔐 ادمین: Zerox</span><button onclick="exitAdminMode()">خروج</button></div>
-
+<div id="secretAdminPanel" class="admin-panel"><span>🔐 ادمین: Zerox</span><button onclick="exitAdminMode()">خروج</button></div>
 <div id="authModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeAuthModal()">&times;</span><i class="fas fa-gamepad" style="font-size:48px; color:#B61C1C;"></i><h2 id="modalTitle">ورود</h2><input type="text" id="loginUsername" placeholder="نام کاربری"><input type="password" id="loginPassword" placeholder="رمز عبور"><button onclick="login()">ورود</button><hr><p>حساب ندارید؟ <a href="#" onclick="showRegisterForm()">ثبت‌نام کنید</a></p><div id="registerDiv" style="display:none;"><input type="text" id="registerUsername" placeholder="نام کاربری جدید"><input type="password" id="registerPassword" placeholder="رمز عبور"><button onclick="register()">🎁 ثبت‌نام</button></div></div></div>
-
 <div id="profileModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeProfileModal()">&times;</span><div class="profile-header"><div class="profile-avatar"><i class="fas fa-user-ninja"></i></div><h3 id="profileName" style="text-align:center;">کاربر</h3></div><div id="medalsContainer" style="text-align:center; margin:15px 0;"></div><div id="freeGiftInfo" style="background:#f0f0f0;border-radius:16px;padding:15px;margin:10px 0;text-align:center;"><i class="fas fa-gift"></i> هدیه ثبت‌نام: <strong>به زودی...</strong></div><button onclick="logout()" style="background:#ff4444;width:100%;padding:10px;border-radius:30px;border:none;color:white;font-weight:800;cursor:pointer;">خروج از حساب</button></div></div>
 
 <div class="slider-container"><div class="slider"><button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button><div class="slides" id="slidesContainer"></div><button class="nav-arrow next" onclick="changeSlide(1)">❯</button></div><div class="dots" id="dotsContainer"></div></div>
@@ -152,22 +137,7 @@
 <div class="container" id="contentContainer">
     <div id="homePage"><div class="section-title"><i class="fas fa-fire"></i> ویدیوهای جدید</div><div class="videos-grid" id="homeVideosGrid"></div><div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار</div><div class="news-grid" id="homeNewsGrid"></div><div class="section-title"><i class="fas fa-book-open"></i> داستان‌ها</div><div class="cards-grid" id="homeStoriesGrid"></div></div>
     <div id="storiesPage" style="display:none;"><div class="section-title"><i class="fas fa-book-open"></i> داستان‌ها</div><div class="cards-grid" id="storiesGrid"></div></div>
-    <div id="videosPage" style="display:none;">
-        <div class="section-title"><i class="fas fa-video"></i> ویدیوها</div>
-        <div class="filter-buttons" id="filterButtons">
-            <button class="filter-btn active" data-cat="همه"><i class="fas fa-globe"></i> همه</button>
-            <button class="filter-btn" data-cat="تخیلی"><i class="fas fa-meteor"></i> تخیلی</button>
-            <button class="filter-btn" data-cat="اکشن"><i class="fas fa-bolt"></i> اکشن</button>
-            <button class="filter-btn" data-cat="ماجراجویی"><i class="fas fa-map"></i> ماجراجویی</button>
-            <button class="filter-btn" data-cat="ترسناک"><i class="fas fa-ghost"></i> ترسناک</button>
-            <button class="filter-btn" data-cat="هیجانی"><i class="fas fa-heartbeat"></i> هیجانی</button>
-        </div>
-        <div id="adminVideosPanel" style="display:none;" class="admin-videos-panel">
-            <h3>➕ مدیریت ویدیوها</h3>
-            <input type="text" id="videoTitle" placeholder="عنوان"><textarea id="videoDesc" placeholder="توضیحات"></textarea><input type="text" id="videoThumb" placeholder="لینک عکس"><input type="text" id="videoLink" placeholder="لینک ویدیو"><select id="videoCategory"><option value="تخیلی">تخیلی</option><option value="اکشن">اکشن</option><option value="ماجراجویی">ماجراجویی</option><option value="ترسناک">ترسناک</option><option value="هیجانی">هیجانی</option></select><div class="datetime-group"><input type="text" id="videoDate" placeholder="تاریخ"><input type="text" id="videoTime" placeholder="ساعت"></div><textarea id="videoFullText" placeholder="متن کامل"></textarea><button onclick="addVideo()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="videosListAdmin"></div>
-        </div>
-        <div class="videos-grid" id="videosGrid"></div>
-    </div>
+    <div id="videosPage" style="display:none;"><div class="section-title"><i class="fas fa-video"></i> ویدیوها</div><div class="filter-buttons" id="filterButtons"><button class="filter-btn active" data-cat="همه"><i class="fas fa-globe"></i> همه</button><button class="filter-btn" data-cat="تخیلی"><i class="fas fa-meteor"></i> تخیلی</button><button class="filter-btn" data-cat="اکشن"><i class="fas fa-bolt"></i> اکشن</button><button class="filter-btn" data-cat="ماجراجویی"><i class="fas fa-map"></i> ماجراجویی</button><button class="filter-btn" data-cat="ترسناک"><i class="fas fa-ghost"></i> ترسناک</button><button class="filter-btn" data-cat="هیجانی"><i class="fas fa-heartbeat"></i> هیجانی</button></div><div id="adminVideosPanel" style="display:none;" class="admin-videos-panel"><h3>➕ مدیریت ویدیوها</h3><input type="text" id="videoTitle" placeholder="عنوان"><textarea id="videoDesc" placeholder="توضیحات"></textarea><input type="text" id="videoThumb" placeholder="لینک عکس"><input type="text" id="videoLink" placeholder="لینک ویدیو"><select id="videoCategory"><option value="تخیلی">تخیلی</option><option value="اکشن">اکشن</option><option value="ماجراجویی">ماجراجویی</option><option value="ترسناک">ترسناک</option><option value="هیجانی">هیجانی</option></select><div class="datetime-group"><input type="text" id="videoDate" placeholder="تاریخ"><input type="text" id="videoTime" placeholder="ساعت"></div><textarea id="videoFullText" placeholder="متن کامل"></textarea><button onclick="addVideo()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="videosListAdmin"></div></div><div class="videos-grid" id="videosGrid"></div></div>
     <div id="musicPage" style="display:none;"><div class="section-title"><i class="fas fa-music"></i> موسیقی</div><div id="adminMusicPanel" style="display:none;" class="admin-music-panel"><h3>🎵 مدیریت موسیقی</h3><input type="text" id="musicTitle" placeholder="نام آهنگ"><input type="text" id="musicGame" placeholder="نام بازی"><input type="text" id="musicPlatform" placeholder="پلتفرم"><input type="text" id="musicCover" placeholder="لینک کاور"><input type="text" id="musicFile" placeholder="لینک فایل"><textarea id="musicDesc" placeholder="توضیحات"></textarea><button onclick="addMusic()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="musicListAdmin"></div></div><div class="music-grid" id="musicGrid"></div></div>
     <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> اخبار</div><div id="adminSliderPanel" style="display:none;" class="admin-slider-panel"><h3>🖼️ مدیریت اسلایدر</h3><input type="text" id="sliderImage" placeholder="لینک عکس"><button onclick="addSlider()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="sliderListAdmin"></div></div><div id="adminNewsPanel" style="display:none;" class="admin-news-panel"><h3>➕ مدیریت اخبار</h3><input type="text" id="newsTitle" placeholder="عنوان"><textarea id="newsSummary" placeholder="خلاصه"></textarea><input type="text" id="newsImage" placeholder="لینک عکس"><div class="datetime-group"><input type="text" id="newsDate" placeholder="تاریخ"><input type="text" id="newsTime" placeholder="ساعت"></div><textarea id="newsFullText" placeholder="متن کامل"></textarea><button onclick="addNews()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="newsListAdmin"></div></div><div class="news-grid" id="newsGrid"></div></div>
     <div id="shopPage" style="display:none;"><div class="section-title"><i class="fas fa-store"></i> فروشگاه</div><div id="adminShopPanel" style="display:none;" class="admin-shop-panel"><h3>🛍️ مدیریت فروشگاه</h3><input type="text" id="productTitle" placeholder="نام"><textarea id="productDesc" placeholder="توضیحات"></textarea><input type="text" id="productPrice" placeholder="قیمت"><input type="text" id="productImage" placeholder="لینک عکس"><select id="productShape"><option value="square">مربع</option><option value="rectangle">مستطیل</option><option value="large">بزرگ</option></select><button onclick="addProduct()">➕ اضافه</button><hr><h4>ویرایش/حذف</h4><div id="productsListAdmin"></div></div><div class="shop-grid" id="shopGrid"></div></div>
@@ -199,19 +169,24 @@
     function login(){let u=document.getElementById('loginUsername').value.trim(),p=document.getElementById('loginPassword').value.trim();let users=JSON.parse(localStorage.getItem('users'))||[];let user=users.find(x=>x.username===u&&x.password===p);if(user){localStorage.setItem('currentUser',JSON.stringify(user));currentUser=user;document.getElementById('userStatus').innerHTML=`<i class="fas fa-user-check"></i> ${u}`;closeAuthModal();alert(`خوش آمدید ${u}!`);openProfile();}else{alert('نام کاربری یا رمز عبور اشتباه است!');}}
     function logout(){if(confirm('آیا از خروج از حساب خود مطمئن هستید؟')){localStorage.removeItem('currentUser');currentUser=null;document.getElementById('userStatus').innerHTML='<i class="fas fa-user-plus"></i> ورود/ثبت‌نام';closeProfileModal();alert('خارج شدید!');}}
     
-    // =============== ویدیوها (با مرتب‌سازی بر اساس تاریخ جدیدترین اول) ===============
+    // =============== ویدیوها (مرتب‌سازی بر اساس تاریخ جدیدترین اول) ===============
     let videosData=JSON.parse(localStorage.getItem('zeroxVideos'))||[
         {id:1,title:"داستان کامل بازی نه من انسان نیستم",desc:"اولین ویدیوی چنل",thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg",link:"https://www.aparat.com/v/itl9b8h",cat:"ترسناک",date:"۱۶ خرداد",time:"۰۸:۳۶",full:"",timestamp:1740000000000},
         {id:2,title:"داستان کامل بازی Outlast",desc:"بررسی تیمارستان Mount Massive",thumb:"https://up.20script.ir/file/a2a2-Zerox-th12.png",link:"https://www.aparat.com/v/gkcxc4t",cat:"ترسناک",date:"۲۲ خرداد",time:"۰۹:۵۲",full:"در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم...",timestamp:1740200000000}
     ];
     
-    // مرتب‌سازی ویدیوها (جدیدترین اول)
-    function sortVideosByDate(){
-        videosData.sort((a,b)=>b.timestamp - a.timestamp);
-        saveVideos();
-    }
+    function sortVideosByDate(){videosData.sort((a,b)=>b.timestamp - a.timestamp);saveVideos();}
+    sortVideosByDate();
     
     let currentFilter='همه';
+    function getCatIcon(cat){
+        if(cat==='تخیلی') return '<i class="fas fa-meteor"></i>';
+        if(cat==='اکشن') return '<i class="fas fa-bolt"></i>';
+        if(cat==='ماجراجویی') return '<i class="fas fa-map"></i>';
+        if(cat==='ترسناک') return '<i class="fas fa-ghost"></i>';
+        if(cat==='هیجانی') return '<i class="fas fa-heartbeat"></i>';
+        return '<i class="fas fa-tag"></i>';
+    }
     
     function toggleFullText(id,btn){
         let elem=document.getElementById(`fullText-${id}`);
@@ -222,15 +197,6 @@
             elem.style.display='none';
             btn.innerText='بیشتر...';
         }
-    }
-    
-    function getCatIcon(cat){
-        if(cat==='تخیلی') return '<i class="fas fa-meteor"></i>';
-        if(cat==='اکشن') return '<i class="fas fa-bolt"></i>';
-        if(cat==='ماجراجویی') return '<i class="fas fa-map"></i>';
-        if(cat==='ترسناک') return '<i class="fas fa-ghost"></i>';
-        if(cat==='هیجانی') return '<i class="fas fa-heartbeat"></i>';
-        return '<i class="fas fa-tag"></i>';
     }
     
     function loadVideos(containerId,filter='همه'){
@@ -266,7 +232,7 @@
         videosData.push({id:Date.now(),title:t,desc:d,thumb:th,link:l,cat:c,date:dt,time:tm,full:ft,timestamp:Date.now()});
         sortVideosByDate();
         clearVideoForm();loadAdminVideosList();refreshAllVideos();
-        alert('ویدیو اضافه شد!');
+        alert('ویدیو اضافه شد! (جدیدترین در بالاست)');
     }
     function deleteVideo(id){if(confirm('حذف شود؟')){videosData=videosData.filter(v=>v.id!==id);sortVideosByDate();saveVideos();loadAdminVideosList();refreshAllVideos();}}
     function editVideo(id){let v=videosData.find(v=>v.id===id);if(!v)return;let nt=prompt('عنوان جدید:',v.title);if(nt)v.title=nt;let nd=prompt('توضیحات:',v.desc);if(nd)v.desc=nd;let nth=prompt('عکس:',v.thumb);if(nth)v.thumb=nth;let nl=prompt('لینک:',v.link);if(nl)v.link=nl;let nc=prompt('سبک:',v.cat);if(nc)v.cat=nc;let ndt=prompt('تاریخ:',v.date);if(ndt)v.date=ndt;let ntm=prompt('ساعت:',v.time);if(ntm)v.time=ntm;let nft=prompt('متن:',v.full);if(nft!==null)v.full=nft;sortVideosByDate();saveVideos();loadAdminVideosList();refreshAllVideos();alert('ویرایش شد!');}
@@ -274,18 +240,18 @@
     function clearVideoForm(){document.getElementById('videoTitle').value='';document.getElementById('videoDesc').value='';document.getElementById('videoThumb').value='';document.getElementById('videoLink').value='';document.getElementById('videoCategory').value='تخیلی';document.getElementById('videoDate').value='';document.getElementById('videoTime').value='';document.getElementById('videoFullText').value='';}
     function saveVideos(){localStorage.setItem('zeroxVideos',JSON.stringify(videosData));}
     function refreshAllVideos(){loadVideos('homeVideosGrid','همه');loadVideos('videosGrid',currentFilter);}
-    function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-cat');loadVideos('videosGrid',currentFilter);});});}
     
-    // =============== اخبار (با مرتب‌سازی بر اساس تاریخ جدیدترین اول) ===============
+    // =============== اخبار (مرتب‌سازی بر اساس تاریخ جدیدترین اول) ===============
     let newsData=JSON.parse(localStorage.getItem('zeroxNews'))||[
         {id:1,title:"GTA 6 خبر جدید",summary:"راک‌استار تایید کرد بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه",image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg",date:"۱۶ خرداد",time:"۰۸:۳۶",full:"",timestamp:1740000000000},
         {id:2,title:"رزیدنت اویل مرثیه",summary:"کپکام از DLC داستانی جدید رونمایی کرد",image:"https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg",date:"۱۶ خرداد",time:"۰۹:۴۸",full:"",timestamp:1740100000000}
     ];
     
     function sortNewsByDate(){newsData.sort((a,b)=>b.timestamp - a.timestamp);saveNews();}
+    sortNewsByDate();
     
     function loadNews(container){let g=document.getElementById(container);if(g)g.innerHTML=newsData.map(n=>`<div class="news-card" onclick="showFullNews(${n.id})"><img class="news-img" src="${n.image}"><div class="news-content"><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه</button></div></div>`).join('');}
-    function addNews(){let t=document.getElementById('newsTitle').value.trim(),s=document.getElementById('newsSummary').value.trim(),i=document.getElementById('newsImage').value.trim(),d=document.getElementById('newsDate').value.trim(),tm=document.getElementById('newsTime').value.trim(),ft=document.getElementById('newsFullText').value.trim();if(!t||!s||!i||!d||!tm||!ft){alert('همه فیلدها را پر کنید');return;}newsData.push({id:Date.now(),title:t,summary:s,image:i,date:d,time:tm,fullText:ft,timestamp:Date.now()});sortNewsByDate();saveNews();clearNewsForm();loadAdminNewsList();refreshAllNews();alert('خبر اضافه شد');}
+    function addNews(){let t=document.getElementById('newsTitle').value.trim(),s=document.getElementById('newsSummary').value.trim(),i=document.getElementById('newsImage').value.trim(),d=document.getElementById('newsDate').value.trim(),tm=document.getElementById('newsTime').value.trim(),ft=document.getElementById('newsFullText').value.trim();if(!t||!s||!i||!d||!tm||!ft){alert('همه فیلدها را پر کنید');return;}newsData.push({id:Date.now(),title:t,summary:s,image:i,date:d,time:tm,fullText:ft,timestamp:Date.now()});sortNewsByDate();saveNews();clearNewsForm();loadAdminNewsList();refreshAllNews();alert('خبر اضافه شد! (جدیدترین در بالاست)');}
     function deleteNews(id){if(confirm('حذف؟')){newsData=newsData.filter(n=>n.id!==id);sortNewsByDate();saveNews();loadAdminNewsList();refreshAllNews();}}
     function editNews(id){let n=newsData.find(n=>n.id===id);if(!n)return;let nt=prompt('عنوان جدید:',n.title);if(nt)n.title=nt;let ns=prompt('خلاصه:',n.summary);if(ns)n.summary=ns;let ni=prompt('عکس:',n.image);if(ni)n.image=ni;let nd=prompt('تاریخ:',n.date);if(nd)n.date=nd;let ntm=prompt('ساعت:',n.time);if(ntm)n.time=ntm;let nft=prompt('متن:',n.fullText);if(nft)n.fullText=nft;sortNewsByDate();saveNews();loadAdminNewsList();refreshAllNews();}
     function loadAdminNewsList(){let c=document.getElementById('newsListAdmin');if(!c)return;c.innerHTML=newsData.map(n=>`<div class="news-item-admin"><span>${n.title}</span><div><button class="edit-btn" onclick="editNews(${n.id})">✏️</button><button onclick="deleteNews(${n.id})">🗑</button></div></div>`).join('');if(!newsData.length)c.innerHTML='<p>هیچ خبری نیست</p>';}
@@ -312,7 +278,6 @@
     
     function saveMusic(){localStorage.setItem('zeroxMusic',JSON.stringify(musicData));}
     function saveProducts(){localStorage.setItem('zeroxProducts',JSON.stringify(productsData));}
-    
     function loadStories(container){let g=document.getElementById(container);if(g)g.innerHTML=storiesData.map(s=>`<div class="thumbnail-card"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بخوانید</button></div></div>`).join('');}
     function loadProducts(){let g=document.getElementById('shopGrid');if(g)g.innerHTML=productsData.map(p=>`<div class="product-card ${p.shape||'square'}"><img class="product-img" src="${p.image}"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price">💰 ${Number(p.price).toLocaleString()} تومان</div><button class="btn-card">خرید</button></div></div>`).join('');}
     function loadMusic(){let g=document.getElementById('musicGrid');if(!g)return;if(musicData.length===0){g.innerHTML='<div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی</h3></div>';return;}g.innerHTML=musicData.map(m=>`<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${m.platform||'🎮'} ${m.game}</div>${m.desc?`<div class="music-desc-box">${m.desc}</div>`:''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="downloadMusic('${m.file}','${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`).join('');}
@@ -329,6 +294,8 @@
     function loadAdminProductsList(){let c=document.getElementById('productsListAdmin');if(!c)return;c.innerHTML=productsData.map(p=>`<div class="product-item-admin"><span>${p.title} - ${p.price.toLocaleString()} تومان</span><div><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑</button></div></div>`).join('');if(!productsData.length)c.innerHTML='<p>هیچ محصولی نیست</p>';}
     function clearShopForm(){document.getElementById('productTitle').value='';document.getElementById('productDesc').value='';document.getElementById('productPrice').value='';document.getElementById('productImage').value='';}
     
+    function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-cat');loadVideos('videosGrid',currentFilter);});});}
+    
     function showPage(page){
         document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('rankingsPage').style.display='none';document.getElementById('registerPageDiv').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
         if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
@@ -343,11 +310,9 @@
         else if(page==='about'){document.getElementById('aboutPage').style.display='block';}
     }
     
-    sortVideosByDate();
-    sortNewsByDate();
     loadUser();renderSlider();autoSlideInterval=setInterval(()=>changeSlide(1),5000);
     loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');loadStories('storiesGrid');loadVideos('videosGrid','همه');loadNews('newsGrid');loadMusic();loadProducts();
     if(localStorage.getItem('zeroxNews')===null)saveNews();if(localStorage.getItem('zeroxMusic')===null)saveMusic();if(localStorage.getItem('zeroxProducts')===null)saveProducts();
 </script>
 </body>
-    </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </html>
