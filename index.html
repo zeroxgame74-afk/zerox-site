@@ -69,10 +69,15 @@
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
         .datetime-group{display:flex;gap:10px;margin-bottom:15px;}
         .datetime-group input{flex:1;}
+        
+        /* فیلتر با آیکون و فونت بولدر */
         .filter-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:25px;justify-content:center;}
-        .filter-btn{background:rgba(255,255,255,0.2);border:1px solid white;padding:6px 18px;border-radius:30px;color:white;cursor:pointer;transition:0.2s;}
-        .filter-btn:hover,.filter-btn.active{background:#B61C1C;border-color:#B61C1C;color:white;}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}}
+        .filter-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:8px 20px;border-radius:40px;color:white;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:14px;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(4px);}
+        .filter-btn i{font-size:14px;}
+        .filter-btn:hover{background:#B61C1C;border-color:#B61C1C;transform:translateY(-2px);}
+        .filter-btn.active{background:#B61C1C;border-color:#B61C1C;box-shadow:0 0 10px rgba(182,28,28,0.5);}
+        
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}}
     </style>
 </head>
 <body>
@@ -122,12 +127,12 @@
     <div id="videosPage" style="display:none;">
         <div class="section-title"><i class="fas fa-video"></i> ویدیوها</div>
         <div class="filter-buttons" id="filterButtons">
-            <button class="filter-btn active" data-category="همه">همه</button>
-            <button class="filter-btn" data-category="تخیلی">🔮 تخیلی</button>
-            <button class="filter-btn" data-category="اکشن">⚡ اکشن</button>
-            <button class="filter-btn" data-category="ماجراجویی">🗺️ ماجراجویی</button>
-            <button class="filter-btn" data-category="ترسناک">👻 ترسناک</button>
-            <button class="filter-btn" data-category="هیجانی">🎢 هیجانی</button>
+            <button class="filter-btn active" data-category="همه"><i class="fas fa-globe"></i> همه</button>
+            <button class="filter-btn" data-category="تخیلی"><i class="fas fa-meteor"></i> تخیلی</button>
+            <button class="filter-btn" data-category="اکشن"><i class="fas fa-bolt"></i> اکشن</button>
+            <button class="filter-btn" data-category="ماجراجویی"><i class="fas fa-map"></i> ماجراجویی</button>
+            <button class="filter-btn" data-category="ترسناک"><i class="fas fa-ghost"></i> ترسناک</button>
+            <button class="filter-btn" data-category="هیجانی"><i class="fas fa-heartbeat"></i> هیجانی</button>
         </div>
         <div id="adminVideosPanel" style="display:none;" class="admin-videos-panel">
             <h3>➕ مدیریت ویدیوها</h3>
@@ -275,7 +280,14 @@
         let filtered = filterCategory === 'همه' ? videosData : videosData.filter(v => v.category === filterCategory);
         let html = '';
         for (let v of filtered) {
-            html += `<div class="video-card" onclick="window.open('${v.link}', '_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${v.date} <i class="fas fa-clock"></i> ${v.time} <i class="fas fa-tag"></i> ${v.category}</div>${v.fullText ? `<div class="full-text" id="fullText-${v.id}">${v.fullText}</div><button class="more-btn" onclick="event.stopPropagation(); toggleText('fullText-${v.id}', this)">بیشتر...</button>` : ''}<button class="btn-card" style="margin-top:8px;">مشاهده ویدیو</button></div></div>`;
+            let categoryIcon = '';
+            if (v.category === 'تخیلی') categoryIcon = '<i class="fas fa-meteor"></i>';
+            else if (v.category === 'اکشن') categoryIcon = '<i class="fas fa-bolt"></i>';
+            else if (v.category === 'ماجراجویی') categoryIcon = '<i class="fas fa-map"></i>';
+            else if (v.category === 'ترسناک') categoryIcon = '<i class="fas fa-ghost"></i>';
+            else if (v.category === 'هیجانی') categoryIcon = '<i class="fas fa-heartbeat"></i>';
+            else categoryIcon = '<i class="fas fa-tag"></i>';
+            html += `<div class="video-card" onclick="window.open('${v.link}', '_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${v.date} <i class="fas fa-clock"></i> ${v.time} ${categoryIcon} ${v.category}</div>${v.fullText ? `<div class="full-text" id="fullText-${v.id}">${v.fullText}</div><button class="more-btn" onclick="event.stopPropagation(); toggleText('fullText-${v.id}', this)">بیشتر...</button>` : ''}<button class="btn-card" style="margin-top:8px;">مشاهده ویدیو</button></div></div>`;
         }
         document.getElementById(containerId).innerHTML = html || '<div style="text-align:center;color:white;padding:50px;">ویدیویی در این دسته یافت نشد.</div>';
     }
@@ -558,4 +570,4 @@
 </script>
 
 </body>
-    </html>
+</html>
