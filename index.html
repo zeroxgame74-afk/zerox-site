@@ -25,13 +25,13 @@
         .dot.active{background:white;transform:scale(1.2);}
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid,.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
-        .card-content,.news-content,.video-info,.gallery-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
+        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
+        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .card-content,.news-content,.video-info,.music-info,.gallery-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
         .news-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:0.7rem;color:#777;justify-content:center;}
         .news-meta i{color:#B61C1C;}
         .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;display:inline-block;}
@@ -70,7 +70,6 @@
         .datetime-group{display:flex;gap:10px;margin-bottom:15px;}
         .datetime-group input{flex:1;}
         
-        /* فیلتر با آیکون و فونت بولدر */
         .filter-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:25px;justify-content:center;}
         .filter-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:8px 20px;border-radius:40px;color:white;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:14px;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(4px);}
         .filter-btn i{font-size:14px;}
@@ -88,6 +87,7 @@
         <a onclick="showPage('home')"><i class="fas fa-home"></i> خانه</a>
         <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
         <a onclick="showPage('videos')"><i class="fas fa-video"></i> ویدیوها</a>
+        <a onclick="showPage('music')"><i class="fas fa-music"></i> موسیقی بازی</a>
         <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
         <a onclick="showPage('gallery')"><i class="fas fa-images"></i> گالری</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
@@ -160,6 +160,19 @@
         <div class="videos-grid" id="videosGrid"></div>
     </div>
 
+    <!-- صفحه موسیقی بازی -->
+    <div id="musicPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-music"></i> موسیقی بازی‌ها</div>
+        <div class="music-grid" id="musicGrid">
+            <div class="music-card" style="text-align:center; padding:50px;">
+                <i class="fas fa-headphones" style="font-size:48px; color:#B61C1C; margin-bottom:15px;"></i>
+                <h3 style="color:#B61C1C;">به زودی...</h3>
+                <p>بخش موسیقی بازی به زودی با آهنگ‌های حماسی و خاطره‌انگیز پر می‌شود.</p>
+                <p style="font-size:12px; margin-top:10px;">منتظر بروزرسانی‌های بعدی باشید!</p>
+            </div>
+        </div>
+    </div>
+
     <div id="newsPage" style="display:none;">
         <div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div>
         <div id="adminNewsPanel" style="display:none;" class="admin-news-panel">
@@ -207,7 +220,6 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== ویدیوها با قابلیت دسته‌بندی ===============
     let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [
         { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
         { id: 2, title: "داستان کامل بازی Outlast | بررسی تیمارستان Mount Massive", desc: "این ویدیو توسط کانال خفن زیروکس ساخته شده", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
@@ -552,12 +564,14 @@
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
         document.getElementById('videosPage').style.display = 'none';
+        document.getElementById('musicPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
         document.getElementById('galleryPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
         if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid', 'همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
         else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
         else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid', currentFilter); setupFilters(); if(isAdmin) document.getElementById('adminVideosPanel').style.display = 'block'; }
+        else if (page === 'music') { document.getElementById('musicPage').style.display = 'block'; }
         else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
         else if (page === 'gallery') { document.getElementById('galleryPage').style.display = 'block'; }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
@@ -570,4 +584,4 @@
 </script>
 
 </body>
-</html>
+    </html>
