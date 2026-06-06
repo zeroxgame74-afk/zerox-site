@@ -32,12 +32,12 @@
         
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card,.product-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover,.product-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img,.product-img{width:100%;height:200px;object-fit:cover;display:block;}
-        .card-content,.news-content,.video-info,.music-info,.gallery-info,.product-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3,.product-title{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid,.rankings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
+        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card,.product-card,.rankings-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover,.product-card:hover,.rankings-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img,.product-img,.rankings-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .card-content,.news-content,.video-info,.music-info,.gallery-info,.product-info,.rankings-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3,.product-title,.rankings-title{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
         .product-price{font-size:1.2rem;font-weight:800;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;color:#2c3e50;}
         .product-price i{color:#f1c40f;}
         .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
@@ -107,6 +107,8 @@
         <a onclick="showPage('music')"><i class="fas fa-music"></i> موسیقی</a>
         <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
         <a onclick="showPage('shop')"><i class="fas fa-store"></i> زروکس‌شاپ</a>
+        <a onclick="showPage('rankings')"><i class="fas fa-trophy"></i> رتبه‌دهی بازی‌ها</a>
+        <a onclick="showPage('registerPage')"><i class="fas fa-user-plus"></i> ثبت‌نام</a>
         <a onclick="showPage('gallery')"><i class="fas fa-images"></i> گالری</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
@@ -201,6 +203,28 @@
         <div class="shop-grid" id="shopGrid"></div>
     </div>
 
+    <!-- صفحه رتبه‌دهی بازی‌ها (جدید) -->
+    <div id="rankingsPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-trophy"></i> رتبه‌دهی بازی‌ها</div>
+        <div class="rankings-grid">
+            <div class="rankings-card" style="text-align:center; padding:50px;">
+                <i class="fas fa-chart-line" style="font-size:48px; color:#B61C1C; margin-bottom:15px;"></i>
+                <h3 style="color:#B61C1C;">به زودی...</h3>
+                <p>سیستم رتبه‌دهی بازی‌ها به زودی اضافه خواهد شد.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحه ثبت‌نام (جدید) -->
+    <div id="registerPageDiv" style="display:none;">
+        <div class="section-title"><i class="fas fa-user-plus"></i> ثبت‌نام در ZEROX | GAME</div>
+        <div class="rankings-card" style="text-align:center; padding:50px; max-width:500px; margin:0 auto;">
+            <i class="fas fa-user-astronaut" style="font-size:48px; color:#B61C1C; margin-bottom:15px;"></i>
+            <h3 style="color:#B61C1C;">به زودی...</h3>
+            <p>سیستم ثبت‌نام حرفه‌ای به زودی اضافه خواهد شد.</p>
+        </div>
+    </div>
+
     <div id="galleryPage" style="display:none;">
         <div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div>
         <div class="gallery-grid" id="galleryGrid">
@@ -283,7 +307,7 @@
     function clearNewsForm(){document.getElementById('newsTitle').value='';document.getElementById('newsSummary').value='';document.getElementById('newsImage').value='';document.getElementById('newsDate').value='';document.getElementById('newsTime').value='';document.getElementById('newsFullText').value='';}
     function refreshAllNews(){loadNews('homeNewsGrid');loadNews('newsGrid');}
     
-    // =============== فروشگاه (اصلاح شده) ===============
+    // =============== فروشگاه ===============
     function loadProducts(){
         const grid = document.getElementById('shopGrid');
         if(!grid) return;
@@ -333,7 +357,6 @@
         
         saveProducts();
         
-        // پاک کردن فرم
         document.getElementById('productTitle').value = '';
         document.getElementById('productDesc').value = '';
         document.getElementById('productPrice').value = '';
@@ -400,20 +423,33 @@
     // =============== صفحه‌بندی ===============
     let currentFilter='همه';
     function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-category');loadVideos('videosGrid',currentFilter);});});}
+    
     function showPage(page){
-        document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
+        document.getElementById('homePage').style.display='none';
+        document.getElementById('storiesPage').style.display='none';
+        document.getElementById('videosPage').style.display='none';
+        document.getElementById('musicPage').style.display='none';
+        document.getElementById('newsPage').style.display='none';
+        document.getElementById('shopPage').style.display='none';
+        document.getElementById('rankingsPage').style.display='none';
+        document.getElementById('registerPageDiv').style.display='none';
+        document.getElementById('galleryPage').style.display='none';
+        document.getElementById('aboutPage').style.display='none';
+        
         if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
         else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');}
         else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
         else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
         else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
         else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
-        else if(page==='gallery')document.getElementById('galleryPage').style.display='block';
-        else if(page==='about')document.getElementById('aboutPage').style.display='block';
+        else if(page==='rankings'){document.getElementById('rankingsPage').style.display='block';}
+        else if(page==='registerPage'){document.getElementById('registerPageDiv').style.display='block';}
+        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';}
+        else if(page==='about'){document.getElementById('aboutPage').style.display='block';}
     }
     
     loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');loadStories('storiesGrid');loadVideos('videosGrid','همه');loadNews('newsGrid');loadMusic();loadProducts();renderSlider();if(sliderData.length>1)autoSlideInterval=setInterval(()=>changeSlide(1),5000);
     if(localStorage.getItem('zeroxNews')===null)saveNews();if(localStorage.getItem('zeroxVideos')===null)saveVideos();if(localStorage.getItem('zeroxMusic')===null)saveMusic();if(localStorage.getItem('zeroxProducts')===null)saveProducts();
 </script>
 </body>
-            </html>
+        </html>
