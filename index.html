@@ -15,44 +15,8 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
-        
-        /* دکمه پروفایل */
-        .user-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:40px;padding:6px 18px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:0.2s;backdrop-filter:blur(4px);}
-        .user-btn:hover{background:white;color:#B61C1C;transform:scale(1.02);}
-        
-        /* مودال ثبت‌نام/ورود */
-        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
-        .modal-content{background:white;border-radius:28px;padding:30px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.3);}
-        .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
-        .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;transition:0.2s;}
-        .modal-content button:hover{background:#8a1010;transform:scale(1.02);}
-        .close-modal{float:left;cursor:pointer;font-size:26px;color:#999;transition:0.2s;}
-        .close-modal:hover{color:#B61C1C;}
-        
-        /* پروفایل کاستوم */
-        .profile-header{background:linear-gradient(135deg,#B61C1C,#8a1010);border-radius:20px;padding:20px;margin-bottom:20px;color:white;}
-        .profile-avatar{width:80px;height:80px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-        .profile-avatar i{font-size:50px;color:#B61C1C;}
-        .profile-stats{display:flex;justify-content:space-around;margin-top:15px;}
-        .profile-stats div{text-align:center;}
-        .profile-stats .stat-number{font-size:24px;font-weight:900;}
-        .profile-stats .stat-label{font-size:12px;opacity:0.8;}
-        
-        /* ۳ دکمه کاستوم */
-        .profile-actions{display:flex;justify-content:space-between;gap:15px;margin:20px 0;}
-        .profile-action-btn{flex:1;background:#f5f5f5;border:none;border-radius:20px;padding:15px 5px;cursor:pointer;transition:0.3s;text-align:center;}
-        .profile-action-btn i{font-size:28px;display:block;margin-bottom:8px;}
-        .profile-action-btn span{font-size:13px;font-weight:700;}
-        .profile-action-btn.buy{background:linear-gradient(135deg,#f1c40f,#f39c12);color:#fff;}
-        .profile-action-btn.support{background:linear-gradient(135deg,#3498db,#2980b9);color:#fff;}
-        .profile-action-btn.logout{background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;}
-        .profile-action-btn.buy:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(241,196,15,0.3);}
-        .profile-action-btn.support:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(52,152,219,0.3);}
-        .profile-action-btn.logout:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(231,76,60,0.3);}
-        
-        .free-product-box{background:#f0f0f0;border-radius:16px;padding:15px;margin-top:15px;text-align:center;}
-        .soon-badge{background:#ffc107;color:#333;padding:4px 12px;border-radius:30px;font-size:12px;display:inline-block;margin-top:8px;}
-        
+        .user-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:40px;padding:6px 18px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:0.2s;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .user-btn:hover{background:white;color:#B61C1C;}
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -61,11 +25,10 @@
         .dots{text-align:center;padding:15px 0 5px;}
         .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;}
         .dot.active{background:white;}
-        .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;transition:0.2s;}
+        .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;}
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
-        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -74,13 +37,25 @@
         .thumbnail-img,.news-img,.video-thumb,.music-img,.product-img{width:100%;height:200px;object-fit:cover;display:block;}
         .card-content,.news-content,.video-info,.music-info,.product-info{padding:20px;text-align:center;}
         .card-content h3,.news-content h3,.video-info h3,.music-info h3,.product-title{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;}
+        .product-price{font-size:1.2rem;font-weight:800;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;}
+        .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;}
+        .btn-card:hover{background:#8a1010;}
         .video-badge{position:absolute;top:15px;right:15px;background:#B61C1C;color:white;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;}
         .video-card{position:relative;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
-        
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.profile-actions{flex-direction:column;}}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;}
+        .modal-content{background:white;border-radius:28px;padding:30px;max-width:420px;width:90%;text-align:center;}
+        .modal-content input{width:100%;padding:12px;margin:10px 0;border-radius:16px;border:1px solid #ddd;font-family:'Vazirmatn',sans-serif;font-size:14px;}
+        .modal-content button{background:#B61C1C;border:none;padding:10px 20px;border-radius:30px;color:white;font-weight:800;cursor:pointer;font-family:'Vazirmatn',sans-serif;}
+        .close-modal{float:left;cursor:pointer;font-size:24px;}
+        .medal-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:30px;font-size:12px;margin:5px;}
+        .medal-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#5c4300;}
+        .medal-silver{background:linear-gradient(135deg,#c0c0c0,#a8a8a8);color:#3a3a3a;}
+        .medal-bronze{background:linear-gradient(135deg,#cd7f32,#b8692a);color:#4a2a0a;}
+        .congrats-toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:15px 25px;border-radius:40px;box-shadow:0 10px 25px rgba(0,0,0,0.3);z-index:2000;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:14px;animation:slideIn 0.5s ease;}
+        @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}}
     </style>
 </head>
 <body>
@@ -96,240 +71,176 @@
         <a onclick="showPage('shop')"><i class="fas fa-store"></i> زروکس‌شاپ</a>
         <a onclick="showPage('gallery')"><i class="fas fa-images"></i> گالری</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
-        <div class="user-btn" onclick="openUserModal()">
-            <i class="fas fa-user-astronaut"></i> 
-            <span id="userStatus">ورود/ثبت‌نام</span>
-        </div>
+        <div class="user-btn" onclick="openProfile()"><i class="fas fa-user-astronaut"></i> <span id="userStatus">ورود/ثبت‌نام</span></div>
     </div>
 </header>
 
-<!-- مودال ثبت‌نام/ورود -->
-<div id="userModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeUserModal()">&times;</span>
-        <i class="fas fa-gamepad" style="font-size:48px; color:#B61C1C; margin-bottom:10px;"></i>
-        <h2 id="modalTitle" style="color:#B61C1C;">ورود به حساب</h2>
-        <input type="text" id="loginUsername" placeholder="نام کاربری">
-        <input type="password" id="loginPassword" placeholder="رمز عبور">
-        <button onclick="login()">ورود</button>
-        <hr style="margin:15px 0;">
-        <p>حساب ندارید؟ <a href="#" onclick="showRegister()" style="color:#B61C1C;">ثبت‌نام کنید</a></p>
-        <div id="registerSection" style="display:none;">
-            <input type="text" id="registerUsername" placeholder="نام کاربری جدید">
-            <input type="password" id="registerPassword" placeholder="رمز عبور">
-            <button onclick="register()">🎁 ثبت‌نام و دریافت هدیه</button>
-            <p style="font-size:12px; margin-top:10px;">هدیه ثبت‌نام به زودی فعال می‌شود!</p>
-        </div>
-    </div>
-</div>
+<div id="authModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeAuthModal()">&times;</span><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h2 id="modalTitle">ورود</h2><input type="text" id="loginUsername" placeholder="نام کاربری"><input type="password" id="loginPassword" placeholder="رمز عبور"><button onclick="login()">ورود</button><hr><p>حساب ندارید؟ <a href="#" onclick="showRegisterForm()">ثبت‌نام کنید</a></p><div id="registerDiv" style="display:none;"><input type="text" id="registerUsername" placeholder="نام کاربری جدید"><input type="password" id="registerPassword" placeholder="رمز عبور"><button onclick="register()">🎁 ثبت‌نام</button></div></div></div>
 
-<!-- مودال پروفایل با ۳ دکمه کاستوم -->
-<div id="profileModal" class="modal">
-    <div class="modal-content" style="max-width:450px;">
-        <span class="close-modal" onclick="closeProfileModal()">&times;</span>
-        <div class="profile-header">
-            <div class="profile-avatar"><i class="fas fa-user-ninja"></i></div>
-            <h3 id="profileUsername" style="text-align:center;">کاربر</h3>
-            <div class="profile-stats">
-                <div><div class="stat-number" id="profileMedalCount">0</div><div class="stat-label">مدال‌ها</div></div>
-                <div><div class="stat-number" id="profileProductCount">0</div><div class="stat-label">محصولات</div></div>
-                <div><div class="stat-number" id="profileJoinDate">-</div><div class="stat-label">عضویت</div></div>
-            </div>
-        </div>
-        
-        <!-- ۳ دکمه کاستوم شده -->
-        <div class="profile-actions">
-            <div class="profile-action-btn buy" onclick="goToShop()">
-                <i class="fas fa-shopping-cart"></i>
-                <span>خرید</span>
-            </div>
-            <div class="profile-action-btn support" onclick="contactSupport()">
-                <i class="fas fa-headset"></i>
-                <span>پشتیبانی</span>
-            </div>
-            <div class="profile-action-btn logout" onclick="logout()">
-                <i class="fas fa-skull"></i>
-                <span>خروج</span>
-            </div>
-        </div>
-        
-        <div class="free-product-box">
-            <i class="fas fa-gift" style="font-size:24px; color:#B61C1C;"></i>
-            <h4 style="margin:8px 0;">🎁 هدیه ثبت‌نام</h4>
-            <p>بسته آیکون گیمینگ حرفه‌ای</p>
-            <div class="soon-badge"><i class="fas fa-clock"></i> به زودی...</div>
-            <p style="font-size:11px; margin-top:8px;">به محض آماده شدن، لینک دانلود در همین بخش قرار می‌گیرد</p>
-        </div>
-        
-        <div id="freeProductsList" style="margin-top:10px;"></div>
-    </div>
-</div>
+<div id="profileModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeProfileModal()">&times;</span><div style="text-align:center;"><i class="fas fa-trophy" style="font-size:48px;color:#B61C1C;"></i><h2>پروفایل من</h2><p><strong id="profileName"></strong></p><div id="medalsContainer" style="margin:15px 0;"></div><div id="freeGiftInfo"></div><hr><button onclick="logout()" style="background:#ff4444;">خروج از حساب</button></div></div></div>
 
-<div class="slider-container">
-    <div class="slider">
-        <button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button>
-        <div class="slides" id="slidesContainer"></div>
-        <button class="nav-arrow next" onclick="changeSlide(1)">❯</button>
-    </div>
-    <div class="dots" id="dotsContainer"></div>
-</div>
+<div class="slider-container"><div class="slider"><button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button><div class="slides" id="slidesContainer"></div><button class="nav-arrow next" onclick="changeSlide(1)">❯</button></div><div class="dots" id="dotsContainer"></div></div>
 
 <div class="container" id="contentContainer">
-    <div id="homePage">
-        <div class="section-title"><i class="fas fa-fire"></i> ویدیوهای جدید</div>
-        <div class="videos-grid" id="homeVideosGrid"></div>
-        <div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار بازی</div>
-        <div class="news-grid" id="homeNewsGrid"></div>
-        <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های جدید</div>
-        <div class="cards-grid" id="homeStoriesGrid"></div>
-    </div>
+    <div id="homePage"><div class="section-title"><i class="fas fa-fire"></i> ویدیوهای جدید</div><div class="videos-grid" id="homeVideos"></div><div class="section-title"><i class="fas fa-newspaper"></i> آخرین اخبار</div><div class="news-grid" id="homeNews"></div><div class="section-title"><i class="fas fa-book-open"></i> داستان‌ها</div><div class="cards-grid" id="homeStories"></div></div>
     <div id="storiesPage" style="display:none;"><div class="section-title"><i class="fas fa-book-open"></i> داستان‌های بازی</div><div class="cards-grid" id="storiesGrid"></div></div>
     <div id="videosPage" style="display:none;"><div class="section-title"><i class="fas fa-video"></i> ویدیوها</div><div class="videos-grid" id="videosGrid"></div></div>
-    <div id="musicPage" style="display:none;"><div class="section-title"><i class="fas fa-music"></i> موسیقی بازی‌ها</div><div class="music-grid" id="musicGrid"></div></div>
-    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> همه اخبار</div><div class="news-grid" id="newsGrid"></div></div>
+    <div id="musicPage" style="display:none;"><div class="section-title"><i class="fas fa-music"></i> موسیقی</div><div class="music-grid" id="musicGrid"><div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3></div></div></div>
+    <div id="newsPage" style="display:none;"><div class="section-title"><i class="fas fa-newspaper"></i> اخبار</div><div class="news-grid" id="newsGrid"></div></div>
     <div id="shopPage" style="display:none;"><div class="section-title"><i class="fas fa-store"></i> زروکس‌شاپ</div><div class="shop-grid" id="shopGrid"></div></div>
-    <div id="galleryPage" style="display:none;"><div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div><div class="cards-grid" id="galleryGrid"><div class="thumbnail-card" style="text-align:center;padding:50px;"><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3></div></div></div>
-    <div id="aboutPage" style="display:none;"><div class="featured"><h2 style="color:#B61C1C;">درباره ZEROX | GAME</h2><p>اینجا بهشت گیمر هاست!</p><p>ما گروه زروکس هستیم و خوشحال هستیم که توی این سایت هستین</p><p>اگر مشکلی توی سایت بود لطفا به ایدی: <strong>@support_Zerox</strong> پیام بدید</p><hr><p><strong>سازنده سایت:</strong> @mohamad_hossein_ev18</p><p><strong>برای ارتباط با سازنده سایت:</strong> تلگرام پیام بدید</p></div></div>
+    <div id="galleryPage" style="display:none;"><div class="section-title"><i class="fas fa-images"></i> گالری</div><div class="cards-grid" id="galleryGrid"><div class="thumbnail-card" style="text-align:center;padding:50px;"><i class="fas fa-gamepad" style="font-size:48px;color:#B61C1C;"></i><h3>به زودی...</h3></div></div></div>
+    <div id="aboutPage" style="display:none;"><div class="featured"><h2 style="color:#B61C1C;">درباره ZEROX | GAME</h2><p>اینجا بهشت گیمر هاست!</p><p>ما گروه زروکس هستیم و خوشحال هستیم که توی این سایت هستین</p><p>اگر مشکلی توی سایت بود لطفا به ایدی: <strong>@support_Zerox</strong> پیام بدید</p><hr><p><strong>سازنده سایت:</strong> @mohamad_hossein_ev18</p></div></div>
 </div>
 
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== سیستم کاربران ===============
+    // =============== سیستم مدال و کاربران ===============
     let currentUser = null;
     
+    function showToast(message) {
+        let toast = document.createElement('div');
+        toast.className = 'congrats-toast';
+        toast.innerHTML = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 5000);
+    }
+    
+    function updateMedals(user) {
+        let commentsCount = user.comments || 0;
+        let purchasesCount = user.purchases || 0;
+        let medals = [];
+        
+        if(commentsCount >= 5 || purchasesCount >= 1) medals.push({type:'bronze',name:'🥉 مدال برنز',desc:'۵ کامنت یا ۱ خرید'});
+        if(commentsCount >= 10 || purchasesCount >= 3) medals.push({type:'silver',name:'🥈 مدال نقره',desc:'۱۰ کامنت یا ۳ خرید'});
+        if(commentsCount >= 20 || purchasesCount >= 5) medals.push({type:'gold',name:'🥇 مدال طلا',desc:'۲۰ کامنت یا ۵ خرید'});
+        
+        user.medals = medals;
+        let hadGoldBefore = user.goldNotified;
+        let hasGold = medals.some(m => m.type === 'gold');
+        
+        if(hasGold && !hadGoldBefore) {
+            user.goldNotified = true;
+            showToast('🏆 با تشکر از شما! ممنونم که با ما بودید. منتظر قرعه‌کشی باشید! 🎁');
+        }
+        
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let idx = users.findIndex(u => u.username === user.username);
+        if(idx !== -1) users[idx] = user;
+        localStorage.setItem('users', JSON.stringify(users));
+        if(currentUser && currentUser.username === user.username) currentUser = user;
+        return medals;
+    }
+    
     function loadUserFromStorage() {
-        const savedUser = localStorage.getItem('currentUser');
-        if(savedUser) {
-            currentUser = JSON.parse(savedUser);
+        const saved = localStorage.getItem('currentUser');
+        if(saved) {
+            currentUser = JSON.parse(saved);
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let freshUser = users.find(u => u.username === currentUser.username);
+            if(freshUser) {
+                currentUser = freshUser;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
             document.getElementById('userStatus').innerHTML = `<i class="fas fa-user-check"></i> ${currentUser.username}`;
+            updateMedals(currentUser);
         } else {
             document.getElementById('userStatus').innerHTML = '<i class="fas fa-user-plus"></i> ورود/ثبت‌نام';
         }
     }
     
-    function openUserModal() {
+    function openProfile() {
         if(currentUser) {
-            showProfile();
+            document.getElementById('profileName').innerHTML = currentUser.username;
+            let medals = updateMedals(currentUser);
+            let medalsHtml = '';
+            medals.forEach(m => {
+                let medalClass = m.type === 'gold' ? 'medal-gold' : (m.type === 'silver' ? 'medal-silver' : 'medal-bronze');
+                medalsHtml += `<div class="medal-badge ${medalClass}">${m.name}</div>`;
+            });
+            if(medals.length === 0) medalsHtml = '<p>هنوز مدالی دریافت نکرده‌اید</p>';
+            document.getElementById('medalsContainer').innerHTML = medalsHtml;
+            document.getElementById('freeGiftInfo').innerHTML = '<div style="background:#f0f0f0;border-radius:16px;padding:15px;margin-top:10px;"><i class="fas fa-gift"></i> هدیه ثبت‌نام: <strong>به زودی...</strong></div>';
+            document.getElementById('profileModal').style.display = 'flex';
         } else {
-            document.getElementById('userModal').style.display = 'flex';
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-            document.getElementById('registerUsername').value = '';
-            document.getElementById('registerPassword').value = '';
-            document.getElementById('registerSection').style.display = 'none';
-            document.getElementById('modalTitle').innerText = 'ورود به حساب';
+            openAuthModal();
         }
     }
     
-    function closeUserModal() { document.getElementById('userModal').style.display = 'none'; }
     function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
-    
-    function showRegister() {
-        document.getElementById('registerSection').style.display = 'block';
-        document.getElementById('modalTitle').innerText = 'ثبت‌نام';
-    }
+    function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; document.getElementById('registerDiv').style.display = 'none'; document.getElementById('modalTitle').innerText = 'ورود'; }
+    function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+    function showRegisterForm() { document.getElementById('registerDiv').style.display = 'block'; document.getElementById('modalTitle').innerText = 'ثبت‌نام'; }
     
     function register() {
-        const username = document.getElementById('registerUsername').value.trim();
-        const password = document.getElementById('registerPassword').value.trim();
+        let username = document.getElementById('registerUsername').value.trim();
+        let password = document.getElementById('registerPassword').value.trim();
         if(!username || !password) { alert('لطفاً نام کاربری و رمز عبور را وارد کنید!'); return; }
-        
         let users = JSON.parse(localStorage.getItem('users')) || [];
         if(users.find(u => u.username === username)) { alert('این نام کاربری قبلاً ثبت شده است!'); return; }
-        
-        const newUser = { 
-            username, 
-            password, 
-            medals: ['🥉 مدال برنز (ثبت‌نام)'], 
-            freeProducts: [],
-            joinDate: new Date().toLocaleDateString('fa-IR'),
-            joinTimestamp: Date.now()
-        };
+        let newUser = { username, password, comments: 0, purchases: 0, medals: [], goldNotified: false, joinDate: new Date().toLocaleDateString('fa-IR') };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
         localStorage.setItem('currentUser', JSON.stringify(newUser));
         currentUser = newUser;
         document.getElementById('userStatus').innerHTML = `<i class="fas fa-user-check"></i> ${username}`;
-        closeUserModal();
-        alert(`✅ ثبت‌نام با موفقیت انجام شد!\n🎁 هدیه ثبت‌نام به زودی به پروفایل شما اضافه می‌شود.`);
-        showProfile();
+        closeAuthModal();
+        alert('✅ ثبت‌نام با موفقیت انجام شد!');
+        openProfile();
     }
     
     function login() {
-        const username = document.getElementById('loginUsername').value.trim();
-        const password = document.getElementById('loginPassword').value.trim();
-        if(!username || !password) { alert('لطفاً نام کاربری و رمز عبور را وارد کنید!'); return; }
-        
+        let username = document.getElementById('loginUsername').value.trim();
+        let password = document.getElementById('loginPassword').value.trim();
         let users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.username === username && u.password === password);
+        let user = users.find(u => u.username === username && u.password === password);
         if(!user) { alert('نام کاربری یا رمز عبور اشتباه است!'); return; }
-        
         localStorage.setItem('currentUser', JSON.stringify(user));
         currentUser = user;
         document.getElementById('userStatus').innerHTML = `<i class="fas fa-user-check"></i> ${username}`;
-        closeUserModal();
+        closeAuthModal();
         alert(`خوش آمدید ${username}!`);
-        showProfile();
-    }
-    
-    function showProfile() {
-        if(!currentUser) { openUserModal(); return; }
-        document.getElementById('profileUsername').innerText = currentUser.username;
-        document.getElementById('profileMedalCount').innerText = currentUser.medals ? currentUser.medals.length : 0;
-        document.getElementById('profileProductCount').innerText = currentUser.freeProducts ? currentUser.freeProducts.length : 0;
-        document.getElementById('profileJoinDate').innerText = currentUser.joinDate || 'امروز';
-        document.getElementById('profileModal').style.display = 'flex';
-    }
-    
-    function goToShop() {
-        closeProfileModal();
-        showPage('shop');
-        alert('به فروشگاه زروکس‌شاپ خوش آمدید! 🛍️');
-    }
-    
-    function contactSupport() {
-        alert('📞 پشتیبانی ZEROX\n\nآیدی پشتیبانی: @support_Zerox\nساعات پاسخگویی: ۱۰ صبح تا ۱۰ شب');
+        openProfile();
     }
     
     function logout() {
-        if(confirm('⚠️ آیا از خروج از حساب خود مطمئن هستید؟')) {
+        if(confirm('آیا از خروج از حساب خود مطمئن هستید؟')) {
             localStorage.removeItem('currentUser');
             currentUser = null;
             document.getElementById('userStatus').innerHTML = '<i class="fas fa-user-plus"></i> ورود/ثبت‌نام';
             closeProfileModal();
-            alert('با موفقیت خارج شدید! بازگشت شما را خوشحال می‌کند 👋');
+            alert('با موفقیت خارج شدید!');
         }
     }
     
     // =============== اسلایدر ===============
-    let sliderData = [{ id:1, image:"https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" }, { id:2, image:"https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }];
-    let currentSlideIndex=0;
+    let sliderData = [{img:"https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg"},{img:"https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg"}];
+    let slideIndex=0;
     function renderSlider() {
-        const slidesContainer = document.getElementById('slidesContainer'), dotsContainer = document.getElementById('dotsContainer');
-        if(!slidesContainer) return;
-        slidesContainer.innerHTML = sliderData.map(s=>`<div class="slide"><img src="${s.image}"></div>`).join('');
-        dotsContainer.innerHTML = sliderData.map((_,i)=>`<div class="dot ${i===currentSlideIndex?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
-        if(sliderData.length) slidesContainer.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+        let s=document.getElementById('slidesContainer'), d=document.getElementById('dotsContainer');
+        if(!s) return;
+        s.innerHTML = sliderData.map(x=>`<div class="slide"><img src="${x.img}"></div>`).join('');
+        d.innerHTML = sliderData.map((_,i)=>`<div class="dot ${i===slideIndex?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
+        if(sliderData.length) s.style.transform = `translateX(-${slideIndex*100}%)`;
     }
-    function changeSlide(n){ if(!sliderData.length) return; currentSlideIndex = (currentSlideIndex+n+sliderData.length)%sliderData.length; renderSlider(); }
-    function goToSlide(i){ currentSlideIndex=i; renderSlider(); }
+    function changeSlide(n){ slideIndex = (slideIndex+n+sliderData.length)%sliderData.length; renderSlider(); }
+    function goToSlide(i){ slideIndex=i; renderSlider(); }
     
-    // =============== داده‌های نمونه ===============
-    let videosData = [{ id:1, title:"داستان کامل بازی نه من انسان نیستم", desc:"اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link:"https://www.aparat.com/v/itl9b8h", date:"شنبه ۱۶ خرداد ۱۴۰۵", time:"۰۸:۳۶" }];
-    let newsData = [{ id:1, title:"بالاخره خبر جدید GTA 6 رسید!", summary:"راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه...", image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date:"شنبه ۱۶ خرداد ۱۴۰۵", time:"۰۸:۳۶" }];
-    let productsData = [{ id:1, title:"بسته آیکون حرفه‌ای", desc:"۱۰۰+ آیکون گیمینگ", price:49000, image:"https://via.placeholder.com/300x200?text=Icon+Pack" }];
-    const storiesData = [{ title:"رستاخیز سرزمین‌های فراموش‌شده", desc:"تحلیل کامل داستان", img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }];
+    // =============== داده‌ها ===============
+    let videosData = [{title:"داستان کامل بازی نه من انسان نیستم",desc:"اولین ویدیوی چنل | ترند و ترسناک",thumb:"https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg",link:"https://www.aparat.com/v/itl9b8h"}];
+    let newsData = [{title:"بالاخره خبر جدید GTA 6 رسید!",summary:"راک‌استار تایید کرد بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه",image:"https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg"}];
+    let productsData = [{title:"بسته آیکون گیمینگ",desc:"۱۰۰+ آیکون اختصاصی",price:49000,image:"https://via.placeholder.com/300x200?text=Icon+Pack"}];
+    let storiesData = [{title:"رستاخیز سرزمین‌های فراموش‌شده",desc:"تحلیل کامل داستان",img:"https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg"}];
     
-    function loadVideos(containerId){const g=document.getElementById(containerId);if(g) g.innerHTML=videosData.map(v=>`<div class="video-card" onclick="window.open('${v.link}','_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶ تماشا</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${v.date} <i class="fas fa-clock"></i> ${v.time}</div><button class="btn-card">مشاهده ویدیو</button></div></div>`).join('');}
-    function loadNews(containerId){const g=document.getElementById(containerId);if(g) g.innerHTML=newsData.map(n=>`<div class="news-card" onclick="alert('${n.title}')"><img class="news-img" src="${n.image}"><div class="news-content"><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه مطلب</button></div></div>`).join('');}
-    function loadStories(containerId){const g=document.getElementById(containerId);if(g) g.innerHTML=storiesData.map(s=>`<div class="thumbnail-card"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بیشتر بخوانید</button></div></div>`).join('');}
-    function loadProducts(){const g=document.getElementById('shopGrid');if(g) g.innerHTML=productsData.map(p=>`<div class="product-card"><img class="product-img" src="${p.image}"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price">💰 ${p.price.toLocaleString()} تومان</div><button class="btn-card" onclick="alert('برای خرید با پشتیبانی تماس بگیرید')">خرید</button></div></div>`).join('');}
+    function loadVideos(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=videosData.map(v=>`<div class="video-card" onclick="window.open('${v.link}','_blank')"><img class="video-thumb" src="${v.thumb}"><div class="video-badge">▶</div><div class="video-info"><h3>${v.title}</h3><p>${v.desc}</p><button class="btn-card">تماشا</button></div></div>`).join('');}
+    function loadNews(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=newsData.map(n=>`<div class="news-card"><img class="news-img" src="${n.image}"><div class="news-content"><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه مطلب</button></div></div>`).join('');}
+    function loadStories(containerId){let g=document.getElementById(containerId);if(g)g.innerHTML=storiesData.map(s=>`<div class="thumbnail-card"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بیشتر بخوانید</button></div></div>`).join('');}
+    function loadProducts(){let g=document.getElementById('shopGrid');if(g)g.innerHTML=productsData.map(p=>`<div class="product-card"><img class="product-img" src="${p.image}"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price">💰 ${p.price.toLocaleString()} تومان</div><button class="btn-card" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')">خرید</button></div></div>`).join('');}
     
     function showPage(page){
-        const pages = ['homePage','storiesPage','videosPage','musicPage','newsPage','shopPage','galleryPage','aboutPage'];
-        pages.forEach(p=>{ const el = document.getElementById(p); if(el) el.style.display = 'none'; });
-        if(page==='home'){ document.getElementById('homePage').style.display='block'; loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
+        let pages = ['homePage','storiesPage','videosPage','musicPage','newsPage','shopPage','galleryPage','aboutPage'];
+        pages.forEach(p=>{let el=document.getElementById(p);if(el)el.style.display='none';});
+        if(page==='home'){ document.getElementById('homePage').style.display='block'; loadVideos('homeVideos'); loadNews('homeNews'); loadStories('homeStories'); }
         else if(page==='stories'){ document.getElementById('storiesPage').style.display='block'; loadStories('storiesGrid'); }
         else if(page==='videos'){ document.getElementById('videosPage').style.display='block'; loadVideos('videosGrid'); }
         else if(page==='news'){ document.getElementById('newsPage').style.display='block'; loadNews('newsGrid'); }
@@ -339,9 +250,9 @@
     }
     
     loadUserFromStorage();
-    loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
-    loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid'); loadProducts();
     renderSlider(); setInterval(()=>changeSlide(1),5000);
+    loadVideos('homeVideos'); loadNews('homeNews'); loadStories('homeStories');
+    loadStories('storiesGrid'); loadVideos('videosGrid'); loadNews('newsGrid'); loadProducts();
 </script>
 </body>
-    </html>
+                                                                                                                                                                                                                                                </html>
