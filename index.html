@@ -15,6 +15,8 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
+        
+        /* اسلایدر داینامیک */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -27,6 +29,7 @@
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
+        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -181,7 +184,19 @@
         <div class="section-title"><i class="fas fa-store"></i> زروکس‌شاپ | فروشگاه تخصصی گیمینگ</div>
         <div id="adminShopPanel" style="display:none;" class="admin-shop-panel">
             <h3>🛍️ مدیریت فروشگاه</h3>
-            <input type="text" id="productTitle" placeholder="نام محصول"><textarea id="productDesc" placeholder="توضیحات"></textarea><input type="text" id="productPrice" placeholder="قیمت (تومان)"><input type="text" id="productImage" placeholder="لینک عکس"><select id="productShape"><option value="square">مربع</option><option value="rectangle">مستطیل</option><option value="large">بزرگ</option></select><button onclick="addProduct()">➕ اضافه کردن محصول</button><hr><h4>✏️ ویرایش/حذف محصولات</h4><div id="productsListAdmin"></div>
+            <input type="text" id="productTitle" placeholder="نام محصول">
+            <textarea id="productDesc" placeholder="توضیحات محصول"></textarea>
+            <input type="text" id="productPrice" placeholder="قیمت (تومان)">
+            <input type="text" id="productImage" placeholder="لینک عکس محصول">
+            <select id="productShape">
+                <option value="square">مربع</option>
+                <option value="rectangle">مستطیل</option>
+                <option value="large">بزرگ</option>
+            </select>
+            <button onclick="addProduct()">➕ اضافه کردن محصول</button>
+            <hr>
+            <h4>✏️ ویرایش/حذف محصولات</h4>
+            <div id="productsListAdmin"></div>
         </div>
         <div class="shop-grid" id="shopGrid"></div>
     </div>
@@ -268,12 +283,113 @@
     function clearNewsForm(){document.getElementById('newsTitle').value='';document.getElementById('newsSummary').value='';document.getElementById('newsImage').value='';document.getElementById('newsDate').value='';document.getElementById('newsTime').value='';document.getElementById('newsFullText').value='';}
     function refreshAllNews(){loadNews('homeNewsGrid');loadNews('newsGrid');}
     
-    // =============== فروشگاه ===============
-    function loadProducts(){const g=document.getElementById('shopGrid');if(!g)return;if(!productsData.length){g.innerHTML='<div class="product-card" style="text-align:center;padding:50px;"><i class="fas fa-box-open" style="font-size:48px;color:#B61C1C;"></i><h3>هنوز محصولی وجود ندارد</h3><p>به زودی...</p></div>';return;}g.innerHTML=productsData.map(p=>`<div class="product-card ${p.shape}"><img class="product-img" src="${p.image}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price"><i class="fas fa-coins"></i> ${p.price.toLocaleString()} تومان</div><button class="buy-btn" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')"><i class="fas fa-shopping-cart"></i> خرید محصول</button></div></div>`).join('');}
-    function addProduct(){const t=document.getElementById('productTitle').value.trim(),d=document.getElementById('productDesc').value.trim(),p=parseInt(document.getElementById('productPrice').value),i=document.getElementById('productImage').value.trim(),s=document.getElementById('productShape').value;if(!t||!d||!p||!i){alert('همه فیلدها را پر کنید!');return;}productsData.push({id:Date.now(),title:t,desc:d,price:p,image:i,shape:s});saveProducts();document.getElementById('productTitle').value='';document.getElementById('productDesc').value='';document.getElementById('productPrice').value='';document.getElementById('productImage').value='';loadAdminProductsList();loadProducts();alert('محصول اضافه شد!');}
-    function deleteProduct(id){if(confirm('حذف شود؟')){productsData=productsData.filter(p=>p.id!==id);saveProducts();loadAdminProductsList();loadProducts();alert('حذف شد!');}}
-    function editProduct(id){const p=productsData.find(p=>p.id===id);if(!p)return;const nt=prompt('نام جدید:',p.title);if(nt)p.title=nt;const nd=prompt('توضیحات جدید:',p.desc);if(nd)p.desc=nd;const np=parseInt(prompt('قیمت جدید:',p.price));if(np)p.price=np;const ni=prompt('لینک عکس جدید:',p.image);if(ni)p.image=ni;const ns=prompt('شکل جدید (square/rectangle/large):',p.shape);if(ns)p.shape=ns;saveProducts();loadAdminProductsList();loadProducts();alert('ویرایش شد!');}
-    function loadAdminProductsList(){const c=document.getElementById('productsListAdmin');if(!c)return;c.innerHTML=productsData.length?productsData.map(p=>`<div class="product-item-admin"><span>${p.title} - ${p.price.toLocaleString()} تومان</span><div><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑</button></div></div>`).join(''):'<p>هیچ محصولی نیست</p>';}
+    // =============== فروشگاه (اصلاح شده) ===============
+    function loadProducts(){
+        const grid = document.getElementById('shopGrid');
+        if(!grid) return;
+        if(productsData.length === 0){
+            grid.innerHTML = '<div class="product-card" style="text-align:center;padding:50px;"><i class="fas fa-box-open" style="font-size:48px;color:#B61C1C;"></i><h3>هنوز محصولی وجود ندارد</h3><p>از پنل ادمین محصول جدید اضافه کنید</p></div>';
+            return;
+        }
+        grid.innerHTML = productsData.map(p => `
+            <div class="product-card ${p.shape || 'square'}">
+                <img class="product-img" src="${p.image}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                <div class="product-info">
+                    <h3 class="product-title">${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="product-price"><i class="fas fa-coins"></i> ${Number(p.price).toLocaleString()} تومان</div>
+                    <button class="buy-btn" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')"><i class="fas fa-shopping-cart"></i> خرید محصول</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function addProduct(){
+        const title = document.getElementById('productTitle').value.trim();
+        const desc = document.getElementById('productDesc').value.trim();
+        const price = document.getElementById('productPrice').value.trim();
+        const image = document.getElementById('productImage').value.trim();
+        const shape = document.getElementById('productShape').value;
+        
+        if(!title || !desc || !price || !image){
+            alert('❌ همه فیلدها را پر کنید!');
+            return;
+        }
+        
+        const priceNum = parseInt(price);
+        if(isNaN(priceNum)){
+            alert('❌ قیمت را به عدد وارد کنید!');
+            return;
+        }
+        
+        productsData.push({
+            id: Date.now(),
+            title: title,
+            desc: desc,
+            price: priceNum,
+            image: image,
+            shape: shape
+        });
+        
+        saveProducts();
+        
+        // پاک کردن فرم
+        document.getElementById('productTitle').value = '';
+        document.getElementById('productDesc').value = '';
+        document.getElementById('productPrice').value = '';
+        document.getElementById('productImage').value = '';
+        
+        loadAdminProductsList();
+        loadProducts();
+        alert('✅ محصول با موفقیت اضافه شد!');
+    }
+    
+    function deleteProduct(id){
+        if(confirm('آیا از حذف این محصول مطمئنی؟')){
+            productsData = productsData.filter(p => p.id !== id);
+            saveProducts();
+            loadAdminProductsList();
+            loadProducts();
+            alert('محصول حذف شد!');
+        }
+    }
+    
+    function editProduct(id){
+        const p = productsData.find(p => p.id === id);
+        if(!p) return;
+        const newTitle = prompt('نام جدید:', p.title);
+        if(newTitle) p.title = newTitle;
+        const newDesc = prompt('توضیحات جدید:', p.desc);
+        if(newDesc) p.desc = newDesc;
+        const newPrice = prompt('قیمت جدید:', p.price);
+        if(newPrice) p.price = parseInt(newPrice);
+        const newImage = prompt('لینک عکس جدید:', p.image);
+        if(newImage) p.image = newImage;
+        const newShape = prompt('شکل جدید (square/rectangle/large):', p.shape);
+        if(newShape) p.shape = newShape;
+        saveProducts();
+        loadAdminProductsList();
+        loadProducts();
+        alert('ویرایش شد!');
+    }
+    
+    function loadAdminProductsList(){
+        const container = document.getElementById('productsListAdmin');
+        if(!container) return;
+        if(productsData.length === 0){
+            container.innerHTML = '<p style="color:#ccc;">هیچ محصولی وجود ندارد.</p>';
+            return;
+        }
+        container.innerHTML = productsData.map(p => `
+            <div class="product-item-admin">
+                <span style="flex:1;">${p.title} - ${p.price.toLocaleString()} تومان</span>
+                <div>
+                    <button class="edit-btn" onclick="editProduct(${p.id})">✏️</button>
+                    <button onclick="deleteProduct(${p.id})">🗑</button>
+                </div>
+            </div>
+        `).join('');
+    }
     
     // =============== ادمین ===============
     let isAdmin=false,clickCount=0,clickTimer;
