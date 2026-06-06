@@ -32,13 +32,45 @@
         
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card,.shop-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover,.shop-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img,.shop-img{width:100%;height:200px;object-fit:cover;display:block;}
-        .card-content,.news-content,.video-info,.music-info,.gallery-info,.shop-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3,.shop-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p,.shop-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
+        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;gap:30px;margin-bottom:40px;}
+        
+        /* محصولات شاپ */
+        .shop-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+        .product-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;box-shadow:0 5px 15px rgba(0,0,0,0.1);position:relative;}
+        .product-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .product-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .product-info{padding:20px;text-align:center;}
+        .product-title{font-size:1.3rem;margin-bottom:8px;font-weight:900;color:#B61C1C;}
+        .product-price{font-size:1.2rem;font-weight:800;color:#2c3e50;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;}
+        .product-price i{color:#f1c40f;font-size:1.1rem;}
+        .product-desc{font-size:0.85rem;color:#555;margin-bottom:15px;line-height:1.5;}
+        .buy-btn{background:#B61C1C;border:none;padding:8px 25px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;width:100%;font-family:'Vazirmatn',sans-serif;}
+        .buy-btn:hover{background:#8a1010;transform:scale(1.02);}
+        
+        .product-card.rectangle .product-img{height:160px;}
+        .product-card.square .product-img{height:200px;}
+        .product-card.large .product-img{height:280px;}
+        
+        /* پنل مدیریت شاپ */
+        .admin-shop-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-shop-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-shop-panel input,.admin-shop-panel select,.admin-shop-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-shop-panel textarea{min-height:80px;}
+        .admin-shop-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;margin-top:5px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .product-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .product-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:700;}
+        .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
+        .shape-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;margin-left:10px;}
+        .shape-rectangle{background:#3498db;}
+        .shape-square{background:#2ecc71;}
+        .shape-large{background:#e67e22;}
+        
+        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .card-content,.news-content,.video-info,.music-info,.gallery-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
         .news-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:0.7rem;color:#777;justify-content:center;}
         .news-meta i{color:#B61C1C;}
         .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;display:inline-block;}
@@ -82,14 +114,12 @@
         .filter-btn:hover{background:#B61C1C;border-color:#B61C1C;transform:translateY(-2px);}
         .filter-btn.active{background:#B61C1C;border-color:#B61C1C;box-shadow:0 0 10px rgba(182,28,28,0.5);}
         
-        /* پلیر و دکمه دانلود */
         .audio-player{width:100%;margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
         .audio-player audio{flex:1;min-width:150px;border-radius:30px;}
         .download-btn{background:#B61C1C;border:none;border-radius:30px;padding:8px 12px;color:white;cursor:pointer;transition:0.2s;font-size:14px;display:inline-flex;align-items:center;gap:6px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
         .download-btn i{font-size:14px;}
         .download-btn:hover{background:#8a1010;transform:scale(1.02);}
         
-        /* استایل کاستوم برای توضیحات موسیقی */
         .music-game-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(182,28,28,0.1);padding:4px 12px;border-radius:30px;margin:8px auto;width:fit-content;}
         .music-game-badge i{font-size:14px;color:#B61C1C;}
         .music-desc-box{background:linear-gradient(135deg,#f5f5f5,#fff);border-radius:16px;padding:12px;margin:10px 0;border-right:3px solid #B61C1C;text-align:right;font-size:13px;}
@@ -118,7 +148,6 @@
     <button onclick="exitAdminMode()">خروج</button>
 </div>
 
-<!-- اسلایدر داینامیک -->
 <div class="slider-container">
     <div class="slider">
         <button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button>
@@ -225,17 +254,27 @@
         <div class="news-grid" id="newsGrid"></div>
     </div>
 
-    <!-- صفحه فروشگاه زروکس‌شاپ -->
+    <!-- صفحه فروشگاه زروکس‌شاپ با پنل مدیریت -->
     <div id="shopPage" style="display:none;">
         <div class="section-title"><i class="fas fa-store"></i> زروکس‌شاپ | فروشگاه تخصصی گیمینگ</div>
-        <div class="shop-grid" id="shopGrid">
-            <div class="shop-card" style="text-align:center; padding:50px;">
-                <i class="fas fa-box-open" style="font-size:48px; color:#B61C1C; margin-bottom:15px;"></i>
-                <h3 style="color:#B61C1C;">به زودی...</h3>
-                <p>فروشگاه زروکس‌شاپ به زودی با محصولات دیجیتال اختصاصی برای گیمرها افتتاح می‌شود.</p>
-                <p style="font-size:12px; margin-top:10px;">تمپلیت تامنیل | آیکون‌های گیمینگ | فونت‌های بازی‌ها | و...</p>
-            </div>
+        <div id="adminShopPanel" style="display:none;" class="admin-shop-panel">
+            <h3>🛍️ مدیریت فروشگاه (فقط برای ادمین)</h3>
+            <input type="text" id="productTitle" placeholder="نام محصول">
+            <textarea id="productDesc" placeholder="توضیحات محصول"></textarea>
+            <input type="text" id="productPrice" placeholder="قیمت (تومان)">
+            <input type="text" id="productImage" placeholder="لینک عکس محصول">
+            <select id="productShape">
+                <option value="square">مربع (square)</option>
+                <option value="rectangle">مستطیل (rectangle)</option>
+                <option value="large">بزرگ (large)</option>
+            </select>
+            <input type="text" id="productLink" placeholder="لینک دانلود (بعد از خرید)">
+            <button onclick="addProduct()">➕ اضافه کردن محصول</button>
+            <hr style="margin:20px 0; border-color:#444;">
+            <h4>✏️ ویرایش/حذف محصولات</h4>
+            <div id="productsListAdmin"></div>
         </div>
+        <div class="shop-grid" id="shopGrid"></div>
     </div>
 
     <div id="galleryPage" style="display:none;">
@@ -333,6 +372,88 @@
     function editMusic(id){const m=musicData.find(m=>m.id===id);if(!m)return;const newTitle=prompt('نام جدید:',m.title);if(newTitle)m.title=newTitle;const newGame=prompt('نام بازی جدید:',m.game);if(newGame)m.game=newGame;const newPlatform=prompt('پلتفرم جدید:',m.platform);if(newPlatform)m.platform=newPlatform;const newCover=prompt('لینک کاور جدید:',m.cover);if(newCover)m.cover=newCover;const newFile=prompt('لینک فایل جدید:',m.file);if(newFile)m.file=newFile;const newDesc=prompt('توضیحات جدید:',m.desc);if(newDesc!==null)m.desc=newDesc;saveMusic();loadAdminMusicList();loadMusic();alert('ویرایش شد!');}
     function loadAdminMusicList(){const c=document.getElementById('musicListAdmin');if(!c)return;if(musicData.length===0){c.innerHTML='<p>هیچ آهنگی وجود ندارد.</p>';return;}let html='';for(let m of musicData){html+=`<div class="music-item-admin"><span>${m.title} (${m.game})</span><div><button class="edit-btn" onclick="editMusic(${m.id})">✏️</button><button onclick="deleteMusic(${m.id})">🗑</button></div></div>`;}c.innerHTML=html;}
     
+    // =============== فروشگاه با مدیریت کامل ===============
+    let productsData = JSON.parse(localStorage.getItem('zeroxProducts')) || [];
+    function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
+    
+    function loadProducts() {
+        const shopGrid = document.getElementById('shopGrid');
+        if (!shopGrid) return;
+        if (productsData.length === 0) {
+            shopGrid.innerHTML = '<div class="product-card" style="text-align:center; padding:50px;"><i class="fas fa-box-open" style="font-size:48px; color:#B61C1C;"></i><h3>هنوز محصولی وجود ندارد</h3><p>به زودی...</p></div>';
+            return;
+        }
+        let html = '';
+        for (let p of productsData) {
+            html += `<div class="product-card ${p.shape}"><img class="product-img" src="${p.image}"><div class="product-info"><h3 class="product-title">${p.title}</h3><p class="product-desc">${p.desc}</p><div class="product-price"><i class="fas fa-coins"></i> ${p.price.toLocaleString()} تومان</div><button class="buy-btn" onclick="event.stopPropagation(); alert('لطفاً برای خرید با ادمین تماس بگیرید: @support_Zerox')"><i class="fas fa-shopping-cart"></i> خرید محصول</button></div></div>`;
+        }
+        shopGrid.innerHTML = html;
+    }
+    
+    function addProduct() {
+        const title = document.getElementById('productTitle').value.trim();
+        const desc = document.getElementById('productDesc').value.trim();
+        const price = parseInt(document.getElementById('productPrice').value.trim());
+        const image = document.getElementById('productImage').value.trim();
+        const shape = document.getElementById('productShape').value;
+        const link = document.getElementById('productLink').value.trim();
+        if (!title || !desc || !price || !image) { alert('لطفاً همه فیلدها را پر کنید!'); return; }
+        productsData.push({ id: Date.now(), title, desc, price, image, shape, link });
+        saveProducts();
+        document.getElementById('productTitle').value = '';
+        document.getElementById('productDesc').value = '';
+        document.getElementById('productPrice').value = '';
+        document.getElementById('productImage').value = '';
+        document.getElementById('productShape').value = 'square';
+        document.getElementById('productLink').value = '';
+        loadAdminProductsList();
+        loadProducts();
+        alert('محصول با موفقیت اضافه شد!');
+    }
+    
+    function deleteProduct(id) {
+        if (confirm('آیا از حذف این محصول مطمئنی؟')) {
+            productsData = productsData.filter(p => p.id !== id);
+            saveProducts();
+            loadAdminProductsList();
+            loadProducts();
+            alert('محصول حذف شد!');
+        }
+    }
+    
+    function editProduct(id) {
+        const product = productsData.find(p => p.id === id);
+        if (!product) return;
+        const newTitle = prompt('نام جدید:', product.title);
+        if (newTitle) product.title = newTitle;
+        const newDesc = prompt('توضیحات جدید:', product.desc);
+        if (newDesc) product.desc = newDesc;
+        const newPrice = prompt('قیمت جدید:', product.price);
+        if (newPrice) product.price = parseInt(newPrice);
+        const newImage = prompt('لینک عکس جدید:', product.image);
+        if (newImage) product.image = newImage;
+        const newShape = prompt('شکل جدید (square/rectangle/large):', product.shape);
+        if (newShape) product.shape = newShape;
+        const newLink = prompt('لینک دانلود جدید:', product.link);
+        if (newLink !== null) product.link = newLink;
+        saveProducts();
+        loadAdminProductsList();
+        loadProducts();
+        alert('محصول ویرایش شد!');
+    }
+    
+    function loadAdminProductsList() {
+        const container = document.getElementById('productsListAdmin');
+        if (!container) return;
+        if (productsData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ محصولی وجود ندارد.</p>'; return; }
+        let html = '';
+        for (let p of productsData) {
+            const shapeText = p.shape === 'square' ? 'مربع' : (p.shape === 'rectangle' ? 'مستطیل' : 'بزرگ');
+            html += `<div class="product-item-admin"><span style="flex:1;">${p.title} - ${p.price.toLocaleString()} تومان <span class="shape-badge shape-${p.shape}">${shapeText}</span></span><div><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑</button></div></div>`;
+        }
+        container.innerHTML = html;
+    }
+    
     // =============== ویدیوها ===============
     let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [
         { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل | ترند و ترسناک ترین بازی ۲۰۲۵", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
@@ -367,7 +488,8 @@
                 document.getElementById('adminVideosPanel').style.display = 'block';
                 document.getElementById('adminSliderPanel').style.display = 'block';
                 document.getElementById('adminMusicPanel').style.display = 'block';
-                loadAdminNewsList(); loadAdminVideosList(); loadAdminSliderList(); loadAdminMusicList();
+                document.getElementById('adminShopPanel').style.display = 'block';
+                loadAdminNewsList(); loadAdminVideosList(); loadAdminSliderList(); loadAdminMusicList(); loadAdminProductsList();
                 alert('حالت ادمین فعال شد.');
             } else alert('رمز اشتباه است!');
         }
@@ -379,6 +501,7 @@
         document.getElementById('adminVideosPanel').style.display = 'none';
         document.getElementById('adminSliderPanel').style.display = 'none';
         document.getElementById('adminMusicPanel').style.display = 'none';
+        document.getElementById('adminShopPanel').style.display = 'none';
         alert('حالت ادمین غیرفعال شد.');
     }
     
@@ -432,40 +555,4 @@
     
     function addVideo() { const title = document.getElementById('videoTitle').value.trim(); const desc = document.getElementById('videoDesc').value.trim(); const thumb = document.getElementById('videoThumb').value.trim(); const link = document.getElementById('videoLink').value.trim(); const category = document.getElementById('videoCategory').value; const date = document.getElementById('videoDate').value.trim(); const time = document.getElementById('videoTime').value.trim(); const fullText = document.getElementById('videoFullText').value.trim(); if (!title || !desc || !thumb || !link || !date || !time) { alert('عنوان، توضیحات، عکس، لینک، تاریخ و ساعت را پر کنید!'); return; } videosData.push({ id: Date.now(), title, desc, thumb, link, category, date, time, fullText }); saveVideos(); clearVideoForm(); loadAdminVideosList(); refreshAllVideos(); alert('ویدیو اضافه شد!'); }
     function deleteVideo(id) { if (confirm('حذف شود؟')) { videosData = videosData.filter(v => v.id !== id); saveVideos(); loadAdminVideosList(); refreshAllVideos(); } }
-    function editVideo(id) { const video = videosData.find(v => v.id === id); if (!video) return; const newTitle = prompt('عنوان جدید:', video.title); if (newTitle) video.title = newTitle; const newDesc = prompt('توضیحات جدید:', video.desc); if (newDesc) video.desc = newDesc; const newThumb = prompt('لینک عکس جدید:', video.thumb); if (newThumb) video.thumb = newThumb; const newLink = prompt('لینک ویدیو جدید:', video.link); if (newLink) video.link = newLink; const newCategory = prompt('سبک جدید:', video.category); if (newCategory) video.category = newCategory; const newDate = prompt('تاریخ جدید:', video.date); if (newDate) video.date = newDate; const newTime = prompt('ساعت جدید:', video.time); if (newTime) video.time = newTime; const newFullText = prompt('متن کامل جدید:', video.fullText); if (newFullText !== null) video.fullText = newFullText; saveVideos(); loadAdminVideosList(); refreshAllVideos(); alert('ویدیو ویرایش شد!'); }
-    function loadAdminVideosList() { const container = document.getElementById('videosListAdmin'); if (!container) return; if (videosData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ ویدیویی وجود ندارد.</p>'; return; } let html = ''; for (let v of videosData) { html += `<div class="video-item-admin"><span>${v.title} (${v.category})</span><div><button class="edit-btn" onclick="editVideo(${v.id})">✏️</button><button onclick="deleteVideo(${v.id})">🗑</button></div></div>`; } container.innerHTML = html; }
-    function clearVideoForm() { document.getElementById('videoTitle').value = ''; document.getElementById('videoDesc').value = ''; document.getElementById('videoThumb').value = ''; document.getElementById('videoLink').value = ''; document.getElementById('videoCategory').value = 'تخیلی'; document.getElementById('videoDate').value = ''; document.getElementById('videoTime').value = ''; document.getElementById('videoFullText').value = ''; }
-    function refreshAllVideos() { loadVideos('homeVideosGrid', 'همه'); if (typeof currentFilter !== 'undefined') loadVideos('videosGrid', currentFilter); else loadVideos('videosGrid', 'همه'); }
-    
-    let currentFilter = 'همه';
-    function setupFilters() { const btns = document.querySelectorAll('#filterButtons .filter-btn'); btns.forEach(btn => { btn.addEventListener('click', () => { btns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.getAttribute('data-category'); loadVideos('videosGrid', currentFilter); }); }); }
-    
-    function showPage(page) {
-        document.getElementById('homePage').style.display = 'none';
-        document.getElementById('storiesPage').style.display = 'none';
-        document.getElementById('videosPage').style.display = 'none';
-        document.getElementById('musicPage').style.display = 'none';
-        document.getElementById('newsPage').style.display = 'none';
-        document.getElementById('shopPage').style.display = 'none';
-        document.getElementById('galleryPage').style.display = 'none';
-        document.getElementById('aboutPage').style.display = 'none';
-        if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid', 'همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
-        else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
-        else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid', currentFilter); setupFilters(); if(isAdmin) document.getElementById('adminVideosPanel').style.display = 'block'; }
-        else if (page === 'music') { document.getElementById('musicPage').style.display = 'block'; loadMusic(); if(isAdmin) document.getElementById('adminMusicPanel').style.display = 'block'; }
-        else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) { document.getElementById('adminNewsPanel').style.display = 'block'; document.getElementById('adminSliderPanel').style.display = 'block'; } }
-        else if (page === 'shop') { document.getElementById('shopPage').style.display = 'block'; }
-        else if (page === 'gallery') { document.getElementById('galleryPage').style.display = 'block'; }
-        else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
-    }
-    
-    loadVideos('homeVideosGrid', 'همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid');
-    loadStories('storiesGrid'); loadVideos('videosGrid', 'همه'); loadNews('newsGrid'); loadMusic();
-    renderSlider(); startAutoSlide();
-    if (localStorage.getItem('zeroxNews') === null) saveNews();
-    if (localStorage.getItem('zeroxVideos') === null) saveVideos();
-    if (localStorage.getItem('zeroxMusic') === null) saveMusic();
-</script>
-
-</body>
-    </html>
+    function editVideo(id) { const video = videosData.find(v => v.id === id); if (!video) return; const newTitle = prompt('عنوان جدید:', video.title); if (newTitle) video.title = newTitle; const newDesc = prompt('توضیحات جدید:', video.desc); if (newDesc) video.desc = newDesc; const newThumb = prompt('لینک عکس جدید:', video.thumb); if (newThumb) video.th
