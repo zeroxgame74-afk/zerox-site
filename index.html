@@ -32,13 +32,13 @@
         
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
-        .card-content,.news-content,.video-info,.music-info,.gallery-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
+        .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
+        .thumbnail-card,.news-card,.video-card,.music-card,.gallery-card,.shop-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.music-card:hover,.gallery-card:hover,.shop-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb,.music-img,.gallery-img,.shop-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .card-content,.news-content,.video-info,.music-info,.gallery-info,.shop-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3,.music-info h3,.gallery-info h3,.shop-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .card-content p,.news-content p,.video-info p,.music-info p,.gallery-info p,.shop-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
         .news-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:0.7rem;color:#777;justify-content:center;}
         .news-meta i{color:#B61C1C;}
         .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;display:inline-block;}
@@ -105,8 +105,9 @@
         <a onclick="showPage('home')"><i class="fas fa-home"></i> خانه</a>
         <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
         <a onclick="showPage('videos')"><i class="fas fa-video"></i> ویدیوها</a>
-        <a onclick="showPage('music')"><i class="fas fa-music"></i> موسیقی بازی</a>
+        <a onclick="showPage('music')"><i class="fas fa-music"></i> موسیقی</a>
         <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
+        <a onclick="showPage('shop')"><i class="fas fa-store"></i> ZEROXSTORE</a>
         <a onclick="showPage('gallery')"><i class="fas fa-images"></i> گالری</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
@@ -224,6 +225,19 @@
         <div class="news-grid" id="newsGrid"></div>
     </div>
 
+    <!-- صفحه فروشگاه ZEROXSTORE -->
+    <div id="shopPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-store"></i> ZEROXSTORE | فروشگاه تخصصی گیمینگ</div>
+        <div class="shop-grid" id="shopGrid">
+            <div class="shop-card" style="text-align:center; padding:50px;">
+                <i class="fas fa-box-open" style="font-size:48px; color:#B61C1C; margin-bottom:15px;"></i>
+                <h3 style="color:#B61C1C;">به زودی...</h3>
+                <p>فروشگاه ZEROXSTORE به زودی با محصولات دیجیتال اختصاصی برای گیمرها افتتاح می‌شود.</p>
+                <p style="font-size:12px; margin-top:10px;">تمپلیت تامنیل | آیکون‌های گیمینگ | فونت‌های بازی‌ها | و...</p>
+            </div>
+        </div>
+    </div>
+
     <div id="galleryPage" style="display:none;">
         <div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div>
         <div class="gallery-grid" id="galleryGrid">
@@ -283,10 +297,8 @@
     let autoSlideInterval;
     function startAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); if (sliderData.length > 1) autoSlideInterval = setInterval(() => changeSlide(1), 5000); }
     
-    // =============== موسیقی با پلتفرم کاستوم ===============
+    // =============== موسیقی ===============
     let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
-    function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
-    
     function getPlatformIcon(platform) {
         const p = platform?.toLowerCase() || '';
         if (p.includes('ps') || p.includes('playstation')) return '<i class="fab fa-playstation"></i>';
@@ -295,53 +307,31 @@
         if (p.includes('nintendo')) return '<i class="fab fa-nintendo-switch"></i>';
         return '<i class="fas fa-gamepad"></i>';
     }
-    
     function downloadMusic(fileUrl, title) {
-        fetch(fileUrl)
-            .then(response => response.blob())
-            .then(blob => {
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = `${title}.mp3`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(link.href);
-            })
-            .catch(() => {
-                window.open(fileUrl, '_blank');
-            });
+        fetch(fileUrl).then(r=>r.blob()).then(blob=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${title}.mp3`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}).catch(()=>window.open(fileUrl,'_blank'));
     }
-    
     function loadMusic() {
         const musicGrid = document.getElementById('musicGrid');
         if (!musicGrid) return;
-        if (musicData.length === 0) { musicGrid.innerHTML = '<div class="music-card" style="text-align:center; padding:50px;"><i class="fas fa-headphones" style="font-size:48px; color:#B61C1C;"></i><h3 style="color:#B61C1C;">هنوز آهنگی اضافه نشده</h3><p>به زودی...</p></div>'; return; }
+        if (musicData.length === 0) { musicGrid.innerHTML = '<div class="music-card" style="text-align:center; padding:50px;"><i class="fas fa-headphones" style="font-size:48px; color:#B61C1C;"></i><h3>هنوز آهنگی اضافه نشده</h3></div>'; return; }
         let html = '';
         for (let m of musicData) {
             const platformIcon = getPlatformIcon(m.platform);
-            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${platformIcon} <span>${m.game}</span></div>${m.desc ? `<div class="music-desc-box">${m.desc}</div>` : ''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`;
+            html += `<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${platformIcon} ${m.game}</div>${m.desc ? `<div class="music-desc-box">${m.desc}</div>` : ''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}', '${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`;
         }
         musicGrid.innerHTML = html;
     }
-    
+    function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
     function addMusic() {
-        const title = document.getElementById('musicTitle').value.trim();
-        const game = document.getElementById('musicGame').value.trim();
-        const platform = document.getElementById('musicPlatform').value.trim();
-        const cover = document.getElementById('musicCover').value.trim();
-        const file = document.getElementById('musicFile').value.trim();
-        const desc = document.getElementById('musicDesc').value.trim();
-        if (!title || !game || !cover || !file) { alert('لطفاً نام آهنگ، نام بازی، کاور و فایل صوتی را وارد کنید!'); return; }
-        musicData.push({ id: Date.now(), title, game, platform: platform || 'PS', cover, file, desc });
-        saveMusic();
-        document.getElementById('musicTitle').value = ''; document.getElementById('musicGame').value = ''; document.getElementById('musicPlatform').value = ''; document.getElementById('musicCover').value = ''; document.getElementById('musicFile').value = ''; document.getElementById('musicDesc').value = '';
-        loadAdminMusicList(); loadMusic();
-        alert('آهنگ اضافه شد!');
+        const title=document.getElementById('musicTitle').value.trim(), game=document.getElementById('musicGame').value.trim(), platform=document.getElementById('musicPlatform').value.trim(), cover=document.getElementById('musicCover').value.trim(), file=document.getElementById('musicFile').value.trim(), desc=document.getElementById('musicDesc').value.trim();
+        if(!title||!game||!cover||!file){alert('لطفاً نام آهنگ، نام بازی، کاور و فایل صوتی را وارد کنید!');return;}
+        musicData.push({id:Date.now(),title,game,platform:platform||'PS',cover,file,desc});saveMusic();
+        document.getElementById('musicTitle').value='';document.getElementById('musicGame').value='';document.getElementById('musicPlatform').value='';document.getElementById('musicCover').value='';document.getElementById('musicFile').value='';document.getElementById('musicDesc').value='';
+        loadAdminMusicList();loadMusic();alert('آهنگ اضافه شد!');
     }
-    function deleteMusic(id) { if (confirm('حذف شود؟')) { musicData = musicData.filter(m => m.id !== id); saveMusic(); loadAdminMusicList(); loadMusic(); alert('آهنگ حذف شد!'); } }
-    function editMusic(id) { const m = musicData.find(m => m.id === id); if (!m) return; const newTitle = prompt('نام جدید:', m.title); if (newTitle) m.title = newTitle; const newGame = prompt('نام بازی جدید:', m.game); if (newGame) m.game = newGame; const newPlatform = prompt('پلتفرم جدید (PS/Xbox/PC/Nintendo):', m.platform); if (newPlatform) m.platform = newPlatform; const newCover = prompt('لینک کاور جدید:', m.cover); if (newCover) m.cover = newCover; const newFile = prompt('لینک فایل جدید:', m.file); if (newFile) m.file = newFile; const newDesc = prompt('توضیحات جدید:', m.desc); if (newDesc !== null) m.desc = newDesc; saveMusic(); loadAdminMusicList(); loadMusic(); alert('ویرایش شد!'); }
-    function loadAdminMusicList() { const container = document.getElementById('musicListAdmin'); if (!container) return; if (musicData.length === 0) { container.innerHTML = '<p style="color:#ccc;">هیچ آهنگی وجود ندارد.</p>'; return; } let html = ''; for (let m of musicData) { html += `<div class="music-item-admin"><span>${m.title} (${m.game} - ${m.platform || 'PS'})</span><div><button class="edit-btn" onclick="editMusic(${m.id})">✏️</button><button onclick="deleteMusic(${m.id})">🗑</button></div></div>`; } container.innerHTML = html; }
+    function deleteMusic(id){if(confirm('حذف شود؟')){musicData=musicData.filter(m=>m.id!==id);saveMusic();loadAdminMusicList();loadMusic();alert('آهنگ حذف شد!');}}
+    function editMusic(id){const m=musicData.find(m=>m.id===id);if(!m)return;const newTitle=prompt('نام جدید:',m.title);if(newTitle)m.title=newTitle;const newGame=prompt('نام بازی جدید:',m.game);if(newGame)m.game=newGame;const newPlatform=prompt('پلتفرم جدید:',m.platform);if(newPlatform)m.platform=newPlatform;const newCover=prompt('لینک کاور جدید:',m.cover);if(newCover)m.cover=newCover;const newFile=prompt('لینک فایل جدید:',m.file);if(newFile)m.file=newFile;const newDesc=prompt('توضیحات جدید:',m.desc);if(newDesc!==null)m.desc=newDesc;saveMusic();loadAdminMusicList();loadMusic();alert('ویرایش شد!');}
+    function loadAdminMusicList(){const c=document.getElementById('musicListAdmin');if(!c)return;if(musicData.length===0){c.innerHTML='<p>هیچ آهنگی وجود ندارد.</p>';return;}let html='';for(let m of musicData){html+=`<div class="music-item-admin"><span>${m.title} (${m.game})</span><div><button class="edit-btn" onclick="editMusic(${m.id})">✏️</button><button onclick="deleteMusic(${m.id})">🗑</button></div></div>`;}c.innerHTML=html;}
     
     // =============== ویدیوها ===============
     let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [
@@ -451,12 +441,20 @@
     function setupFilters() { const btns = document.querySelectorAll('#filterButtons .filter-btn'); btns.forEach(btn => { btn.addEventListener('click', () => { btns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.getAttribute('data-category'); loadVideos('videosGrid', currentFilter); }); }); }
     
     function showPage(page) {
-        document.getElementById('homePage').style.display = 'none'; document.getElementById('storiesPage').style.display = 'none'; document.getElementById('videosPage').style.display = 'none'; document.getElementById('musicPage').style.display = 'none'; document.getElementById('newsPage').style.display = 'none'; document.getElementById('galleryPage').style.display = 'none'; document.getElementById('aboutPage').style.display = 'none';
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('storiesPage').style.display = 'none';
+        document.getElementById('videosPage').style.display = 'none';
+        document.getElementById('musicPage').style.display = 'none';
+        document.getElementById('newsPage').style.display = 'none';
+        document.getElementById('shopPage').style.display = 'none';
+        document.getElementById('galleryPage').style.display = 'none';
+        document.getElementById('aboutPage').style.display = 'none';
         if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid', 'همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
         else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
         else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid', currentFilter); setupFilters(); if(isAdmin) document.getElementById('adminVideosPanel').style.display = 'block'; }
         else if (page === 'music') { document.getElementById('musicPage').style.display = 'block'; loadMusic(); if(isAdmin) document.getElementById('adminMusicPanel').style.display = 'block'; }
         else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) { document.getElementById('adminNewsPanel').style.display = 'block'; document.getElementById('adminSliderPanel').style.display = 'block'; } }
+        else if (page === 'shop') { document.getElementById('shopPage').style.display = 'block'; }
         else if (page === 'gallery') { document.getElementById('galleryPage').style.display = 'block'; }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
@@ -470,4 +468,4 @@
 </script>
 
 </body>
-    </html>
+                </html>
