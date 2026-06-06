@@ -17,9 +17,12 @@
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;}
+        .slides{display:flex;transition:transform 0.5s ease-in-out;}
         .slide{min-width:100%;}
         .slide img{width:100%;height:auto;display:block;}
+        .dots{text-align:center;padding:15px 0 5px;}
+        .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
+        .dot.active{background:white;transform:scale(1.2);}
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
@@ -39,6 +42,7 @@
         .more-btn:hover{background:#B61C1C;color:white;}
         .full-text{display:none;margin-top:10px;padding:10px;background:#f9f9f9;border-radius:12px;text-align:right;}
         .footer{text-align:center;padding:35px;margin-top:50px;border-top:1px solid rgba(255,255,255,0.2);color:white;}
+
         .comments-section{background:white;border-radius:24px;padding:25px;margin-top:30px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
         .comments-section h3{color:#B61C1C;margin-bottom:20px;font-size:1.5rem;}
         .comment-form{display:flex;flex-direction:column;gap:12px;margin-bottom:25px;background:#f9f9f9;padding:15px;border-radius:20px;}
@@ -85,13 +89,14 @@
     <button onclick="exitAdminMode()">خروج</button>
 </div>
 
-<!-- اسلایدر با عکس -->
 <div class="slider-container">
     <div class="slider">
         <div class="slides" id="slides">
-            <div class="slide"><img src="https://s6.iranv.ir/images/2025/06/06/InShot_20260605_200640757.jpg" alt="اسلاید ZEROX"></div>
+            <div class="slide"><img src="https://up.20script.ir/file/95ed-InShot-20260605-195526606.jpg" alt="اسلاید ۱"></div>
+            <div class="slide"><img src="https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" alt="اسلاید ۲"></div>
         </div>
     </div>
+    <div class="dots" id="dots"></div>
 </div>
 
 <div class="container" id="contentContainer">
@@ -158,7 +163,7 @@
 
     let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [
         { id: 1, title: "بالاخره خبر جدید GTA 6 رسید!", summary: "راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه و فعلاً خبری از تأخیر جدید نیست.", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: `<p>راک‌استار دوباره تأکید کرده که بازی در ۱۹ نوامبر ۲۰۲۶ منتشر می‌شه. شما بیشتر منتظر تریلر سوم هستید یا خود بازی؟</p><p><strong>کانال Zerox 🎮🔥</strong></p>` },
-        { id: 2, title: "رزیدنت اویل مرثیه و کپکام چیکار کردن?", summary: "رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره! کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت...", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: `<p>رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره!</p><p>کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخته و قراره داستان ترسناک بازی ادامه پیدا کنه. از اون طرف یه مود رایگان جدید به اسم Leon Must Die Forever هم منتشر شده که هر بار تجربه‌ای متفاوت و چالش‌برانگیز به بازیکن‌ها میده.</p><p>جالب‌تر اینکه بازی تو مدت خیلی کوتاهی به فروش فوق‌العاده‌ای رسیده و رکوردهای جدیدی برای سری رزیدنت اویل ثبت کرده. حالا طرفدارها منتظرن ببینن کپکام تو DLC آینده چه رازهای جدیدی رو فاش می‌کنه و سرنوشت شخصیت‌ها به کجا می‌رسه.</p><p><strong>زروکس | مرجع اخبار و داستان بازی‌ها 🎮🔥</strong></p>` }
+        { id: 2, title: "رزیدنت اویل مرثیه و کپکام چیکار کردن؟", summary: "رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره! کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخت...", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: `<p>رزیدنت اویل مرثیه هنوز کلی سورپرایز تو آستینش داره!</p><p>کپکام رسماً تأیید کرده که یک DLC داستانی برای بازی در حال ساخته و قراره داستان ترسناک بازی ادامه پیدا کنه. از اون طرف یه مود رایگان جدید به اسم Leon Must Die Forever هم منتشر شده که هر بار تجربه‌ای متفاوت و چالش‌برانگیز به بازیکن‌ها میده.</p><p>جالب‌تر اینکه بازی تو مدت خیلی کوتاهی به فروش فوق‌العاده‌ای رسیده و رکوردهای جدیدی برای سری رزیدنت اویل ثبت کرده. حالا طرفدارها منتظرن ببینن کپکام تو DLC آینده چه رازهای جدیدی رو فاش می‌کنه و سرنوشت شخصیت‌ها به کجا می‌رسه.</p><p><strong>زروکس | مرجع اخبار و داستان بازی‌ها 🎮🔥</strong></p>` }
     ];
 
     function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
@@ -353,6 +358,13 @@
         loadNews('homeNewsGrid'); loadNews('newsGrid');
     }
 
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots');
+    function showSlides() { document.getElementById('slides').style.transform = `translateX(-${slideIndex * 100}%)`; document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === slideIndex)); }
+    function changeSlide(n) { slideIndex = (slideIndex + n + slides.length) % slides.length; showSlides(); }
+    if (slides.length > 0) { for (let i = 0; i < slides.length; i++) { const dot = document.createElement('div'); dot.classList.add('dot'); dot.onclick = () => { slideIndex = i; showSlides(); }; dotsContainer.appendChild(dot); } showSlides(); setInterval(() => changeSlide(1), 5000); }
+
     function showPage(page) {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('storiesPage').style.display = 'none';
@@ -372,4 +384,4 @@
 </script>
 
 </body>
-        </html>
+</html>
