@@ -25,13 +25,13 @@
         .dot.active{background:white;transform:scale(1.2);}
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
-        .cards-grid,.news-grid,.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
-        .thumbnail-card,.news-card,.video-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-        .thumbnail-card:hover,.news-card:hover,.video-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
-        .thumbnail-img,.news-img,.video-thumb{width:100%;height:200px;object-fit:cover;display:block;}
-        .card-content,.news-content,.video-info{padding:20px;text-align:center;}
-        .card-content h3,.news-content h3,.video-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
-        .card-content p,.news-content p,.video-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
+        .cards-grid,.news-grid,.videos-grid,.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-bottom:40px;}
+        .thumbnail-card,.news-card,.video-card,.gallery-card{background:white;border-radius:24px;overflow:hidden;transition:0.3s ease;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .thumbnail-card:hover,.news-card:hover,.video-card:hover,.gallery-card:hover{transform:translateY(-8px);box-shadow:0 20px 30px -8px rgba(0,0,0,0.3);}
+        .thumbnail-img,.news-img,.video-thumb,.gallery-img{width:100%;height:200px;object-fit:cover;display:block;}
+        .card-content,.news-content,.video-info,.gallery-info{padding:20px;text-align:center;}
+        .card-content h3,.news-content h3,.video-info h3,.gallery-info h3{font-size:1.4rem;margin-bottom:10px;font-weight:900;color:#B61C1C;}
+        .card-content p,.news-content p,.video-info p,.gallery-info p{font-size:0.9rem;color:#444;margin-bottom:15px;line-height:1.5;font-weight:500;}
         .news-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:0.7rem;color:#777;justify-content:center;}
         .news-meta i{color:#B61C1C;}
         .btn-card{background:#B61C1C;border:none;padding:6px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:12px;font-family:'Vazirmatn',sans-serif;display:inline-block;}
@@ -79,6 +79,7 @@
         <a onclick="showPage('stories')"><i class="fas fa-book-open"></i> داستان‌ها</a>
         <a onclick="showPage('videos')"><i class="fas fa-video"></i> ویدیوها</a>
         <a onclick="showPage('news')"><i class="fas fa-newspaper"></i> اخبار</a>
+        <a onclick="showPage('gallery')"><i class="fas fa-images"></i> گالری بازی‌ها</a>
         <a onclick="showPage('about')"><i class="fas fa-info-circle"></i> درباره ما</a>
     </div>
 </header>
@@ -132,6 +133,18 @@
             <div id="newsListAdmin"></div>
         </div>
         <div class="news-grid" id="newsGrid"></div>
+    </div>
+
+    <div id="galleryPage" style="display:none;">
+        <div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-card" style="text-align:center; padding:50px;">
+                <i class="fas fa-gamepad" style="font-size: 48px; color: #B61C1C; margin-bottom: 15px;"></i>
+                <h3 style="color:#B61C1C;">به زودی...</h3>
+                <p>گالری عکس بازی‌ها به زودی اضافه خواهد شد.</p>
+                <p style="font-size: 12px; margin-top: 10px;">منتظر عکس‌های جدید باشید!</p>
+            </div>
+        </div>
     </div>
 
     <div id="aboutPage" style="display:none;">
@@ -276,10 +289,24 @@
         const name = document.getElementById('commentName').value.trim();
         const text = document.getElementById('commentText').value.trim();
         if (!name || !text) { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
+        
+        // محدودیت یک کامنت برای هر کاربر
+        const userId = localStorage.getItem('userId');
+        if (userId && localStorage.getItem(`commented_${currentNewsId}_${userId}`) === 'true') {
+            alert('شما قبلاً نظر خود را ثبت کرده اید! فقط یک بار می توانید نظر دهید.');
+            return;
+        }
+        
+        const newUserId = userId || Date.now().toString();
+        if (!userId) localStorage.setItem('userId', newUserId);
+        
         const commentsList = loadCommentsForNews(currentNewsId);
         commentsList.push({ name, text, reply: null });
         saveCommentsForNews(currentNewsId, commentsList);
+        localStorage.setItem(`commented_${currentNewsId}_${newUserId}`, 'true');
         loadCommentsForCurrentNews();
+        document.getElementById('commentName').value = '';
+        document.getElementById('commentText').value = '';
     }
 
     function showReplyInputNews(index) {
@@ -386,11 +413,13 @@
         document.getElementById('storiesPage').style.display = 'none';
         document.getElementById('videosPage').style.display = 'none';
         document.getElementById('newsPage').style.display = 'none';
+        document.getElementById('galleryPage').style.display = 'none';
         document.getElementById('aboutPage').style.display = 'none';
         if (page === 'home') { document.getElementById('homePage').style.display = 'block'; loadVideos('homeVideosGrid'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); }
         else if (page === 'stories') { document.getElementById('storiesPage').style.display = 'block'; loadStories('storiesGrid'); }
         else if (page === 'videos') { document.getElementById('videosPage').style.display = 'block'; loadVideos('videosGrid'); }
         else if (page === 'news') { document.getElementById('newsPage').style.display = 'block'; loadNews('newsGrid'); if(isAdmin) document.getElementById('adminNewsPanel').style.display = 'block'; }
+        else if (page === 'gallery') { document.getElementById('galleryPage').style.display = 'block'; }
         else if (page === 'about') document.getElementById('aboutPage').style.display = 'block';
     }
 
