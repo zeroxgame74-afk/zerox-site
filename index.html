@@ -15,11 +15,13 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
+        
+        /* اسلایدر با سایز 1080x390 */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;overflow:hidden;}
-        .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;transition:transform 0.5s ease-in-out;will-change:transform;}
-        .slide{min-width:100%;flex-shrink:0;}
-        .slide img{width:100%;height:auto;display:block;}
+        .slider{position:relative;width:100%;height:390px;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+        .slides{display:flex;transition:transform 0.5s ease-in-out;will-change:transform;height:100%;}
+        .slide{min-width:100%;flex-shrink:0;height:100%;}
+        .slide img{width:100%;height:100%;object-fit:cover;display:block;}
         .dots{text-align:center;padding:15px 0 5px;}
         .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
         .dot.active{background:white;transform:scale(1.2);}
@@ -27,6 +29,7 @@
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
+        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -93,7 +96,17 @@
         .gallery-download-btn{background:#B61C1C;border:none;padding:8px 20px;border-radius:40px;color:white;font-weight:800;cursor:pointer;transition:0.2s;font-size:13px;font-family:'Vazirmatn',sans-serif;display:inline-flex;align-items:center;gap:8px;margin-top:5px;width:auto;}
         .gallery-download-btn i{font-size:14px;}
         .gallery-download-btn:hover{background:#8a1010;transform:scale(1.02);}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.datetime-group{flex-direction:column;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
+        
+        @media (max-width:700px){
+            .logo-raw{height:380px;}
+            .menu a{font-size:13px;gap:6px;}
+            .datetime-group{flex-direction:column;}
+            .filter-btn{padding:5px 14px;font-size:12px;}
+            .nav-arrow{width:30px;height:30px;font-size:14px;}
+            .audio-player{flex-direction:column;}
+            .audio-player audio{width:100%;}
+            .slider{height:220px;}
+        }
     </style>
 </head>
 <body>
@@ -295,7 +308,7 @@
         fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=title+'.jpg';a.click();URL.revokeObjectURL(a.href);}).catch(()=>window.open(url,'_blank'));
     }
     
-    // =============== اسلایدر درست شده ===============
+    // =============== اسلایدر ===============
     let currentSlideIndex = 0, autoSlideInterval;
     function renderSlider() {
         const slidesContainer = document.getElementById('slidesContainer');
@@ -497,35 +510,4 @@
 
     // =============== گالری ===============
     function loadGallery(){const gc=document.getElementById('galleryGrid');if(!gc)return;if(galleryData.length===0){gc.innerHTML='<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';return;}gc.innerHTML=galleryData.map(img=>`<div class="gallery-card"><img class="gallery-img" src="${img.image}" alt="${img.title||'گالری'}"><div class="gallery-info"><h3>${img.title||'بدون عنوان'}</h3><button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title||'gallery-image'}')"><i class="fas fa-download"></i> دانلود عکس</button></div></div>`).join('');}
-    function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList();loadGallery();alert('✅ عکس با موفقیت به گالری اضافه شد!');}
-    function deleteGalleryImage(id){if(confirm('آیا از حذف این عکس مطمئنی؟')){galleryData=galleryData.filter(img=>img.id!==id);saveGallery();loadAdminGalleryList();loadGallery();alert('عکس حذف شد!');}}
-    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadAdminGalleryList();loadGallery();alert('ویرایش انجام شد!');}
-    function loadAdminGalleryList(){const c=document.getElementById('galleryListAdmin');if(!c)return;if(galleryData.length===0){c.innerHTML='<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>';return;}c.innerHTML=galleryData.map(img=>`<div class="gallery-item-admin"><span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title||'بدون عنوان'}</span><div><button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button><button onclick="deleteGalleryImage(${img.id})">🗑</button></div></div>`).join('');}
-    
-    // =============== ادمین ===============
-    let isAdmin=false,clickCount=0,clickTimer;
-    document.getElementById('secretAdminLogo').addEventListener('click',()=>{clickCount++;clearTimeout(clickTimer);clickTimer=setTimeout(()=>clickCount=0,800);if(clickCount===3){clickCount=0;const pwd=prompt('🔐 رمز ادمین:');if(pwd==='یا علی' || pwd==='ZeroxAdmin' || pwd==='yاعلی'){isAdmin=true;document.getElementById('secretAdminPanel').style.display='flex';document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminVideosPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';document.getElementById('adminMusicPanel').style.display='block';document.getElementById('adminShopPanel').style.display='block';document.getElementById('adminGalleryPanel').style.display='block';document.getElementById('adminStoriesPanel').style.display='block';loadAdminNewsList();loadAdminVideosList();loadAdminSliderList();loadAdminMusicList();loadAdminProductsList();loadAdminGalleryList();loadAdminStoriesList();alert('حالت ادمین فعال شد. یا علی');}else alert('رمز اشتباه است!');}});
-    function exitAdminMode(){isAdmin=false;document.getElementById('secretAdminPanel').style.display='none';document.getElementById('adminNewsPanel').style.display='none';document.getElementById('adminVideosPanel').style.display='none';document.getElementById('adminSliderPanel').style.display='none';document.getElementById('adminMusicPanel').style.display='none';document.getElementById('adminShopPanel').style.display='none';document.getElementById('adminGalleryPanel').style.display='none';document.getElementById('adminStoriesPanel').style.display='none';alert('حالت ادمین غیرفعال شد.');}
-    function toggleText(id,btn){const e=document.getElementById(id);if(e.style.display==='none'||e.style.display===''){e.style.display='block';btn.innerText='بستن';}else{e.style.display='none';btn.innerText='بیشتر...';}}
-    
-    // =============== صفحه‌بندی ===============
-    let currentFilter='همه';
-    function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-category');loadVideos('videosGrid',currentFilter);});});}
-    function showPage(page){
-        document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
-        if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
-        else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');if(isAdmin)document.getElementById('adminStoriesPanel').style.display='block';}
-        else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
-        else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
-        else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
-        else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
-        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
-        else if(page==='about')document.getElementById('aboutPage').style.display='block';
-    }
-    
-    // اجرای اولیه
-    loadVideos('homeVideosGrid','همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); loadStories('storiesGrid'); loadVideos('videosGrid','همه'); loadNews('newsGrid'); loadMusic(); loadProducts(); loadGallery(); renderSlider();
-    if(sliderData.length>1) autoSlideInterval=setInterval(()=>changeSlide(1), 5000);
-</script>
-</body>
-</html>
+    function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList()
