@@ -223,7 +223,7 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== داده‌های اولیه (با حفظ داده‌های قبلی کاربر) ===============
+    // =============== داده‌های ثابت اولیه (فقط برای بار اول) ===============
     const DEFAULT_VIDEOS = [
         { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
         { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
@@ -246,12 +246,26 @@
         { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }
     ];
     
-    let sliderData = (() => { const saved = localStorage.getItem('zeroxSlider'); if(saved && saved !== 'undefined') return JSON.parse(saved); return DEFAULT_SLIDER; })();
-    let videosData = (() => { const saved = localStorage.getItem('zeroxVideos'); if(saved && saved !== 'undefined') return JSON.parse(saved); return DEFAULT_VIDEOS; })();
-    let musicData = (() => { const saved = localStorage.getItem('zeroxMusic'); if(saved && saved !== 'undefined') return JSON.parse(saved); return []; })();
-    let newsData = (() => { const saved = localStorage.getItem('zeroxNews'); if(saved && saved !== 'undefined') return JSON.parse(saved); return DEFAULT_NEWS; })();
-    let productsData = (() => { const saved = localStorage.getItem('zeroxProducts'); if(saved && saved !== 'undefined') return JSON.parse(saved); return []; })();
-    let galleryData = (() => { const saved = localStorage.getItem('zeroxGallery'); if(saved && saved !== 'undefined') return JSON.parse(saved); return DEFAULT_GALLERY; })();
+    // بارگذاری امن داده‌ها - اگر خالی یا خراب بود از دیتای پیش‌فرض استفاده کن
+    function loadData(key, defaultValue) {
+        try {
+            const saved = localStorage.getItem(key);
+            if (saved && saved !== 'undefined' && saved !== 'null') {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    return parsed;
+                }
+            }
+        } catch(e) { console.log(e); }
+        return defaultValue;
+    }
+    
+    let sliderData = loadData('zeroxSlider', DEFAULT_SLIDER);
+    let videosData = loadData('zeroxVideos', DEFAULT_VIDEOS);
+    let musicData = loadData('zeroxMusic', []);
+    let newsData = loadData('zeroxNews', DEFAULT_NEWS);
+    let productsData = loadData('zeroxProducts', []);
+    let galleryData = loadData('zeroxGallery', DEFAULT_GALLERY);
     
     function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
     function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
@@ -260,23 +274,14 @@
     function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
     function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
     
-    // تابع دانلود عکس
+    // ذخیره اولیه اگر خالی بود
+    if(!localStorage.getItem('zeroxSlider')) saveSlider();
+    if(!localStorage.getItem('zeroxVideos')) saveVideos();
+    if(!localStorage.getItem('zeroxNews')) saveNews();
+    if(!localStorage.getItem('zeroxGallery')) saveGallery();
+    
     function downloadImage(url, title) {
-        fetch(url)
-            .then(response => response.blob())
-            .then(blob => {
-                const link = document.createElement('a');
-                const objectUrl = URL.createObjectURL(blob);
-                link.href = objectUrl;
-                link.download = `${title || 'image'}.jpg`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(objectUrl);
-            })
-            .catch(() => {
-                window.open(url, '_blank');
-            });
+        fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=title+'.jpg';a.click();URL.revokeObjectURL(a.href);}).catch(()=>window.open(url,'_blank'));
     }
     
     // =============== اسلایدر ===============
@@ -340,74 +345,19 @@
             grid.innerHTML = '<div class="product-card" style="text-align:center;padding:50px;"><i class="fas fa-box-open" style="font-size:48px;color:#B61C1C;"></i><h3>هنوز محصولی وجود ندارد</h3><p>از پنل ادمین محصول جدید اضافه کنید</p></div>';
             return;
         }
-        grid.innerHTML = productsData.map(p => `
-            <div class="product-card ${p.shape || 'square'}">
-                <img class="product-img" src="${p.image}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
-                <div class="product-info">
-                    <h3 class="product-title">${p.title}</h3>
-                    <p>${p.desc}</p>
-                    <div class="product-price"><i class="fas fa-coins"></i> ${Number(p.price).toLocaleString()} تومان</div>
-                    <button class="buy-btn" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')"><i class="fas fa-shopping-cart"></i> خرید محصول</button>
-                </div>
-            </div>
-        `).join('');
+        grid.innerHTML = productsData.map(p => `<div class="product-card ${p.shape || 'square'}"><img class="product-img" src="${p.image}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'"><div class="product-info"><h3 class="product-title">${p.title}</h3><p>${p.desc}</p><div class="product-price"><i class="fas fa-coins"></i> ${Number(p.price).toLocaleString()} تومان</div><button class="buy-btn" onclick="alert('برای خرید با پشتیبانی تماس بگیرید: @support_Zerox')"><i class="fas fa-shopping-cart"></i> خرید محصول</button></div></div>`).join('');
     }
-    
-    function addProduct(){
-        const title = document.getElementById('productTitle').value.trim();
-        const desc = document.getElementById('productDesc').value.trim();
-        const price = document.getElementById('productPrice').value.trim();
-        const image = document.getElementById('productImage').value.trim();
-        const shape = document.getElementById('productShape').value;
-        if(!title || !desc || !price || !image){ alert('❌ همه فیلدها را پر کنید!'); return; }
-        const priceNum = parseInt(price);
-        if(isNaN(priceNum)){ alert('❌ قیمت را به عدد وارد کنید!'); return; }
-        productsData.push({ id: Date.now(), title: title, desc: desc, price: priceNum, image: image, shape: shape });
-        saveProducts();
-        document.getElementById('productTitle').value = ''; document.getElementById('productDesc').value = ''; document.getElementById('productPrice').value = ''; document.getElementById('productImage').value = '';
-        loadAdminProductsList(); loadProducts(); alert('✅ محصول با موفقیت اضافه شد!');
-    }
-    function deleteProduct(id){ if(confirm('آیا از حذف این محصول مطمئنی؟')){ productsData = productsData.filter(p => p.id !== id); saveProducts(); loadAdminProductsList(); loadProducts(); alert('محصول حذف شد!'); } }
-    function editProduct(id){ const p = productsData.find(p => p.id === id); if(!p) return; const newTitle = prompt('نام جدید:', p.title); if(newTitle) p.title = newTitle; const newDesc = prompt('توضیحات جدید:', p.desc); if(newDesc) p.desc = newDesc; const newPrice = prompt('قیمت جدید:', p.price); if(newPrice) p.price = parseInt(newPrice); const newImage = prompt('لینک عکس جدید:', p.image); if(newImage) p.image = newImage; const newShape = prompt('شکل جدید (square/rectangle/large):', p.shape); if(newShape) p.shape = newShape; saveProducts(); loadAdminProductsList(); loadProducts(); alert('ویرایش شد!'); }
-    function loadAdminProductsList(){ const container = document.getElementById('productsListAdmin'); if(!container) return; if(productsData.length === 0){ container.innerHTML = '<p style="color:#ccc;">هیچ محصولی وجود ندارد.</p>'; return; } container.innerHTML = productsData.map(p => `<div class="product-item-admin"><span style="flex:1;">${p.title} - ${p.price.toLocaleString()} تومان</span><div><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑</button></div></div>`).join(''); }
+    function addProduct(){const title=document.getElementById('productTitle').value.trim(),desc=document.getElementById('productDesc').value.trim(),price=document.getElementById('productPrice').value.trim(),image=document.getElementById('productImage').value.trim(),shape=document.getElementById('productShape').value;if(!title||!desc||!price||!image){alert('❌ همه فیلدها را پر کنید!');return;}const priceNum=parseInt(price);if(isNaN(priceNum)){alert('❌ قیمت را به عدد وارد کنید!');return;}productsData.push({id:Date.now(),title:title,desc:desc,price:priceNum,image:image,shape:shape});saveProducts();document.getElementById('productTitle').value='';document.getElementById('productDesc').value='';document.getElementById('productPrice').value='';document.getElementById('productImage').value='';loadAdminProductsList();loadProducts();alert('✅ محصول با موفقیت اضافه شد!');}
+    function deleteProduct(id){if(confirm('آیا از حذف این محصول مطمئنی؟')){productsData=productsData.filter(p=>p.id!==id);saveProducts();loadAdminProductsList();loadProducts();alert('محصول حذف شد!');}}
+    function editProduct(id){const p=productsData.find(p=>p.id===id);if(!p)return;const newTitle=prompt('نام جدید:',p.title);if(newTitle)p.title=newTitle;const newDesc=prompt('توضیحات جدید:',p.desc);if(newDesc)p.desc=newDesc;const newPrice=prompt('قیمت جدید:',p.price);if(newPrice)p.price=parseInt(newPrice);const newImage=prompt('لینک عکس جدید:',p.image);if(newImage)p.image=newImage;const newShape=prompt('شکل جدید (square/rectangle/large):',p.shape);if(newShape)p.shape=newShape;saveProducts();loadAdminProductsList();loadProducts();alert('ویرایش شد!');}
+    function loadAdminProductsList(){const container=document.getElementById('productsListAdmin');if(!container)return;if(productsData.length===0){container.innerHTML='<p style="color:#ccc;">هیچ محصولی وجود ندارد.</p>';return;}container.innerHTML=productsData.map(p=>`<div class="product-item-admin"><span style="flex:1;">${p.title} - ${p.price.toLocaleString()} تومان</span><div><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑</button></div></div>`).join('');}
 
-    // =============== گالری با دکمه دانلود ===============
-    function loadGallery(){
-        const galleryContainer = document.getElementById('galleryGrid');
-        if(!galleryContainer) return;
-        if(galleryData.length === 0){
-            galleryContainer.innerHTML = '<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';
-            return;
-        }
-        galleryContainer.innerHTML = galleryData.map(img => `
-            <div class="gallery-card">
-                <img class="gallery-img" src="${img.image}" alt="${img.title || 'گالری'}">
-                <div class="gallery-info">
-                    <h3>${img.title || 'بدون عنوان'}</h3>
-                    <button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title || 'gallery-image'}')">
-                        <i class="fas fa-download"></i> دانلود عکس
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function addGalleryImage(){
-        const imageUrl = document.getElementById('galleryImageUrl').value.trim();
-        const imageTitle = document.getElementById('galleryImageTitle').value.trim();
-        if(!imageUrl){ alert('لطفاً لینک عکس را وارد کنید!'); return; }
-        galleryData.push({ id: Date.now(), title: imageTitle || 'عکس جدید', image: imageUrl });
-        saveGallery();
-        document.getElementById('galleryImageUrl').value = '';
-        document.getElementById('galleryImageTitle').value = '';
-        loadAdminGalleryList();
-        loadGallery();
-        alert('✅ عکس با موفقیت به گالری اضافه شد!');
-    }
-
-    function deleteGalleryImage(id){ if(confirm('آیا از حذف این عکس مطمئنی؟')){ galleryData = galleryData.filter(img => img.id !== id); saveGallery(); loadAdminGalleryList(); loadGallery(); alert('عکس حذف شد!'); } }
-    function editGalleryImage(id){ const img = galleryData.find(img => img.id === id); if(!img) return; const newTitle = prompt('عنوان جدید:', img.title); if(newTitle !== null) img.title = newTitle; const newUrl = prompt('لینک عکس جدید:', img.image); if(newUrl && newUrl.trim()) img.image = newUrl.trim(); saveGallery(); loadAdminGalleryList(); loadGallery(); alert('ویرایش انجام شد!'); }
-    function loadAdminGalleryList(){ const container = document.getElementById('galleryListAdmin'); if(!container) return; if(galleryData.length === 0){ container.innerHTML = '<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>'; return; } container.innerHTML = galleryData.map(img => `<div class="gallery-item-admin"><span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title || 'بدون عنوان'}</span><div><button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button><button onclick="deleteGalleryImage(${img.id})">🗑</button></div></div>`).join(''); }
+    // =============== گالری ===============
+    function loadGallery(){const gc=document.getElementById('galleryGrid');if(!gc)return;if(galleryData.length===0){gc.innerHTML='<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';return;}gc.innerHTML=galleryData.map(img=>`<div class="gallery-card"><img class="gallery-img" src="${img.image}" alt="${img.title||'گالری'}"><div class="gallery-info"><h3>${img.title||'بدون عنوان'}</h3><button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title||'gallery-image'}')"><i class="fas fa-download"></i> دانلود عکس</button></div></div>`).join('');}
+    function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList();loadGallery();alert('✅ عکس با موفقیت به گالری اضافه شد!');}
+    function deleteGalleryImage(id){if(confirm('آیا از حذف این عکس مطمئنی؟')){galleryData=galleryData.filter(img=>img.id!==id);saveGallery();loadAdminGalleryList();loadGallery();alert('عکس حذف شد!');}}
+    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadAdminGalleryList();loadGallery();alert('ویرایش انجام شد!');}
+    function loadAdminGalleryList(){const c=document.getElementById('galleryListAdmin');if(!c)return;if(galleryData.length===0){c.innerHTML='<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>';return;}c.innerHTML=galleryData.map(img=>`<div class="gallery-item-admin"><span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title||'بدون عنوان'}</span><div><button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button><button onclick="deleteGalleryImage(${img.id})">🗑</button></div></div>`).join('');}
     
     // =============== ادمین ===============
     let isAdmin=false,clickCount=0,clickTimer;
@@ -423,4 +373,16 @@
         if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
         else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');}
         else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
-        else if(page==='music'){document.getElementById('musicPage').style.d
+        else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
+        else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
+        else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
+        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
+        else if(page==='about')document.getElementById('aboutPage').style.display='block';
+    }
+    
+    // اجرای اولیه
+    loadVideos('homeVideosGrid','همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); loadStories('storiesGrid'); loadVideos('videosGrid','همه'); loadNews('newsGrid'); loadMusic(); loadProducts(); loadGallery(); renderSlider();
+    if(sliderData.length>1) autoSlideInterval=setInterval(()=>changeSlide(1),5000);
+</script>
+</body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </html>
