@@ -15,10 +15,10 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
-        .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
+        .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;overflow:hidden;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;transition:transform 0.5s ease-in-out;}
-        .slide{min-width:100%;}
+        .slides{display:flex;transition:transform 0.5s ease-in-out;will-change:transform;}
+        .slide{min-width:100%;flex-shrink:0;}
         .slide img{width:100%;height:auto;display:block;}
         .dots{text-align:center;padding:15px 0 5px;}
         .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
@@ -66,13 +66,13 @@
         .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;gap:10px;align-items:center;}
         .reply-input{display:none;margin-top:8px;gap:8px;flex-wrap:wrap;}
         .reply-input input{flex:1;padding:6px 10px;border-radius:20px;border:1px solid #ddd;}
-        .admin-news-panel,.admin-videos-panel,.admin-slider-panel,.admin-music-panel,.admin-shop-panel,.admin-gallery-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
-        .admin-news-panel h3,.admin-videos-panel h3,.admin-slider-panel h3,.admin-music-panel h3,.admin-shop-panel h3,.admin-gallery-panel h3{color:#B61C1C;margin-bottom:20px;}
-        .admin-news-panel input,.admin-news-panel textarea,.admin-videos-panel input,.admin-videos-panel textarea,.admin-slider-panel input,.admin-music-panel input,.admin-music-panel textarea,.admin-shop-panel input,.admin-shop-panel select,.admin-shop-panel textarea,.admin-gallery-panel input{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-news-panel,.admin-videos-panel,.admin-slider-panel,.admin-music-panel,.admin-shop-panel,.admin-gallery-panel,.admin-stories-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-news-panel h3,.admin-videos-panel h3,.admin-slider-panel h3,.admin-music-panel h3,.admin-shop-panel h3,.admin-gallery-panel h3,.admin-stories-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-news-panel input,.admin-news-panel textarea,.admin-videos-panel input,.admin-videos-panel textarea,.admin-slider-panel input,.admin-music-panel input,.admin-music-panel textarea,.admin-shop-panel input,.admin-shop-panel select,.admin-shop-panel textarea,.admin-gallery-panel input,.admin-stories-panel input,.admin-stories-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
         .admin-shop-panel select{background:white;}
-        .admin-news-panel button,.admin-videos-panel button,.admin-slider-panel button,.admin-music-panel button,.admin-shop-panel button,.admin-gallery-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;margin-top:5px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
-        .news-item-admin,.video-item-admin,.slider-item-admin,.music-item-admin,.product-item-admin,.gallery-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-        .news-item-admin button,.video-item-admin button,.slider-item-admin button,.music-item-admin button,.product-item-admin button,.gallery-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:700;}
+        .admin-news-panel button,.admin-videos-panel button,.admin-slider-panel button,.admin-music-panel button,.admin-shop-panel button,.admin-gallery-panel button,.admin-stories-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;margin-top:5px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .news-item-admin,.video-item-admin,.slider-item-admin,.music-item-admin,.product-item-admin,.gallery-item-admin,.story-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .news-item-admin button,.video-item-admin button,.slider-item-admin button,.music-item-admin button,.product-item-admin button,.gallery-item-admin button,.story-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:700;}
         .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
         .datetime-group{display:flex;gap:10px;margin-bottom:15px;}
@@ -138,6 +138,17 @@
 
     <div id="storiesPage" style="display:none;">
         <div class="section-title"><i class="fas fa-book-open"></i> داستان‌های بازی</div>
+        <div id="adminStoriesPanel" style="display:none;" class="admin-stories-panel">
+            <h3>📖 مدیریت داستان‌ها</h3>
+            <input type="text" id="storyTitle" placeholder="عنوان داستان">
+            <textarea id="storyDesc" placeholder="توضیحات کوتاه داستان"></textarea>
+            <input type="text" id="storyImage" placeholder="لینک عکس داستان">
+            <input type="text" id="storyLink" placeholder="لینک ویدیو/مطلب (اختیاری)">
+            <button onclick="addStory()">➕ اضافه کردن داستان جدید</button>
+            <hr>
+            <h4>✏️ ویرایش/حذف داستان‌ها</h4>
+            <div id="storiesListAdmin"></div>
+        </div>
         <div class="cards-grid" id="storiesGrid"></div>
     </div>
 
@@ -223,7 +234,10 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== داده‌های ثابت اولیه (فقط برای بار اول) ===============
+    // =============== رمز ادمین ===============
+    // رمز: یا علی (با فاصله) یا ZeroxAdmin
+    
+    // =============== داده‌های ثابت اولیه ===============
     const DEFAULT_VIDEOS = [
         { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
         { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
@@ -241,12 +255,11 @@
         { id: 1, title: "God of War Ragnarok", image: "https://cdn.zoomg.ir/2022/11/god-of-war-ragnarok-11.jpg" },
         { id: 2, title: "The Last of Us Part II", image: "https://cdn.zoomg.ir/2020/06/the-last-of-us-2-10.jpg" }
     ];
-    const storiesData = [
-        { title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" },
-        { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }
+    const DEFAULT_STORIES = [
+        { id: 1, title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان حماسی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" },
+        { id: 2, title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا در دنیای پسارستاخیزی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" }
     ];
     
-    // بارگذاری امن داده‌ها - اگر خالی یا خراب بود از دیتای پیش‌فرض استفاده کن
     function loadData(key, defaultValue) {
         try {
             const saved = localStorage.getItem(key);
@@ -266,6 +279,7 @@
     let newsData = loadData('zeroxNews', DEFAULT_NEWS);
     let productsData = loadData('zeroxProducts', []);
     let galleryData = loadData('zeroxGallery', DEFAULT_GALLERY);
+    let storiesData = loadData('zeroxStories', DEFAULT_STORIES);
     
     function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
     function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
@@ -273,32 +287,169 @@
     function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
     function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
     function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
+    function saveStories() { localStorage.setItem('zeroxStories', JSON.stringify(storiesData)); }
     
-    // ذخیره اولیه اگر خالی بود
     if(!localStorage.getItem('zeroxSlider')) saveSlider();
     if(!localStorage.getItem('zeroxVideos')) saveVideos();
     if(!localStorage.getItem('zeroxNews')) saveNews();
     if(!localStorage.getItem('zeroxGallery')) saveGallery();
+    if(!localStorage.getItem('zeroxStories')) saveStories();
     
     function downloadImage(url, title) {
         fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=title+'.jpg';a.click();URL.revokeObjectURL(a.href);}).catch(()=>window.open(url,'_blank'));
     }
     
-    // =============== اسلایدر ===============
+    // =============== اسلایدر درست شده ===============
     let currentSlideIndex = 0, autoSlideInterval;
     function renderSlider() {
-        const slidesContainer = document.getElementById('slidesContainer'), dotsContainer = document.getElementById('dotsContainer');
+        const slidesContainer = document.getElementById('slidesContainer');
+        const dotsContainer = document.getElementById('dotsContainer');
         if (!slidesContainer) return;
-        slidesContainer.innerHTML = sliderData.map((s,i)=>`<div class="slide"><img src="${s.image}"></div>`).join('');
+        
+        slidesContainer.innerHTML = sliderData.map((s,i)=>`<div class="slide"><img src="${s.image}" loading="lazy"></div>`).join('');
         dotsContainer.innerHTML = sliderData.map((_,i)=>`<div class="dot ${i===currentSlideIndex?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
-        if(sliderData.length) slidesContainer.style.transform = `translateX(-${currentSlideIndex*100}%)`;
+        
+        if(sliderData.length > 0) {
+            const slideWidth = slidesContainer.parentElement.clientWidth;
+            slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        }
     }
-    function changeSlide(n) { if(!sliderData.length) return; currentSlideIndex = (currentSlideIndex+n+sliderData.length)%sliderData.length; renderSlider(); }
-    function goToSlide(i) { currentSlideIndex=i; renderSlider(); }
-    function addSlider(){const img=document.getElementById('sliderImage').value.trim();if(!img)return;sliderData.push({id:Date.now(),image:img});saveSlider();document.getElementById('sliderImage').value='';loadAdminSliderList();renderSlider();if(autoSlideInterval)clearInterval(autoSlideInterval);if(sliderData.length>1)autoSlideInterval=setInterval(()=>changeSlide(1),5000);alert('اسلاید اضافه شد!');}
-    function deleteSlider(id){if(confirm('حذف شود؟')){sliderData=sliderData.filter(s=>s.id!==id);if(currentSlideIndex>=sliderData.length)currentSlideIndex=Math.max(0,sliderData.length-1);saveSlider();loadAdminSliderList();renderSlider();alert('حذف شد!');}}
-    function editSlider(id){const s=sliderData.find(s=>s.id===id);if(!s)return;const newImg=prompt('لینک جدید:',s.image);if(newImg&&newImg.trim()){s.image=newImg.trim();saveSlider();loadAdminSliderList();renderSlider();alert('ویرایش شد!');}}
-    function loadAdminSliderList(){const c=document.getElementById('sliderListAdmin');if(!c)return;c.innerHTML=sliderData.length?sliderData.map(s=>`<div class="slider-item-admin"><span>اسلاید ${s.id}</span><div><button class="edit-btn" onclick="editSlider(${s.id})">✏️</button><button onclick="deleteSlider(${s.id})">🗑</button></div></div>`).join(''):'<p>هیچ اسلایدی نیست</p>';}
+    function changeSlide(n) { 
+        if(!sliderData.length) return; 
+        currentSlideIndex = (currentSlideIndex + n + sliderData.length) % sliderData.length; 
+        renderSlider(); 
+    }
+    function goToSlide(i) { 
+        currentSlideIndex = i; 
+        renderSlider(); 
+    }
+    function addSlider(){
+        const img = document.getElementById('sliderImage').value.trim();
+        if(!img){ alert('لینک عکس را وارد کنید'); return; }
+        sliderData.push({id:Date.now(), image:img});
+        saveSlider();
+        document.getElementById('sliderImage').value = '';
+        loadAdminSliderList();
+        if(autoSlideInterval) clearInterval(autoSlideInterval);
+        if(sliderData.length > 1) autoSlideInterval = setInterval(()=>changeSlide(1), 5000);
+        renderSlider();
+        alert('اسلاید اضافه شد!');
+    }
+    function deleteSlider(id){
+        if(confirm('حذف شود؟')){
+            sliderData = sliderData.filter(s=>s.id!==id);
+            if(currentSlideIndex >= sliderData.length) currentSlideIndex = Math.max(0, sliderData.length-1);
+            saveSlider();
+            loadAdminSliderList();
+            renderSlider();
+            alert('حذف شد!');
+        }
+    }
+    function editSlider(id){
+        const s = sliderData.find(s=>s.id===id);
+        if(!s) return;
+        const newImg = prompt('لینک جدید:', s.image);
+        if(newImg && newImg.trim()){ s.image = newImg.trim(); saveSlider(); loadAdminSliderList(); renderSlider(); alert('ویرایش شد!'); }
+    }
+    function loadAdminSliderList(){
+        const c = document.getElementById('sliderListAdmin');
+        if(!c) return;
+        c.innerHTML = sliderData.length ? sliderData.map(s=>`<div class="slider-item-admin"><span>اسلاید ${s.id}</span><div><button class="edit-btn" onclick="editSlider(${s.id})">✏️</button><button onclick="deleteSlider(${s.id})">🗑</button></div></div>`).join('') : '<p>هیچ اسلایدی نیست</p>';
+    }
+    
+    // =============== داستان‌ها ===============
+    function loadStories(containerId){
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        if(storiesData.length === 0){
+            container.innerHTML = '<div class="thumbnail-card" style="text-align:center;padding:50px;"><i class="fas fa-book-open" style="font-size:48px;color:#B61C1C;"></i><h3>هیچ داستانی وجود ندارد</h3><p>از پنل ادمین داستان جدید اضافه کنید</p></div>';
+            return;
+        }
+        container.innerHTML = storiesData.map(s => `
+            <div class="thumbnail-card" onclick="window.open('${s.link || 'https://www.aparat.com/zerox_game'}', '_blank')">
+                <img class="thumbnail-img" src="${s.img}">
+                <div class="card-content">
+                    <h3>${s.title}</h3>
+                    <p>${s.desc}</p>
+                    <button class="btn-card">بیشتر بخوانید</button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function addStory(){
+        const title = document.getElementById('storyTitle').value.trim();
+        const desc = document.getElementById('storyDesc').value.trim();
+        const img = document.getElementById('storyImage').value.trim();
+        const link = document.getElementById('storyLink').value.trim();
+        if(!title || !desc || !img){
+            alert('لطفاً عنوان، توضیحات و لینک عکس را وارد کنید!');
+            return;
+        }
+        storiesData.push({
+            id: Date.now(),
+            title: title,
+            desc: desc,
+            img: img,
+            link: link || 'https://www.aparat.com/zerox_game'
+        });
+        saveStories();
+        document.getElementById('storyTitle').value = '';
+        document.getElementById('storyDesc').value = '';
+        document.getElementById('storyImage').value = '';
+        document.getElementById('storyLink').value = '';
+        loadAdminStoriesList();
+        loadStories('storiesGrid');
+        loadStories('homeStoriesGrid');
+        alert('✅ داستان جدید اضافه شد!');
+    }
+    
+    function deleteStory(id){
+        if(confirm('آیا از حذف این داستان مطمئنی؟')){
+            storiesData = storiesData.filter(s => s.id !== id);
+            saveStories();
+            loadAdminStoriesList();
+            loadStories('storiesGrid');
+            loadStories('homeStoriesGrid');
+            alert('داستان حذف شد!');
+        }
+    }
+    
+    function editStory(id){
+        const story = storiesData.find(s => s.id === id);
+        if(!story) return;
+        const newTitle = prompt('عنوان جدید:', story.title);
+        if(newTitle) story.title = newTitle;
+        const newDesc = prompt('توضیحات جدید:', story.desc);
+        if(newDesc) story.desc = newDesc;
+        const newImg = prompt('لینک عکس جدید:', story.img);
+        if(newImg) story.img = newImg;
+        const newLink = prompt('لینک جدید:', story.link);
+        if(newLink) story.link = newLink;
+        saveStories();
+        loadAdminStoriesList();
+        loadStories('storiesGrid');
+        loadStories('homeStoriesGrid');
+        alert('ویرایش شد!');
+    }
+    
+    function loadAdminStoriesList(){
+        const container = document.getElementById('storiesListAdmin');
+        if(!container) return;
+        if(storiesData.length === 0){
+            container.innerHTML = '<p style="color:#ccc;">هیچ داستانی وجود ندارد.</p>';
+            return;
+        }
+        container.innerHTML = storiesData.map(s => `
+            <div class="story-item-admin">
+                <span style="flex:1; overflow:hidden; text-overflow:ellipsis;">${s.title}</span>
+                <div>
+                    <button class="edit-btn" onclick="editStory(${s.id})">✏️</button>
+                    <button onclick="deleteStory(${s.id})">🗑</button>
+                </div>
+            </div>
+        `).join('');
+    }
     
     // =============== موسیقی ===============
     function getPlatformIcon(p){const pl=p?.toLowerCase()||'';if(pl.includes('ps'))return'<i class="fab fa-playstation"></i>';if(pl.includes('xbox'))return'<i class="fab fa-xbox"></i>';if(pl.includes('pc'))return'<i class="fab fa-windows"></i>';if(pl.includes('nintendo'))return'<i class="fab fa-nintendo-switch"></i>';return'<i class="fas fa-gamepad"></i>';}
@@ -320,7 +471,6 @@
     
     // =============== اخبار ===============
     function loadNews(containerId){const sorted=[...newsData].reverse();document.getElementById(containerId).innerHTML=sorted.map(n=>`<div class="news-card" onclick="showFullNews(${n.id})"><img class="news-img" src="${n.image}"><div class="news-content"><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><h3>${n.title}</h3><p>${n.summary}</p><button class="btn-card">ادامه مطلب</button></div></div>`).join('');}
-    function loadStories(containerId){document.getElementById(containerId).innerHTML=storiesData.map(s=>`<div class="thumbnail-card" onclick="window.open('https://www.aparat.com/zerox_game','_blank')"><img class="thumbnail-img" src="${s.img}"><div class="card-content"><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-card">بیشتر بخوانید</button></div></div>`).join('');}
     let currentNewsId=null;
     function showFullNews(id){const n=newsData.find(n=>n.id===id);if(!n)return;currentNewsId=id;document.getElementById('contentContainer').innerHTML=`<div style="background:white;border-radius:28px;padding:30px;max-width:800px;margin:20px auto;"><button class="btn-card" onclick="location.reload()">بازگشت</button><h1 style="color:#B61C1C;">${n.title}</h1><img src="${n.image}" style="width:100%;border-radius:16px;margin:15px 0;"><div class="news-meta" style="justify-content:flex-start;margin-bottom:20px;"><i class="fas fa-calendar-alt"></i> ${n.date} <i class="fas fa-clock"></i> ${n.time}</div><div>${n.fullText}</div><div id="commentsSectionHere"></div></div>`;loadCommentsForCurrentNews();}
     function loadCommentsForNews(id){return JSON.parse(localStorage.getItem(`comments_${id}`))||[];}
@@ -356,33 +506,4 @@
     function loadGallery(){const gc=document.getElementById('galleryGrid');if(!gc)return;if(galleryData.length===0){gc.innerHTML='<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';return;}gc.innerHTML=galleryData.map(img=>`<div class="gallery-card"><img class="gallery-img" src="${img.image}" alt="${img.title||'گالری'}"><div class="gallery-info"><h3>${img.title||'بدون عنوان'}</h3><button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title||'gallery-image'}')"><i class="fas fa-download"></i> دانلود عکس</button></div></div>`).join('');}
     function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList();loadGallery();alert('✅ عکس با موفقیت به گالری اضافه شد!');}
     function deleteGalleryImage(id){if(confirm('آیا از حذف این عکس مطمئنی؟')){galleryData=galleryData.filter(img=>img.id!==id);saveGallery();loadAdminGalleryList();loadGallery();alert('عکس حذف شد!');}}
-    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadAdminGalleryList();loadGallery();alert('ویرایش انجام شد!');}
-    function loadAdminGalleryList(){const c=document.getElementById('galleryListAdmin');if(!c)return;if(galleryData.length===0){c.innerHTML='<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>';return;}c.innerHTML=galleryData.map(img=>`<div class="gallery-item-admin"><span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title||'بدون عنوان'}</span><div><button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button><button onclick="deleteGalleryImage(${img.id})">🗑</button></div></div>`).join('');}
-    
-    // =============== ادمین ===============
-    let isAdmin=false,clickCount=0,clickTimer;
-    document.getElementById('secretAdminLogo').addEventListener('click',()=>{clickCount++;clearTimeout(clickTimer);clickTimer=setTimeout(()=>clickCount=0,800);if(clickCount===3){clickCount=0;const pwd=prompt('🔐 رمز ادمین:');if(pwd==='ZeroxAdmin'){isAdmin=true;document.getElementById('secretAdminPanel').style.display='flex';document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminVideosPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';document.getElementById('adminMusicPanel').style.display='block';document.getElementById('adminShopPanel').style.display='block';document.getElementById('adminGalleryPanel').style.display='block';loadAdminNewsList();loadAdminVideosList();loadAdminSliderList();loadAdminMusicList();loadAdminProductsList();loadAdminGalleryList();alert('حالت ادمین فعال شد.');}else alert('رمز اشتباه است!');}});
-    function exitAdminMode(){isAdmin=false;document.getElementById('secretAdminPanel').style.display='none';document.getElementById('adminNewsPanel').style.display='none';document.getElementById('adminVideosPanel').style.display='none';document.getElementById('adminSliderPanel').style.display='none';document.getElementById('adminMusicPanel').style.display='none';document.getElementById('adminShopPanel').style.display='none';document.getElementById('adminGalleryPanel').style.display='none';alert('حالت ادمین غیرفعال شد.');}
-    function toggleText(id,btn){const e=document.getElementById(id);if(e.style.display==='none'||e.style.display===''){e.style.display='block';btn.innerText='بستن';}else{e.style.display='none';btn.innerText='بیشتر...';}}
-    
-    // =============== صفحه‌بندی ===============
-    let currentFilter='همه';
-    function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-category');loadVideos('videosGrid',currentFilter);});});}
-    function showPage(page){
-        document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
-        if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
-        else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');}
-        else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
-        else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
-        else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
-        else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
-        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
-        else if(page==='about')document.getElementById('aboutPage').style.display='block';
-    }
-    
-    // اجرای اولیه
-    loadVideos('homeVideosGrid','همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); loadStories('storiesGrid'); loadVideos('videosGrid','همه'); loadNews('newsGrid'); loadMusic(); loadProducts(); loadGallery(); renderSlider();
-    if(sliderData.length>1) autoSlideInterval=setInterval(()=>changeSlide(1),5000);
-</script>
-</body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </html>
+    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadA
