@@ -16,9 +16,9 @@
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
         
-        /* اسلایدر با سایز 1080x390 */
+        /* اسلایدر با سایز 1080x399 */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;overflow:hidden;}
-        .slider{position:relative;width:100%;height:390px;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+        .slider{position:relative;width:100%;height:399px;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;will-change:transform;height:100%;}
         .slide{min-width:100%;flex-shrink:0;height:100%;}
         .slide img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -247,7 +247,7 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== داده‌های هاردکد شده (هیچ وقت پر نمیشه) ===============
+    // =============== داده‌های هاردکد شده (هیچ وقت پاک نمیشه) ===============
     let sliderData = [
         { id: 1, image: "https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" },
         { id: 2, image: "https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }
@@ -261,9 +261,9 @@
     let musicData = [];
     
     let newsData = [
-        { id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "جزییات جدید از بازی GTA 6 منتشر شد..." },
-        { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "بازی جدید رزیدنت اویل در راه است..." },
-        { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "سریال جدید د لست اف اس ساخته میشود..." }
+        { id: 1, title: "GTA 6", summary: "اخبار جدید از بازی GTA 6", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "جزییات جدید از بازی GTA 6 منتشر شد. راکستار گیمز اعلام کرد که این بازی در سال 2026 منتشر خواهد شد." },
+        { id: 2, title: "رزیدنت اویل 9", summary: "کپکام از بازی جدید رونمایی کرد", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "بازی جدید رزیدنت اویل در راه است. این بار داستان در اروپا روایت میشود." },
+        { id: 3, title: "د لست اف اس قسمت 3", summary: "ناتی داگ در حال ساخت قسمت سوم", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "سریال جدید د لست اف اس ساخته میشود. ناتی داگ تایید کرد که قسمت سوم در حال توسعه است." }
     ];
     
     let productsData = [];
@@ -277,6 +277,15 @@
         { id: 1, title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان حماسی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" },
         { id: 2, title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا در دنیای پسارستاخیزی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" }
     ];
+    
+    // ذخیره در localStorage (برای حفظ تغییرات کاربر)
+    function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
+    function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
+    function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
+    function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
+    function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
+    function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
+    function saveStories() { localStorage.setItem('zeroxStories', JSON.stringify(storiesData)); }
     
     // بارگذاری از localStorage اگر وجود داشته باشه
     try {
@@ -295,14 +304,6 @@
         const savedStories = localStorage.getItem('zeroxStories');
         if(savedStories && savedStories !== 'undefined' && JSON.parse(savedStories).length > 0) storiesData = JSON.parse(savedStories);
     } catch(e) { console.log('خطا در بارگذاری، استفاده از دیتای پیشفرض', e); }
-    
-    function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
-    function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
-    function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
-    function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
-    function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
-    function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
-    function saveStories() { localStorage.setItem('zeroxStories', JSON.stringify(storiesData)); }
     
     function downloadImage(url, title) {
         fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=title+'.jpg';a.click();URL.revokeObjectURL(a.href);}).catch(()=>window.open(url,'_blank'));
@@ -460,7 +461,7 @@
     // =============== موسیقی ===============
     function getPlatformIcon(p){const pl=p?.toLowerCase()||'';if(pl.includes('ps'))return'<i class="fab fa-playstation"></i>';if(pl.includes('xbox'))return'<i class="fab fa-xbox"></i>';if(pl.includes('pc'))return'<i class="fab fa-windows"></i>';if(pl.includes('nintendo'))return'<i class="fab fa-nintendo-switch"></i>';return'<i class="fas fa-gamepad"></i>';}
     function downloadMusic(url,title){fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${title}.mp3`;a.click();}).catch(()=>window.open(url,'_blank'));}
-    function loadMusic(){const g=document.getElementById('musicGrid');if(!g)return;if(!musicData.length){g.innerHTML='<div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>هنوز آهنگی اضافه نشده</h3></div>';return;}g.innerHTML=musicData.map(m=>`<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${getPlatformIcon(m.platform)} ${m.game}</div>${m.desc?`<div class="music-desc-box">${m.desc}</div>`:''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}','${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`).join('');}
+    function loadMusic(){const g=document.getElementById('musicGrid');if(!g)return;if(!musicData.length){g.innerHTML='<div class="music-card" style="text-align:center;padding:50px;"><i class="fas fa-headphones" style="font-size:48px;color:#B61C1C;"></i><h3>هنوز آهنگی اضافه نشده</h3><p>از پنل ادمین آهنگ جدید اضافه کنید</p></div>';return;}g.innerHTML=musicData.map(m=>`<div class="music-card"><img class="music-img" src="${m.cover}"><div class="music-info"><h3>${m.title}</h3><div class="music-game-badge">${getPlatformIcon(m.platform)} ${m.game}</div>${m.desc?`<div class="music-desc-box">${m.desc}</div>`:''}<div class="audio-player"><audio controls src="${m.file}"></audio><button class="download-btn" onclick="event.stopPropagation(); downloadMusic('${m.file}','${m.title}')"><i class="fas fa-download"></i> دانلود</button></div></div></div>`).join('');}
     function addMusic(){const t=document.getElementById('musicTitle').value.trim(),g=document.getElementById('musicGame').value.trim(),p=document.getElementById('musicPlatform').value.trim(),c=document.getElementById('musicCover').value.trim(),f=document.getElementById('musicFile').value.trim(),d=document.getElementById('musicDesc').value.trim();if(!t||!g||!c||!f){alert('لطفاً نام آهنگ، نام بازی، کاور و فایل صوتی را وارد کنید!');return;}musicData.push({id:Date.now(),title:t,game:g,platform:p||'PS',cover:c,file:f,desc:d});saveMusic();document.getElementById('musicTitle').value='';document.getElementById('musicGame').value='';document.getElementById('musicPlatform').value='';document.getElementById('musicCover').value='';document.getElementById('musicFile').value='';document.getElementById('musicDesc').value='';loadAdminMusicList();loadMusic();alert('آهنگ اضافه شد!');}
     function deleteMusic(id){if(confirm('حذف شود؟')){musicData=musicData.filter(m=>m.id!==id);saveMusic();loadAdminMusicList();loadMusic();alert('حذف شد!');}}
     function editMusic(id){const m=musicData.find(m=>m.id===id);if(!m)return;const nt=prompt('نام جدید:',m.title);if(nt)m.title=nt;const ng=prompt('نام بازی جدید:',m.game);if(ng)m.game=ng;const np=prompt('پلتفرم جدید:',m.platform);if(np)m.platform=np;const nc=prompt('لینک کاور جدید:',m.cover);if(nc)m.cover=nc;const nf=prompt('لینک فایل جدید:',m.file);if(nf)m.file=nf;const nd=prompt('توضیحات جدید:',m.desc);if(nd!==null)m.desc=nd;saveMusic();loadAdminMusicList();loadMusic();alert('ویرایش شد!');}
@@ -510,4 +511,4 @@
 
     // =============== گالری ===============
     function loadGallery(){const gc=document.getElementById('galleryGrid');if(!gc)return;if(galleryData.length===0){gc.innerHTML='<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';return;}gc.innerHTML=galleryData.map(img=>`<div class="gallery-card"><img class="gallery-img" src="${img.image}" alt="${img.title||'گالری'}"><div class="gallery-info"><h3>${img.title||'بدون عنوان'}</h3><button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title||'gallery-image'}')"><i class="fas fa-download"></i> دانلود عکس</button></div></div>`).join('');}
-    function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList()
+    function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById
