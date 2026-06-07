@@ -69,13 +69,13 @@
         .admin-panel{display:none;position:fixed;bottom:20px;left:20px;background:#222;color:white;padding:10px 15px;border-radius:30px;z-index:9999;gap:10px;align-items:center;}
         .reply-input{display:none;margin-top:8px;gap:8px;flex-wrap:wrap;}
         .reply-input input{flex:1;padding:6px 10px;border-radius:20px;border:1px solid #ddd;}
-        .admin-news-panel,.admin-videos-panel,.admin-slider-panel,.admin-music-panel,.admin-shop-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
-        .admin-news-panel h3,.admin-videos-panel h3,.admin-slider-panel h3,.admin-music-panel h3,.admin-shop-panel h3{color:#B61C1C;margin-bottom:20px;}
-        .admin-news-panel input,.admin-news-panel textarea,.admin-videos-panel input,.admin-videos-panel textarea,.admin-slider-panel input,.admin-music-panel input,.admin-music-panel textarea,.admin-shop-panel input,.admin-shop-panel select,.admin-shop-panel textarea{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
+        .admin-news-panel,.admin-videos-panel,.admin-slider-panel,.admin-music-panel,.admin-shop-panel,.admin-gallery-panel{background:#1e1e2f;color:white;border-radius:24px;padding:25px;margin-bottom:30px;}
+        .admin-news-panel h3,.admin-videos-panel h3,.admin-slider-panel h3,.admin-music-panel h3,.admin-shop-panel h3,.admin-gallery-panel h3{color:#B61C1C;margin-bottom:20px;}
+        .admin-news-panel input,.admin-news-panel textarea,.admin-videos-panel input,.admin-videos-panel textarea,.admin-slider-panel input,.admin-music-panel input,.admin-music-panel textarea,.admin-shop-panel input,.admin-shop-panel select,.admin-shop-panel textarea,.admin-gallery-panel input{width:100%;padding:10px;margin-bottom:15px;border-radius:16px;border:none;font-family:'Vazirmatn',sans-serif;}
         .admin-shop-panel select{background:white;}
-        .admin-news-panel button,.admin-videos-panel button,.admin-slider-panel button,.admin-music-panel button,.admin-shop-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;margin-top:5px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
-        .news-item-admin,.video-item-admin,.slider-item-admin,.music-item-admin,.product-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-        .news-item-admin button,.video-item-admin button,.slider-item-admin button,.music-item-admin button,.product-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:700;}
+        .admin-news-panel button,.admin-videos-panel button,.admin-slider-panel button,.admin-music-panel button,.admin-shop-panel button,.admin-gallery-panel button{background:#B61C1C;border:none;padding:8px 20px;border-radius:30px;color:white;cursor:pointer;margin-left:10px;margin-top:5px;font-family:'Vazirmatn',sans-serif;font-weight:800;}
+        .news-item-admin,.video-item-admin,.slider-item-admin,.music-item-admin,.product-item-admin,.gallery-item-admin{background:#2a2a3a;border-radius:16px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+        .news-item-admin button,.video-item-admin button,.slider-item-admin button,.music-item-admin button,.product-item-admin button,.gallery-item-admin button{margin-right:8px;background:#ff4444;padding:4px 12px;border-radius:20px;border:none;color:white;cursor:pointer;font-family:'Vazirmatn',sans-serif;font-weight:700;}
         .edit-btn{background:#ffc107 !important;color:#1a1a1a !important;}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
         .datetime-group{display:flex;gap:10px;margin-bottom:15px;}
@@ -203,9 +203,16 @@
 
     <div id="galleryPage" style="display:none;">
         <div class="section-title"><i class="fas fa-images"></i> گالری عکس بازی‌ها</div>
-        <div class="gallery-grid" id="galleryGrid">
-            <div class="gallery-card" style="text-align:center; padding:50px;"><i class="fas fa-gamepad" style="font-size:48px; color:#B61C1C;"></i><h3>به زودی...</h3><p>گالری عکس بازی‌ها به زودی اضافه خواهد شد.</p></div>
+        <div id="adminGalleryPanel" style="display:none;" class="admin-gallery-panel">
+            <h3>🖼️ مدیریت گالری عکس</h3>
+            <input type="text" id="galleryImageUrl" placeholder="لینک عکس جدید">
+            <input type="text" id="galleryImageTitle" placeholder="عنوان عکس (اختیاری)">
+            <button onclick="addGalleryImage()">➕ اضافه کردن عکس به گالری</button>
+            <hr>
+            <h4>✏️ ویرایش/حذف عکس‌ها</h4>
+            <div id="galleryListAdmin"></div>
         </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
     </div>
 
     <div id="aboutPage" style="display:none;">
@@ -222,6 +229,10 @@
     let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
     let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [{ id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" }, { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "" }, { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "" }];
     let productsData = JSON.parse(localStorage.getItem('zeroxProducts')) || [];
+    let galleryData = JSON.parse(localStorage.getItem('zeroxGallery')) || [
+        { id: 1, title: "God of War Ragnarok", image: "https://cdn.zoomg.ir/2022/11/god-of-war-ragnarok-11.jpg" },
+        { id: 2, title: "The Last of Us Part II", image: "https://cdn.zoomg.ir/2020/06/the-last-of-us-2-10.jpg" }
+    ];
     const storiesData = [{ title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }, { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }];
     
     function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
@@ -229,6 +240,7 @@
     function saveMusic() { localStorage.setItem('zeroxMusic', JSON.stringify(musicData)); }
     function saveNews() { localStorage.setItem('zeroxNews', JSON.stringify(newsData)); }
     function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
+    function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
     
     // =============== اسلایدر ===============
     let currentSlideIndex = 0, autoSlideInterval;
@@ -283,7 +295,7 @@
     function clearNewsForm(){document.getElementById('newsTitle').value='';document.getElementById('newsSummary').value='';document.getElementById('newsImage').value='';document.getElementById('newsDate').value='';document.getElementById('newsTime').value='';document.getElementById('newsFullText').value='';}
     function refreshAllNews(){loadNews('homeNewsGrid');loadNews('newsGrid');}
     
-    // =============== فروشگاه (اصلاح شده) ===============
+    // =============== فروشگاه ===============
     function loadProducts(){
         const grid = document.getElementById('shopGrid');
         if(!grid) return;
@@ -332,13 +344,10 @@
         });
         
         saveProducts();
-        
-        // پاک کردن فرم
         document.getElementById('productTitle').value = '';
         document.getElementById('productDesc').value = '';
         document.getElementById('productPrice').value = '';
         document.getElementById('productImage').value = '';
-        
         loadAdminProductsList();
         loadProducts();
         alert('✅ محصول با موفقیت اضافه شد!');
@@ -390,11 +399,91 @@
             </div>
         `).join('');
     }
+
+    // =============== گالری ===============
+    function loadGallery(){
+        const galleryContainer = document.getElementById('galleryGrid');
+        if(!galleryContainer) return;
+        if(galleryData.length === 0){
+            galleryContainer.innerHTML = '<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';
+            return;
+        }
+        galleryContainer.innerHTML = galleryData.map(img => `
+            <div class="gallery-card" onclick="window.open('${img.image}', '_blank')">
+                <img class="gallery-img" src="${img.image}" alt="${img.title || 'گالری'}">
+                <div class="gallery-info">
+                    <h3>${img.title || 'بدون عنوان'}</h3>
+                    <button class="btn-card">مشاهده</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function addGalleryImage(){
+        const imageUrl = document.getElementById('galleryImageUrl').value.trim();
+        const imageTitle = document.getElementById('galleryImageTitle').value.trim();
+        if(!imageUrl){
+            alert('لطفاً لینک عکس را وارد کنید!');
+            return;
+        }
+        galleryData.push({
+            id: Date.now(),
+            title: imageTitle || 'عکس جدید',
+            image: imageUrl
+        });
+        saveGallery();
+        document.getElementById('galleryImageUrl').value = '';
+        document.getElementById('galleryImageTitle').value = '';
+        loadAdminGalleryList();
+        loadGallery();
+        alert('✅ عکس با موفقیت به گالری اضافه شد!');
+    }
+
+    function deleteGalleryImage(id){
+        if(confirm('آیا از حذف این عکس مطمئنی؟')){
+            galleryData = galleryData.filter(img => img.id !== id);
+            saveGallery();
+            loadAdminGalleryList();
+            loadGallery();
+            alert('عکس حذف شد!');
+        }
+    }
+
+    function editGalleryImage(id){
+        const img = galleryData.find(img => img.id === id);
+        if(!img) return;
+        const newTitle = prompt('عنوان جدید:', img.title);
+        if(newTitle !== null) img.title = newTitle;
+        const newUrl = prompt('لینک عکس جدید:', img.image);
+        if(newUrl && newUrl.trim()) img.image = newUrl.trim();
+        saveGallery();
+        loadAdminGalleryList();
+        loadGallery();
+        alert('ویرایش انجام شد!');
+    }
+
+    function loadAdminGalleryList(){
+        const container = document.getElementById('galleryListAdmin');
+        if(!container) return;
+        if(galleryData.length === 0){
+            container.innerHTML = '<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>';
+            return;
+        }
+        container.innerHTML = galleryData.map(img => `
+            <div class="gallery-item-admin">
+                <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title || 'بدون عنوان'}</span>
+                <div>
+                    <button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button>
+                    <button onclick="deleteGalleryImage(${img.id})">🗑</button>
+                </div>
+            </div>
+        `).join('');
+    }
     
     // =============== ادمین ===============
     let isAdmin=false,clickCount=0,clickTimer;
-    document.getElementById('secretAdminLogo').addEventListener('click',()=>{clickCount++;clearTimeout(clickTimer);clickTimer=setTimeout(()=>clickCount=0,800);if(clickCount===3){clickCount=0;const pwd=prompt('🔐 رمز ادمین:');if(pwd==='ZeroxAdmin'){isAdmin=true;document.getElementById('secretAdminPanel').style.display='flex';document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminVideosPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';document.getElementById('adminMusicPanel').style.display='block';document.getElementById('adminShopPanel').style.display='block';loadAdminNewsList();loadAdminVideosList();loadAdminSliderList();loadAdminMusicList();loadAdminProductsList();alert('حالت ادمین فعال شد.');}else alert('رمز اشتباه است!');}});
-    function exitAdminMode(){isAdmin=false;document.getElementById('secretAdminPanel').style.display='none';document.getElementById('adminNewsPanel').style.display='none';document.getElementById('adminVideosPanel').style.display='none';document.getElementById('adminSliderPanel').style.display='none';document.getElementById('adminMusicPanel').style.display='none';document.getElementById('adminShopPanel').style.display='none';alert('حالت ادمین غیرفعال شد.');}
+    document.getElementById('secretAdminLogo').addEventListener('click',()=>{clickCount++;clearTimeout(clickTimer);clickTimer=setTimeout(()=>clickCount=0,800);if(clickCount===3){clickCount=0;const pwd=prompt('🔐 رمز ادمین:');if(pwd==='ZeroxAdmin'){isAdmin=true;document.getElementById('secretAdminPanel').style.display='flex';document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminVideosPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';document.getElementById('adminMusicPanel').style.display='block';document.getElementById('adminShopPanel').style.display='block';document.getElementById('adminGalleryPanel').style.display='block';loadAdminNewsList();loadAdminVideosList();loadAdminSliderList();loadAdminMusicList();loadAdminProductsList();loadAdminGalleryList();alert('حالت ادمین فعال شد.');}else alert('رمز اشتباه است!');}});
+    function exitAdminMode(){isAdmin=false;document.getElementById('secretAdminPanel').style.display='none';document.getElementById('adminNewsPanel').style.display='none';document.getElementById('adminVideosPanel').style.display='none';document.getElementById('adminSliderPanel').style.display='none';document.getElementById('adminMusicPanel').style.display='none';document.getElementById('adminShopPanel').style.display='none';document.getElementById('adminGalleryPanel').style.display='none';alert('حالت ادمین غیرفعال شد.');}
     function toggleText(id,btn){const e=document.getElementById(id);if(e.style.display==='none'||e.style.display===''){e.style.display='block';btn.innerText='بستن';}else{e.style.display='none';btn.innerText='بیشتر...';}}
     
     // =============== صفحه‌بندی ===============
@@ -408,12 +497,8 @@
         else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
         else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
         else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
-        else if(page==='gallery')document.getElementById('galleryPage').style.display='block';
+        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
         else if(page==='about')document.getElementById('aboutPage').style.display='block';
     }
     
-    loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');loadStories('storiesGrid');loadVideos('videosGrid','همه');loadNews('newsGrid');loadMusic();loadProducts();renderSlider();if(sliderData.length>1)autoSlideInterval=setInterval(()=>changeSlide(1),5000);
-    if(localStorage.getItem('zeroxNews')===null)saveNews();if(localStorage.getItem('zeroxVideos')===null)saveVideos();if(localStorage.getItem('zeroxMusic')===null)saveMusic();if(localStorage.getItem('zeroxProducts')===null)saveProducts();
-</script>
-</body>
-            </html>
+    loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadSt
