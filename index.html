@@ -234,52 +234,54 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== رمز ادمین ===============
-    // رمز: یا علی (با فاصله) یا ZeroxAdmin
-    
-    // =============== داده‌های ثابت اولیه ===============
-    const DEFAULT_VIDEOS = [
-        { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
-        { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
-    ];
-    const DEFAULT_NEWS = [
-        { id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
-        { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "" },
-        { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "" }
-    ];
-    const DEFAULT_SLIDER = [
+    // =============== داده‌های هاردکد شده (هیچ وقت پر نمیشه) ===============
+    let sliderData = [
         { id: 1, image: "https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" },
         { id: 2, image: "https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }
     ];
-    const DEFAULT_GALLERY = [
+    
+    let videosData = [
+        { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
+        { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
+    ];
+    
+    let musicData = [];
+    
+    let newsData = [
+        { id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "جزییات جدید از بازی GTA 6 منتشر شد..." },
+        { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "بازی جدید رزیدنت اویل در راه است..." },
+        { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "سریال جدید د لست اف اس ساخته میشود..." }
+    ];
+    
+    let productsData = [];
+    
+    let galleryData = [
         { id: 1, title: "God of War Ragnarok", image: "https://cdn.zoomg.ir/2022/11/god-of-war-ragnarok-11.jpg" },
         { id: 2, title: "The Last of Us Part II", image: "https://cdn.zoomg.ir/2020/06/the-last-of-us-2-10.jpg" }
     ];
-    const DEFAULT_STORIES = [
+    
+    let storiesData = [
         { id: 1, title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان حماسی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" },
         { id: 2, title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا در دنیای پسارستاخیزی", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg", link: "https://www.aparat.com/zerox_game" }
     ];
     
-    function loadData(key, defaultValue) {
-        try {
-            const saved = localStorage.getItem(key);
-            if (saved && saved !== 'undefined' && saved !== 'null') {
-                const parsed = JSON.parse(saved);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    return parsed;
-                }
-            }
-        } catch(e) { console.log(e); }
-        return defaultValue;
-    }
-    
-    let sliderData = loadData('zeroxSlider', DEFAULT_SLIDER);
-    let videosData = loadData('zeroxVideos', DEFAULT_VIDEOS);
-    let musicData = loadData('zeroxMusic', []);
-    let newsData = loadData('zeroxNews', DEFAULT_NEWS);
-    let productsData = loadData('zeroxProducts', []);
-    let galleryData = loadData('zeroxGallery', DEFAULT_GALLERY);
-    let storiesData = loadData('zeroxStories', DEFAULT_STORIES);
+    // بارگذاری از localStorage اگر وجود داشته باشه
+    try {
+        const savedSlider = localStorage.getItem('zeroxSlider');
+        if(savedSlider && savedSlider !== 'undefined' && JSON.parse(savedSlider).length > 0) sliderData = JSON.parse(savedSlider);
+        const savedVideos = localStorage.getItem('zeroxVideos');
+        if(savedVideos && savedVideos !== 'undefined' && JSON.parse(savedVideos).length > 0) videosData = JSON.parse(savedVideos);
+        const savedMusic = localStorage.getItem('zeroxMusic');
+        if(savedMusic && savedMusic !== 'undefined') musicData = JSON.parse(savedMusic);
+        const savedNews = localStorage.getItem('zeroxNews');
+        if(savedNews && savedNews !== 'undefined' && JSON.parse(savedNews).length > 0) newsData = JSON.parse(savedNews);
+        const savedProducts = localStorage.getItem('zeroxProducts');
+        if(savedProducts && savedProducts !== 'undefined') productsData = JSON.parse(savedProducts);
+        const savedGallery = localStorage.getItem('zeroxGallery');
+        if(savedGallery && savedGallery !== 'undefined' && JSON.parse(savedGallery).length > 0) galleryData = JSON.parse(savedGallery);
+        const savedStories = localStorage.getItem('zeroxStories');
+        if(savedStories && savedStories !== 'undefined' && JSON.parse(savedStories).length > 0) storiesData = JSON.parse(savedStories);
+    } catch(e) { console.log('خطا در بارگذاری، استفاده از دیتای پیشفرض', e); }
     
     function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
     function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
@@ -288,12 +290,6 @@
     function saveProducts() { localStorage.setItem('zeroxProducts', JSON.stringify(productsData)); }
     function saveGallery() { localStorage.setItem('zeroxGallery', JSON.stringify(galleryData)); }
     function saveStories() { localStorage.setItem('zeroxStories', JSON.stringify(storiesData)); }
-    
-    if(!localStorage.getItem('zeroxSlider')) saveSlider();
-    if(!localStorage.getItem('zeroxVideos')) saveVideos();
-    if(!localStorage.getItem('zeroxNews')) saveNews();
-    if(!localStorage.getItem('zeroxGallery')) saveGallery();
-    if(!localStorage.getItem('zeroxStories')) saveStories();
     
     function downloadImage(url, title) {
         fetch(url).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=title+'.jpg';a.click();URL.revokeObjectURL(a.href);}).catch(()=>window.open(url,'_blank'));
@@ -305,12 +301,9 @@
         const slidesContainer = document.getElementById('slidesContainer');
         const dotsContainer = document.getElementById('dotsContainer');
         if (!slidesContainer) return;
-        
         slidesContainer.innerHTML = sliderData.map((s,i)=>`<div class="slide"><img src="${s.image}" loading="lazy"></div>`).join('');
         dotsContainer.innerHTML = sliderData.map((_,i)=>`<div class="dot ${i===currentSlideIndex?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
-        
         if(sliderData.length > 0) {
-            const slideWidth = slidesContainer.parentElement.clientWidth;
             slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
     }
@@ -506,4 +499,33 @@
     function loadGallery(){const gc=document.getElementById('galleryGrid');if(!gc)return;if(galleryData.length===0){gc.innerHTML='<div class="gallery-card" style="text-align:center;padding:50px;"><i class="fas fa-camera" style="font-size:48px; color:#B61C1C;"></i><h3>گالری خالی است</h3><p>از پنل ادمین عکس جدید اضافه کنید</p></div>';return;}gc.innerHTML=galleryData.map(img=>`<div class="gallery-card"><img class="gallery-img" src="${img.image}" alt="${img.title||'گالری'}"><div class="gallery-info"><h3>${img.title||'بدون عنوان'}</h3><button class="gallery-download-btn" onclick="event.stopPropagation(); downloadImage('${img.image}', '${img.title||'gallery-image'}')"><i class="fas fa-download"></i> دانلود عکس</button></div></div>`).join('');}
     function addGalleryImage(){const url=document.getElementById('galleryImageUrl').value.trim(),title=document.getElementById('galleryImageTitle').value.trim();if(!url){alert('لطفاً لینک عکس را وارد کنید!');return;}galleryData.push({id:Date.now(),title:title||'عکس جدید',image:url});saveGallery();document.getElementById('galleryImageUrl').value='';document.getElementById('galleryImageTitle').value='';loadAdminGalleryList();loadGallery();alert('✅ عکس با موفقیت به گالری اضافه شد!');}
     function deleteGalleryImage(id){if(confirm('آیا از حذف این عکس مطمئنی؟')){galleryData=galleryData.filter(img=>img.id!==id);saveGallery();loadAdminGalleryList();loadGallery();alert('عکس حذف شد!');}}
-    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadA
+    function editGalleryImage(id){const img=galleryData.find(img=>img.id===id);if(!img)return;const nt=prompt('عنوان جدید:',img.title);if(nt!==null)img.title=nt;const nu=prompt('لینک عکس جدید:',img.image);if(nu&&nu.trim())img.image=nu.trim();saveGallery();loadAdminGalleryList();loadGallery();alert('ویرایش انجام شد!');}
+    function loadAdminGalleryList(){const c=document.getElementById('galleryListAdmin');if(!c)return;if(galleryData.length===0){c.innerHTML='<p style="color:#ccc;">هیچ عکسی در گالری وجود ندارد.</p>';return;}c.innerHTML=galleryData.map(img=>`<div class="gallery-item-admin"><span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${img.title||'بدون عنوان'}</span><div><button class="edit-btn" onclick="editGalleryImage(${img.id})">✏️</button><button onclick="deleteGalleryImage(${img.id})">🗑</button></div></div>`).join('');}
+    
+    // =============== ادمین ===============
+    let isAdmin=false,clickCount=0,clickTimer;
+    document.getElementById('secretAdminLogo').addEventListener('click',()=>{clickCount++;clearTimeout(clickTimer);clickTimer=setTimeout(()=>clickCount=0,800);if(clickCount===3){clickCount=0;const pwd=prompt('🔐 رمز ادمین:');if(pwd==='یا علی' || pwd==='ZeroxAdmin' || pwd==='yاعلی'){isAdmin=true;document.getElementById('secretAdminPanel').style.display='flex';document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminVideosPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';document.getElementById('adminMusicPanel').style.display='block';document.getElementById('adminShopPanel').style.display='block';document.getElementById('adminGalleryPanel').style.display='block';document.getElementById('adminStoriesPanel').style.display='block';loadAdminNewsList();loadAdminVideosList();loadAdminSliderList();loadAdminMusicList();loadAdminProductsList();loadAdminGalleryList();loadAdminStoriesList();alert('حالت ادمین فعال شد. یا علی');}else alert('رمز اشتباه است!');}});
+    function exitAdminMode(){isAdmin=false;document.getElementById('secretAdminPanel').style.display='none';document.getElementById('adminNewsPanel').style.display='none';document.getElementById('adminVideosPanel').style.display='none';document.getElementById('adminSliderPanel').style.display='none';document.getElementById('adminMusicPanel').style.display='none';document.getElementById('adminShopPanel').style.display='none';document.getElementById('adminGalleryPanel').style.display='none';document.getElementById('adminStoriesPanel').style.display='none';alert('حالت ادمین غیرفعال شد.');}
+    function toggleText(id,btn){const e=document.getElementById(id);if(e.style.display==='none'||e.style.display===''){e.style.display='block';btn.innerText='بستن';}else{e.style.display='none';btn.innerText='بیشتر...';}}
+    
+    // =============== صفحه‌بندی ===============
+    let currentFilter='همه';
+    function setupFilters(){document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#filterButtons .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.getAttribute('data-category');loadVideos('videosGrid',currentFilter);});});}
+    function showPage(page){
+        document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
+        if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
+        else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');if(isAdmin)document.getElementById('adminStoriesPanel').style.display='block';}
+        else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
+        else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
+        else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
+        else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
+        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
+        else if(page==='about')document.getElementById('aboutPage').style.display='block';
+    }
+    
+    // اجرای اولیه
+    loadVideos('homeVideosGrid','همه'); loadNews('homeNewsGrid'); loadStories('homeStoriesGrid'); loadStories('storiesGrid'); loadVideos('videosGrid','همه'); loadNews('newsGrid'); loadMusic(); loadProducts(); loadGallery(); renderSlider();
+    if(sliderData.length>1) autoSlideInterval=setInterval(()=>changeSlide(1), 5000);
+</script>
+</body>
+</html>
