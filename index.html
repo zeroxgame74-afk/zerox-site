@@ -15,8 +15,6 @@
         .menu a{color:white;text-decoration:none;font-weight:800;font-size:17px;transition:0.2s;padding:5px 0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
         .menu a i{font-size:18px;}
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
-        
-        /* اسلایدر داینامیک */
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
         .slides{display:flex;transition:transform 0.5s ease-in-out;}
@@ -29,7 +27,6 @@
         .nav-arrow:hover{background:#B61C1C;}
         .prev{left:15px;}
         .next{right:15px;}
-        
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -223,17 +220,66 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== داده‌های اولیه ===============
-    let sliderData = JSON.parse(localStorage.getItem('zeroxSlider')) || [{ id: 1, image: "https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" }, { id: 2, image: "https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }];
-    let videosData = JSON.parse(localStorage.getItem('zeroxVideos')) || [{ id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" }, { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }];
-    let musicData = JSON.parse(localStorage.getItem('zeroxMusic')) || [];
-    let newsData = JSON.parse(localStorage.getItem('zeroxNews')) || [{ id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" }, { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "" }, { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "" }];
-    let productsData = JSON.parse(localStorage.getItem('zeroxProducts')) || [];
-    let galleryData = JSON.parse(localStorage.getItem('zeroxGallery')) || [
+    // =============== داده‌های اولیه (با حفظ داده‌های قبلی کاربر) ===============
+    // ویدیوهای پیش‌فرض (فقط در صورتی که localStorage کاملاً خالی باشد استفاده می‌شود)
+    const DEFAULT_VIDEOS = [
+        { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
+        { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "در این ویدیو داستان کامل Outlast رو بررسی می‌کنیم..." }
+    ];
+    const DEFAULT_NEWS = [
+        { id: 1, title: "GTA 6", summary: "اخبار جدید", image: "https://up.20script.ir/file/aab9-InShot-20260606-000830042.jpg", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "" },
+        { id: 2, title: "رزیدنت اویل", summary: "اخبار جدید", image: "https://up.20script.ir/file/4a42-InShot-20260606-005725188.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۴", time: "۰۹:۴۸", fullText: "" },
+        { id: 3, title: "د لست اف اس", summary: "اخبار جدید", image: "https://up.20script.ir/file/fb9e-InShot-20260606-114430356.jpg", date: "جمعه ۱۶ خرداد ۱۴۰۵", time: "۱۱:۵۶", fullText: "" }
+    ];
+    const DEFAULT_SLIDER = [
+        { id: 1, image: "https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" },
+        { id: 2, image: "https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }
+    ];
+    const DEFAULT_GALLERY = [
         { id: 1, title: "God of War Ragnarok", image: "https://cdn.zoomg.ir/2022/11/god-of-war-ragnarok-11.jpg" },
         { id: 2, title: "The Last of Us Part II", image: "https://cdn.zoomg.ir/2020/06/the-last-of-us-2-10.jpg" }
     ];
-    const storiesData = [{ title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }, { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }];
+    const storiesData = [
+        { title: "رستاخیز سرزمین‌های فراموش‌شده", desc: "تحلیل کامل داستان", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" },
+        { title: "حماسه آخرین بازمانده", desc: "روایت نجات و بقا", img: "https://cdn.imgurl.ir/uploads/r97029_Negar_1780663640432.jpg" }
+    ];
+    
+    // بارگذاری داده‌ها با حفظ داده‌های قبلی کاربر
+    let sliderData = (() => {
+        const saved = localStorage.getItem('zeroxSlider');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return DEFAULT_SLIDER;
+    })();
+    
+    let videosData = (() => {
+        const saved = localStorage.getItem('zeroxVideos');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return DEFAULT_VIDEOS;
+    })();
+    
+    let musicData = (() => {
+        const saved = localStorage.getItem('zeroxMusic');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return [];
+    })();
+    
+    let newsData = (() => {
+        const saved = localStorage.getItem('zeroxNews');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return DEFAULT_NEWS;
+    })();
+    
+    let productsData = (() => {
+        const saved = localStorage.getItem('zeroxProducts');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return [];
+    })();
+    
+    let galleryData = (() => {
+        const saved = localStorage.getItem('zeroxGallery');
+        if(saved && saved !== 'undefined') return JSON.parse(saved);
+        return DEFAULT_GALLERY;
+    })();
     
     function saveSlider() { localStorage.setItem('zeroxSlider', JSON.stringify(sliderData)); }
     function saveVideos() { localStorage.setItem('zeroxVideos', JSON.stringify(videosData)); }
@@ -501,4 +547,26 @@
         else if(page==='about')document.getElementById('aboutPage').style.display='block';
     }
     
-    loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadSt
+    // اجرای اولیه
+    loadVideos('homeVideosGrid','همه');
+    loadNews('homeNewsGrid');
+    loadStories('homeStoriesGrid');
+    loadStories('storiesGrid');
+    loadVideos('videosGrid','همه');
+    loadNews('newsGrid');
+    loadMusic();
+    loadProducts();
+    loadGallery();
+    renderSlider();
+    if(sliderData.length>1) autoSlideInterval=setInterval(()=>changeSlide(1),5000);
+    
+    // ذخیره داده‌های اولیه اگر localStorage خالی بود
+    if(!localStorage.getItem('zeroxSlider')) saveSlider();
+    if(!localStorage.getItem('zeroxVideos')) saveVideos();
+    if(!localStorage.getItem('zeroxNews')) saveNews();
+    if(!localStorage.getItem('zeroxGallery')) saveGallery();
+    if(!localStorage.getItem('zeroxProducts')) saveProducts();
+    if(!localStorage.getItem('zeroxMusic')) saveMusic();
+</script>
+</body>
+            </html>
