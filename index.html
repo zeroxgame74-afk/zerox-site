@@ -17,16 +17,7 @@
         .menu a:hover{border-bottom:2px solid white;transform:translateY(-2px);}
         .slider-container{max-width:1080px;margin:20px auto;padding:0 25px;position:relative;}
         .slider{position:relative;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-        .slides{display:flex;transition:transform 0.5s ease-in-out;}
-        .slide{min-width:100%;}
-        .slide img{width:100%;height:auto;display:block;}
-        .dots{text-align:center;padding:15px 0 5px;}
-        .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);margin:0 6px;cursor:pointer;transition:0.2s;}
-        .dot.active{background:white;transform:scale(1.2);}
-        .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;transition:0.2s;}
-        .nav-arrow:hover{background:#B61C1C;}
-        .prev{left:15px;}
-        .next{right:15px;}
+        .slide img{width:100%;height:auto;display:block;border-radius:24px;}
         .container{max-width:1300px;margin:40px auto;padding:0 25px;}
         .section-title{font-size:1.8rem;font-weight:900;margin-bottom:25px;border-right:4px solid white;padding-right:15px;display:flex;align-items:center;gap:10px;color:white;}
         .cards-grid,.news-grid,.videos-grid,.music-grid,.gallery-grid,.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:30px;margin-bottom:40px;}
@@ -77,7 +68,7 @@
         .gallery-download-btn i{font-size:14px;}
         .gallery-download-btn:hover{background:#8a1010;transform:scale(1.02);}
         .featured{background:white;border-radius:24px;padding:30px;text-align:center;}
-        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.filter-btn{padding:5px 14px;font-size:12px;}.nav-arrow{width:30px;height:30px;font-size:14px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
+        @media (max-width:700px){.logo-raw{height:380px;}.menu a{font-size:13px;gap:6px;}.filter-btn{padding:5px 14px;font-size:12px;}.audio-player{flex-direction:column;}.audio-player audio{width:100%;}}
     </style>
 </head>
 <body>
@@ -98,11 +89,10 @@
 
 <div class="slider-container">
     <div class="slider">
-        <button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button>
-        <div class="slides" id="slidesContainer"></div>
-        <button class="nav-arrow next" onclick="changeSlide(1)">❯</button>
+        <div class="slide">
+            <img src="https://cdn.imgurl.ir/uploads/w934247_.png" alt="اسلایدر زروکس">
+        </div>
     </div>
-    <div class="dots" id="dotsContainer"></div>
 </div>
 
 <div class="container" id="contentContainer">
@@ -162,11 +152,6 @@
 
 <script>
     // =============== دیتاهای ثابت و ایستا - برای همه کاربران یکسان ===============
-    const sliderData = [
-        { id: 1, image: "https://uploadkon.ir/uploads/257306_26InShot-20260605-195526606.jpg" },
-        { id: 2, image: "https://up.20script.ir/file/e091-InShot-20260605-200640757.jpg" }
-    ];
-    
     const videosData = [
         { id: 1, title: "داستان کامل بازی نه من انسان نیستم", desc: "اولین ویدیوی چنل", thumb: "https://cdn.imgurl.ir/uploads/n43644_71129478-9827-l__3296.jpg", link: "https://www.aparat.com/v/itl9b8h", category: "ترسناک", date: "شنبه ۱۶ خرداد ۱۴۰۵", time: "۰۸:۳۶", fullText: "در این ویدیو به بررسی کامل داستان بازی نه من انسان نیستم می‌پردازیم. داستانی پر از پیچش و ابهام که شما رو تا انتها با خود همراه می‌کنه." },
         { id: 2, title: "داستان کامل بازی Outlast", desc: "بررسی تیمارستان Mount Massive", thumb: "https://up.20script.ir/file/a2a2-Zerox-th12.png", link: "https://www.aparat.com/v/gkcxc4t", category: "ترسناک", date: "جمعه ۲۲ خرداد ۱۴۰۵", time: "۰۹:۵۲", fullText: "تیمارستان Mount Massive پر از رازهای وحشتناکه. توی این ویدیو قدم به قدم داستان روبراتون بازگو می‌کنیم." }
@@ -227,19 +212,6 @@
             btn.innerText = 'بیشتر...';
         }
     }
-    
-    // =============== اسلایدر ===============
-    let currentSlideIndex = 0, autoSlideInterval;
-    function renderSlider() {
-        const slidesContainer = document.getElementById('slidesContainer');
-        const dotsContainer = document.getElementById('dotsContainer');
-        if (!slidesContainer) return;
-        slidesContainer.innerHTML = sliderData.map((s,i)=>`<div class="slide"><img src="${s.image}" alt="اسلاید ${i+1}"></div>`).join('');
-        dotsContainer.innerHTML = sliderData.map((_,i)=>`<div class="dot ${i===currentSlideIndex?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
-        if(sliderData.length) slidesContainer.style.transform = `translateX(-${currentSlideIndex*100}%)`;
-    }
-    function changeSlide(n) { if(!sliderData.length) return; currentSlideIndex = (currentSlideIndex+n+sliderData.length)%sliderData.length; renderSlider(); }
-    function goToSlide(i) { currentSlideIndex=i; renderSlider(); }
     
     // =============== بارگذاری ویدیوها ===============
     function loadVideos(containerId, filter='همه') {
@@ -488,7 +460,6 @@
     }
     
     // =============== اجرای اولیه ===============
-    renderSlider();
     loadVideos('homeVideosGrid', 'همه');
     loadNews('homeNewsGrid');
     loadStories('homeStoriesGrid');
@@ -498,7 +469,6 @@
     loadMusic();
     loadProducts();
     loadGallery();
-    if(sliderData.length > 1) autoSlideInterval = setInterval(() => changeSlide(1), 5000);
 </script>
 </body>
 </html>
