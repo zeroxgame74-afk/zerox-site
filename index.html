@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- مهم ترین تگ برای شکستن کش -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -10,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* استایل های شما - دقیقا مثل قبل */
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Vazirmatn',sans-serif;font-weight:700;background-color:#B61C1C;color:#1a1a1a;min-height:100vh;}
         .header{text-align:center;padding:20px 20px 10px;position:relative;}
@@ -226,10 +228,19 @@
 <footer class="footer"><p>© 2025 ZEROX | GAME — هر بازی یک حماسه</p></footer>
 
 <script>
-    // =============== سیستم شکستن کش ===============
-    const SITE_VERSION = "2.0.0";
+    // =============== سیستم شکستن کش (CACHE BUSTER) ===============
+    // این روش ترکیبی: هم localStorage رو آپدیت میکنه، هم سرویس ورکر، هم کش مرورگر رو پاک میکنه
+    const SITE_VERSION = "3.0.0";
     const LAST_VERSION_KEY = "zerox_last_version";
     
+    // 1. پاک کردن کش های قدیمی
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
+            for (let name of names) caches.delete(name);
+        });
+    }
+    
+    // 2. چک کردن نسخه
     function checkSiteVersion() {
         const lastVersion = localStorage.getItem(LAST_VERSION_KEY);
         if (lastVersion !== SITE_VERSION) {
@@ -240,6 +251,21 @@
         return false;
     }
     checkSiteVersion();
+    
+    // 3. سرویس ورکر برای نابودی کش (فوق العاده قوی)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(`
+            self.addEventListener('fetch', e => e.respondWith(fetch(e.request, { cache: 'no-store' })));
+            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
+            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+        `)).then(() => console.log('✅ سرویس ورکر فعال شد - کش برای همیشه نابود شد!'));
+    }
+    
+    // 4. یک بار رفرش اجباری برای اعمال تغییرات
+    if (!sessionStorage.getItem('reloaded_' + SITE_VERSION)) {
+        sessionStorage.setItem('reloaded_' + SITE_VERSION, 'true');
+        setTimeout(() => window.location.reload(true), 500);
+    }
 
     // =============== داده‌های ثابت اولیه ===============
     const DEFAULT_VIDEOS = [
@@ -387,10 +413,4 @@
     function showPage(page){
         document.getElementById('homePage').style.display='none';document.getElementById('storiesPage').style.display='none';document.getElementById('videosPage').style.display='none';document.getElementById('musicPage').style.display='none';document.getElementById('newsPage').style.display='none';document.getElementById('shopPage').style.display='none';document.getElementById('galleryPage').style.display='none';document.getElementById('aboutPage').style.display='none';
         if(page==='home'){document.getElementById('homePage').style.display='block';loadVideos('homeVideosGrid','همه');loadNews('homeNewsGrid');loadStories('homeStoriesGrid');}
-        else if(page==='stories'){document.getElementById('storiesPage').style.display='block';loadStories('storiesGrid');}
-        else if(page==='videos'){document.getElementById('videosPage').style.display='block';loadVideos('videosGrid',currentFilter);setupFilters();if(isAdmin)document.getElementById('adminVideosPanel').style.display='block';}
-        else if(page==='music'){document.getElementById('musicPage').style.display='block';loadMusic();if(isAdmin)document.getElementById('adminMusicPanel').style.display='block';}
-        else if(page==='news'){document.getElementById('newsPage').style.display='block';loadNews('newsGrid');if(isAdmin){document.getElementById('adminNewsPanel').style.display='block';document.getElementById('adminSliderPanel').style.display='block';}}
-        else if(page==='shop'){document.getElementById('shopPage').style.display='block';loadProducts();if(isAdmin)document.getElementById('adminShopPanel').style.display='block';}
-        else if(page==='gallery'){document.getElementById('galleryPage').style.display='block';loadGallery();if(isAdmin)document.getElementById('adminGalleryPanel').style.display='block';}
-        else if(page==='about')document.getElementById('
+    
